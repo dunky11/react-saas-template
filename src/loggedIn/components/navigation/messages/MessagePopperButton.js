@@ -1,0 +1,130 @@
+import React, { PureComponent, Fragment } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import {
+  Popover,
+  IconButton,
+  AppBar,
+  List,
+  Divider,
+  ListItem,
+  ListItemText,
+  Typography
+} from "@material-ui/core";
+import MessageIcon from "@material-ui/icons/Message";
+import MessageListItem from "./MessageListItem";
+
+const styles = theme => ({
+  tabContainer: {
+    overflowY: "auto",
+    maxHeight: 350
+  },
+  // This will center the element on the messageIcon
+  popoverPaper: {
+    width: "100%",
+    maxWidth: 350,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(1),
+    [`@media (max-width: ${theme.breakpoints.values.xsl}px)`]: {
+      maxWidth: 270
+    }
+  },
+  divider: {
+    marginTop: -2
+  }
+});
+
+class MessagePopperButton extends PureComponent {
+  anchorEl = null;
+
+  state = {
+    open: false
+  };
+
+  handleClick = () => {
+    const { open } = this.state;
+    this.setState({ open: !open });
+  };
+
+  handleClickAway = () => {
+    this.setState({
+      open: false
+    });
+  };
+
+  printMessages = () => {
+    const { messages } = this.props;
+    if (messages.length === 0) {
+      return (
+        <ListItem>
+          <ListItemText>
+            You haven&apos;t received any messages yet.
+          </ListItemText>
+        </ListItem>
+      );
+    }
+    return messages.map((element, index) => (
+      <MessageListItem
+        key={index}
+        message={element}
+        updateMessageSrc={this.updateMessageSrc}
+        divider={index !== messages.length - 1}
+      />
+    ));
+  };
+
+  render() {
+    const { open } = this.state;
+    const { classes } = this.props;
+    const id = open ? "scroll-playground" : null;
+    return (
+      <Fragment>
+        <IconButton
+          onClick={this.handleClick}
+          buttonRef={node => {
+            this.anchorEl = node;
+          }}
+          aria-describedby={id}
+          color="primary"
+        >
+          <MessageIcon />
+        </IconButton>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={this.anchorEl}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+          classes={{ paper: classes.popoverPaper }}
+          onClose={this.handleClickAway}
+        >
+          {<span className={classes.arrow} ref={this.handleArrowRef} />}
+          <div>
+            <AppBar position="static" color="inherit" className="shadow-none">
+              <Typography variant="subtitle1" className="p-1 pl-2">
+                Messages
+              </Typography>
+              <Divider className={classes.divider} />
+            </AppBar>
+            <List dense className={classes.tabContainer}>
+              {this.printMessages()}
+            </List>
+          </div>
+        </Popover>
+      </Fragment>
+    );
+  }
+}
+
+MessagePopperButton.propTypes = {
+  classes: PropTypes.object,
+  messages: PropTypes.array
+};
+
+export default withStyles(styles, { withTheme: true })(MessagePopperButton);
