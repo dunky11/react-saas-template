@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import format from "date-fns/format";
 import BlogCard from "./BlogCard";
+import smoothScrollTop from "../../../universalComponents/smoothScrollTop";
 
 const styles = theme => ({
   blogContentWrapper: {
@@ -33,6 +34,15 @@ class BlogPost extends PureComponent {
   componentDidMount() {
     const { title } = this.props;
     document.title = `WaVer - ${title}`;
+    /**
+     * TODO Not waiting 10ms before begin scrolling to the top
+     * leads to an uneasy animation.
+     * Haven't found a lifecycle hook yet where this could be called
+     * without waiting.
+     */
+    setTimeout(() => {
+      smoothScrollTop();
+    }, 10);
   }
 
   render() {

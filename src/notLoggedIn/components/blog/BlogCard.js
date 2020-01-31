@@ -4,7 +4,6 @@ import { Typography, Card } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import format from "date-fns/format";
 import { Link } from "react-router-dom";
-import smoothScrollTop from "../../../universalComponents/smoothScrollTop";
 
 const styles = theme => ({
   img: {
@@ -50,12 +49,7 @@ function BlogCard(props) {
   }
   return (
     <Card className={classes.card}>
-      <Link
-        to={url}
-        onClick={() => {
-          smoothScrollTop();
-        }}
-      >
+      <Link to={url}>
         <img src={src} className={classes.img} alt="" />
       </Link>
       <div className="p-2">
@@ -64,13 +58,7 @@ function BlogCard(props) {
             awareOfUnicodeTokens: true
           })}
         </Typography>
-        <Link
-          to={url}
-          className="no-decoration"
-          onClick={() => {
-            smoothScrollTop();
-          }}
-        >
+        <Link to={url} className="no-decoration">
           <Typography
             variant="h6" /* If we dont place the className into the child
         component the whole width will  clickable */
@@ -80,13 +68,7 @@ function BlogCard(props) {
         </Link>
         <Typography variant="body1" className="text-secondary-greyed">
           {previewify(content)}
-          <Link
-            to={url}
-            className="no-decoration"
-            onClick={() => {
-              smoothScrollTop();
-            }}
-          >
+          <Link to={url} className="no-decoration">
             <span className="link"> read more...</span>
           </Link>
         </Typography>
