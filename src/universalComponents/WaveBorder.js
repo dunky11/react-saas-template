@@ -46,8 +46,7 @@ function WaveBorder(props) {
           <div
             className="wave"
             style={{
-              backgroundImage:
-                "url('http://front-end-noobs.com/jecko/img/wave-top.png')"
+              backgroundImage: "url('/images/wave-top.png')"
             }}
           />
         </div>
