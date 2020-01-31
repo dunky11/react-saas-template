@@ -37,6 +37,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 * [React-Dropzone](https://github.com/react-dropzone/react-dropzone) - File drop component for uploads
 * [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
 * [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
+* [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
 
 ## License
 
