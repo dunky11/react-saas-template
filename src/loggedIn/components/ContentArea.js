@@ -112,7 +112,6 @@ ContentArea.propTypes = {
   // TODO find correct proptype
   Dropzone: PropTypes.any,
   // TODO find correct proptype
-
   DateTimePicker: PropTypes.any,
   pushMessageToSnackbar: PropTypes.func,
   scheduledPosts: PropTypes.array,
