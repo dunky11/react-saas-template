@@ -1,9 +1,8 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Cropper from "react-cropper";
-import "cropperjs/dist/cropper.css";
+import "../css/cropper.css";
 import { withStyles } from "@material-ui/core/styles";
-
 
 const styles = {
   cropperWrapper: {
