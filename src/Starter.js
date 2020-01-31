@@ -24,11 +24,13 @@ class Main extends PureComponent {
           this.setState({ LoggedInComponent: Component.default });
         });
       }
-    } else if (!this.didFetchLoggedOutComponent) {
-      this.didFetchLoggedOutComponent = true;
-      import("./logged_out/components/Main").then(Component => {
-        this.setState({ LoggedOutComponent: Component.default });
-      });
+    } else {
+      if (!this.didFetchLoggedOutComponent) {
+        this.didFetchLoggedOutComponent = true;
+        import("./logged_out/components/Main").then(Component => {
+          this.setState({ LoggedOutComponent: Component.default });
+        });
+      }
     }
   };
 
