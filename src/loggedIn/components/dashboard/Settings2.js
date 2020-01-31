@@ -21,7 +21,6 @@ import { withStyles } from "@material-ui/core/styles";
 import HelpIcon from "../../../universalComponents/HelpIcon";
 import Bordered from "../../../universalComponents/Bordered";
 import ButtonCircularProgress from "../../../universalComponents/ButtonCircularProgress";
-import ListItemCheckbox from "../../../universalComponents/ListItemCheckbox";
 
 const styles = theme => ({
   numberInput: {
@@ -226,41 +225,27 @@ class Settings2 extends PureComponent {
         <ExpansionPanelDetails className="d-block">
           <List className="w-100">
             <Bordered disableVerticalPadding>
-              {inputs.map((element, index) => {
-                if (element.checkbox) {
-                  return (
-                    <ListItemCheckbox
-                      key={index}
-                      divider={index !== inputs.length - 1}
-                      checkbox={element.checkbox}
-                      text={element.title}
-                      tooltip={element.helpText}
-                      secondaryAction={element.secondaryAction}
-                    />
-                  );
-                }
-                return (
-                  <ListItem
-                    key={index}
-                    divider={index !== inputs.length - 1}
-                    className="listItemSecondaryPadding"
-                  >
-                    <ListItemText>
-                      <Typography variant="body2">
-                        {element.title}
-                        {element.helpText && (
-                          <HelpIcon title={element.helpText} />
-                        )}
-                      </Typography>
-                    </ListItemText>
-                    <ListItemSecondaryAction>
-                      <FormControl variant="outlined">
-                        {element.secondaryAction}
-                      </FormControl>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                );
-              })}
+              {inputs.map((element, index) => (
+                <ListItem
+                  key={index}
+                  divider={index !== inputs.length - 1}
+                  className="listItemSecondaryPadding"
+                >
+                  <ListItemText>
+                    <Typography variant="body2">
+                      {element.title}
+                      {element.helpText && (
+                        <HelpIcon title={element.helpText} />
+                      )}
+                    </Typography>
+                  </ListItemText>
+                  <ListItemSecondaryAction>
+                    <FormControl variant="outlined">
+                      {element.secondaryAction}
+                    </FormControl>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
             </Bordered>
           </List>
         </ExpansionPanelDetails>
