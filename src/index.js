@@ -11,7 +11,7 @@ import Theme from "./Theme";
 import GlobalStyles from "./GlobalStyles";
 import Starter from "./Starter";
 import * as serviceWorker from "./serviceWorker";
-import "./universalComponents/pace";
+import "./shared/pace";
 
 ReactDOM.render(
   <BrowserRouter>
