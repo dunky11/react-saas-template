@@ -22,7 +22,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
-import DialogSelector from "./registerLogin/DialogSelector";
+import DialogSelector from "./register_login/DialogSelector";
 
 const styles = theme => ({
   appBar: {

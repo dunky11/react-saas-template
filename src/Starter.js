@@ -1,11 +1,10 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Fragment } from "react";
 
 class Main extends PureComponent {
   state = {
     loggedIn: null,
     LoggedInComponent: null,
-    LoggedOutComponent: null,
-    fetchedLoginStatus: true
+    LoggedOutComponent: null
   };
 
   setLoggedIn = () => {
@@ -34,35 +33,27 @@ class Main extends PureComponent {
   };
 
   printMainComponent = () => {
-    const {
-      LoggedInComponent,
-      LoggedOutComponent,
-      fetchedLoginStatus,
-      loggedIn
-    } = this.state;
-    if (fetchedLoginStatus) {
-      if (loggedIn) {
-        return (
-          LoggedInComponent && (
-            <LoggedInComponent setLoggedOut={this.setLoggedOut} />
-          )
-        );
-      }
+    const { LoggedInComponent, LoggedOutComponent, loggedIn } = this.state;
+    if (loggedIn) {
       return (
-        LoggedOutComponent && (
-          <LoggedOutComponent setLoggedIn={this.setLoggedIn} />
+        LoggedInComponent && (
+          <LoggedInComponent setLoggedOut={this.setLoggedOut} />
         )
       );
     }
-    return null;
+    return (
+      LoggedOutComponent && (
+        <LoggedOutComponent setLoggedIn={this.setLoggedIn} />
+      )
+    );
   };
 
   render() {
     return (
-      <div>
+      <Fragment>
         {this.fetchComponents()}
         {this.printMainComponent()}
-      </div>
+      </Fragment>
     );
   }
 }
