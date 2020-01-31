@@ -32,7 +32,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 * [Material-UI](https://github.com/mui-org/material-ui) - Material Design Components
 * [React-Router](https://github.com/ReactTraining/react-router) - Dependency Management
-* [Pace](https://github.com/HubSpot/pace) - Used to generate RSS Feeds
+* [Pace](https://github.com/HubSpot/pace) - Loading Bar At The Top
 
 ## License
 
