@@ -46,8 +46,6 @@
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
     "js-cookie": "^2.2.0",
-    "material-ui-flat-pagination": "^3.2.1",
-    "material-ui-pagination": "^1.1.6",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
