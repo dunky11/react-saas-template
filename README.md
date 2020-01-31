@@ -1,5 +1,5 @@
 # react-saas-template
-Template for building a saas application using React+Material-ui - Demo:
+Template for building an saas application using React+Material-ui
 
 ## Getting Started
 
