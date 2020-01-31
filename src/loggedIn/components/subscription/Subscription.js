@@ -1,9 +1,10 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { List, Divider, Paper } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
+import smoothScrollTop from "../../../universalComponents/smoothScrollTop";
 
 const styles = theme => ({
   contentAreaInnerArea: {
@@ -33,17 +34,23 @@ const styles = theme => ({
   }
 });
 
-function Subscription(props) {
-  const { transactions } = props;
-  return (
-    <Paper>
-      <List disablePadding>
-        <SubscriptionInfo />
-        <Divider />
-        <SubscriptionTable transactions={transactions} />
-      </List>
-    </Paper>
-  );
+class Subscription extends PureComponent {
+  componentDidMount() {
+    smoothScrollTop();
+  }
+
+  render() {
+    const { transactions } = this.props;
+    return (
+      <Paper>
+        <List disablePadding>
+          <SubscriptionInfo />
+          <Divider />
+          <SubscriptionTable transactions={transactions} />
+        </List>
+      </Paper>
+    );
+  }
 }
 
 Subscription.propTypes = {

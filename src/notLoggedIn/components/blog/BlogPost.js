@@ -40,9 +40,7 @@ class BlogPost extends PureComponent {
      * Haven't found a lifecycle hook yet where this could be called
      * without waiting.
      */
-    setTimeout(() => {
-      smoothScrollTop();
-    }, 10);
+    smoothScrollTop();
   }
 
   render() {
