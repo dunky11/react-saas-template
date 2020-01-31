@@ -30,16 +30,10 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Mainly Build With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Material-UI](https://github.com/mui-org/material-ui) - Material Design Components
+* [React-Router](https://github.com/ReactTraining/react-router) - Dependency Management
+* [Pace](https://github.com/HubSpot/pace) - Used to generate RSS Feeds
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
