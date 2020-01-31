@@ -30,8 +30,8 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Mainly Build With
 
-* [Material-UI](https://github.com/mui-org/material-ui) - Material Design Components
-* [React-Router](https://github.com/ReactTraining/react-router) - Dependency Management
+* [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
+* [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
 * [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
 
 ## License
