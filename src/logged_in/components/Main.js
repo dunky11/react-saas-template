@@ -509,6 +509,21 @@ class Main extends PureComponent {
             />
           )
         }
+      },
+      {
+        link: "/",
+        name: "Logout",
+        onClick: () => {
+          this.logout();
+        },
+        icon: {
+          desktop: (
+            <PowerSettingsNewIcon className="text-white" fontSize="small" />
+          ),
+          mobile: (
+            <PowerSettingsNewIcon className="text-white" fontSize="small" />
+          )
+        }
       }
     ];
     return (
@@ -636,20 +651,6 @@ class Main extends PureComponent {
                   </Link>
                 </Tooltip>
               ))}
-              <Tooltip title="Logout" placement="right">
-                <ListItem
-                  button
-                  onClick={this.logout}
-                  className="justify-content-center"
-                >
-                  <ListItemIcon className="justify-content-center">
-                    <PowerSettingsNewIcon
-                      className="text-white"
-                      fontSize="small"
-                    />
-                  </ListItemIcon>
-                </ListItem>
-              </Tooltip>
             </List>
           </Drawer>
         </Hidden>
