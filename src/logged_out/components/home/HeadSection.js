@@ -84,7 +84,7 @@ const styles = theme => ({
 function HeadSection(props) {
   const { classes, theme, width } = props;
   const openGithub = () => {
-    window.open("https://github.com/dunky11/react-saas-template");
+    window.open("https://github.com");
   };
   return (
     <Fragment>
