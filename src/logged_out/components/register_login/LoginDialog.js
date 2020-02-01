@@ -9,6 +9,7 @@ import {
   FormControlLabel
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
@@ -29,7 +30,7 @@ class LoginDialog extends PureComponent {
   state = { loading: false };
 
   login = () => {
-    const { setLoggedIn, setLastEmail, setStatus } = this.props;
+    const { setLoggedIn, setLastEmail, setStatus, history } = this.props;
     const email = this.loginEmail.value;
     setLastEmail(email);
     this.setState({
@@ -51,6 +52,7 @@ class LoginDialog extends PureComponent {
         });
       }, 1500);
     } else {
+      history.push("/dashboard");
       setLoggedIn();
     }
   };
@@ -267,7 +269,8 @@ LoginDialog.propTypes = {
   setLastEmail: PropTypes.func.isRequired,
   openSendPasswordEmailDialog: PropTypes.func.isRequired,
   status: PropTypes.string,
-  setStatus: PropTypes.func.isRequired
+  setStatus: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LoginDialog);
+export default withRouter(withStyles(styles)(LoginDialog));

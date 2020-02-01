@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
@@ -307,7 +307,8 @@ class Main extends PureComponent {
    * Logs the user out from the website and refreshes the page
    */
   logout = () => {
-    const { setLoggedOut } = this.props;
+    const { setLoggedOut, history } = this.props;
+    history.push("/");
     setLoggedOut();
   };
 
@@ -715,7 +716,10 @@ class Main extends PureComponent {
 Main.propTypes = {
   width: PropTypes.string.isRequired,
   setLoggedOut: PropTypes.func,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Main));
+export default withRouter(
+  withWidth()(withStyles(styles, { withTheme: true })(Main))
+);
