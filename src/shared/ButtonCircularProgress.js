@@ -1,23 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Box } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  circularProgress: {
+    color: theme.palette.secondary.main
+  }
+});
 
 function ButtonCircularProgress(props) {
-  const { size } = props;
+  const { size, classes } = props;
   return (
-    <CircularProgress
-      size={size ? size : 24}
-      style={{
-        marginLeft: 12
-      }}
-      thickness={size ? (size / 5) * 24 : 5}
-      className="text-secondary mr-1"
-    />
+    <Box color="secondary.main" pl={1.5} display="flex">
+      <CircularProgress
+        size={size ? size : 24}
+        thickness={size ? (size / 5) * 24 : 5}
+        className={classes.circularProgress}
+      />
+    </Box>
   );
 }
 
 ButtonCircularProgress.propTypes = {
-  size: PropTypes.number
+  size: PropTypes.number,
+  classes: PropTypes.object.isRequired
 };
 
-export default ButtonCircularProgress;
+export default withStyles(styles, { withTheme: true })(ButtonCircularProgress);

@@ -4,18 +4,18 @@ import {
   IconButton,
   Toolbar,
   Divider,
-  Typography
+  Typography,
+  Box
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import CloseIcon from "@material-ui/icons/Close";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 
 const drawerWidth = 240;
 
 const styles = {
-  headTooblar: {
+  toolbar: {
     minWidth: drawerWidth
   }
 };
@@ -49,23 +49,19 @@ class SideDrawer extends PureComponent {
           variant="temporary"
           onClose={!loading ? this.closeAccountDrawer : null}
         >
-          <Toolbar
-            disableGutters
-            className={classNames(
-              classes.headTooblar,
-              "pl-3 pr-1 justify-content-between"
-            )}
-          >
-            <Typography variant="h6">A Sidedrawer</Typography>
-            <IconButton
-              onClick={() => {
-                this.setState({ open: !open });
-              }}
-              color="primary"
-            >
-              <CloseIcon />
-            </IconButton>
-          </Toolbar>
+          <Box pl={3} pr={1} justifyContent="space-between">
+            <Toolbar disableGutters className={classes.toolbar}>
+              <Typography variant="h6">A Sidedrawer</Typography>
+              <IconButton
+                onClick={() => {
+                  this.setState({ open: !open });
+                }}
+                color="primary"
+              >
+                <CloseIcon />
+              </IconButton>
+            </Toolbar>
+          </Box>
           <Divider />
         </Drawer>
       </Fragment>

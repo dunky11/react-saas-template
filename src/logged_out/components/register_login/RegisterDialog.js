@@ -207,7 +207,7 @@ class RegisterDialog extends PureComponent {
               FormHelperTextProps={{ error: true }}
             />
             <FormControlLabel
-              className="mr-0"
+              style={{ marginRight: 0 }}
               control={
                 <Checkbox
                   color="primary"
@@ -235,13 +235,12 @@ class RegisterDialog extends PureComponent {
                 </Typography>
               }
             />
-
             {termsOfServiceError && (
               <FormHelperText
                 error
                 style={{
                   display: "block",
-                  marginTop: -theme.spacing(1)
+                  marginTop: theme.spacing(-1)
                 }}
               >
                 In order to create an account, you have to accept our terms of

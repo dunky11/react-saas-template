@@ -27,6 +27,12 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(2)
     }
+  },
+  dBlock: {
+    display: "block !important"
+  },
+  dNone: {
+    display: "none !important"
   }
 });
 
@@ -123,10 +129,10 @@ class SubscriptionTable extends PureComponent {
             }}
             onChangePage={this.handleChangePage}
             classes={{
-              select: "d-none",
-              selectIcon: "d-none",
-              actions: transactions.length > 0 ? "d-block" : "d-none",
-              caption: transactions.length > 0 ? "d-block" : "d-none"
+              select: classes.dNone,
+              selectIcon: classes.dNone,
+              actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
+              caption: transactions.length > 0 ? classes.dBlock : classes.dNone
             }}
             labelRowsPerPage=""
           />

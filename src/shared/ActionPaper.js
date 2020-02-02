@@ -4,7 +4,8 @@ import {
   Paper,
   DialogTitle,
   DialogContent,
-  DialogActions
+  DialogActions,
+  Box
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -29,27 +30,27 @@ function ActionPaper(props) {
     fullWidthActions
   } = props;
   return (
-    <Paper
-      className="pt-1"
-      style={{ maxWidth: theme.breakpoints.values[maxWidth] }}
-    >
-      {title && <DialogTitle>{title}</DialogTitle>}
-      {content && (
-        <DialogContent
-          classes={helpPadding ? { root: classes.helpPadding } : null}
-        >
-          {content}
-        </DialogContent>
-      )}
-      {actions && (
-        <DialogActions
-          className="pb-2 pr-2"
-          classes={{ action: fullWidthActions ? "w-100" : null }}
-        >
-          {actions}
-        </DialogActions>
-      )}
-    </Paper>
+    <Box pt={1}>
+      <Paper style={{ maxWidth: theme.breakpoints.values[maxWidth] }}>
+        {title && <DialogTitle>{title}</DialogTitle>}
+        {content && (
+          <DialogContent
+            classes={helpPadding ? { root: classes.helpPadding } : null}
+          >
+            {content}
+          </DialogContent>
+        )}
+        {actions && (
+          <Box pb={2} pr={2}>
+            <DialogActions
+              classes={{ action: fullWidthActions ? "w-100" : null }}
+            >
+              {actions}
+            </DialogActions>
+          </Box>
+        )}
+      </Paper>
+    </Box>
   );
 }
 
