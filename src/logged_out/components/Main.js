@@ -124,7 +124,7 @@ class Main extends PureComponent {
   };
 
   render() {
-    const { location, setLoggedIn } = this.props;
+    const { location } = this.props;
     const {
       selectedTab,
       mobileDrawerOpen,
@@ -155,7 +155,6 @@ class Main extends PureComponent {
             mobileDrawerOpen={mobileDrawerOpen}
             handleMobileDrawerOpen={this.handleMobileDrawerOpen}
             handleMobileDrawerClose={this.handleMobileDrawerClose}
-            setLoggedIn={setLoggedIn}
             openTermsDialog={this.openTermsDialog}
             openChangePasswordDialog={this.openChangePasswordDialog}
           />
@@ -204,8 +203,7 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  location: PropTypes.object.isRequired,
-  setLoggedIn: PropTypes.func
+  location: PropTypes.object.isRequired
 };
 
 export default withRouter(Main);

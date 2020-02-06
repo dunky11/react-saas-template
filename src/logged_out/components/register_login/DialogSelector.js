@@ -31,7 +31,6 @@ class DialogSelector extends PureComponent {
       dialogOpen,
       openTermsDialog,
       openRegisterDialog,
-      setLoggedIn,
       openLoginDialog,
       openChangePasswordDialog
     } = this.props;
@@ -52,7 +51,6 @@ class DialogSelector extends PureComponent {
         return (
           <LoginDialog
             onClose={this.onClose}
-            setLoggedIn={setLoggedIn}
             status={loginStatus}
             setStatus={this.setLoginStatus}
             openChangePasswordDialog={openChangePasswordDialog}
@@ -83,7 +81,6 @@ class DialogSelector extends PureComponent {
 DialogSelector.propTypes = {
   dialogOpen: PropTypes.string,
   openLoginDialog: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   openTermsDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,

@@ -9,7 +9,7 @@ import {
   FormControlLabel
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
@@ -27,10 +27,10 @@ const styles = theme => ({
 });
 
 class LoginDialog extends PureComponent {
-  state = { loading: false };
+  state = { loading: false, redirect: false };
 
   login = () => {
-    const { setLoggedIn, setStatus, history } = this.props;
+    const { setStatus } = this.props;
     this.setState({
       loading: true
     });
@@ -50,8 +50,7 @@ class LoginDialog extends PureComponent {
         });
       }, 1500);
     } else {
-      history.push("/c/dashboard");
-      setLoggedIn();
+      this.setState({ redirect: true });
     }
   };
 
@@ -63,120 +62,123 @@ class LoginDialog extends PureComponent {
       status,
       setStatus
     } = this.props;
-    const { loading } = this.state;
+    const { loading, redirect } = this.state;
     return (
-      <FormDialog
-        open
-        onClose={onClose}
-        loading={loading}
-        onFormSubmit={e => {
-          e.preventDefault();
-          this.login();
-        }}
-        hideBackdrop
-        headline="Login"
-        hasCloseIcon
-        content={
-          <Fragment>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              error={status === "invalidEmail"}
-              required
-              fullWidth
-              label="Email Address"
-              inputRef={node => {
-                this.loginEmail = node;
-              }}
-              autoFocus
-              autoComplete="off"
-              type="email"
-              onChange={() => {
-                if (status === "invalidEmail") {
-                  setStatus(null);
+      <Fragment>
+        {redirect && <Redirect to="/c/dashboard" />}
+        <FormDialog
+          open
+          onClose={onClose}
+          loading={loading}
+          onFormSubmit={e => {
+            e.preventDefault();
+            this.login();
+          }}
+          hideBackdrop
+          headline="Login"
+          hasCloseIcon
+          content={
+            <Fragment>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                error={status === "invalidEmail"}
+                required
+                fullWidth
+                label="Email Address"
+                inputRef={node => {
+                  this.loginEmail = node;
+                }}
+                autoFocus
+                autoComplete="off"
+                type="email"
+                onChange={() => {
+                  if (status === "invalidEmail") {
+                    setStatus(null);
+                  }
+                }}
+                helperText={
+                  status === "invalidEmail" &&
+                  "This email address isn't associated with an account."
                 }
-              }}
-              helperText={
-                status === "invalidEmail" &&
-                "This email address isn't associated with an account."
-              }
-              FormHelperTextProps={{ error: true }}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              error={status === "invalidPassword"}
-              label="Password"
-              type="password"
-              inputRef={node => {
-                this.loginPassword = node;
-              }}
-              autoComplete="off"
-              onChange={() => {
-                if (status === "invalidPassword") {
-                  setStatus(null);
+                FormHelperTextProps={{ error: true }}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                error={status === "invalidPassword"}
+                label="Password"
+                type="password"
+                inputRef={node => {
+                  this.loginPassword = node;
+                }}
+                autoComplete="off"
+                onChange={() => {
+                  if (status === "invalidPassword") {
+                    setStatus(null);
+                  }
+                }}
+                helperText={
+                  status === "invalidPassword" ? (
+                    <span>
+                      Incorrect password. Try again, or click on{" "}
+                      <b>&quot;Forgot Password?&quot;</b> to reset it.
+                    </span>
+                  ) : (
+                    ""
+                  )
                 }
-              }}
-              helperText={
-                status === "invalidPassword" ? (
-                  <span>
-                    Incorrect password. Try again, or click on{" "}
-                    <b>&quot;Forgot Password?&quot;</b> to reset it.
-                  </span>
-                ) : (
-                  ""
-                )
-              }
-              FormHelperTextProps={{ error: true }}
-            />
-            <FormControlLabel
-              className="mr-0"
-              control={
-                <Checkbox
-                  inputRef={node => {
-                    this.loginRememberMe = node;
-                  }}
-                  color="primary"
-                />
-              }
-              label={<Typography variant="body1">Remember me</Typography>}
-            />
-            <HighlightedInformation>
-              Email is: <b>test@web.com</b>
-              <br />
-              Password is: <b>test</b>
-            </HighlightedInformation>
-          </Fragment>
-        }
-        actions={
-          <div className="d-flex flex-column">
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="secondary"
-              disabled={loading}
-              size="large"
-            >
-              Login
-              {loading && <ButtonCircularProgress />}
-            </Button>
-            <Typography
-              align="center"
-              className={classNames(
-                classes.forgotPassword,
-                loading ? classes.disabledText : null
-              )}
-              color="primary"
-              onClick={loading ? null : openChangePasswordDialog}
-            >
-              Forgot Password?
-            </Typography>
-          </div>
-        }
-      />
+                FormHelperTextProps={{ error: true }}
+              />
+              <FormControlLabel
+                className="mr-0"
+                control={
+                  <Checkbox
+                    inputRef={node => {
+                      this.loginRememberMe = node;
+                    }}
+                    color="primary"
+                  />
+                }
+                label={<Typography variant="body1">Remember me</Typography>}
+              />
+              <HighlightedInformation>
+                Email is: <b>test@web.com</b>
+                <br />
+                Password is: <b>test</b>
+              </HighlightedInformation>
+            </Fragment>
+          }
+          actions={
+            <div className="d-flex flex-column">
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="secondary"
+                disabled={loading}
+                size="large"
+              >
+                Login
+                {loading && <ButtonCircularProgress />}
+              </Button>
+              <Typography
+                align="center"
+                className={classNames(
+                  classes.forgotPassword,
+                  loading ? classes.disabledText : null
+                )}
+                color="primary"
+                onClick={loading ? null : openChangePasswordDialog}
+              >
+                Forgot Password?
+              </Typography>
+            </div>
+          }
+        />
+      </Fragment>
     );
   }
 }
@@ -184,11 +186,9 @@ class LoginDialog extends PureComponent {
 LoginDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func.isRequired,
   status: PropTypes.string,
   setStatus: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  openChangePasswordDialog: PropTypes.func.isRequired
 };
 
-export default withRouter(withStyles(styles)(LoginDialog));
+export default withStyles(styles)(LoginDialog);

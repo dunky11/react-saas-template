@@ -1,61 +1,25 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, Suspense, lazy } from "react";
+import { Switch, Route } from "react-router-dom";
 
-class Main extends PureComponent {
-  state = {
-    loggedIn: null,
-    LoggedInComponent: null,
-    LoggedOutComponent: null
-  };
+const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
-  setLoggedIn = () => {
-    this.setState({ loggedIn: true });
-  };
+const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
-  setLoggedOut = () => {
-    this.setState({ loggedIn: false });
-  };
-
-  fetchComponents = () => {
-    const { loggedIn } = this.state;
-    if (loggedIn) {
-      if (!this.didFetchLoggedInComponent) {
-        this.didFetchLoggedInComponent = true;
-        import("./logged_in/components/Main").then(Component => {
-          this.setState({ LoggedInComponent: Component.default });
-        });
-      }
-    } else if (!this.didFetchLoggedOutComponent) {
-      this.didFetchLoggedOutComponent = true;
-      import("./logged_out/components/Main").then(Component => {
-        this.setState({ LoggedOutComponent: Component.default });
-      });
-    }
-  };
-
-  printMainComponent = () => {
-    const { LoggedInComponent, LoggedOutComponent, loggedIn } = this.state;
-    if (loggedIn) {
-      return (
-        LoggedInComponent && (
-          <LoggedInComponent setLoggedOut={this.setLoggedOut} />
-        )
-      );
-    }
-    return (
-      LoggedOutComponent && (
-        <LoggedOutComponent setLoggedIn={this.setLoggedIn} />
-      )
-    );
-  };
-
-  render() {
-    return (
-      <Fragment>
-        {this.fetchComponents()}
-        {this.printMainComponent()}
-      </Fragment>
-    );
-  }
+function Starter() {
+  return (
+    <Fragment>
+      <Suspense fallback={<Fragment />}>
+        <Switch>
+          <Route path="/c">
+            <LoggedInComponent />
+          </Route>
+          <Route>
+            <LoggedOutComponent />
+          </Route>
+        </Switch>
+      </Suspense>
+    </Fragment>
+  );
 }
 
-export default Main;
+export default Starter;

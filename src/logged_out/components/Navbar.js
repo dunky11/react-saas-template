@@ -62,7 +62,6 @@ function Navbar(props) {
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     closeDialog,
-    setLoggedIn,
     mobileDrawerOpen,
     selectedTab,
     dialogOpen,
@@ -97,7 +96,6 @@ function Navbar(props) {
         openLoginDialog={openLoginDialog}
         dialogOpen={dialogOpen}
         onClose={closeDialog}
-        setLoggedIn={setLoggedIn}
         openTermsDialog={openTermsDialog}
         openRegisterDialog={openRegisterDialog}
         openChangePasswordDialog={openChangePasswordDialog}
@@ -235,7 +233,6 @@ Navbar.propTypes = {
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
   closeDialog: PropTypes.func.isRequired,
-  setLoggedIn: PropTypes.func,
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
   dialogOpen: PropTypes.string,
