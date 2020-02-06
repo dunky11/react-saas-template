@@ -67,9 +67,7 @@ function Navbar(props) {
     selectedTab,
     dialogOpen,
     openTermsDialog,
-    openSendPasswordEmailDialog,
-    openChangePasswordDialog,
-    openSendNewVerificationEmailDialog
+    openChangePasswordDialog
   } = props;
   const menuItems = [
     {
@@ -102,9 +100,7 @@ function Navbar(props) {
         setLoggedIn={setLoggedIn}
         openTermsDialog={openTermsDialog}
         openRegisterDialog={openRegisterDialog}
-        openSendPasswordEmailDialog={openSendPasswordEmailDialog}
         openChangePasswordDialog={openChangePasswordDialog}
-        openSendNewVerificationEmailDialog={openSendNewVerificationEmailDialog}
       />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
@@ -235,7 +231,7 @@ function Navbar(props) {
 }
 
 Navbar.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
   closeDialog: PropTypes.func.isRequired,
@@ -245,10 +241,8 @@ Navbar.propTypes = {
   dialogOpen: PropTypes.string,
   openTermsDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,
-  openSendPasswordEmailDialog: PropTypes.func.isRequired,
   openLoginDialog: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired,
-  openSendNewVerificationEmailDialog: PropTypes.func.isRequired
+  openChangePasswordDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Navbar);

@@ -1,189 +1,85 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { TextField, Button } from "@material-ui/core";
+import {
+  TextField,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button
+} from "@material-ui/core";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import FormDialog from "../../../shared/FormDialog";
 
-class ChangePasswordDialog extends PureComponent {
-  state = { loading: false, status: null };
+class ChangePassword extends PureComponent {
+  state = { loading: false };
 
-  setNewPassword = () => {
-    const { onClose } = this.props;
-    this.setState({
-      loading: true,
-      status: null
-    });
-    const password = this.newPasswordPassword.value;
-    if (password !== this.newPasswordPasswordRepeat.value) {
-      this.setState({
-        status: "passwordsDontMatch",
-        loading: false
-      });
-      return;
-    }
+  sendPasswordEmail = () => {
+    const { setLoginStatus, onClose } = this.props;
+    this.setState({ loading: true });
     setTimeout(() => {
+      setLoginStatus("verificationEmailSend");
       this.setState({ loading: false });
       onClose();
     }, 1500);
   };
 
-  printStatus = () => {
-    const { openSendPasswordEmailDialog } = this.props;
-    const { status } = this.state;
-    switch (status) {
-      case "linkError":
-        return (
-          <HighlightedInformation className="mt-2">
-            There was an error with your link. Please click on the link in the
-            email we have sent to you again, or{" "}
-            <span
-              onClick={openSendPasswordEmailDialog}
-              className="link"
-              onKeyUp={openSendPasswordEmailDialog}
-              role="button"
-              tabIndex={-1}
-            >
-              click here
-            </span>{" "}
-            to request a new email.
-          </HighlightedInformation>
-        );
-      case "linkExpired":
-        return (
-          <HighlightedInformation className="mt-2">
-            Your password reset link has expired. Please{" "}
-            <span
-              onClick={openSendPasswordEmailDialog}
-              className="link"
-              onKeyUp={openSendPasswordEmailDialog}
-              role="button"
-              tabIndex={-1}
-            >
-              click here
-            </span>{" "}
-            to request a new email.
-          </HighlightedInformation>
-        );
-      case "unknownError":
-        return (
-          <HighlightedInformation className="mt-2">
-            An unknown error occurred.
-          </HighlightedInformation>
-        );
-      default:
-    }
-  };
-
   render() {
     const { onClose } = this.props;
-    const { loading, status } = this.state;
+    const { loading } = this.state;
     return (
-      <FormDialog
+      <Dialog
         open
         hideBackdrop
-        loading={loading}
-        onClose={onClose}
-        headline="Change Password"
-        onFormSubmit={e => {
-          e.preventDefault();
-          this.setNewPassword();
-        }}
-        hasCloseIcon
-        content={
-          <Fragment>
+        onClose={this.onClose}
+        disableBackdropClick={loading}
+        disableEscapeKeyDown={loading}
+        maxWidth="xs"
+      >
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.sendPasswordEmail();
+          }}
+        >
+          <DialogContent className="pt-2">
+            <DialogContentText>
+              Enter your email address below and we will send you instructions
+              on how to reset your password.
+            </DialogContentText>
             <TextField
               variant="outlined"
-              margin="normal"
+              margin="dense"
               required
               fullWidth
-              error={
-                status === "passwordTooShort" || status === "passwordsDontMatch"
-              }
-              label="Your new password"
-              inputRef={node => {
-                this.newPasswordPassword = node;
-              }}
+              label="Email Address"
               autoFocus
+              type="email"
               autoComplete="off"
-              type="password"
-              onChange={() => {
-                if (
-                  status === "passwordTooShort" ||
-                  status === "passwordsDontMatch"
-                ) {
-                  this.setState({ status: null });
-                }
-              }}
-              helperText={(() => {
-                if (status === "passwordTooShort") {
-                  return "Create a password at least 6 characters long.";
-                }
-                if (status === "passwordsDontMatch") {
-                  return "The passwords dont match.";
-                }
-                return null;
-              })()}
-              FormHelperTextProps={{ error: true }}
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              error={
-                status === "passwordTooShort" || status === "passwordsDontMatch"
-              }
-              label="Repeat new password"
-              type="password"
-              inputRef={node => {
-                this.newPasswordPasswordRepeat = node;
-              }}
-              autoComplete="off"
-              onChange={() => {
-                if (
-                  status === "passwordTooShort" ||
-                  status === "passwordsDontMatch"
-                ) {
-                  this.setState({ status: null });
-                }
-              }}
-              FormHelperTextProps={{ error: true }}
-              helperText={(() => {
-                if (status === "passwordTooShort") {
-                  return "Create a password at least 6 characters long.";
-                }
-                if (status === "passwordsDontMatch") {
-                  return "The passwords dont match.";
-                }
-                return null;
-              })()}
-            />
-            {this.printStatus()}
-          </Fragment>
-        }
-        actions={
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            disabled={loading}
-            size="large"
-            className="mt-2"
-          >
-            Change Password
-            {loading && <ButtonCircularProgress />}
-          </Button>
-        }
-      />
+          </DialogContent>
+          <DialogActions className="py-2 pr-2">
+            <Button onClick={onClose} disabled={loading}>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              disabled={loading}
+            >
+              Reset password
+              {loading && <ButtonCircularProgress />}
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
     );
   }
 }
 
-ChangePasswordDialog.propTypes = {
+ChangePassword.propTypes = {
   onClose: PropTypes.func.isRequired,
-  openSendPasswordEmailDialog: PropTypes.func.isRequired
+  setLoginStatus: PropTypes.func.isRequired
 };
 
-export default ChangePasswordDialog;
+export default ChangePassword;

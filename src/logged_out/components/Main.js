@@ -63,14 +63,6 @@ class Main extends PureComponent {
     });
   };
 
-  openSendPasswordEmailDialog = () => {
-    this.setState({ dialogOpen: "sendPasswordEmail" });
-  };
-
-  openSendNewVerificationEmailDialog = () => {
-    this.setState({ dialogOpen: "sendNewVerificationEmail" });
-  };
-
   openTermsDialog = () => {
     this.setState({ dialogOpen: "termsOfService" });
   };
@@ -165,11 +157,7 @@ class Main extends PureComponent {
             handleMobileDrawerClose={this.handleMobileDrawerClose}
             setLoggedIn={setLoggedIn}
             openTermsDialog={this.openTermsDialog}
-            openSendPasswordEmailDialog={this.openSendPasswordEmailDialog}
             openChangePasswordDialog={this.openChangePasswordDialog}
-            openSendNewVerificationEmailDialog={
-              this.openSendNewVerificationEmailDialog
-            }
           />
           <Switch>
             {blogPosts.map(post => (

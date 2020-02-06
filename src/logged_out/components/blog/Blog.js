@@ -5,7 +5,6 @@ import { Grid } from "@material-ui/core";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import classNames from "classnames";
 import BlogCard from "./BlogCard";
-import smoothScrollTop from "../../../shared/smoothScrollTop";
 
 const styles = theme => ({
   blogContentWrapper: {
@@ -26,7 +25,6 @@ const styles = theme => ({
 class Blog extends PureComponent {
   componentDidMount() {
     const { selectBlog } = this.props;
-    smoothScrollTop();
     selectBlog();
   }
 

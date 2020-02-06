@@ -30,9 +30,7 @@ class LoginDialog extends PureComponent {
   state = { loading: false };
 
   login = () => {
-    const { setLoggedIn, setLastEmail, setStatus, history } = this.props;
-    const email = this.loginEmail.value;
-    setLastEmail(email);
+    const { setLoggedIn, setStatus, history } = this.props;
     this.setState({
       loading: true
     });
@@ -52,7 +50,7 @@ class LoginDialog extends PureComponent {
         });
       }, 1500);
     } else {
-      history.push("/dashboard");
+      history.push("/c/dashboard");
       setLoggedIn();
     }
   };
@@ -61,7 +59,7 @@ class LoginDialog extends PureComponent {
     const {
       classes,
       onClose,
-      openSendPasswordEmailDialog,
+      openChangePasswordDialog,
       status,
       setStatus
     } = this.props;
@@ -172,7 +170,7 @@ class LoginDialog extends PureComponent {
                 loading ? classes.disabledText : null
               )}
               color="primary"
-              onClick={loading ? null : openSendPasswordEmailDialog}
+              onClick={loading ? null : openChangePasswordDialog}
             >
               Forgot Password?
             </Typography>
@@ -187,10 +185,9 @@ LoginDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   setLoggedIn: PropTypes.func.isRequired,
-  setLastEmail: PropTypes.func.isRequired,
-  openSendPasswordEmailDialog: PropTypes.func.isRequired,
   status: PropTypes.string,
   setStatus: PropTypes.func.isRequired,
+  openChangePasswordDialog: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 
