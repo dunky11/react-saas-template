@@ -72,12 +72,7 @@ class BlogPost extends PureComponent {
                 </div>
                 <img className={classes.img} src={src} alt="" />
                 <div className="p-3">
-                  <div
-                    className="blog-content"
-                    dangerouslySetInnerHTML={{
-                      __html: content
-                    }}
-                  />
+                  <div className="blog-content">{content}</div>
                 </div>
               </Card>
             </Grid>
@@ -90,7 +85,7 @@ class BlogPost extends PureComponent {
                   <BlogCard
                     src={blogPost.image_src}
                     title={blogPost.title}
-                    content={blogPost.content}
+                    snippet={blogPost.snippet}
                     date={blogPost.date}
                     url={blogPost.url}
                   />
@@ -105,11 +100,11 @@ class BlogPost extends PureComponent {
 }
 
 BlogPost.propTypes = {
-  classes: PropTypes.object,
-  title: PropTypes.string,
-  date: PropTypes.number,
-  src: PropTypes.string,
-  content: PropTypes.string,
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  content: PropTypes.node.isRequired,
   otherArticles: PropTypes.array
 };
 

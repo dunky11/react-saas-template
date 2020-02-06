@@ -27,26 +27,7 @@ const styles = theme => ({
 });
 
 function BlogCard(props) {
-  const { classes, url, src, date, title, content } = props;
-  function previewify(htmlString) {
-    /**
-     * This will strip all html tags from the string
-     */
-    const strippedContent = htmlString.replace(/<\/?[^>]+(>|$)/g, "");
-    let newText = "";
-    let i;
-    for (i = 0; i < strippedContent.length && i < 150; i += 1) {
-      newText += strippedContent[i];
-    }
-    while (i < strippedContent.length) {
-      if (strippedContent[i] === " ") {
-        break;
-      }
-      newText += strippedContent[i];
-      i += 1;
-    }
-    return newText;
-  }
+  const { classes, url, src, date, title, snippet } = props;
   return (
     <Card className={classes.card}>
       <Link to={url}>
@@ -67,7 +48,7 @@ function BlogCard(props) {
           </Typography>
         </Link>
         <Typography variant="body1" className="text-secondary-greyed">
-          {previewify(content)}
+          {snippet}
           <Link to={url} className="no-decoration">
             <span className="link"> read more...</span>
           </Link>
@@ -78,12 +59,12 @@ function BlogCard(props) {
 }
 
 BlogCard.propTypes = {
-  classes: PropTypes.object,
-  url: PropTypes.string,
-  title: PropTypes.string,
-  src: PropTypes.string,
-  date: PropTypes.number,
-  content: PropTypes.string
+  classes: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  snippet: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(BlogCard);

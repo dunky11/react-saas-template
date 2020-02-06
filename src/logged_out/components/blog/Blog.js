@@ -49,7 +49,7 @@ class Blog extends PureComponent {
           <BlogCard
             src={blogPost.imageSrc}
             title={blogPost.title}
-            content={blogPost.content}
+            snippet={blogPost.snippet}
             date={blogPost.date}
             url={blogPost.url}
           />
