@@ -31,6 +31,7 @@ const styles = theme => ({
     }
   },
   card: {
+    boxShadow: theme.shadows[4],
     [theme.breakpoints.up("xs")]: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3)
@@ -59,7 +60,9 @@ const styles = theme => ({
   },
   image: {
     maxWidth: "100%",
-    verticalAlign: "middle"
+    verticalAlign: "middle",
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[4]
   },
   container: {
     marginTop: theme.spacing(6),
@@ -134,7 +137,7 @@ function HeadSection(props) {
                   </Grid>
                   <Grid item md={6}>
                     <img
-                      src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                      src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
                       className={classes.image}
                       autoPlay
                       muted
