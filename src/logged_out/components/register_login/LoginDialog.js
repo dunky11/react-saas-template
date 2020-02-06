@@ -57,84 +57,6 @@ class LoginDialog extends PureComponent {
     }
   };
 
-  printStatus = () => {
-    const { status } = this.props;
-    switch (status) {
-      case null:
-        return;
-      case "invalidEmail":
-        return;
-      case "invalidPassword":
-        return;
-      case "passwordChanged":
-        return (
-          <HighlightedInformation>
-            We have changed your password. You can now log in using your new
-            password.
-          </HighlightedInformation>
-        );
-      case "passwordEmailSend":
-        return (
-          <HighlightedInformation>
-            We have send you an email containing instructions on how the reset
-            your password.
-          </HighlightedInformation>
-        );
-      case "emailNotVerified":
-        return (
-          <HighlightedInformation>
-            Please verify your email address by clicking on the link in the
-            email we send to you. If you haven&apos;t received one you can{" "}
-            <span className="link" role="button" tabIndex={-1}>
-              click here
-            </span>{" "}
-            to get another one.
-          </HighlightedInformation>
-        );
-      case "tokenExpired":
-        return (
-          <HighlightedInformation>
-            The link to activate your account has expired.{" "}
-            <span className="link" role="button" tabIndex={-1}>
-              Click here
-            </span>{" "}
-            and we will send you a new one.
-          </HighlightedInformation>
-        );
-      case "newEmailVerificationEmailSend":
-        return (
-          <HighlightedInformation>
-            We have sent you a new email to verify your account.
-          </HighlightedInformation>
-        );
-      case "accountActivated":
-        return (
-          <HighlightedInformation>
-            Your email-address has been verified, you can now log in.
-          </HighlightedInformation>
-        );
-      case "invalidActivateAccountSelectorToken":
-        return (
-          <HighlightedInformation>
-            There is something wrong with your link. Please try clicking on the
-            button in the email we have sent to you again, or{" "}
-            <span className="link" role="button" tabIndex={-1}>
-              click here
-            </span>{" "}
-            to request a new one.
-          </HighlightedInformation>
-        );
-      case "unknownError":
-        return (
-          <HighlightedInformation>
-            An unknown error occurred.
-          </HighlightedInformation>
-        );
-      default:
-        throw new Error("No branch selected in switch statement");
-    }
-  };
-
   render() {
     const {
       classes,
@@ -228,7 +150,6 @@ class LoginDialog extends PureComponent {
               <br />
               Password is: <b>test</b>
             </HighlightedInformation>
-            {this.printStatus()}
           </Fragment>
         }
         actions={
