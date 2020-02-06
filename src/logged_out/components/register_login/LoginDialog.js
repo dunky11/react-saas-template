@@ -9,7 +9,7 @@ import {
   FormControlLabel
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
@@ -27,7 +27,7 @@ const styles = theme => ({
 });
 
 class LoginDialog extends PureComponent {
-  state = { loading: false, redirect: false };
+  state = { loading: false };
 
   login = () => {
     const { setStatus } = this.props;
@@ -50,7 +50,8 @@ class LoginDialog extends PureComponent {
         });
       }, 1500);
     } else {
-      this.setState({ redirect: true });
+      const { history } = this.props;
+      history.push("/c/dashboard");
     }
   };
 
@@ -62,10 +63,9 @@ class LoginDialog extends PureComponent {
       status,
       setStatus
     } = this.props;
-    const { loading, redirect } = this.state;
+    const { loading } = this.state;
     return (
       <Fragment>
-        {redirect && <Redirect to="/c/dashboard" />}
         <FormDialog
           open
           onClose={onClose}
@@ -188,7 +188,8 @@ LoginDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   status: PropTypes.string,
   setStatus: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired
+  openChangePasswordDialog: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LoginDialog);
+export default withRouter(withStyles(styles)(LoginDialog));

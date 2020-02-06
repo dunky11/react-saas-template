@@ -67,7 +67,7 @@ function ContentArea(props) {
       <Switch>
         <PropsRoute
           location={location}
-          path="/schedule-posts"
+          path="/c/schedule-posts"
           component={SchedulePosts}
           EmojiTextArea={EmojiTextArea}
           ImageCroppr={ImageCroppr}
@@ -78,7 +78,7 @@ function ContentArea(props) {
         />
         <PropsRoute
           location={location}
-          path="/subscription"
+          path="/c/subscription"
           component={Subscription}
           transactions={transactions}
           pushMessageToSnackbar={pushMessageToSnackbar}

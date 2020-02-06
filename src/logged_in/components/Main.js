@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
@@ -304,15 +304,6 @@ class Main extends PureComponent {
   };
 
   /**
-   * Logs the user out from the website and refreshes the page
-   */
-  logout = () => {
-    const { setLoggedOut, history } = this.props;
-    history.push("/");
-    setLoggedOut();
-  };
-
-  /**
    * Toggles the drawer on the left side when the width of the device is small and
    * therefore the mobile drawer is open.
    */
@@ -440,7 +431,7 @@ class Main extends PureComponent {
     } = this.state;
     const menuItems = [
       {
-        link: "/dashboard",
+        link: "/c/dashboard",
         name: "Dashboard",
         onClick: () => {
           this.handleMobileDrawerToggle();
@@ -463,7 +454,7 @@ class Main extends PureComponent {
         }
       },
       {
-        link: "/schedule-posts",
+        link: "/c/schedule-posts",
         name: "Schedule Posts",
         onClick: () => {
           this.handleMobileDrawerToggle();
@@ -487,7 +478,7 @@ class Main extends PureComponent {
         }
       },
       {
-        link: "/subscription",
+        link: "/c/subscription",
         name: "Subscription",
         onClick: () => {
           this.handleMobileDrawerToggle();
@@ -513,9 +504,6 @@ class Main extends PureComponent {
       {
         link: "/",
         name: "Logout",
-        onClick: () => {
-          this.logout();
-        },
         icon: {
           desktop: (
             <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -700,12 +688,6 @@ class Main extends PureComponent {
                   </ListItem>
                 </Link>
               ))}
-              <ListItem button onClick={this.logout}>
-                <ListItemIcon>
-                  <PowerSettingsNewIcon />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </ListItem>
             </List>
           </Drawer>
         </Hidden>
@@ -716,11 +698,7 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   width: PropTypes.string.isRequired,
-  setLoggedOut: PropTypes.func,
-  classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 
-export default withRouter(
-  withWidth()(withStyles(styles, { withTheme: true })(Main))
-);
+export default withWidth()(withStyles(styles, { withTheme: true })(Main));
