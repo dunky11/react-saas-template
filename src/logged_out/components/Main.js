@@ -83,18 +83,6 @@ class Main extends PureComponent {
     this.setState({ dialogOpen: "changePassword" });
   };
 
-  addBlogPosts = postArray => {
-    let { blogPosts } = this.state;
-    blogPosts = [...blogPosts];
-    Object.values(postArray).forEach(post => {
-      Object.values(blogPosts).forEach(blogPost => {
-        if (post.id !== blogPost.id) {
-          blogPosts.push(post);
-        }
-      });
-    });
-  };
-
   fetchBlogPosts = () => {
     /**
      * You would fetch this from the server, however we gonna use the example values from state here
@@ -170,7 +158,6 @@ class Main extends PureComponent {
                 date={post.date}
                 location={location}
                 content={post.content}
-                addBlogPosts={this.addBlogPosts}
                 otherArticles={this.getOtherArticles(post.id)}
               />
             ))}

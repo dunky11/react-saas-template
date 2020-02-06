@@ -17,7 +17,7 @@ class RegisterDialog extends PureComponent {
   state = { loading: false, termsOfServiceError: false };
 
   register = () => {
-    const { setLastEmail, setStatus } = this.props;
+    const { setStatus } = this.props;
     if (!this.registerTermsCheckbox.checked) {
       this.setState({ termsOfServiceError: true });
       return;
@@ -28,8 +28,6 @@ class RegisterDialog extends PureComponent {
     }
     setStatus(null);
     this.setState({ loading: true });
-    const email = this.registerEmail.value;
-    setLastEmail(email);
     setTimeout(() => {
       this.setState({ loading: false });
     }, 1500);
@@ -73,14 +71,7 @@ class RegisterDialog extends PureComponent {
   };
 
   render() {
-    const {
-      theme,
-      onClose,
-      openTermsDialog,
-      openSendPasswordEmailDialog,
-      setStatus,
-      status
-    } = this.props;
+    const { theme, onClose, openTermsDialog, setStatus, status } = this.props;
     const { loading, termsOfServiceError } = this.state;
     return (
       <FormDialog
@@ -114,30 +105,6 @@ class RegisterDialog extends PureComponent {
                   setStatus(null);
                 }
               }}
-              helperText={
-                status === "invalidEmail" && (
-                  <span>
-                    An account with this email address already exists.{" "}
-                    <span
-                      role="button"
-                      style={{
-                        cursor: "pointer",
-                        color: theme.palette.common.black
-                      }}
-                      onClick={() => {
-                        openSendPasswordEmailDialog("useLastEmail");
-                      }}
-                      onKeyUp={() => {
-                        openSendPasswordEmailDialog("useLastEmail");
-                      }}
-                      tabIndex={-1}
-                    >
-                      Click here
-                    </span>{" "}
-                    if you have forgotten your password.
-                  </span>
-                )
-              }
               FormHelperTextProps={{ error: true }}
             />
             <TextField
@@ -202,7 +169,6 @@ class RegisterDialog extends PureComponent {
                 if (status === "passwordsDontMatch") {
                   return "Your passwords dont match.";
                 }
-                return null;
               })()}
               FormHelperTextProps={{ error: true }}
             />
@@ -276,10 +242,8 @@ RegisterDialog.propTypes = {
   theme: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   openTermsDialog: PropTypes.func.isRequired,
-  setLastEmail: PropTypes.func.isRequired,
   status: PropTypes.string,
-  setStatus: PropTypes.func.isRequired,
-  openSendPasswordEmailDialog: PropTypes.func.isRequired
+  setStatus: PropTypes.func.isRequired
 };
 
 export default withTheme(RegisterDialog);
