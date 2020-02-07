@@ -145,7 +145,6 @@ class Main extends PureComponent {
   checkedOnceForOpeningAccountModal = false;
 
   componentDidMount() {
-    this.selectCorrectMenuItem();
     this.fetchRandomTargets();
     this.fetchRandomStatistics();
     this.fetchRandomTransactions();
@@ -342,22 +341,6 @@ class Main extends PureComponent {
     this.setState({ isAccountActivated: !isAccountActivated });
   };
 
-  /**
-   * This couldve been cleaner with calling the matching function
-   * inside PropsRouters child componentDidMount() method,
-   * but it made trouble rendering the PropsRoute component.
-   */
-  selectCorrectMenuItem = () => {
-    const url = window.location.href;
-    if (url.includes("/schedule-posts")) {
-      this.selectSchedulePosts();
-    } else if (url.includes("/subscription")) {
-      this.selectSubscription();
-    } else {
-      this.selectDashboard();
-    }
-  };
-
   selectDashboard = () => {
     smoothScrollTop();
     document.title = "WaVer - Dashboard";
@@ -435,7 +418,6 @@ class Main extends PureComponent {
         name: "Dashboard",
         onClick: () => {
           this.handleMobileDrawerToggle();
-          this.selectDashboard();
         },
         icon: {
           desktop: (
@@ -458,7 +440,6 @@ class Main extends PureComponent {
         name: "Schedule Posts",
         onClick: () => {
           this.handleMobileDrawerToggle();
-          this.selectSchedulePosts();
         },
         icon: {
           desktop: (
@@ -482,7 +463,6 @@ class Main extends PureComponent {
         name: "Subscription",
         onClick: () => {
           this.handleMobileDrawerToggle();
-          this.selectSubscription();
         },
         icon: {
           desktop: (
@@ -597,13 +577,13 @@ class Main extends PureComponent {
             handleSelectChange={this.handleSelectChange}
             toggleAccountActivation={this.toggleAccountActivation}
             pushMessageToSnackbar={this.pushMessageToSnackbar}
-            selectDashboard={this.selectDashboard}
-            selectSchedulePosts={this.selectSchedulePosts}
-            selectSubscription={this.selectSubscription}
             transactions={transactions}
             statistics={statistics}
             scheduledPosts={scheduledPosts}
             targets={targets}
+            selectDashboard={this.selectDashboard}
+            selectSchedulePosts={this.selectSchedulePosts}
+            selectSubscription={this.selectSubscription}
           />
         </main>
         <Hidden xsDown>

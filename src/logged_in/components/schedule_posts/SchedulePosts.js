@@ -10,7 +10,8 @@ class SchedulePosts extends PureComponent {
   };
 
   componentDidMount() {
-    smoothScrollTop();
+    const { selectSchedulePosts } = this.props;
+    selectSchedulePosts();
   }
 
   openAddPostModal = () => {
@@ -81,7 +82,8 @@ SchedulePosts.propTypes = {
   DateTimePicker: PropTypes.any,
   fetchScheduledPosts: PropTypes.func,
   scheduledPosts: PropTypes.array,
-  pushMessageToSnackbar: PropTypes.func
+  pushMessageToSnackbar: PropTypes.func,
+  selectSchedulePosts: PropTypes.func.isRequired
 };
 
 export default SchedulePosts;

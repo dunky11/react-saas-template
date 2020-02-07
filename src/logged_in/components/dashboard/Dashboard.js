@@ -5,11 +5,11 @@ import SettingsArea from "./SettingsArea";
 import TargetArea from "./TargetArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
-import smoothScrollTop from "../../../shared/smoothScrollTop";
 
 class Dashboard extends PureComponent {
   componentDidMount() {
-    smoothScrollTop();
+    const { selectDashboard } = this.props;
+    selectDashboard();
   }
 
   render() {
@@ -51,7 +51,8 @@ Dashboard.propTypes = {
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,
   targets: PropTypes.array.isRequired,
-  isAccountActivated: PropTypes.bool.isRequired
+  isAccountActivated: PropTypes.bool.isRequired,
+  selectDashboard: PropTypes.func.isRequired
 };
 
 export default Dashboard;
