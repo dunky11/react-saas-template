@@ -73,11 +73,11 @@ function Footer(props) {
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
             />
             <HoverTypo
-              onClick={handleCookieRulesDialogOpen}
               text="Cookies"
               className="mx-1"
               color="#FFFFFF"
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
+              onClick={handleCookieRulesDialogOpen}
             />
           </div>
           <div className="d-flex mt-2">

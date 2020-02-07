@@ -7,19 +7,10 @@ import classNames from "classnames";
 const styles = theme => ({
   waveWrapperInner: {
     position: "absolute",
-    width: "250%",
     overflow: "hidden",
     height: "100%",
-    bottom: -1,
-    [theme.breakpoints.up("sm")]: {
-      width: "200%"
-    },
-    [theme.breakpoints.up("md")]: {
-      width: "150%"
-    },
-    [theme.breakpoints.up("lg")]: {
-      width: "100%"
-    }
+    width: "100%",
+    bottom: -1
   },
   waveWrapperOuter: {
     position: "relative",
