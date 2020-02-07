@@ -1,5 +1,5 @@
 # react-saas-template
-Remains of a failed SaaS business I once tried to build. Now avaible as a template for building an saas application using React + Material-UI.
+Remains of a failed SaaS business I once tried to build. Now avaible as a template for building an SaaS/admin application using React + Material-UI.
 
 ## Getting Started
 
