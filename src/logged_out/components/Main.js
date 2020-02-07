@@ -12,8 +12,8 @@ import Footer from "./Footer";
 import "aos/dist/aos.css";
 import CustomStyles from "./CustomStyles";
 import smoothScrollTop from "../../shared/smoothScrollTop";
-import CookieRulesDialog from "./CookieRulesDialog";
-import CookieConsent from "./CookieConsent";
+import CookieRulesDialog from "./cookies/CookieRulesDialog";
+import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
 
 AOS.init();
