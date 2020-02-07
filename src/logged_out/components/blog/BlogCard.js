@@ -62,9 +62,9 @@ BlogCard.propTypes = {
   classes: PropTypes.object.isRequired,
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  snippet: PropTypes.string.isRequired
+  snippet: PropTypes.string.isRequired,
+  src: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(BlogCard);
