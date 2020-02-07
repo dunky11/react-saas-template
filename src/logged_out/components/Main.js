@@ -8,7 +8,7 @@ import Home from "./home/Home";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/BlogPost";
 import urlify from "../../shared/urlify";
-import Footer from "./Footer";
+import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
 import CustomStyles from "./CustomStyles";
 import smoothScrollTop from "../../shared/smoothScrollTop";
