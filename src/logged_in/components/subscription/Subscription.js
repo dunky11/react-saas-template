@@ -36,7 +36,8 @@ const styles = theme => ({
 
 class Subscription extends PureComponent {
   componentDidMount() {
-    smoothScrollTop();
+    const { selectSubscription } = this.props;
+    selectSubscription();
   }
 
   render() {
@@ -54,7 +55,8 @@ class Subscription extends PureComponent {
 }
 
 Subscription.propTypes = {
-  transactions: PropTypes.array
+  transactions: PropTypes.array,
+  selectSubscription: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Subscription);

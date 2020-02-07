@@ -60,7 +60,10 @@ function ContentArea(props) {
     CardChart,
     statistics,
     targets,
-    isAccountActivated
+    isAccountActivated,
+    selectDashboard,
+    selectSchedulePosts,
+    selectSubscription
   } = props;
   return (
     <div className={classes.contentAreaInnerArea}>
@@ -75,6 +78,7 @@ function ContentArea(props) {
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
           scheduledPosts={scheduledPosts}
+          selectSchedulePosts={selectSchedulePosts}
         />
         <PropsRoute
           location={location}
@@ -82,6 +86,7 @@ function ContentArea(props) {
           component={Subscription}
           transactions={transactions}
           pushMessageToSnackbar={pushMessageToSnackbar}
+          selectSubscription={selectSubscription}
         />
         <PropsRoute
           location={location}
@@ -96,6 +101,7 @@ function ContentArea(props) {
           statistics={statistics}
           targets={targets}
           isAccountActivated={isAccountActivated}
+          selectDashboard={selectDashboard}
         />
       </Switch>
     </div>
@@ -124,7 +130,10 @@ ContentArea.propTypes = {
   CardChart: PropTypes.any,
   statistics: PropTypes.array,
   targets: PropTypes.array.isRequired,
-  isAccountActivated: PropTypes.bool.isRequired
+  isAccountActivated: PropTypes.bool.isRequired,
+  selectDashboard: PropTypes.func.isRequired,
+  selectSchedulePosts: PropTypes.func.isRequired,
+  selectSubscription: PropTypes.func.isRequired
 };
 
 export default withRouter(withStyles(styles, { withTheme: true })(ContentArea));
