@@ -4,8 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, IconButton } from "@material-ui/core";
 import classNames from "classnames";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
-import HoverTypo from "../../shared/HoverTypo";
-import WaveBorder from "../../shared/WaveBorder";
+import HoverTypo from "../../../shared/HoverTypo";
+import WaveBorder from "../../../shared/WaveBorder";
 
 const styles = theme => ({
   footerWrapper: {
@@ -73,11 +73,11 @@ function Footer(props) {
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
             />
             <HoverTypo
-              onClick={handleCookieRulesDialogOpen}
               text="Cookies"
               className="mx-1"
               color="#FFFFFF"
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
+              onClick={handleCookieRulesDialogOpen}
             />
           </div>
           <div className="d-flex mt-2">

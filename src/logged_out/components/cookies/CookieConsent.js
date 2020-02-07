@@ -1,10 +1,9 @@
-/* eslint-disable  */
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import { Snackbar, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import fetchIpData from "../../shared/fetchIpData";
+import fetchIpData from "./fetchIpData";
 
 const styles = theme => ({
   snackbarContent: {
