@@ -1,5 +1,5 @@
 # react-saas-template
-Remains of a failed saas business I once tried to build. Now avaible as a template for building an saas application using React + Material-UI.
+Remains of a failed SaaS business I once tried to build. Now avaible as a template for building an SaaS/admin application using React + Material-UI.
 
 ## Getting Started
 
@@ -41,4 +41,4 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details
