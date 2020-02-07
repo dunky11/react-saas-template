@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography } from "@material-ui/core";
-import CodeIcon from "@material-ui/icons/Code";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import CodeIcon from "@material-ui/icons/Code";
 import BuildIcon from "@material-ui/icons/Build";
 import ComputerIcon from "@material-ui/icons/Computer";
 import BarChartIcon from "@material-ui/icons/BarChart";
