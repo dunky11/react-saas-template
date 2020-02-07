@@ -4,8 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Typography, IconButton } from "@material-ui/core";
 import classNames from "classnames";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
-import HoverTypo from "../../shared/HoverTypo";
-import WaveBorder from "../../shared/WaveBorder";
+import HoverTypo from "../../../shared/HoverTypo";
+import WaveBorder from "../../../shared/WaveBorder";
 
 const styles = theme => ({
   footerWrapper: {
