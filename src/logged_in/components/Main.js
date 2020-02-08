@@ -126,6 +126,13 @@ const styles = theme => ({
   }
 });
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 class Main extends PureComponent {
   state = {
     mobileOpen: false,
@@ -261,17 +268,18 @@ class Main extends PureComponent {
   };
 
   fetchRandomMessages = () => {
+    shuffle(persons);
     const messages = [];
-    const iterations = 8;
+    const iterations = persons.length;
     const oneDaySeconds = 60 * 60 * 24;
     let curUnix = Math.round(
       new Date().getTime() / 1000 - iterations * oneDaySeconds
     );
     for (let i = 0; i < iterations; i += 1) {
-      const randomPerson = persons[Math.floor(Math.random() * persons.length)];
+      const person = persons[i];
       const message = {
         id: i,
-        profilePicUrl: randomPerson.profilePicUrl,
+        profilePicUrl: person.profilePicUrl,
         date: curUnix,
         text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed."
       };
@@ -283,17 +291,18 @@ class Main extends PureComponent {
   };
 
   fetchRandomPosts = () => {
+    shuffle(persons);
     const posts = [];
-    const iterations = 15;
+    const iterations = persons.length;
     const oneDaySeconds = 60 * 60 * 24;
     let curUnix = Math.round(
       new Date().getTime() / 1000 - iterations * oneDaySeconds
     );
     for (let i = 0; i < iterations; i += 1) {
-      const randomPerson = persons[Math.floor(Math.random() * persons.length)];
+      const person = persons[i];
       const post = {
         id: i,
-        src: randomPerson.profilePicUrl,
+        src: person.profilePicUrl,
         timestamp: curUnix
       };
       curUnix += oneDaySeconds;
