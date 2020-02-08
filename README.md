@@ -39,6 +39,12 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 * [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
 * [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
 
+## Things im currently working on
+
+* Making the WaveBorder responsive
+* Transitioning from the GlobalStyles component to Materia-UIs Box component
+* Improving reusability of components
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details
