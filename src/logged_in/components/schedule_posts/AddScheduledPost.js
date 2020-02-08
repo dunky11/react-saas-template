@@ -21,11 +21,6 @@ class AddScheduledPost extends PureComponent {
     cropprFile: null
   };
 
-  componentDidMount() {
-    const { receiveEditFunctionFromChild } = this.props;
-    receiveEditFunctionFromChild(this.onEdit);
-  }
-
   acceptDrop = file => {
     this.setState({ files: [file] });
   };
@@ -180,8 +175,7 @@ AddScheduledPost.propTypes = {
   // TODO find correct PropType
   DateTimePicker: PropTypes.any,
   // TODO find correct PropType
-  ImageCroppr: PropTypes.any,
-  receiveEditFunctionFromChild: PropTypes.func
+  ImageCroppr: PropTypes.any
 };
 
 export default AddScheduledPost;
