@@ -7,18 +7,16 @@ const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 function Starter() {
   return (
-    <Fragment>
-      <Suspense fallback={<Fragment />}>
-        <Switch>
-          <Route path="/c">
-            <LoggedInComponent />
-          </Route>
-          <Route>
-            <LoggedOutComponent />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Fragment>
+    <Suspense fallback={<Fragment />}>
+      <Switch>
+        <Route path="/c">
+          <LoggedInComponent />
+        </Route>
+        <Route>
+          <LoggedOutComponent />
+        </Route>
+      </Switch>
+    </Suspense>
   );
 }
 
