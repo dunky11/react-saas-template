@@ -124,7 +124,7 @@ class Main extends PureComponent {
       cookieRulesDialogOpen
     } = this.state;
     return (
-      <div className={classes.wrapper}>
+      <div className="bg-white">
         {!cookieRulesDialogOpen && (
           <CookieConsent
             handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
