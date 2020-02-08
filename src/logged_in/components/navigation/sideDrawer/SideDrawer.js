@@ -22,42 +22,35 @@ const styles = {
 
 class SideDrawer extends PureComponent {
   state = {
-    open: false,
-    loading: false
+    open: false
   };
 
-  closeAccountDrawer = () => {
+  closeDrawer = () => {
     this.setState({ open: false });
+  };
+
+  openDrawer = () => {
+    this.setState({ open: true });
   };
 
   render() {
     const { classes } = this.props;
-    const { loading, open } = this.state;
+    const { open } = this.state;
     return (
       <Fragment>
-        <IconButton
-          onClick={() => {
-            this.setState({ open: !open });
-          }}
-          color="primary"
-        >
+        <IconButton onClick={this.openDrawer} color="primary">
           <SupervisorAccountIcon />
         </IconButton>
         <Drawer
           anchor="right"
           open={open}
           variant="temporary"
-          onClose={!loading ? this.closeAccountDrawer : null}
+          onClose={this.closeDrawer}
         >
           <Box pl={3} pr={1} justifyContent="space-between">
             <Toolbar disableGutters className={classes.toolbar}>
               <Typography variant="h6">A Sidedrawer</Typography>
-              <IconButton
-                onClick={() => {
-                  this.setState({ open: !open });
-                }}
-                color="primary"
-              >
+              <IconButton onClick={this.closeDrawer} color="primary">
                 <CloseIcon />
               </IconButton>
             </Toolbar>

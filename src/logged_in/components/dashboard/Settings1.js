@@ -52,7 +52,7 @@ class Settings1 extends Component {
     this.setState({ [name]: value });
   };
 
-  submitSpeed = () => {
+  onSubmit = () => {
     const { pushMessageToSnackbar } = this.props;
     this.setState({ loading: true });
     setTimeout(() => {
@@ -204,7 +204,7 @@ class Settings1 extends Component {
             variant="contained"
             color="secondary"
             disabled={loading}
-            onClick={this.submitSpeed}
+            onClick={this.onSubmit}
           >
             {loading && <ButtonCircularProgress />}
             Save
