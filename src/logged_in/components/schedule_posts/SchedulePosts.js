@@ -21,16 +21,6 @@ class SchedulePosts extends PureComponent {
     this.setState({ addPostPaperOpen: false });
   };
 
-  onEdit = element => {
-    this.setState({ addPostPaperOpen: true }, () => {
-      this.editFunc(element);
-    });
-  };
-
-  receiveEditFunctionFromChild = func => {
-    this.editFunc = func;
-  };
-
   render() {
     const { addPostPaperOpen, addPostModalOpen } = this.state;
     const {
@@ -39,7 +29,6 @@ class SchedulePosts extends PureComponent {
       Dropzone,
       DateTimePicker,
       pushMessageToSnackbar,
-      fetchScheduledPosts,
       scheduledPosts
     } = this.props;
     return (
@@ -53,16 +42,12 @@ class SchedulePosts extends PureComponent {
             Dropzone={Dropzone}
             DateTimePicker={DateTimePicker}
             pushMessageToSnackbar={pushMessageToSnackbar}
-            fetchScheduledPosts={fetchScheduledPosts}
-            receiveEditFunctionFromChild={this.receiveEditFunctionFromChild}
           />
         ) : (
           <ScheduledPostContent
             openAddPostModal={this.openAddPostModal}
             scheduledPosts={scheduledPosts}
-            fetchScheduledPosts={fetchScheduledPosts}
             pushMessageToSnackbar={pushMessageToSnackbar}
-            onEdit={this.onEdit}
           />
         )}
       </Fragment>
@@ -79,7 +64,6 @@ SchedulePosts.propTypes = {
   Dropzone: PropTypes.any,
   // TODO find correct PropType
   DateTimePicker: PropTypes.any,
-  fetchScheduledPosts: PropTypes.func,
   scheduledPosts: PropTypes.array,
   pushMessageToSnackbar: PropTypes.func,
   selectSchedulePosts: PropTypes.func.isRequired

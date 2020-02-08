@@ -21,16 +21,11 @@ class AddScheduledPost extends PureComponent {
     cropprFile: null
   };
 
-  componentDidMount() {
-    const { receiveEditFunctionFromChild } = this.props;
-    receiveEditFunctionFromChild(this.onEdit);
-  }
-
   acceptDrop = file => {
     this.setState({ files: [file] });
   };
 
-  onDrop = (acceptedFiles, rejectedFiles, ___, skipCrop) => {
+  onDrop = (acceptedFiles, rejectedFiles) => {
     const { pushMessageToSnackbar } = this.props;
     if (acceptedFiles.length + rejectedFiles.length > 1) {
       pushMessageToSnackbar({
@@ -46,11 +41,7 @@ class AddScheduledPost extends PureComponent {
       const file = acceptedFiles[0];
       file.preview = URL.createObjectURL(file);
       file.key = new Date().getTime();
-      if (skipCrop) {
-        this.acceptDrop(file);
-      } else {
-        this.setState({ cropprFile: file });
-      }
+      this.setState({ cropprFile: file });
     }
   };
 
@@ -184,8 +175,7 @@ AddScheduledPost.propTypes = {
   // TODO find correct PropType
   DateTimePicker: PropTypes.any,
   // TODO find correct PropType
-  ImageCroppr: PropTypes.any,
-  receiveEditFunctionFromChild: PropTypes.func
+  ImageCroppr: PropTypes.any
 };
 
 export default AddScheduledPost;
