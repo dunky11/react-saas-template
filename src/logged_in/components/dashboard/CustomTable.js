@@ -85,7 +85,10 @@ class CustomTable extends PureComponent {
     const { pushMessageToSnackbar } = this.props;
     this.setState({ deleteTargetLoading: true });
     setTimeout(() => {
-      this.setState({ deleteTargetLoading: false });
+      this.setState({
+        deleteTargetLoading: false,
+        deleteTargetDialogOpen: false
+      });
       pushMessageToSnackbar({
         text: "Your friend has been removed"
       });

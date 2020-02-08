@@ -93,7 +93,7 @@ class AddScheduledPost extends PureComponent {
   handleUpload = () => {
     const { pushMessageToSnackbar, onClose } = this.props;
     this.setState({ loading: true });
-    this.setTimeout(() => {
+    setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your post has been scheduled"
       });
