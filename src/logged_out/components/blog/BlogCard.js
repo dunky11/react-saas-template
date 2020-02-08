@@ -23,6 +23,17 @@ const styles = theme => ({
   },
   card: {
     boxShadow: theme.shadows[2]
+  },
+  noDecoration: {
+    textDecoration: "none !important"
+  },
+  link: {
+    transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.complex}ms`,
+    cursor: "pointer",
+    color: theme.palette.primary.main,
+    "&:hover": {
+      color: theme.palette.primary.dark
+    }
   }
 });
 
@@ -39,7 +50,7 @@ function BlogCard(props) {
             awareOfUnicodeTokens: true
           })}
         </Typography>
-        <Link to={url} className="no-decoration">
+        <Link to={url} className={classes.noDecoration}>
           <Typography
             variant="h6" /* If we dont place the className into the child
         component the whole width will  clickable */
@@ -49,8 +60,8 @@ function BlogCard(props) {
         </Link>
         <Typography variant="body1" className="text-secondary-greyed">
           {snippet}
-          <Link to={url} className="no-decoration">
-            <span className="link"> read more...</span>
+          <Link to={url} className={classes.noDecoration}>
+            <span className={classes.link}> read more...</span>
           </Link>
         </Typography>
       </div>

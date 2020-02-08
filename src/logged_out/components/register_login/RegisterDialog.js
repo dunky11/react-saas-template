@@ -8,10 +8,21 @@ import {
   Typography,
   FormControlLabel
 } from "@material-ui/core";
-import { withTheme } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+
+const styles = theme => ({
+  link: {
+    transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.complex}ms`,
+    cursor: "pointer",
+    color: theme.palette.primary.main,
+    "&:hover": {
+      color: theme.palette.primary.dark
+    }
+  }
+});
 
 class RegisterDialog extends PureComponent {
   state = { loading: false, termsOfServiceError: false };
@@ -71,7 +82,14 @@ class RegisterDialog extends PureComponent {
   };
 
   render() {
-    const { theme, onClose, openTermsDialog, setStatus, status } = this.props;
+    const {
+      theme,
+      onClose,
+      openTermsDialog,
+      setStatus,
+      status,
+      classes
+    } = this.props;
     const { loading, termsOfServiceError } = this.state;
     return (
       <FormDialog
@@ -189,7 +207,7 @@ class RegisterDialog extends PureComponent {
                 <Typography variant="body1">
                   I agree to the
                   <span
-                    className="link"
+                    className={classes.link}
                     onClick={openTermsDialog}
                     onKeyUp={openTermsDialog}
                     role="button"
@@ -243,7 +261,8 @@ RegisterDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   openTermsDialog: PropTypes.func.isRequired,
   status: PropTypes.string,
-  setStatus: PropTypes.func.isRequired
+  setStatus: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default withTheme(RegisterDialog);
+export default withStyles(styles, { withTheme: true })(RegisterDialog);

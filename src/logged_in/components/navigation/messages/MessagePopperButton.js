@@ -31,6 +31,9 @@ const styles = theme => ({
   },
   divider: {
     marginTop: -2
+  },
+  noShadow: {
+    boxShadow: "none !important"
   }
 });
 
@@ -106,7 +109,11 @@ class MessagePopperButton extends PureComponent {
         >
           {<span className={classes.arrow} ref={this.handleArrowRef} />}
           <div>
-            <AppBar position="static" color="inherit" className="shadow-none">
+            <AppBar
+              position="static"
+              color="inherit"
+              className={classes.noShadow}
+            >
               <Typography variant="subtitle1" className="p-1 pl-2">
                 Messages
               </Typography>

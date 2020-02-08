@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   "@global": {
     /**
-     *  Disable the focus outline, which is default on some browsers like
+     * Disable the focus outline, which is default on some browsers like
      * chrome when focusing elements
      */
     "*:focus": {
@@ -11,27 +11,6 @@ const styles = theme => ({
     },
     ".d-block": {
       display: "block !important"
-    },
-    ".text-black": {
-      color: `${theme.palette.common.black} !important`
-    },
-    ".bg-black": {
-      backgroundColor: `${theme.palette.common.black} !important`
-    },
-    ".bg-primary-main": {
-      backgroundColor: `${theme.palette.primary.main} !important`
-    },
-    ".bg-secondary-main": {
-      backgroundColor: `${theme.palette.secondary.main} !important`
-    },
-    ".bg-white": {
-      backgroundColor: `${theme.palette.common.white} !important`
-    },
-    ".no-decoration": {
-      textDecoration: "none !important"
-    },
-    ".shadow-none": {
-      boxShadow: "none !important"
     },
     ".w-auto": {
       width: "auto !important"
@@ -50,10 +29,6 @@ const styles = theme => ({
     },
     ".h-100": {
       height: "100% !important"
-    },
-    ".avatar-24": {
-      width: "24px !important",
-      height: "24px !important"
     },
     ".text-white": {
       color: `${theme.palette.common.white} !important`
@@ -461,14 +436,6 @@ const styles = theme => ({
       marginRight: `${theme.spacing(5)}px !important`,
       marginBottom: `${theme.spacing(5)}px !important`,
       marginLeft: `${theme.spacing(5)}px !important`
-    },
-    ".link": {
-      transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.complex}ms`,
-      cursor: "pointer",
-      color: theme.palette.primary.main,
-      "&:hover": {
-        color: theme.palette.primary.dark
-      }
     },
     ".d-none": {
       display: "none !important"

@@ -1,6 +1,7 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Switch, withRouter } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 import AOS from "aos/dist/aos";
 import Navbar from "./Navbar";
 import PropsRoute from "../../shared/PropsRoute";
@@ -10,13 +11,18 @@ import BlogPost from "./blog/BlogPost";
 import urlify from "../../shared/urlify";
 import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
-import CustomStyles from "./CustomStyles";
 import smoothScrollTop from "../../shared/smoothScrollTop";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
 
 AOS.init();
+
+const styles = theme => ({
+  wrapper: {
+    backgroundColor: theme.palette.common.white
+  }
+});
 
 class Main extends PureComponent {
   state = {
@@ -109,7 +115,7 @@ class Main extends PureComponent {
   };
 
   render() {
-    const { location } = this.props;
+    const { location, classes } = this.props;
     const {
       selectedTab,
       mobileDrawerOpen,
@@ -118,76 +124,74 @@ class Main extends PureComponent {
       cookieRulesDialogOpen
     } = this.state;
     return (
-      <Fragment>
-        <div className="bg-white">
-          <CustomStyles />
-          {!cookieRulesDialogOpen && (
-            <CookieConsent
-              handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
-            />
-          )}
-          <CookieRulesDialog
-            open={cookieRulesDialogOpen}
-            onClose={this.handleCookieRulesDialogClose}
-          />
-          <Navbar
-            selectedTab={selectedTab}
-            selectTab={this.selectTab}
-            openLoginDialog={this.openLoginDialog}
-            openRegisterDialog={this.openRegisterDialog}
-            closeDialog={this.closeDialog}
-            dialogOpen={dialogOpen}
-            mobileDrawerOpen={mobileDrawerOpen}
-            handleMobileDrawerOpen={this.handleMobileDrawerOpen}
-            handleMobileDrawerClose={this.handleMobileDrawerClose}
-            openTermsDialog={this.openTermsDialog}
-            openChangePasswordDialog={this.openChangePasswordDialog}
-          />
-          <Switch>
-            {blogPosts.map(post => (
-              <PropsRoute
-                /* We cannot use the url here as it contains the get params */
-                path={`/blog/post/${urlify(post.title)}`}
-                component={BlogPost}
-                title={post.title}
-                key={post.title}
-                src={post.imageSrc}
-                date={post.date}
-                location={location}
-                content={post.content}
-                otherArticles={this.getOtherArticles(post.id)}
-              />
-            ))}
-            <PropsRoute
-              exact
-              path="/blog"
-              component={Blog}
-              location={location}
-              selectBlog={this.selectBlog}
-              blogPosts={blogPosts}
-            />
-            )
-            <PropsRoute
-              path="/"
-              component={Home}
-              location={location}
-              selectHome={this.selectHome}
-            />
-            )
-          </Switch>
-          <Footer
-            openLoginDialog={this.openLoginDialog}
-            openRegisterDialog={this.openRegisterDialog}
+      <div className={classes.wrapper}>
+        {!cookieRulesDialogOpen && (
+          <CookieConsent
             handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
           />
-        </div>
-      </Fragment>
+        )}
+        <CookieRulesDialog
+          open={cookieRulesDialogOpen}
+          onClose={this.handleCookieRulesDialogClose}
+        />
+        <Navbar
+          selectedTab={selectedTab}
+          selectTab={this.selectTab}
+          openLoginDialog={this.openLoginDialog}
+          openRegisterDialog={this.openRegisterDialog}
+          closeDialog={this.closeDialog}
+          dialogOpen={dialogOpen}
+          mobileDrawerOpen={mobileDrawerOpen}
+          handleMobileDrawerOpen={this.handleMobileDrawerOpen}
+          handleMobileDrawerClose={this.handleMobileDrawerClose}
+          openTermsDialog={this.openTermsDialog}
+          openChangePasswordDialog={this.openChangePasswordDialog}
+        />
+        <Switch>
+          {blogPosts.map(post => (
+            <PropsRoute
+              /* We cannot use the url here as it contains the get params */
+              path={`/blog/post/${urlify(post.title)}`}
+              component={BlogPost}
+              title={post.title}
+              key={post.title}
+              src={post.imageSrc}
+              date={post.date}
+              location={location}
+              content={post.content}
+              otherArticles={this.getOtherArticles(post.id)}
+            />
+          ))}
+          <PropsRoute
+            exact
+            path="/blog"
+            component={Blog}
+            location={location}
+            selectBlog={this.selectBlog}
+            blogPosts={blogPosts}
+          />
+          )
+          <PropsRoute
+            path="/"
+            component={Home}
+            location={location}
+            selectHome={this.selectHome}
+          />
+          )
+        </Switch>
+        <Footer
+          openLoginDialog={this.openLoginDialog}
+          openRegisterDialog={this.openRegisterDialog}
+          handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
+        />
+      </div>
     );
   }
 }
 
 Main.propTypes = {
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default withRouter(Main);
+export default withStyles(styles, { withTheme: true })(withRouter(Main));
