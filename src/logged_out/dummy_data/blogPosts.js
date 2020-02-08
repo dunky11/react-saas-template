@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { Typography } from "@material-ui/core";
-import blogPost1 from "./images/blogPost1.jfif";
-import blogPost2 from "./images/blogPost2.jfif";
-import blogPost3 from "./images/blogPost3.jfif";
-import blogPost4 from "./images/blogPost4.jfif";
-import blogPost5 from "./images/blogPost5.jfif";
-import blogPost6 from "./images/blogPost6.jfif";
+import blogPost1 from "./images/blogPost1.jpg";
+import blogPost2 from "./images/blogPost2.jpg";
+import blogPost3 from "./images/blogPost3.jpg";
+import blogPost4 from "./images/blogPost4.jpg";
+import blogPost5 from "./images/blogPost5.jpg";
+import blogPost6 from "./images/blogPost6.jpg";
 
 const content = (
   <Fragment>

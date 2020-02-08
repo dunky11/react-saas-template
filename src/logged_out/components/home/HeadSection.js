@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { Grid, Typography, Card, Button } from "@material-ui/core";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
-import headerImage from "../../dummy_data/images/headerImage.jfif";
+import headerImage from "../../dummy_data/images/headerImage.jpg";
 import WaveBorder from "../../../shared/WaveBorder";
 
 const styles = theme => ({
