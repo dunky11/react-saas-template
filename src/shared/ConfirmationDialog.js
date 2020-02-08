@@ -39,7 +39,7 @@ function ConfirmationDialog(props) {
           variant="contained"
           disabled={loading}
         >
-          {loading && <ButtonCircularProgress className="mr-1" />} Yes
+          Yes {loading && <ButtonCircularProgress />}
         </Button>
       </DialogActions>
     </Dialog>

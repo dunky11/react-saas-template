@@ -8,7 +8,7 @@ import Subscription from "./subscription/Subscription";
 import PropsRoute from "../../shared/PropsRoute";
 
 const styles = theme => ({
-  contentAreaInnerArea: {
+  wrapper: {
     margin: theme.spacing(1),
     width: "auto",
     [theme.breakpoints.up("xs")]: {
@@ -42,7 +42,7 @@ const styles = theme => ({
   }
 });
 
-function ContentArea(props) {
+function Routing(props) {
   const {
     classes,
     location,
@@ -66,7 +66,7 @@ function ContentArea(props) {
     selectSubscription
   } = props;
   return (
-    <div className={classes.contentAreaInnerArea}>
+    <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
           location={location}
@@ -108,7 +108,7 @@ function ContentArea(props) {
   );
 }
 
-ContentArea.propTypes = {
+Routing.propTypes = {
   classes: PropTypes.object,
   location: PropTypes.object,
   // TODO find correct proptype
@@ -136,4 +136,4 @@ ContentArea.propTypes = {
   selectSubscription: PropTypes.func.isRequired
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(ContentArea));
+export default withRouter(withStyles(styles, { withTheme: true })(Routing));

@@ -4,10 +4,9 @@ import { withStyles } from "@material-ui/core/styles";
 import { List, Divider, Paper } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
-import smoothScrollTop from "../../../shared/smoothScrollTop";
 
 const styles = theme => ({
-  contentAreaInnerArea: {
+  RoutingInnerArea: {
     margin: theme.spacing(1),
     width: "auto",
     [theme.breakpoints.up("xs")]: {

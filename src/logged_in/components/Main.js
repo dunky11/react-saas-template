@@ -25,12 +25,13 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import MessagePopperButton from "./navigation/messages/MessagePopperButton";
-import ContentArea from "./ContentArea";
+import Routing from "./Routing";
 import SideDrawer from "./navigation/sideDrawer/SideDrawer";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/smoothScrollTop";
 import Balance from "./navigation/navbar/Balance";
 import persons from "../dummy_data/persons";
+import profilePicture from "../dummy_data/images/profilePicture.jfif";
 
 const styles = theme => ({
   appBar: {
@@ -44,7 +45,7 @@ const styles = theme => ({
       marginLeft: 0
     }
   },
-  contentArea: {
+  routing: {
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -543,7 +544,7 @@ class Main extends PureComponent {
               >
                 <Avatar
                   alt=""
-                  src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                  src={profilePicture}
                   className={classNames(
                     "bg-secondary-main avatar-24",
                     classes.addAccountAvatar
@@ -564,8 +565,8 @@ class Main extends PureComponent {
             </div>
           </Toolbar>
         </AppBar>
-        <main className={classNames(classes.contentArea)}>
-          <ContentArea
+        <main className={classNames(classes.routing)}>
+          <Routing
             isAccountActivated={isAccountActivated}
             ImageCroppr={ImageCroppr}
             EmojiTextArea={EmojiTextArea}
