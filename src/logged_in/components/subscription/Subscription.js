@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { List, Divider, Paper } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
-import smoothScrollTop from "../../../shared/smoothScrollTop";
 
 const styles = theme => ({
   contentAreaInnerArea: {

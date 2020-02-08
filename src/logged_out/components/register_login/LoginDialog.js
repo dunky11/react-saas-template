@@ -187,10 +187,10 @@ class LoginDialog extends PureComponent {
 LoginDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
-  status: PropTypes.string,
   setStatus: PropTypes.func.isRequired,
   openChangePasswordDialog: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  status: PropTypes.string
 };
 
 export default withRouter(withStyles(styles)(LoginDialog));

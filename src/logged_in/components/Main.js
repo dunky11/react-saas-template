@@ -31,6 +31,7 @@ import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessage
 import smoothScrollTop from "../../shared/smoothScrollTop";
 import Balance from "./navigation/navbar/Balance";
 import persons from "../dummy_data/persons";
+import profilePicture from "../dummy_data/images/profilePicture.jfif";
 
 const styles = theme => ({
   appBar: {
@@ -543,7 +544,7 @@ class Main extends PureComponent {
               >
                 <Avatar
                   alt=""
-                  src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                  src={profilePicture}
                   className={classNames(
                     "bg-secondary-main avatar-24",
                     classes.addAccountAvatar
