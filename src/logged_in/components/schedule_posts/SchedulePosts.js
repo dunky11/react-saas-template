@@ -2,7 +2,6 @@ import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import ScheduledPostContent from "./ScheduledPostContent";
 import AddScheduledPost from "./AddScheduledPost";
-import smoothScrollTop from "../../../shared/smoothScrollTop";
 
 class SchedulePosts extends PureComponent {
   state = {

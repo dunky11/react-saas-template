@@ -108,9 +108,9 @@ class AddScheduledPostOptions extends PureComponent {
   passOnEmojiTextareaChange = (value, characters) => {
     const { onEmojiTextareaChange, tabIndex } = this.props;
     if (tabIndex === 0) {
-      onEmojiTextareaChange(value, characters, "category 1");
+      onEmojiTextareaChange(value, characters, "category1");
     } else {
-      onEmojiTextareaChange(value, characters, "category 2");
+      onEmojiTextareaChange(value, characters, "category2");
     }
   };
 
@@ -168,10 +168,10 @@ class AddScheduledPostOptions extends PureComponent {
       onCrop,
       onCropprClose,
       handleTabChange,
-      captionValue,
-      firstCommentValue,
-      captionCharacters,
-      firstCommentCharacters,
+      category1Value,
+      category2Value,
+      category1Characters,
+      category2Characters,
       uploadAt,
       onChangeUploadAt
     } = this.props;
@@ -243,9 +243,9 @@ class AddScheduledPostOptions extends PureComponent {
             <EmojiTextArea
               noTopBorder
               onChange={this.passOnEmojiTextareaChange}
-              value={tabIndex === 0 ? captionValue : firstCommentValue}
+              value={tabIndex === 0 ? category1Value : category2Value}
               characters={
-                tabIndex === 0 ? captionCharacters : firstCommentCharacters
+                tabIndex === 0 ? category1Characters : category2Characters
               }
               maxChars={2200}
               rightContent={this.printFile()}
@@ -335,10 +335,10 @@ AddScheduledPostOptions.propTypes = {
   deleteItem: PropTypes.func,
   onDrop: PropTypes.func,
   handleTabChange: PropTypes.func,
-  captionValue: PropTypes.string,
-  firstCommentValue: PropTypes.string,
-  captionCharacters: PropTypes.number,
-  firstCommentCharacters: PropTypes.number,
+  category1Value: PropTypes.string,
+  category2Value: PropTypes.string,
+  category1Characters: PropTypes.number,
+  category2Characters: PropTypes.number,
   uploadAt: PropTypes.instanceOf(Date),
   onChangeUploadAt: PropTypes.func
 };
