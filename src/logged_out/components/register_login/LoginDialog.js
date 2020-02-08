@@ -30,7 +30,7 @@ class LoginDialog extends PureComponent {
   state = { loading: false };
 
   login = () => {
-    const { setStatus } = this.props;
+    const { setStatus, history } = this.props;
     this.setState({
       loading: true
     });
@@ -50,8 +50,9 @@ class LoginDialog extends PureComponent {
         });
       }, 1500);
     } else {
-      const { history } = this.props;
-      history.push("/c/dashboard");
+      setTimeout(() => {
+        history.push("/c/dashboard");
+      }, 1500);
     }
   };
 
