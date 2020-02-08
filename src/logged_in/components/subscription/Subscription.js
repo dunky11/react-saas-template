@@ -6,7 +6,7 @@ import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
 
 const styles = theme => ({
-  contentAreaInnerArea: {
+  RoutingInnerArea: {
     margin: theme.spacing(1),
     width: "auto",
     [theme.breakpoints.up("xs")]: {

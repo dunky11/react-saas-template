@@ -25,7 +25,7 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import MessagePopperButton from "./navigation/messages/MessagePopperButton";
-import ContentArea from "./ContentArea";
+import Routing from "./Routing";
 import SideDrawer from "./navigation/sideDrawer/SideDrawer";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/smoothScrollTop";
@@ -45,7 +45,7 @@ const styles = theme => ({
       marginLeft: 0
     }
   },
-  contentArea: {
+  routing: {
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -565,8 +565,8 @@ class Main extends PureComponent {
             </div>
           </Toolbar>
         </AppBar>
-        <main className={classNames(classes.contentArea)}>
-          <ContentArea
+        <main className={classNames(classes.routing)}>
+          <Routing
             isAccountActivated={isAccountActivated}
             ImageCroppr={ImageCroppr}
             EmojiTextArea={EmojiTextArea}
