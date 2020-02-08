@@ -73,7 +73,7 @@ const styles = theme => ({
     border: "1px solid rgba(0, 0, 0, 0.23)",
     borderRadius: theme.shape.borderRadius,
     borderTopLeftRadius: 0,
-    borderTopRightRadius: 0
+    borderBottomLeftRadius: 0
   },
   tabSelected: {
     color: `${theme.palette.text.primary} !important`,
@@ -103,6 +103,11 @@ class AddScheduledPostOptions extends PureComponent {
     option2: "None",
     option3: "None",
     option4: "None"
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
   passOnEmojiTextareaChange = (value, characters) => {

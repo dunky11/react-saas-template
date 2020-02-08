@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import ActionPaper from "../../../shared/ActionPaper";
+import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 import AddScheduledPostOptions from "./AddScheduledPostOptions";
 
 const now = new Date();
@@ -92,7 +93,7 @@ class AddScheduledPost extends PureComponent {
   handleUpload = () => {
     const { pushMessageToSnackbar, onClose } = this.props;
     this.setState({ loading: true });
-    this.setTimeout(() => {
+    setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your post has been scheduled"
       });
@@ -113,7 +114,8 @@ class AddScheduledPost extends PureComponent {
       category2Characters,
       uploadAt,
       tabIndex,
-      cropprFile
+      cropprFile,
+      loading
     } = this.state;
     const {
       Dropzone,
@@ -160,9 +162,9 @@ class AddScheduledPost extends PureComponent {
                 className="mr-1"
                 variant="contained"
                 color="secondary"
-                disabled={files.length === 0}
+                disabled={files.length === 0 || loading}
               >
-                Upload
+                Upload {loading && <ButtonCircularProgress />}
               </Button>
             </Fragment>
           }

@@ -66,7 +66,7 @@ class SubscriptionTable extends PureComponent {
 
   rowsPerPage = 25;
 
-  handleChangePage = (event, page) => {
+  handleChangePage = (_, page) => {
     this.setState({ page });
   };
 
