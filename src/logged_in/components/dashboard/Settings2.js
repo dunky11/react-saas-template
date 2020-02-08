@@ -255,8 +255,7 @@ class Settings2 extends PureComponent {
             disabled={saveLoading || defaultLoading}
             className="mr-1"
           >
-            {defaultLoading && <ButtonCircularProgress />}
-            Default
+            Default {defaultLoading && <ButtonCircularProgress />}
           </Button>
           <Button
             variant="contained"
@@ -264,8 +263,7 @@ class Settings2 extends PureComponent {
             onClick={this.onSubmit}
             disabled={saveLoading || defaultLoading}
           >
-            {saveLoading && <ButtonCircularProgress />}
-            Save
+            Save {saveLoading && <ButtonCircularProgress />}
           </Button>
         </ExpansionPanelDetails>
       </ExpansionPanel>

@@ -206,8 +206,7 @@ class Settings1 extends Component {
             disabled={loading}
             onClick={this.onSubmit}
           >
-            {loading && <ButtonCircularProgress />}
-            Save
+            Save {loading && <ButtonCircularProgress />}
           </Button>
         </ExpansionPanelDetails>
       </ExpansionPanel>
