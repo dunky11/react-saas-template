@@ -1,7 +1,16 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Snackbar, Avatar } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import ErrorIcon from "@material-ui/icons/Error";
+
+const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.primary.main,
+    paddingTop: 0,
+    paddingBottom: 0
+  }
+});
 
 class ConsecutiveSnackbars extends PureComponent {
   /**
@@ -46,7 +55,7 @@ class ConsecutiveSnackbars extends PureComponent {
     }
   };
 
-  handleClose = (event, reason) => {
+  handleClose = (_, reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -82,6 +91,7 @@ class ConsecutiveSnackbars extends PureComponent {
   };
 
   render() {
+    const { classes } = this.props;
     const { messageInfo, open } = this.state;
     return (
       <Snackbar
@@ -97,7 +107,7 @@ class ConsecutiveSnackbars extends PureComponent {
         onExited={this.handleExited}
         ContentProps={{
           classes: {
-            root: "bg-primary-main pt-0 pb-0"
+            root: classes.root
           }
         }}
         message={
@@ -112,7 +122,8 @@ class ConsecutiveSnackbars extends PureComponent {
 }
 
 ConsecutiveSnackbars.propTypes = {
-  getPushMessageFunctionFromChildComponent: PropTypes.func
+  getPushMessageFunctionFromChildComponent: PropTypes.func,
+  classes: PropTypes.object.isRequired
 };
 
-export default ConsecutiveSnackbars;
+export default withStyles(styles, { withTheme: true })(ConsecutiveSnackbars);

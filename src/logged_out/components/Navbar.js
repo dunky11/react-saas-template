@@ -51,6 +51,13 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       height: 67
     }
+  },
+  blackList: {
+    backgroundColor: theme.palette.common.black,
+    height: "100%"
+  },
+  noDecoration: {
+    textDecoration: "none !important"
   }
 });
 
@@ -122,7 +129,7 @@ function Navbar(props) {
                     <Link
                       key={element.name}
                       to={element.link}
-                      className="no-decoration"
+                      className={classes.noDecoration}
                       onClick={handleMobileDrawerClose}
                     >
                       <Button
@@ -173,14 +180,14 @@ function Navbar(props) {
               </ListItemIcon>
             </ListItem>
           </List>
-          <List className="bg-black h-100">
+          <List className={classes.blackList}>
             {menuItems.map(element => {
               if (element.link) {
                 return (
                   <Link
                     key={element.name}
                     to={element.link}
-                    className="no-decoration"
+                    className={classes.noDecoration}
                     onClick={handleMobileDrawerClose}
                   >
                     <ListItem
