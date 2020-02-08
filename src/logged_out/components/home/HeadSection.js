@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { Grid, Typography, Card, Button } from "@material-ui/core";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import headerImage from "../../dummy_data/images/headerImage.jfif";
 import WaveBorder from "../../../shared/WaveBorder";
 
 const styles = theme => ({
@@ -137,10 +138,8 @@ function HeadSection(props) {
                   </Grid>
                   <Grid item md={6}>
                     <img
-                      src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                      src={headerImage}
                       className={classes.image}
-                      autoPlay
-                      muted
                       alt="header example"
                     />
                   </Grid>

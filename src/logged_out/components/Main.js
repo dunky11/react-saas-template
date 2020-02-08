@@ -27,9 +27,6 @@ class Main extends PureComponent {
     cookieRulesDialogOpen: false
   };
 
-  /**
-   * We will only query rows from the database which date is below the MaxDate
-   */
   blogPostsMaxUnix = Math.round(new Date().getTime() / 1000);
 
   componentDidMount() {
