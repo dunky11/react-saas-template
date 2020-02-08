@@ -30,7 +30,7 @@ class AddScheduledPost extends PureComponent {
     this.setState({ files: [file] });
   };
 
-  onDrop = (acceptedFiles, rejectedFiles, ___, skipCrop) => {
+  onDrop = (acceptedFiles, rejectedFiles) => {
     const { pushMessageToSnackbar } = this.props;
     if (acceptedFiles.length + rejectedFiles.length > 1) {
       pushMessageToSnackbar({
@@ -46,11 +46,7 @@ class AddScheduledPost extends PureComponent {
       const file = acceptedFiles[0];
       file.preview = URL.createObjectURL(file);
       file.key = new Date().getTime();
-      if (skipCrop) {
-        this.acceptDrop(file);
-      } else {
-        this.setState({ cropprFile: file });
-      }
+      this.setState({ cropprFile: file });
     }
   };
 
