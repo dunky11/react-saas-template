@@ -41,7 +41,6 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Things im currently working on
 
-* Making the WaveBorder responsive
 * Transitioning from the GlobalStyles component to Materia-UIs Box component
 * Improving reusability of components
 
