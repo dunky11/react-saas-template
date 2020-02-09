@@ -1,15 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DateTimePicker as DTPicker } from "@material-ui/pickers";
+import { withTheme, MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import AccessTime from "@material-ui/icons/AccessTime";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import DateRange from "@material-ui/icons/DateRange";
-import {
-  withTheme,
-  MuiThemeProvider,
-  createMuiTheme
-} from "@material-ui/core/styles";
 
 const Theme2 = theme =>
   createMuiTheme({

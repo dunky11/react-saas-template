@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core";
 import classNames from "classnames";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";

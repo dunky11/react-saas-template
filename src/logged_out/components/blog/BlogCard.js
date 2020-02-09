@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Card } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-import format from "date-fns/format";
 import { Link } from "react-router-dom";
+import format from "date-fns/format";
+import { Typography, Card, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   img: {

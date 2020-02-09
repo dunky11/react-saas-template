@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 import classNames from "classnames";
+import { Typography, withStyles } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 
 const styles = theme => ({

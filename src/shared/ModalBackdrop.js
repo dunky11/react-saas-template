@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Backdrop } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { Backdrop, withStyles } from "@material-ui/core";
 
 const styles = {
   backdrop: {

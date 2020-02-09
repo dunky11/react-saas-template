@@ -4,9 +4,9 @@ import {
   Dialog,
   DialogContent,
   DialogActions,
-  Button
+  Button,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   dialogPaper: { maxWidth: `${theme.breakpoints.values.md}px !important` }

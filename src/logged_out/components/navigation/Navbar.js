@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
   Hidden,
-  IconButton
+  IconButton,
+  withStyles
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";

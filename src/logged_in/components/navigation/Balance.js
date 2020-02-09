@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { OutlinedInput } from "@material-ui/core";
+import { OutlinedInput, withStyles } from "@material-ui/core";
 import currencyPrettyPrint from "../../../shared/currencyPrettyPrint";
 
 const styles = theme => ({

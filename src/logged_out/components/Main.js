@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Switch, withRouter } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
 import AOS from "aos/dist/aos";
+import { withStyles } from "@material-ui/core";
 import Navbar from "./navigation/Navbar";
 import PropsRoute from "../../shared/PropsRoute";
 import Home from "./home/Home";

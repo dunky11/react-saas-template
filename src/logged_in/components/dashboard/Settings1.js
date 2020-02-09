@@ -13,9 +13,9 @@ import {
   ExpansionPanelDetails,
   MenuItem,
   FormControl,
-  Select
+  Select,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import withWidth from "@material-ui/core/withWidth";
 import Bordered from "../../../shared/Bordered";

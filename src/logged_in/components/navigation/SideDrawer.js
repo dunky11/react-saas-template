@@ -5,9 +5,9 @@ import {
   Toolbar,
   Divider,
   Typography,
-  Box
+  Box,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import CloseIcon from "@material-ui/icons/Close";
 import PropTypes from "prop-types";

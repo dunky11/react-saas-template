@@ -1,8 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
+import { Tooltip, Typography, withStyles } from "@material-ui/core";
 import HelpIconOutline from "@material-ui/icons/HelpOutline";
-import { Tooltip, Typography } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   tooltipTypo: {

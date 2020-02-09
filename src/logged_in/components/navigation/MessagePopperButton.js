@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
   Popover,
   IconButton,
@@ -9,7 +8,8 @@ import {
   Divider,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
+  withStyles
 } from "@material-ui/core";
 import MessageIcon from "@material-ui/icons/Message";
 import MessageListItem from "./MessageListItem";

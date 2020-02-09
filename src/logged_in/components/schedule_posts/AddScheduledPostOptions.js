@@ -12,9 +12,9 @@ import {
   FormControl,
   Select,
   OutlinedInput,
-  MenuItem
+  MenuItem,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import Bordered from "../../../shared/Bordered";
 import ImageCroppDialog from "../../../shared/ImageCropprDialog";
 

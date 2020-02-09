@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import { Grid, isWidthUp, withWidth, withStyles } from "@material-ui/core";
 import classNames from "classnames";
 import BlogCard from "./BlogCard";
 

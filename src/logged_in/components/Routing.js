@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withRouter, Switch } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import SchedulePosts from "./schedule_posts/SchedulePosts";
 import Subscription from "./subscription/Subscription";

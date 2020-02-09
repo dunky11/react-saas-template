@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
-import { withTheme } from "@material-ui/core/styles";
+import { Grid, withTheme } from "@material-ui/core";
 
 function StatisticsArea(props) {
   const { theme, CardChart, data } = props;

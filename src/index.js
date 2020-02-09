@@ -2,8 +2,7 @@
 import "babel-polyfill";
 import React, { Fragment, Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DateFnsUtils from "@date-io/date-fns";

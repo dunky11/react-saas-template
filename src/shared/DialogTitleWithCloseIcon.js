@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { IconButton, DialogTitle, Typography, Avatar } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 import classNames from "classnames";
-import { withTheme } from "@material-ui/core/styles";
+import {
+  IconButton,
+  DialogTitle,
+  Typography,
+  Avatar,
+  withTheme
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
 function DialogTitleWithCloseIcon(props) {
   const {
