@@ -46,8 +46,11 @@ function Footer(props) {
   } = props;
   return (
     <footer className={classNames(classes.footer, "lg-p-top")}>
-      <WaveBorder flipped color={theme.palette.common.darkBlack} />
-      <div className={classes.bgPrimaryDark}>
+      <WaveBorder
+        upperColor="#FFFFFF"
+        lowerColor={theme.palette.common.darkBlack}
+      />
+      <div className={classNames(classes.bgPrimaryDark, "pt-4")}>
         <div
           className={classNames(
             "container align-items-center d-flex flex-column",
