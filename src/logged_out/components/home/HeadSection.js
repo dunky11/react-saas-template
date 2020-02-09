@@ -114,7 +114,8 @@ function HeadSection(props) {
                       <div>
                         <Typography
                           variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                          className="text-secondary-greyed mb-2"
+                          className="mb-2"
+                          color="textSecondary"
                         >
                           Lorem ipsum dolor sit amet, consetetur sadipscing
                           elitr, sed diam nonumy eirmod tempor invidunt

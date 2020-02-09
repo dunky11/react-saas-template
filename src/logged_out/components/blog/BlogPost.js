@@ -60,7 +60,7 @@ class BlogPost extends PureComponent {
                   <Typography
                     align="center"
                     variant="body1"
-                    className="text-secondary-greyed"
+                    color="textSecondary"
                   >
                     {format(new Date(date * 1000), "PPP", {
                       awareOfUnicodeTokens: true

@@ -37,7 +37,7 @@ const styles = theme => ({
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.h6.fontWeight
   },
-  brand: {
+  brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400
   },
@@ -96,10 +96,24 @@ function Navbar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h4" className={classes.brand}>
-            <span className="text-primary">Wa</span>
-            <span className="text-secondary">Ver</span>
-          </Typography>
+          <div>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="primary"
+            >
+              Wa
+            </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="secondary"
+            >
+              Ver
+            </Typography>
+          </div>
           <div>
             <Hidden mdUp>
               <IconButton

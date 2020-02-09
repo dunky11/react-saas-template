@@ -127,6 +127,10 @@ const styles = theme => ({
   },
   mobileItemSelected: {
     backgroundColor: `${theme.palette.primary.main} !important`
+  },
+  brandText: {
+    fontFamily: "'Baloo Bhaijaan', cursive",
+    fontWeight: 400
   }
 });
 
@@ -437,7 +441,7 @@ class Main extends PureComponent {
           desktop: (
             <DashboardIcon
               className={
-                selectedTab === "Dashboard" ? "text-primary" : "text-white"
+                selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
               }
               fontSize="small"
             />
@@ -459,7 +463,9 @@ class Main extends PureComponent {
           desktop: (
             <ScheduleIcon
               className={
-                selectedTab === "Schedule Posts" ? "text-primary" : "text-white"
+                selectedTab === "Schedule Posts"
+                  ? classes.textPrimary
+                  : "text-white"
               }
               fontSize="small"
             />
@@ -482,7 +488,9 @@ class Main extends PureComponent {
           desktop: (
             <AccountBalanceIcon
               className={
-                selectedTab === "Subscription" ? "text-primary" : "text-white"
+                selectedTab === "Subscription"
+                  ? classes.textPrimary
+                  : "text-white"
               }
               fontSize="small"
             />
@@ -535,13 +543,19 @@ class Main extends PureComponent {
               <Hidden xsDown>
                 <Typography
                   variant="h4"
-                  style={{
-                    fontFamily: "'Baloo Bhaijaan', cursive",
-                    fontWeight: 400
-                  }}
+                  className={classes.brandText}
+                  display="inline"
+                  color="primary"
                 >
-                  <span className="text-primary">Wa</span>
-                  <span className="text-secondary">Ver</span>
+                  Wa
+                </Typography>
+                <Typography
+                  variant="h4"
+                  className={classes.brandText}
+                  display="inline"
+                  color="secondary"
+                >
+                  Ver
                 </Typography>
               </Hidden>
             </div>

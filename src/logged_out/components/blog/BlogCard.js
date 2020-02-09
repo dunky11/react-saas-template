@@ -45,7 +45,7 @@ function BlogCard(props) {
         <img src={src} className={classes.img} alt="" />
       </Link>
       <div className="p-2">
-        <Typography variant="body2" className="text-secondary-greyed">
+        <Typography variant="body2" color="textSecondary">
           {format(new Date(date * 1000), "PPP", {
             awareOfUnicodeTokens: true
           })}
@@ -58,7 +58,7 @@ function BlogCard(props) {
             <span className={classes.title}>{title}</span>
           </Typography>
         </Link>
-        <Typography variant="body1" className="text-secondary-greyed">
+        <Typography variant="body1" color="textSecondary">
           {snippet}
           <Link to={url} className={classes.noDecoration}>
             <span className={classes.link}> read more...</span>
