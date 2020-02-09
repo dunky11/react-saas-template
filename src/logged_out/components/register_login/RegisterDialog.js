@@ -6,9 +6,9 @@ import {
   Button,
   Checkbox,
   Typography,
-  FormControlLabel
+  FormControlLabel,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";

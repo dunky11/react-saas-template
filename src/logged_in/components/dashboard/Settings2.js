@@ -14,10 +14,10 @@ import {
   Select,
   OutlinedInput,
   MenuItem,
-  Checkbox
+  Checkbox,
+  withStyles
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { withStyles } from "@material-ui/core/styles";
 import HelpIcon from "../../../shared/HelpIcon";
 import Bordered from "../../../shared/Bordered";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@material-ui/core";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
 import PriceCard from "./PriceCard";
 import PriceCardHighlighted from "./PriceCardHighlighted";
 import calculateSpacing from "./calculateSpacing";

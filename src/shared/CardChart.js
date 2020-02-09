@@ -1,14 +1,5 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Menu,
-  MenuItem
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import {
   AreaChart,
@@ -19,6 +10,15 @@ import {
   YAxis
 } from "recharts";
 import format from "date-fns/format";
+import {
+  Card,
+  CardContent,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+  withStyles
+} from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const styles = theme => ({

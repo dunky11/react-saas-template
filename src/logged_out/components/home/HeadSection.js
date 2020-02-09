@@ -1,9 +1,15 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import { Grid, Typography, Card, Button } from "@material-ui/core";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import {
+  Grid,
+  Typography,
+  Card,
+  Button,
+  withStyles,
+  withWidth,
+  isWidthUp
+} from "@material-ui/core";
 import headerImage from "../../dummy_data/images/headerImage.jpg";
 import WaveBorder from "../../../shared/WaveBorder";
 

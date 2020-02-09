@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
   Paper,
   Toolbar,
   ListItemText,
   ListItemSecondaryAction,
   ListItemIcon,
-  Switch
+  Switch,
+  withStyles
 } from "@material-ui/core";
 import "../../../css/spin.css";
 import LoopIcon from "@material-ui/icons/Loop";

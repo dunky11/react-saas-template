@@ -1,9 +1,8 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Card } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import format from "date-fns/format";
+import { Grid, Typography, Card, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 import smoothScrollTop from "../../../shared/smoothScrollTop";
 

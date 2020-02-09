@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 const buttonTheme = theme =>
   createMuiTheme({

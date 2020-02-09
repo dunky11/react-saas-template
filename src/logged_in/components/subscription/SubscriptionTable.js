@@ -1,12 +1,12 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableBody,
   TableCell,
   TablePagination,
-  TableRow
+  TableRow,
+  withStyles
 } from "@material-ui/core";
 import classNames from "classnames";
 import EnhancedTableHead from "../../../shared/EnhancedTableHead";

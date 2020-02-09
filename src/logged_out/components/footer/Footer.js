@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography, IconButton } from "@material-ui/core";
 import classNames from "classnames";
-import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
+import {
+  Typography,
+  IconButton,
+  withStyles,
+  isWidthDown,
+  withWidth
+} from "@material-ui/core";
 import HoverTypo from "../../../shared/HoverTypo";
 import WaveBorder from "../../../shared/WaveBorder";
 

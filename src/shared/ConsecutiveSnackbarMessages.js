@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Snackbar, Avatar } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { Snackbar, Avatar, withStyles } from "@material-ui/core";
 import ErrorIcon from "@material-ui/icons/Error";
 
 const styles = theme => ({

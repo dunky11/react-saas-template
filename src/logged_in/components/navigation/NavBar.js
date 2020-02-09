@@ -2,7 +2,6 @@ import React, { PureComponent, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import {
   AppBar,
   Toolbar,
@@ -15,9 +14,11 @@ import {
   ListItemIcon,
   ListItemText,
   Hidden,
-  Tooltip
+  Tooltip,
+  withStyles,
+  isWidthUp,
+  withWidth
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
@@ -274,7 +275,7 @@ class NavBar extends PureComponent {
                 className={classNames(classes.iconListItem, classes.smBordered)}
               >
                 <Avatar
-                  alt=""
+                  alt="profile picture"
                   src={profilePicture}
                   className={classNames(classes.accountAvatar)}
                 />

@@ -6,9 +6,9 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Typography
+  Typography,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BlackButton from "../../../shared/BlackButton";
 

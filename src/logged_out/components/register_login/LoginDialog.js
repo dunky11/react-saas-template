@@ -1,15 +1,15 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { withRouter } from "react-router-dom";
 import {
   TextField,
   Button,
   Checkbox,
   Typography,
-  FormControlLabel
+  FormControlLabel,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
 import FormDialog from "../../../shared/FormDialog";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";

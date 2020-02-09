@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableBody,
@@ -8,7 +7,8 @@ import {
   TablePagination,
   TableRow,
   IconButton,
-  Avatar
+  Avatar,
+  withStyles
 } from "@material-ui/core";
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";

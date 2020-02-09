@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { withStyles, Typography } from "@material-ui/core";
 import classNames from "classnames";
 
 const styles = theme => ({

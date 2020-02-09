@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDropzone } from "react-dropzone";
-import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import { Button } from "@material-ui/core";
+import { withStyles, Button } from "@material-ui/core";
 
 const styles = theme => ({
   dropzoneAccept: {

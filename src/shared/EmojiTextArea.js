@@ -1,5 +1,4 @@
 import React, { PureComponent, Fragment } from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
@@ -7,9 +6,9 @@ import {
   TextField,
   IconButton,
   Collapse,
-  FormHelperText
+  FormHelperText,
+  withStyles
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import countWithEmojis from "./countWithEmojis";
 
 const styles = theme => ({
