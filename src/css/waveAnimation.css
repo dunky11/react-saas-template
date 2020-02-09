@@ -14,11 +14,11 @@
 }
 /* Animation */
 .parallax > use {
-  animation: move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation: move-forever 10s cubic-bezier(0.62, 0.5, 0.38, 0.5) infinite;
 }
 .parallax > use:nth-child(1) {
   animation-delay: -2s;
-  animation-duration: 7s;
+  animation-duration: 4s;
 }
 @keyframes move-forever {
   0% {
