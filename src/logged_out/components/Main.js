@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch, withRouter } from "react-router-dom";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
-import Navbar from "./navigation/Navbar";
+import NavBar from "./navigation/NavBar";
 import PropsRoute from "../../shared/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
@@ -143,7 +143,7 @@ class Main extends PureComponent {
           open={cookieRulesDialogOpen}
           onClose={this.handleCookieRulesDialogClose}
         />
-        <Navbar
+        <NavBar
           selectedTab={selectedTab}
           selectTab={this.selectTab}
           openLoginDialog={this.openLoginDialog}

@@ -40,7 +40,7 @@ const styles = theme => ({
   }
 });
 
-function Navbar(props) {
+function NavBar(props) {
   const {
     classes,
     openRegisterDialog,
@@ -139,20 +139,18 @@ function Navbar(props) {
           </div>
         </Toolbar>
       </AppBar>
-      <Hidden mdUp>
-        <NavigationDrawer
-          menuItems={menuItems}
-          anchor="right"
-          open={mobileDrawerOpen}
-          selectedItem={selectedTab}
-          onClose={handleMobileDrawerClose}
-        />
-      </Hidden>
+      <NavigationDrawer
+        menuItems={menuItems}
+        anchor="right"
+        open={mobileDrawerOpen}
+        selectedItem={selectedTab}
+        onClose={handleMobileDrawerClose}
+      />
     </div>
   );
 }
 
-Navbar.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
@@ -162,4 +160,4 @@ Navbar.propTypes = {
   openLoginDialog: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Navbar);
+export default withStyles(styles, { withTheme: true })(NavBar);
