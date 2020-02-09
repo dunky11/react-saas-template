@@ -24,12 +24,12 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import MessagePopperButton from "./navigation/messages/MessagePopperButton";
+import MessagePopperButton from "./navigation/MessagePopperButton";
 import Routing from "./Routing";
-import SideDrawer from "./navigation/sideDrawer/SideDrawer";
+import SideDrawer from "./navigation/SideDrawer";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/smoothScrollTop";
-import Balance from "./navigation/navbar/Balance";
+import Balance from "./navigation/Balance";
 import persons from "../dummy_data/persons";
 import profilePicture from "../dummy_data/images/profilePicture.jfif";
 

@@ -39,7 +39,6 @@ function StatisticsArea(props) {
 StatisticsArea.propTypes = {
   theme: PropTypes.object,
   data: PropTypes.array,
-  // TODO Find correct proptype, had to do any here
   CardChart: PropTypes.any
 };
 

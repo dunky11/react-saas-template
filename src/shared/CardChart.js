@@ -110,7 +110,9 @@ class CardChart extends PureComponent {
           <div className="d-flex justify-content-between mb-1">
             <div>
               <Typography variant="subtitle1">{title}</Typography>
-              <Typography variant="body2">{this.getSubtitle()}</Typography>
+              <Typography variant="body2" color="textSecondary">
+                {this.getSubtitle()}
+              </Typography>
             </div>
             <div>
               <IconButton
