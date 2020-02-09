@@ -92,6 +92,12 @@ const styles = theme => ({
   },
   numberInputInput: {
     padding: "9px 34px 9px 14.5px"
+  },
+  emojiTextArea: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    marginRight: -1
   }
 });
 
@@ -246,7 +252,7 @@ class AddScheduledPostOptions extends PureComponent {
           </Tabs>
           {EmojiTextArea && (
             <EmojiTextArea
-              noTopBorder
+              inputClassName={classes.emojiTextArea}
               onChange={this.passOnEmojiTextareaChange}
               value={tabIndex === 0 ? category1Value : category2Value}
               characters={
