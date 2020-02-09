@@ -2,54 +2,38 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import "../css/waveAnimation.css";
-import classNames from "classnames";
-
-const styles = theme => ({
-  waveWrapperInner: {
-    position: "absolute",
-    overflow: "hidden",
-    height: "100%",
-    width: "100%",
-    bottom: -1
-  },
-  waveWrapperOuter: {
-    position: "relative",
-    height: 150
-  }
-});
 
 function WaveBorder(props) {
-  const { classes, flipped, color } = props;
   return (
-    <div
-      className={classes.waveWrapperOuter}
-      style={{
-        marginTop: flipped ? 0 : -2,
-        marginBottom: flipped ? -2 : 0,
-        transform: flipped ? "rotateX(180deg)" : ""
-      }}
-    >
-      <div className="waveWrapper waveAnimation">
-        <div
-          className={classNames(classes.waveWrapperInner, "bgBottom")}
-          style={{ background: color }}
-        >
-          <div
-            className="wave"
-            style={{
-              backgroundImage: "url('/images/wave-top.png')"
-            }}
+    <div className={props.className} style={{ background: props.upperColor }}>
+      <div class="inner-header flex"></div>
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
           />
-        </div>
-      </div>
+        </defs>
+        <g class="parallax">
+          <use href="#gentle-wave" x="48" y="0" fill={props.lowerColor} />
+        </g>
+      </svg>
     </div>
   );
 }
 
 WaveBorder.propTypes = {
-  classes: PropTypes.object,
-  flipped: PropTypes.bool,
-  color: PropTypes.string
+  classes: PropTypes.object.isRequired,
+  upperColor: PropTypes.string.isRequired,
+  lowerColor: PropTypes.string.isRequired,
+  className: PropTypes.string
 };
 
-export default withStyles(styles, { withTheme: true })(WaveBorder);
+export default withStyles()(WaveBorder);

@@ -146,7 +146,11 @@ function HeadSection(props) {
           </div>
         </div>
       </div>
-      <WaveBorder color={theme.palette.secondary.main} />
+      <WaveBorder
+        upperColor={theme.palette.secondary.main}
+        lowerColor="#FFFFFF"
+        className="pt-4"
+      />
     </Fragment>
   );
 }
