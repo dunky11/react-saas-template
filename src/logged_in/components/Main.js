@@ -1,52 +1,15 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
-import {
-  Drawer,
-  List,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Hidden,
-  Tooltip,
-  Avatar
-} from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ScheduleIcon from "@material-ui/icons/Schedule";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
-import MessagePopperButton from "./navigation/MessagePopperButton";
 import Routing from "./Routing";
-import SideDrawer from "./navigation/SideDrawer";
+import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/smoothScrollTop";
-import Balance from "./navigation/Balance";
 import persons from "../dummy_data/persons";
-import profilePicture from "../dummy_data/images/profilePicture.jfif";
 
 const styles = theme => ({
-  appBar: {
-    boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-      marginLeft: 0
-    }
-  },
-  routing: {
+  main: {
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -55,82 +18,6 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0
     }
-  },
-  drawerPaper: {
-    height: "100%vh",
-    whiteSpace: "nowrap",
-    border: 0,
-    width: theme.spacing(7),
-    overflowX: "hidden",
-    marginTop: 64,
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    },
-    backgroundColor: theme.palette.common.black
-  },
-  appBarToolbar: {
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    [theme.breakpoints.up("sm")]: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2)
-    },
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3)
-    },
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
-    },
-    [theme.breakpoints.down("xs")]: {
-      minHeight: 56
-    }
-  },
-  accountAvatar: {
-    backgroundColor: theme.palette.secondary.main,
-    height: 24,
-    width: 24,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.down("xs")]: {
-      marginLeft: theme.spacing(1.5),
-      marginRight: theme.spacing(1.5)
-    }
-  },
-  smBordered: {
-    [theme.breakpoints.down("xs")]: {
-      borderRadius: "50% !important"
-    }
-  },
-  menuLink: {
-    textDecoration: "none",
-    color: theme.palette.text.primary
-  },
-  drawerMobile: {
-    backgroundColor: theme.palette.common.black
-  },
-  defaultListItemPadding: {
-    paddingTop: 11,
-    paddingBottom: 11
-  },
-  iconListItem: {
-    width: "auto",
-    borderRadius: theme.shape.borderRadius,
-    paddingTop: 11,
-    paddingBottom: 11,
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  },
-  textPrimary: {
-    color: theme.palette.primary.main
-  },
-  mobileItemSelected: {
-    backgroundColor: `${theme.palette.primary.main} !important`
-  },
-  brandText: {
-    fontFamily: "'Baloo Bhaijaan', cursive",
-    fontWeight: 400
   }
 });
 
@@ -143,7 +30,6 @@ function shuffle(array) {
 
 class Main extends PureComponent {
   state = {
-    mobileOpen: false,
     selectedTab: null,
     CardChart: null,
     EmojiTextArea: null,
@@ -158,24 +44,12 @@ class Main extends PureComponent {
     isAccountActivated: false
   };
 
-  checkedOnceForOpeningAccountModal = false;
-
   componentDidMount() {
     this.fetchRandomTargets();
     this.fetchRandomStatistics();
     this.fetchRandomTransactions();
     this.fetchRandomMessages();
     this.fetchRandomPosts();
-    /**
-     * Close mobile drawer when resizing to bigger width
-     */
-    window.onresize = () => {
-      const { width } = this.props;
-      const { mobileOpen } = this.state;
-      if (isWidthUp("sm", width) && mobileOpen) {
-        this.setState({ mobileOpen: false });
-      }
-    };
   }
 
   fetchRandomTargets = () => {
@@ -321,19 +195,6 @@ class Main extends PureComponent {
   };
 
   /**
-   * Toggles the drawer on the left side when the width of the device is small and
-   * therefore the mobile drawer is open.
-   */
-  handleMobileDrawerToggle = () => {
-    const { mobileOpen } = this.state;
-    if (mobileOpen) {
-      this.setState({ mobileOpen: false });
-    } else {
-      this.setState({ mobileOpen: true });
-    }
-  };
-
-  /**
    * We have to call the pushSnackBarMessage function of this
    * child's consecutiveSnackbarMessages component. Thats why we pass it
    * when the component did mount to this components state.
@@ -414,10 +275,9 @@ class Main extends PureComponent {
   };
 
   render() {
-    const { classes, width } = this.props;
+    const { classes } = this.props;
     const {
       selectedTab,
-      mobileOpen,
       ImageCroppr,
       EmojiTextArea,
       CardChart,
@@ -430,163 +290,15 @@ class Main extends PureComponent {
       isAccountActivated,
       messages
     } = this.state;
-    const menuItems = [
-      {
-        link: "/c/dashboard",
-        name: "Dashboard",
-        onClick: () => {
-          this.handleMobileDrawerToggle();
-        },
-        icon: {
-          desktop: (
-            <DashboardIcon
-              className={
-                selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: (
-            <DashboardIcon
-              className={selectedTab === "Dashboard" ? "text-white" : null}
-            />
-          )
-        }
-      },
-      {
-        link: "/c/schedule-posts",
-        name: "Schedule Posts",
-        onClick: () => {
-          this.handleMobileDrawerToggle();
-        },
-        icon: {
-          desktop: (
-            <ScheduleIcon
-              className={
-                selectedTab === "Schedule Posts"
-                  ? classes.textPrimary
-                  : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: (
-            <ScheduleIcon
-              className={selectedTab === "Schedule Posts" ? "text-white" : null}
-              fontSize="small"
-            />
-          )
-        }
-      },
-      {
-        link: "/c/subscription",
-        name: "Subscription",
-        onClick: () => {
-          this.handleMobileDrawerToggle();
-        },
-        icon: {
-          desktop: (
-            <AccountBalanceIcon
-              className={
-                selectedTab === "Subscription"
-                  ? classes.textPrimary
-                  : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: (
-            <AccountBalanceIcon
-              className={selectedTab === "Subscription" ? "text-white" : null}
-              fontSize="small"
-            />
-          )
-        }
-      },
-      {
-        link: "/",
-        name: "Logout",
-        icon: {
-          desktop: (
-            <PowerSettingsNewIcon className="text-white" fontSize="small" />
-          ),
-          mobile: (
-            <PowerSettingsNewIcon className="text-white" fontSize="small" />
-          )
-        }
-      }
-    ];
     return (
       <Fragment>
+        <NavBar selectedTab={selectedTab} messages={messages} />
         <ConsecutiveSnackbarMessages
           getPushMessageFunctionFromChildComponent={
             this.getPushMessageFunctionFromChildComponent
           }
         />
-        <AppBar position="sticky" className={classes.appBar}>
-          <Toolbar
-            className={classNames(
-              classes.appBarToolbar,
-              "d-flex justify-content-between"
-            )}
-          >
-            <div className="d-flex align-items-center">
-              <Hidden smUp>
-                <IconButton
-                  onClick={this.handleMobileDrawerToggle}
-                  className="mr-1"
-                  color="primary"
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Hidden>
-              <Hidden xsDown>
-                <Typography
-                  variant="h4"
-                  className={classes.brandText}
-                  display="inline"
-                  color="primary"
-                >
-                  Wa
-                </Typography>
-                <Typography
-                  variant="h4"
-                  className={classes.brandText}
-                  display="inline"
-                  color="secondary"
-                >
-                  Ver
-                </Typography>
-              </Hidden>
-            </div>
-            <div className="d-flex justify-content-end w-100 align-items-center">
-              {isWidthUp("sm", width) && <Balance balance={2573} />}
-              <MessagePopperButton messages={messages} />
-              <ListItem
-                disableGutters
-                className={classNames(classes.iconListItem, classes.smBordered)}
-              >
-                <Avatar
-                  alt=""
-                  src={profilePicture}
-                  className={classNames(classes.accountAvatar)}
-                />
-                {isWidthUp("sm", width) && (
-                  <ListItemText
-                    className="pl-0 pr-2"
-                    primary={
-                      <Typography color="textPrimary">Username</Typography>
-                    }
-                  />
-                )}
-              </ListItem>
-            </div>
-            <div className="d-flex align-items-center">
-              <SideDrawer />
-            </div>
-          </Toolbar>
-        </AppBar>
-        <main className={classNames(classes.routing)}>
+        <main className={classNames(classes.main)}>
           <Routing
             isAccountActivated={isAccountActivated}
             ImageCroppr={ImageCroppr}
@@ -608,99 +320,13 @@ class Main extends PureComponent {
             selectSubscription={this.selectSubscription}
           />
         </main>
-        <Hidden xsDown>
-          <Drawer //  both drawers can be combined into one for performance
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper
-            }}
-            open={false}
-          >
-            <List>
-              {menuItems.map(element => (
-                <Tooltip
-                  title={element.name}
-                  placement="right"
-                  key={element.name}
-                >
-                  <Link
-                    to={element.link}
-                    className={classes.menuLink}
-                    onClick={element.onClick}
-                  >
-                    <ListItem
-                      selected={selectedTab === element.name}
-                      button
-                      divider
-                      className="justify-content-center"
-                    >
-                      <ListItemIcon className="justify-content-center">
-                        {element.icon.desktop}
-                      </ListItemIcon>
-                    </ListItem>
-                  </Link>
-                </Tooltip>
-              ))}
-            </List>
-          </Drawer>
-        </Hidden>
-        <Hidden
-          smUp /* Here for a bug when u max the window the resize event wont fire */
-        >
-          <Drawer
-            variant="temporary"
-            onClose={this.handleMobileDrawerToggle}
-            open={mobileOpen}
-            ModalProps={{
-              keepMounted: true // Better open performance on mobile.
-            }}
-          >
-            <List disablePadding>
-              <ListItem divider style={{ height: 56 }} disableGutters>
-                <ListItemIcon className="ml-1">
-                  <IconButton onClick={this.handleMobileDrawerToggle}>
-                    <CloseIcon color="primary" />
-                  </IconButton>
-                </ListItemIcon>
-              </ListItem>
-            </List>
-            <List disablePadding className="h-100">
-              {menuItems.map(element => (
-                <Link
-                  to={element.link}
-                  className={classes.menuLink}
-                  onClick={element.onClick}
-                  key={element.name}
-                >
-                  <ListItem
-                    button
-                    className={
-                      selectedTab === element.name
-                        ? classes.mobileItemSelected
-                        : null
-                    }
-                  >
-                    <ListItemIcon>{element.icon.mobile}</ListItemIcon>
-                    <ListItemText
-                      primary={element.name}
-                      className={
-                        selectedTab === element.name ? "text-white" : null
-                      }
-                    />
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-          </Drawer>
-        </Hidden>
       </Fragment>
     );
   }
 }
 
 Main.propTypes = {
-  width: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Main));
+export default withStyles(styles, { withTheme: true })(Main);
