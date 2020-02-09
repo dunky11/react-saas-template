@@ -61,8 +61,11 @@ class NavigationDrawer extends PureComponent {
           <ListItem
             divider
             className={classNames(
-              "justify-content-end py-0 h-100",
-              classes.mobileDrawerBrandingListitem
+              "py-0 h-100",
+              classes.mobileDrawerBrandingListitem,
+              anchor === "left"
+                ? "justify-content-start"
+                : "justify-content-end"
             )}
           >
             <ListItemIcon className={classes.closeIcon}>

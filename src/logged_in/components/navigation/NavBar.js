@@ -28,6 +28,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
+import NavigationDrawer from "../../../shared/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jfif";
 
 const styles = theme => ({
@@ -161,11 +162,7 @@ class NavBar extends PureComponent {
               fontSize="small"
             />
           ),
-          mobile: (
-            <DashboardIcon
-              className={selectedTab === "Dashboard" ? "text-white" : null}
-            />
-          )
+          mobile: <DashboardIcon className="text-white" />
         }
       },
       {
@@ -185,12 +182,7 @@ class NavBar extends PureComponent {
               fontSize="small"
             />
           ),
-          mobile: (
-            <ScheduleIcon
-              className={selectedTab === "Schedule Posts" ? "text-white" : null}
-              fontSize="small"
-            />
-          )
+          mobile: <ScheduleIcon className="text-white" />
         }
       },
       {
@@ -210,12 +202,7 @@ class NavBar extends PureComponent {
               fontSize="small"
             />
           ),
-          mobile: (
-            <AccountBalanceIcon
-              className={selectedTab === "Subscription" ? "text-white" : null}
-              fontSize="small"
-            />
-          )
+          mobile: <AccountBalanceIcon className="text-white" />
         }
       },
       {
@@ -225,7 +212,7 @@ class NavBar extends PureComponent {
           desktop: (
             <PowerSettingsNewIcon className="text-white" fontSize="small" />
           ),
-          mobile: <PowerSettingsNewIcon fontSize="small" />
+          mobile: <PowerSettingsNewIcon className="text-white" />
         }
       }
     ];
@@ -308,6 +295,7 @@ class NavBar extends PureComponent {
                   to={element.link}
                   className={classes.menuLink}
                   onClick={element.onClick}
+                  key={index}
                 >
                   <ListItem
                     selected={selectedTab === element.name}
@@ -330,53 +318,18 @@ class NavBar extends PureComponent {
             </List>
           </Drawer>
         </Hidden>
-        <Hidden smUp>
-          <Drawer
-            variant="temporary"
-            onClose={this.handleMobileDrawerToggle}
-            open={mobileOpen}
-            ModalProps={{
-              keepMounted: true // Better open performance on mobile.
-            }}
-          >
-            <List disablePadding>
-              <ListItem divider style={{ height: 56 }} disableGutters>
-                <ListItemIcon className="ml-1">
-                  <IconButton onClick={this.handleMobileDrawerToggle}>
-                    <CloseIcon color="primary" />
-                  </IconButton>
-                </ListItemIcon>
-              </ListItem>
-            </List>
-            <List disablePadding className="h-100">
-              {menuItems.map(element => (
-                <Link
-                  to={element.link}
-                  className={classes.menuLink}
-                  onClick={element.onClick}
-                  key={element.name}
-                >
-                  <ListItem
-                    button
-                    className={
-                      selectedTab === element.name
-                        ? classes.mobileItemSelected
-                        : null
-                    }
-                  >
-                    <ListItemIcon>{element.icon.mobile}</ListItemIcon>
-                    <ListItemText
-                      primary={element.name}
-                      className={
-                        selectedTab === element.name ? "text-white" : null
-                      }
-                    />
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-          </Drawer>
-        </Hidden>
+        <NavigationDrawer
+          menuItems={menuItems.map(element => ({
+            link: element.link,
+            name: element.name,
+            icon: element.icon.mobile,
+            onClick: element.onClick
+          }))}
+          anchor="left"
+          open={mobileOpen}
+          selectedItem={selectedTab}
+          onClose={this.handleMobileDrawerToggle}
+        />
       </Fragment>
     );
   }

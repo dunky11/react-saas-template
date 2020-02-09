@@ -1,14 +1,9 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Switch, withRouter } from "react-router-dom";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
-import Navbar from "./navigation/Navbar";
-import PropsRoute from "../../shared/PropsRoute";
-import Home from "./home/Home";
-import Blog from "./blog/Blog";
-import BlogPost from "./blog/BlogPost";
 import urlify from "../../shared/urlify";
+import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
 import smoothScrollTop from "../../shared/smoothScrollTop";
@@ -16,6 +11,7 @@ import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
 import DialogSelector from "./register_login/DialogSelector";
+import Routing from "./Routing";
 
 AOS.init();
 
@@ -110,13 +106,8 @@ class Main extends PureComponent {
     this.setState({ cookieRulesDialogOpen: false });
   };
 
-  getOtherArticles = id => {
-    const { blogPosts } = this.state;
-    return blogPosts.filter(blogPost => blogPost.id !== id);
-  };
-
   render() {
-    const { location, classes } = this.props;
+    const { classes } = this.props;
     const {
       selectedTab,
       mobileDrawerOpen,
@@ -143,7 +134,7 @@ class Main extends PureComponent {
           open={cookieRulesDialogOpen}
           onClose={this.handleCookieRulesDialogClose}
         />
-        <Navbar
+        <NavBar
           selectedTab={selectedTab}
           selectTab={this.selectTab}
           openLoginDialog={this.openLoginDialog}
@@ -152,38 +143,11 @@ class Main extends PureComponent {
           handleMobileDrawerOpen={this.handleMobileDrawerOpen}
           handleMobileDrawerClose={this.handleMobileDrawerClose}
         />
-        <Switch>
-          {blogPosts.map(post => (
-            <PropsRoute
-              /* We cannot use the url here as it contains the get params */
-              path={`/blog/post/${urlify(post.title)}`}
-              component={BlogPost}
-              title={post.title}
-              key={post.title}
-              src={post.imageSrc}
-              date={post.date}
-              location={location}
-              content={post.content}
-              otherArticles={this.getOtherArticles(post.id)}
-            />
-          ))}
-          <PropsRoute
-            exact
-            path="/blog"
-            component={Blog}
-            location={location}
-            selectBlog={this.selectBlog}
-            blogPosts={blogPosts}
-          />
-          )
-          <PropsRoute
-            path="/"
-            component={Home}
-            location={location}
-            selectHome={this.selectHome}
-          />
-          )
-        </Switch>
+        <Routing
+          blogPosts={blogPosts}
+          selectHome={this.selectHome}
+          selectBlog={this.selectBlog}
+        />
         <Footer
           openLoginDialog={this.openLoginDialog}
           openRegisterDialog={this.openRegisterDialog}
@@ -195,8 +159,7 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  location: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(withRouter(Main));
+export default withStyles(styles, { withTheme: true })(Main);

@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
 import classNames from "classnames";
+import { withStyles } from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
