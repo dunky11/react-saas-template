@@ -7,27 +7,21 @@ import {
   Typography,
   Button,
   Hidden,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Drawer
+  IconButton
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import classNames from "classnames";
-import CloseIcon from "@material-ui/icons/Close";
 import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
+import NavigationDrawer from "../../../shared/NavigationDrawer";
 
 const styles = theme => ({
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.common.white,
-    padding: theme.spacing * 0.5
+    padding: theme.spacing(0.5)
   },
   toolbar: {
     display: "flex",
@@ -40,20 +34,6 @@ const styles = theme => ({
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400
-  },
-  menuIconMobile: {
-    marginRight: theme.spacing * 0.5
-  },
-  mobileDrawerHeadSection: {
-    width: 200,
-    height: 72,
-    [theme.breakpoints.down("xs")]: {
-      height: 67
-    }
-  },
-  blackList: {
-    backgroundColor: theme.palette.common.black,
-    height: "100%"
   },
   noDecoration: {
     textDecoration: "none !important"
@@ -160,77 +140,13 @@ function Navbar(props) {
         </Toolbar>
       </AppBar>
       <Hidden mdUp>
-        <Drawer
-          variant="temporary"
-          open={mobileDrawerOpen}
-          onClose={handleMobileDrawerClose}
+        <NavigationDrawer
+          menuItems={menuItems}
           anchor="right"
-        >
-          <List disablePadding className={classes.mobileDrawerHeadSection}>
-            <ListItem
-              divider
-              className={classNames(
-                "justify-content-end py-0 h-100",
-                classes.mobileDrawerBrandingListitem
-              )}
-            >
-              <ListItemIcon className={classes.menuIconMobile}>
-                <IconButton onClick={handleMobileDrawerClose}>
-                  <CloseIcon fontSize="large" color="primary" />
-                </IconButton>
-              </ListItemIcon>
-            </ListItem>
-          </List>
-          <List className={classes.blackList}>
-            {menuItems.map(element => {
-              if (element.link) {
-                return (
-                  <Link
-                    key={element.name}
-                    to={element.link}
-                    className={classes.noDecoration}
-                    onClick={handleMobileDrawerClose}
-                  >
-                    <ListItem
-                      button
-                      selected={selectedTab === element.name}
-                      /**
-                       * We disable ripple as it will make a weird animation
-                       * with primary and secondary color
-                       */
-                      disableRipple
-                      disableTouchRipple
-                    >
-                      <ListItemIcon>{element.icon}</ListItemIcon>
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="subtitle1"
-                            className="text-white"
-                          >
-                            {element.name}
-                          </Typography>
-                        }
-                      />
-                    </ListItem>
-                  </Link>
-                );
-              }
-              return (
-                <ListItem button key={element.name} onClick={element.onClick}>
-                  <ListItemIcon>{element.icon}</ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Typography variant="subtitle1" className="text-white">
-                        {element.name}
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              );
-            })}
-          </List>
-        </Drawer>
+          open={mobileDrawerOpen}
+          selectedItem={selectedTab}
+          onClose={handleMobileDrawerClose}
+        />
       </Hidden>
     </div>
   );

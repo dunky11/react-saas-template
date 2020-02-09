@@ -274,7 +274,7 @@ class NavBar extends PureComponent {
                 className={classNames(classes.iconListItem, classes.smBordered)}
               >
                 <Avatar
-                  alt=""
+                  alt="profile picture"
                   src={profilePicture}
                   className={classNames(classes.accountAvatar)}
                 />
