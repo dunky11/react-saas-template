@@ -303,35 +303,33 @@ class NavBar extends PureComponent {
           >
             <List>
               {menuItems.map((element, index) => (
-                <Tooltip
-                  title={element.name}
-                  placement="right"
-                  key={element.name}
+                <Link
+                  to={element.link}
+                  className={classes.menuLink}
+                  onClick={element.onClick}
                 >
-                  <Link
-                    to={element.link}
-                    className={classes.menuLink}
-                    onClick={element.onClick}
+                  <ListItem
+                    selected={selectedTab === element.name}
+                    button
+                    divider={index !== menuItems.length - 1}
+                    className="justify-content-center"
                   >
-                    <ListItem
-                      selected={selectedTab === element.name}
-                      button
-                      divider={index !== menuItems.length - 1}
-                      className="justify-content-center"
+                    <Tooltip
+                      title={element.name}
+                      placement="right"
+                      key={element.name}
                     >
                       <ListItemIcon className="justify-content-center">
                         {element.icon.desktop}
                       </ListItemIcon>
-                    </ListItem>
-                  </Link>
-                </Tooltip>
+                    </Tooltip>
+                  </ListItem>
+                </Link>
               ))}
             </List>
           </Drawer>
         </Hidden>
-        <Hidden
-          smUp /* Here for a bug when u max the window the resize event wont fire */
-        >
+        <Hidden smUp>
           <Drawer
             variant="temporary"
             onClose={this.handleMobileDrawerToggle}
