@@ -129,7 +129,7 @@ NavigationDrawer.propTypes = {
   onClose: PropTypes.func.isRequired,
   menuItems: PropTypes.array.isRequired,
   selectedItem: PropTypes.string.isRequired,
-  classes: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired
 };
 
