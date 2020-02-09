@@ -1,17 +1,20 @@
 // Used to prevent googlebot from rendering our page as blank, should be imported first
 import "babel-polyfill";
-import React from "react";
+import React, { Fragment, Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DateFnsUtils from "@date-io/date-fns";
 import Theme from "./Theme";
 import GlobalStyles from "./GlobalStyles";
-import Starter from "./Starter";
 import * as serviceWorker from "./serviceWorker";
 import "./shared/pace";
+
+const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
+
+const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 ReactDOM.render(
   <BrowserRouter>
@@ -23,7 +26,16 @@ ReactDOM.render(
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <CssBaseline />
         <GlobalStyles />
-        <Starter />
+        <Suspense fallback={<Fragment />}>
+          <Switch>
+            <Route path="/c">
+              <LoggedInComponent />
+            </Route>
+            <Route>
+              <LoggedOutComponent />
+            </Route>
+          </Switch>
+        </Suspense>
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>
   </BrowserRouter>,
