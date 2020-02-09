@@ -11,21 +11,24 @@ function StatisticsArea(props) {
       <Grid container spacing={3}>
         <Grid item md={6} className="w-100">
           <CardChart
-            data={data}
+            data={data.map(element => ({
+              value: element.profit,
+              timestamp: element.timestamp
+            }))}
             color={theme.palette.secondary.light}
             height="70px"
-            yKey="profit"
             title="Profit"
           />
         </Grid>
         <Grid item md={6} className="w-100">
           <CardChart
-            data={data}
+            data={data.map(element => ({
+              value: element.views,
+              timestamp: element.timestamp
+            }))}
             color={theme.palette.primary.light}
             height="70px"
-            yKey="views"
             title="Views"
-            subtitle="Last 7 days"
           />
         </Grid>
       </Grid>
@@ -36,7 +39,6 @@ function StatisticsArea(props) {
 StatisticsArea.propTypes = {
   theme: PropTypes.object,
   data: PropTypes.array,
-  // TODO Find correct proptype, had to do any here
   CardChart: PropTypes.any
 };
 

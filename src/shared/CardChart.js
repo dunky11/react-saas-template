@@ -23,18 +23,17 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const styles = theme => ({
   cardContentInner: {
-    marginTop: -1 * theme.spacing(4)
+    marginTop: theme.spacing(-4)
   }
 });
 
 function labelFormatter(label) {
   return format(new Date(label * 1000), "MMMM d, p yyyy");
-  // return format(new Date(label * 1000), "MMMM d, p");
 }
 
 function calculateMin(data, yKey, factor) {
   let max = Number.POSITIVE_INFINITY;
-  Object.values(data).forEach(element => {
+  data.forEach(element => {
     if (max > element[yKey]) {
       max = element[yKey];
     }
@@ -102,7 +101,7 @@ class CardChart extends PureComponent {
   };
 
   render() {
-    const { color, data, title, classes, theme, height, yKey } = this.props;
+    const { color, data, title, classes, theme, height } = this.props;
     const { anchorEl, selectedOption } = this.state;
     const open = Boolean(anchorEl);
     return (
@@ -111,7 +110,7 @@ class CardChart extends PureComponent {
           <div className="d-flex justify-content-between mb-1">
             <div>
               <Typography variant="subtitle1">{title}</Typography>
-              <Typography variant="body2" className="text-secondary-greyed">
+              <Typography variant="body2" color="textSecondary">
                 {this.getSubtitle()}
               </Typography>
             </div>
@@ -166,12 +165,12 @@ class CardChart extends PureComponent {
                   hide
                 />
                 <YAxis
-                  domain={[calculateMin(data, yKey, 0.05), "dataMax"]}
+                  domain={[calculateMin(data, "value", 0.05), "dataMax"]}
                   hide
                 />
                 <Area
                   type="monotone"
-                  dataKey={yKey}
+                  dataKey="value"
                   stroke={color}
                   fill={color}
                 />
@@ -208,8 +207,7 @@ CardChart.propTypes = {
   title: PropTypes.string,
   classes: PropTypes.object,
   theme: PropTypes.object,
-  height: PropTypes.string,
-  yKey: PropTypes.string
+  height: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(CardChart);

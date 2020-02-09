@@ -16,6 +16,8 @@ import FeatureCard from "./FeatureCard";
 
 const iconSize = 30;
 
+const styles = { whiteBg: { backgroundColor: "#" } };
+
 const features = [
   {
     color: "#00C853",
@@ -103,7 +105,7 @@ const features = [
 function FeatureSection(props) {
   const { width } = props;
   return (
-    <div className="white-bg">
+    <div style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-fluid lg-p-top">
         <Typography variant="h3" align="center" className="lg-mg-bottom">
           Features

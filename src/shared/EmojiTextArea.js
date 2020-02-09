@@ -42,15 +42,6 @@ const styles = theme => ({
     height: "1em",
     width: "1em",
     color: theme.palette.primary.light
-  },
-  noTopBorder: {
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0
-  },
-  noRightBorder: {
-    borderBottomRightRadius: 0,
-    borderTopRightRadius: 0,
-    borderRightWidth: 0
   }
 });
 
@@ -92,9 +83,6 @@ class EmojiTextarea extends PureComponent {
   };
 
   emojisToShowFilter = emoji => {
-    /**
-     * This is weird
-     */
     if (emoji.unified.length > 5) {
       return false;
     }
@@ -114,9 +102,9 @@ class EmojiTextarea extends PureComponent {
       rightContent,
       value,
       placeholder,
-      noTopBorder,
       characters,
-      maxChars
+      maxChars,
+      inputClassName
     } = this.props;
     return (
       <Fragment>
@@ -137,10 +125,7 @@ class EmojiTextarea extends PureComponent {
               placeholder={placeholder}
               InputProps={{
                 classes: {
-                  notchedOutline: classNames(
-                    noTopBorder ? classes.noTopBorder : null,
-                    rightContent ? classes.noRightBorder : null
-                  )
+                  notchedOutline: inputClassName ? inputClassName : null
                 }
               }}
             />
@@ -207,11 +192,11 @@ EmojiTextarea.propTypes = {
   rightContent: PropTypes.element,
   value: PropTypes.string,
   placeholder: PropTypes.string,
-  noTopBorder: PropTypes.bool,
   characters: PropTypes.number,
   maxChars: PropTypes.number,
   onChange: PropTypes.func,
-  getTextFieldChange: PropTypes.func
+  getTextFieldChange: PropTypes.func,
+  inputClassName: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(EmojiTextarea);

@@ -33,21 +33,6 @@ const styles = theme => ({
     ".text-white": {
       color: `${theme.palette.common.white} !important`
     },
-    ".text-primary": {
-      color: `${theme.palette.primary.main} !important`
-    },
-    ".text-primary-light": {
-      color: `${theme.palette.primary.light} !important`
-    },
-    ".text-secondary": {
-      color: `${theme.palette.secondary.main} !important`
-    },
-    ".text-secondary-greyed": {
-      color: `${theme.palette.text.secondary} !important`
-    },
-    ".text-hint-greyed": {
-      color: `${theme.palette.text.hint} !important`
-    },
     ".d-flex": {
       display: "flex !important"
     },
@@ -450,12 +435,6 @@ const styles = theme => ({
       "@media (max-width:  420px)": {
         paddingLeft: `${theme.spacing(1)}px !important`
       }
-    },
-    ".font-bold": {
-      fontWeight: theme.typography.fontWeightMedium
-    },
-    ".white-bg": {
-      backgroundColor: "#FFFFFF"
     },
     ".container": {
       width: "100%",

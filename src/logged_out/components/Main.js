@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AOS from "aos/dist/aos";
-import Navbar from "./Navbar";
+import Navbar from "./navigation/Navbar";
 import PropsRoute from "../../shared/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
@@ -15,6 +15,7 @@ import smoothScrollTop from "../../shared/smoothScrollTop";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
+import DialogSelector from "./register_login/DialogSelector";
 
 AOS.init();
 
@@ -124,12 +125,20 @@ class Main extends PureComponent {
       cookieRulesDialogOpen
     } = this.state;
     return (
-      <div className="bg-white">
+      <div className={classes.wrapper}>
         {!cookieRulesDialogOpen && (
           <CookieConsent
             handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
           />
         )}
+        <DialogSelector
+          openLoginDialog={this.openLoginDialog}
+          dialogOpen={dialogOpen}
+          onClose={this.closeDialog}
+          openTermsDialog={this.openTermsDialog}
+          openRegisterDialog={this.openRegisterDialog}
+          openChangePasswordDialog={this.openChangePasswordDialog}
+        />
         <CookieRulesDialog
           open={cookieRulesDialogOpen}
           onClose={this.handleCookieRulesDialogClose}
@@ -139,13 +148,9 @@ class Main extends PureComponent {
           selectTab={this.selectTab}
           openLoginDialog={this.openLoginDialog}
           openRegisterDialog={this.openRegisterDialog}
-          closeDialog={this.closeDialog}
-          dialogOpen={dialogOpen}
           mobileDrawerOpen={mobileDrawerOpen}
           handleMobileDrawerOpen={this.handleMobileDrawerOpen}
           handleMobileDrawerClose={this.handleMobileDrawerClose}
-          openTermsDialog={this.openTermsDialog}
-          openChangePasswordDialog={this.openChangePasswordDialog}
         />
         <Switch>
           {blogPosts.map(post => (

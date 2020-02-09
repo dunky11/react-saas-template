@@ -32,8 +32,8 @@ const styles = theme => ({
     color: theme.palette.common.black
   },
   avatar: {
-    width: 24,
-    height: 24
+    width: 28,
+    height: 28
   }
 });
 

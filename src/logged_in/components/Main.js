@@ -24,12 +24,12 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import MessagePopperButton from "./navigation/messages/MessagePopperButton";
+import MessagePopperButton from "./navigation/MessagePopperButton";
 import Routing from "./Routing";
-import SideDrawer from "./navigation/sideDrawer/SideDrawer";
+import SideDrawer from "./navigation/SideDrawer";
 import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/smoothScrollTop";
-import Balance from "./navigation/navbar/Balance";
+import Balance from "./navigation/Balance";
 import persons from "../dummy_data/persons";
 import profilePicture from "../dummy_data/images/profilePicture.jfif";
 
@@ -123,10 +123,14 @@ const styles = theme => ({
     marginRight: theme.spacing(1)
   },
   textPrimary: {
-    color: theme.palette.text.primary
+    color: theme.palette.primary.main
   },
   mobileItemSelected: {
     backgroundColor: `${theme.palette.primary.main} !important`
+  },
+  brandText: {
+    fontFamily: "'Baloo Bhaijaan', cursive",
+    fontWeight: 400
   }
 });
 
@@ -437,7 +441,7 @@ class Main extends PureComponent {
           desktop: (
             <DashboardIcon
               className={
-                selectedTab === "Dashboard" ? "text-primary" : "text-white"
+                selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
               }
               fontSize="small"
             />
@@ -459,7 +463,9 @@ class Main extends PureComponent {
           desktop: (
             <ScheduleIcon
               className={
-                selectedTab === "Schedule Posts" ? "text-primary" : "text-white"
+                selectedTab === "Schedule Posts"
+                  ? classes.textPrimary
+                  : "text-white"
               }
               fontSize="small"
             />
@@ -482,7 +488,9 @@ class Main extends PureComponent {
           desktop: (
             <AccountBalanceIcon
               className={
-                selectedTab === "Subscription" ? "text-primary" : "text-white"
+                selectedTab === "Subscription"
+                  ? classes.textPrimary
+                  : "text-white"
               }
               fontSize="small"
             />
@@ -535,13 +543,19 @@ class Main extends PureComponent {
               <Hidden xsDown>
                 <Typography
                   variant="h4"
-                  style={{
-                    fontFamily: "'Baloo Bhaijaan', cursive",
-                    fontWeight: 400
-                  }}
+                  className={classes.brandText}
+                  display="inline"
+                  color="primary"
                 >
-                  <span className="text-primary">Wa</span>
-                  <span className="text-secondary">Ver</span>
+                  Wa
+                </Typography>
+                <Typography
+                  variant="h4"
+                  className={classes.brandText}
+                  display="inline"
+                  color="secondary"
+                >
+                  Ver
                 </Typography>
               </Hidden>
             </div>
@@ -561,7 +575,7 @@ class Main extends PureComponent {
                   <ListItemText
                     className="pl-0 pr-2"
                     primary={
-                      <span className={classes.textPrimary}>Username</span>
+                      <Typography color="textPrimary">Username</Typography>
                     }
                   />
                 )}
