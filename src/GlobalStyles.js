@@ -436,12 +436,6 @@ const styles = theme => ({
         paddingLeft: `${theme.spacing(1)}px !important`
       }
     },
-    ".font-bold": {
-      fontWeight: theme.typography.fontWeightMedium
-    },
-    ".white-bg": {
-      backgroundColor: "#FFFFFF"
-    },
     ".container": {
       width: "100%",
       paddingRight: theme.spacing(4),

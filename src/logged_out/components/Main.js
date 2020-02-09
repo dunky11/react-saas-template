@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Switch, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AOS from "aos/dist/aos";
-import Navbar from "./Navbar";
+import Navbar from "./navigation/Navbar";
 import PropsRoute from "../../shared/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";

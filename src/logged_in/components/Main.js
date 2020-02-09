@@ -123,7 +123,7 @@ const styles = theme => ({
     marginRight: theme.spacing(1)
   },
   textPrimary: {
-    color: theme.palette.text.primary
+    color: theme.palette.primary.main
   },
   mobileItemSelected: {
     backgroundColor: `${theme.palette.primary.main} !important`
@@ -575,7 +575,7 @@ class Main extends PureComponent {
                   <ListItemText
                     className="pl-0 pr-2"
                     primary={
-                      <span className={classes.textPrimary}>Username</span>
+                      <Typography color="textPrimary">Username</Typography>
                     }
                   />
                 )}

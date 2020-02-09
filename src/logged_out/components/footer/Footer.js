@@ -29,6 +29,9 @@ const styles = theme => ({
     width: "1em",
     height: "1em",
     fill: theme.palette.common.white
+  },
+  footer: {
+    backgroundColor: "#FFFFFF"
   }
 });
 
@@ -42,7 +45,7 @@ function Footer(props) {
     handleCookieRulesDialogOpen
   } = props;
   return (
-    <footer className="lg-p-top white-bg">
+    <footer className={classNames(classes.footer, "lg-p-top")}>
       <WaveBorder flipped color={theme.palette.common.darkBlack} />
       <div className={classes.bgPrimaryDark}>
         <div
