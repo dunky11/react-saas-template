@@ -6,7 +6,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
+  Button,
+  Typography
 } from "@material-ui/core";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 
@@ -30,7 +31,7 @@ class ChangePassword extends PureComponent {
       <Dialog
         open
         hideBackdrop
-        onClose={this.onClose}
+        onClose={onClose}
         disableBackdropClick={loading}
         disableEscapeKeyDown={loading}
         maxWidth="xs"
@@ -42,10 +43,10 @@ class ChangePassword extends PureComponent {
           }}
         >
           <DialogContent className="pt-2">
-            <DialogContentText>
+            <Typography paragraph>
               Enter your email address below and we will send you instructions
               on how to reset your password.
-            </DialogContentText>
+            </Typography>
             <TextField
               variant="outlined"
               margin="dense"

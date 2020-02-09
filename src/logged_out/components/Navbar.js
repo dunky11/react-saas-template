@@ -22,7 +22,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
-import DialogSelector from "./register_login/DialogSelector";
 
 const styles = theme => ({
   appBar: {
@@ -68,12 +67,8 @@ function Navbar(props) {
     openLoginDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
-    closeDialog,
     mobileDrawerOpen,
-    selectedTab,
-    dialogOpen,
-    openTermsDialog,
-    openChangePasswordDialog
+    selectedTab
   } = props;
   const menuItems = [
     {
@@ -99,14 +94,6 @@ function Navbar(props) {
   ];
   return (
     <div className={classes.root}>
-      <DialogSelector
-        openLoginDialog={openLoginDialog}
-        dialogOpen={dialogOpen}
-        onClose={closeDialog}
-        openTermsDialog={openTermsDialog}
-        openRegisterDialog={openRegisterDialog}
-        openChangePasswordDialog={openChangePasswordDialog}
-      />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h4" className={classes.brand}>
@@ -239,14 +226,10 @@ Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
-  closeDialog: PropTypes.func.isRequired,
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
-  dialogOpen: PropTypes.string,
-  openTermsDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired
+  openLoginDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Navbar);
