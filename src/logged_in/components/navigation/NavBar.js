@@ -277,22 +277,22 @@ class NavBar extends PureComponent {
                   onClick={element.onClick}
                   key={index}
                 >
-                  <ListItem
-                    selected={selectedTab === element.name}
-                    button
-                    divider={index !== menuItems.length - 1}
-                    className="justify-content-center"
+                  <Tooltip
+                    title={element.name}
+                    placement="right"
+                    key={element.name}
                   >
-                    <Tooltip
-                      title={element.name}
-                      placement="right"
-                      key={element.name}
+                    <ListItem
+                      selected={selectedTab === element.name}
+                      button
+                      divider={index !== menuItems.length - 1}
+                      className="justify-content-center"
                     >
                       <ListItemIcon className="justify-content-center">
                         {element.icon.desktop}
                       </ListItemIcon>
-                    </Tooltip>
-                  </ListItem>
+                    </ListItem>
+                  </Tooltip>
                 </Link>
               ))}
             </List>

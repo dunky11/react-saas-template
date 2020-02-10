@@ -233,7 +233,14 @@ class CustomTable extends PureComponent {
         <ConfirmationDialog
           open={deleteTargetDialogOpen}
           title="Confirmation"
-          content={`Do you really want to remove the friend <b>${deleteTargetDialogName}</b> from your list?`}
+          content={
+            <span
+              dangerouslySetInnerHTML={{
+                __html: `Do you really want to remove the friend
+            <b>${deleteTargetDialogName}</b> from your list?`
+              }}
+            />
+          }
           onClose={this.handleDeleteTargetDialogClose}
           onConfirm={this.deleteTarget}
           loading={deleteTargetLoading}
