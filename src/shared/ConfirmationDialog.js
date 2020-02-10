@@ -21,13 +21,7 @@ function ConfirmationDialog(props) {
     >
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          <span
-            dangerouslySetInnerHTML={{
-              __html: content
-            }}
-          />
-        </DialogContentText>
+        <DialogContentText>{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} disabled={loading}>
@@ -51,7 +45,7 @@ ConfirmationDialog.propTypes = {
   onClose: PropTypes.func,
   loading: PropTypes.bool,
   title: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
   onConfirm: PropTypes.func
 };
 

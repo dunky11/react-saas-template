@@ -24,7 +24,6 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
@@ -47,6 +46,7 @@ const styles = theme => ({
   appBarToolbar: {
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
+    minHeight: 64,
     [theme.breakpoints.up("sm")]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
@@ -58,9 +58,6 @@ const styles = theme => ({
     [theme.breakpoints.up("lg")]: {
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4)
-    },
-    [theme.breakpoints.down("xs")]: {
-      minHeight: 56
     }
   },
   accountAvatar: {
@@ -280,22 +277,22 @@ class NavBar extends PureComponent {
                   onClick={element.onClick}
                   key={index}
                 >
-                  <ListItem
-                    selected={selectedTab === element.name}
-                    button
-                    divider={index !== menuItems.length - 1}
-                    className="justify-content-center"
+                  <Tooltip
+                    title={element.name}
+                    placement="right"
+                    key={element.name}
                   >
-                    <Tooltip
-                      title={element.name}
-                      placement="right"
-                      key={element.name}
+                    <ListItem
+                      selected={selectedTab === element.name}
+                      button
+                      divider={index !== menuItems.length - 1}
+                      className="justify-content-center"
                     >
                       <ListItemIcon className="justify-content-center">
                         {element.icon.desktop}
                       </ListItemIcon>
-                    </Tooltip>
-                  </ListItem>
+                    </ListItem>
+                  </Tooltip>
                 </Link>
               ))}
             </List>
