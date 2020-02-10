@@ -25,8 +25,7 @@ function DialogTitleWithCloseIcon(props) {
       }}
       className={classNames(
         "d-flex justify-content-between w-100",
-        avatarSrc && !disablePadding && "pt-2",
-        disablePadding ? "p-0" : null
+        disablePadding ? "p-0" : "pt-2"
       )}
       disableTypography
     >
