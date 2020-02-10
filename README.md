@@ -44,6 +44,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 * Transitioning from the GlobalStyles component to Material-UIs Box component
 * Improving reusability of components
 * Adding a "update balance" page
+* Improving look of the Footer
 
 ## License
 
