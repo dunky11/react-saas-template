@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import { Typography, withStyles } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 
@@ -8,8 +7,20 @@ const styles = theme => ({
   card: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    marginTop: theme.spacing(2),
     border: `3px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 2
+  },
+  cardHightlighted: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    border: `3px solid ${theme.palette.primary.dark}`,
+    borderRadius: theme.shape.borderRadius * 2,
+    backgroundColor: theme.palette.primary.main
   },
   monthStyling: {
     fontSize: theme.typography.body1.fontSize
@@ -17,48 +28,50 @@ const styles = theme => ({
 });
 
 function PriceCard(props) {
-  const { classes, theme, title, pricing, accountDescription } = props;
+  const { classes, theme, title, pricing, features, highlighted } = props;
   return (
-    <div className={classNames(classes.card, "px-4 mt-2")}>
+    <div className={highlighted ? classes.cardHightlighted : classes.card}>
       <Typography
-        variant="h6"
-        className="mb-2"
+        variant={highlighted ? "h5" : "h6"}
+        className={highlighted ? "mb-2 text-white" : "mb-2"}
         style={{ color: theme.palette.primary.main }}
       >
         {title}
       </Typography>
-      <Typography variant="h4" className="mb-2">
+      <Typography
+        variant={highlighted ? "h3" : "h4"}
+        className={highlighted ? "mb-2 text-white" : "mb-2"}
+      >
         {`$${pricing}`}
         <span className={classes.monthStyling}> / month</span>
       </Typography>
-      <div className="d-flex align-items-center mb-1">
-        <CheckIcon style={{ color: theme.palette.primary.dark }} />
-        <Typography className="ml-1" variant="body1">
-          {accountDescription}
-        </Typography>
-      </div>
-      <div className="d-flex align-items-center mb-1">
-        <CheckIcon style={{ color: theme.palette.primary.dark }} />
-        <Typography className="ml-1" variant="body1">
-          Access to all our features
-        </Typography>
-      </div>
-      <div className="d-flex align-items-center mb-1">
-        <CheckIcon style={{ color: theme.palette.primary.dark }} />
-        <Typography className="ml-1" variant="body1">
-          Always cancelable
-        </Typography>
-      </div>
+      {features.map((feature, index) => (
+        <div className="d-flex align-items-center mb-1" key={index}>
+          <CheckIcon
+            style={{
+              color: highlighted
+                ? theme.palette.common.white
+                : theme.palette.primary.dark
+            }}
+          />
+          <Typography
+            className={highlighted ? "ml-1 text-white" : "ml-1"}
+            variant={highlighted ? "h6" : "body1"}
+          >
+            {feature}
+          </Typography>
+        </div>
+      ))}
     </div>
   );
 }
 
 PriceCard.propTypes = {
-  classes: PropTypes.object,
-  theme: PropTypes.object,
-  title: PropTypes.string,
-  pricing: PropTypes.string,
-  accountDescription: PropTypes.string
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  pricing: PropTypes.string.isRequired,
+  highlighted: PropTypes.bool
 };
 
 export default withStyles(styles, { withTheme: true })(PriceCard);

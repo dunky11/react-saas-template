@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
 import PriceCard from "./PriceCard";
-import PriceCardHighlighted from "./PriceCardHighlighted";
 import calculateSpacing from "./calculateSpacing";
 
 function PricingSection(props) {
@@ -18,7 +17,11 @@ function PricingSection(props) {
             <PriceCard
               title="Starter"
               pricing="14.99"
-              accountDescription="10.000 requests per month"
+              features={[
+                "10.000 requests per month",
+                "Access to all our features",
+                "Always cancelable"
+              ]}
             />
           </Grid>
           <Grid
@@ -29,10 +32,15 @@ function PricingSection(props) {
             data-aos="zoom-in-up"
             data-aos-delay="200"
           >
-            <PriceCardHighlighted
+            <PriceCard
+              highlighted
               title="Premium"
               pricing="29.99"
-              accountDescription="50.000 requests per month"
+              features={[
+                "50.000 requests per month",
+                "Access to all our features",
+                "Always cancelable"
+              ]}
             />
           </Grid>
           <Grid
@@ -46,7 +54,11 @@ function PricingSection(props) {
             <PriceCard
               title="Business"
               pricing="49.99"
-              accountDescription="250.000 requests per month"
+              features={[
+                "250.000 requests per month",
+                "Access to all our features",
+                "Always cancelable"
+              ]}
             />
           </Grid>
           <Grid
@@ -60,7 +72,11 @@ function PricingSection(props) {
             <PriceCard
               title="Tycoon"
               pricing="99.99"
-              accountDescription="1.000.000 requests per month"
+              features={[
+                "1.000.000 requests per month",
+                "Access to all our features",
+                "Always cancelable"
+              ]}
             />
           </Grid>
         </Grid>
