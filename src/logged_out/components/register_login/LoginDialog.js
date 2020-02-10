@@ -145,15 +145,22 @@ class LoginDialog extends PureComponent {
                 }
                 label={<Typography variant="body1">Remember me</Typography>}
               />
-              <HighlightedInformation>
-                Email is: <b>test@web.com</b>
-                <br />
-                Password is: <b>test</b>
-              </HighlightedInformation>
+              {status === "verificationEmailSend" ? (
+                <HighlightedInformation>
+                  We have send instructions on how to reset your password to
+                  your email address
+                </HighlightedInformation>
+              ) : (
+                <HighlightedInformation>
+                  Email is: <b>test@web.com</b>
+                  <br />
+                  Password is: <b>test</b>
+                </HighlightedInformation>
+              )}
             </Fragment>
           }
           actions={
-            <div className="d-flex flex-column">
+            <Fragment>
               <Button
                 type="submit"
                 fullWidth
@@ -176,7 +183,7 @@ class LoginDialog extends PureComponent {
               >
                 Forgot Password?
               </Typography>
-            </div>
+            </Fragment>
           }
         />
       </Fragment>
