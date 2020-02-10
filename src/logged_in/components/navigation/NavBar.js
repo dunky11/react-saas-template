@@ -256,9 +256,7 @@ class NavBar extends PureComponent {
                 )}
               </ListItem>
             </div>
-            <div className="d-flex align-items-center">
-              <SideDrawer />
-            </div>
+            <SideDrawer />
           </Toolbar>
         </AppBar>
         <Hidden xsDown>
