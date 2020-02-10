@@ -22,11 +22,7 @@ function PricingSection(props) {
                   <Typography display="inline"> / month</Typography>
                 </span>
               }
-              features={[
-                "10.000 requests per month",
-                "Access to all our features",
-                "Always cancelable"
-              ]}
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -46,11 +42,7 @@ function PricingSection(props) {
                   <Typography display="inline"> / month</Typography>
                 </span>
               }
-              features={[
-                "50.000 requests per month",
-                "Access to all our features",
-                "Always cancelable"
-              ]}
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -69,11 +61,7 @@ function PricingSection(props) {
                   <Typography display="inline"> / month</Typography>
                 </span>
               }
-              features={[
-                "250.000 requests per month",
-                "Access to all our features",
-                "Always cancelable"
-              ]}
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -92,11 +80,7 @@ function PricingSection(props) {
                   <Typography display="inline"> / month</Typography>
                 </span>
               }
-              features={[
-                "1.000.000 requests per month",
-                "Access to all our features",
-                "Always cancelable"
-              ]}
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
         </Grid>
