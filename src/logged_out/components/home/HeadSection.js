@@ -60,6 +60,9 @@ const styles = theme => ({
       paddingBottom: theme.spacing(6),
       paddingLeft: theme.spacing(6),
       paddingRight: theme.spacing(6)
+    },
+    [theme.breakpoints.down("lg")]: {
+      width: "auto"
     }
   },
   wrapper: {
@@ -101,9 +104,9 @@ function HeadSection(props) {
     <Fragment>
       <div className={classNames("lg-p-top pb-2", classes.wrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
-          <div className="row">
+          <div className="row d-flex justify-content-center">
             <Card
-              className={classNames("w-100 mx-2", classes.card)}
+              className={classNames("mx-2", classes.card)}
               data-aos-delay="200"
               data-aos="zoom-in"
             >
