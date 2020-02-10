@@ -29,9 +29,7 @@ function DialogTitleWithCloseIcon(props) {
       )}
       disableTypography
     >
-      <Typography variant="h5">
-        <b>{title}</b>
-      </Typography>
+      <Typography variant="h5">{title}</Typography>
       <IconButton
         onClick={onClose}
         style={{ marginRight: -12, marginTop: -10 }}
