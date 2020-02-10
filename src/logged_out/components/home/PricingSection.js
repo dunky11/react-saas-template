@@ -16,7 +16,12 @@ function PricingSection(props) {
           <Grid item xs={12} sm={6} lg={3} data-aos="zoom-in-up">
             <PriceCard
               title="Starter"
-              pricing="14.99"
+              pricing={
+                <span>
+                  $14.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
               features={[
                 "10.000 requests per month",
                 "Access to all our features",
@@ -35,7 +40,12 @@ function PricingSection(props) {
             <PriceCard
               highlighted
               title="Premium"
-              pricing="29.99"
+              pricing={
+                <span>
+                  $29.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
               features={[
                 "50.000 requests per month",
                 "Access to all our features",
@@ -53,7 +63,12 @@ function PricingSection(props) {
           >
             <PriceCard
               title="Business"
-              pricing="49.99"
+              pricing={
+                <span>
+                  $49.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
               features={[
                 "250.000 requests per month",
                 "Access to all our features",
@@ -71,7 +86,12 @@ function PricingSection(props) {
           >
             <PriceCard
               title="Tycoon"
-              pricing="99.99"
+              pricing={
+                <span>
+                  $99.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
               features={[
                 "1.000.000 requests per month",
                 "Access to all our features",

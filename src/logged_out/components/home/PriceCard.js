@@ -21,9 +21,6 @@ const styles = theme => ({
     border: `3px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 2,
     backgroundColor: theme.palette.primary.main
-  },
-  monthStyling: {
-    fontSize: theme.typography.body1.fontSize
   }
 });
 
@@ -42,8 +39,7 @@ function PriceCard(props) {
         variant={highlighted ? "h3" : "h4"}
         className={highlighted ? "mb-2 text-white" : "mb-2"}
       >
-        {`$${pricing}`}
-        <span className={classes.monthStyling}> / month</span>
+        {pricing}
       </Typography>
       {features.map((feature, index) => (
         <div className="d-flex align-items-center mb-1" key={index}>
@@ -70,7 +66,7 @@ PriceCard.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  pricing: PropTypes.string.isRequired,
+  pricing: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
   highlighted: PropTypes.bool
 };
 
