@@ -160,7 +160,7 @@ class LoginDialog extends PureComponent {
             </Fragment>
           }
           actions={
-            <div className="d-flex flex-column">
+            <Fragment>
               <Button
                 type="submit"
                 fullWidth
@@ -183,7 +183,7 @@ class LoginDialog extends PureComponent {
               >
                 Forgot Password?
               </Typography>
-            </div>
+            </Fragment>
           }
         />
       </Fragment>
