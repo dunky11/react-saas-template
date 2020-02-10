@@ -49,38 +49,36 @@ class EmojiTextarea extends PureComponent {
     open: false
   };
 
-  componentDidMount() {
-    const { getTextFieldChange } = this.props;
-    if (getTextFieldChange) {
-      getTextFieldChange(this.handleTextFieldChange);
-    }
-  }
-
   onSelectEmoji = emoji => {
     let { value } = this.props;
-    const { maxChars, onChange } = this.props;
+    const { maxCharacters, onChange } = this.props;
     let characters;
     value += emoji.native;
-    if (maxChars) {
+    if (maxCharacters) {
       characters = countWithEmojis(value);
     }
     onChange(value, characters);
   };
 
   handleTextFieldChange = event => {
-    const { maxChars, onChange } = this.props;
+    const { maxCharacters, onChange } = this.props;
     const { target } = event;
     const { value } = target;
     let characters;
-    if (maxChars) {
+    if (maxCharacters) {
       characters = countWithEmojis(value);
-      if (characters > maxChars) {
+      if (characters > maxCharacters) {
         return;
       }
     }
     onChange(value, characters);
   };
 
+  /**
+   * Emojis whose unified is greater than 5 sometimes
+   * are not displayed correcty in the browser.
+   * We won't display them.
+   */
   emojisToShowFilter = emoji => {
     if (emoji.unified.length > 5) {
       return false;
@@ -102,7 +100,8 @@ class EmojiTextarea extends PureComponent {
       value,
       placeholder,
       characters,
-      maxChars,
+      maxCharacters,
+      emojiSet,
       inputClassName
     } = this.props;
     return (
@@ -164,15 +163,15 @@ class EmojiTextarea extends PureComponent {
             <div style={{ maxWidth: "25%" }}>{rightContent}</div>
           )}
         </div>
-        {maxChars && (
-          <FormHelperText error={characters >= maxChars}>
-            {`${characters}/${maxChars} characters`}
+        {maxCharacters && (
+          <FormHelperText error={characters >= maxCharacters}>
+            {`${characters}/${maxCharacters} characters`}
           </FormHelperText>
         )}
         <Collapse in={open}>
           <div className="mt-1">
             <Picker
-              set="google"
+              set={emojiSet}
               color={theme.palette.primary.main}
               style={{ width: "100%" }}
               onSelect={this.onSelectEmoji}
@@ -186,15 +185,15 @@ class EmojiTextarea extends PureComponent {
 }
 
 EmojiTextarea.propTypes = {
-  theme: PropTypes.object,
-  classes: PropTypes.object,
+  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  emojiSet: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   rightContent: PropTypes.element,
-  value: PropTypes.string,
   placeholder: PropTypes.string,
   characters: PropTypes.number,
-  maxChars: PropTypes.number,
+  maxCharacters: PropTypes.number,
   onChange: PropTypes.func,
-  getTextFieldChange: PropTypes.func,
   inputClassName: PropTypes.string
 };
 
