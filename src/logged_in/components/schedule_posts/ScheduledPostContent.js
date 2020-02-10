@@ -10,6 +10,7 @@ import {
   Paper
 } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/SelfAligningImage";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/ConfirmationDialog";
@@ -55,6 +56,12 @@ class ScheduledPostContent extends PureComponent {
   };
 
   printImageGrid = () => {
+    const options = [];
+    options.push({
+      name: "Delete",
+      onClick: this.onDelete,
+      icon: <DeleteIcon />
+    });
     const { scheduledPosts } = this.props;
     const { page } = this.state;
     if (scheduledPosts.length > 0) {
@@ -72,7 +79,7 @@ class ScheduledPostContent extends PureComponent {
                   title="Picture"
                   timeStamp={element.timestamp}
                   id={element.id}
-                  onDelete={this.onDelete}
+                  options={options}
                 />
               </Grid>
             ))}
