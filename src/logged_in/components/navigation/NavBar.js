@@ -118,29 +118,12 @@ const styles = theme => ({
 class NavBar extends PureComponent {
   state = { mobileOpen: false };
 
-  componentDidMount() {
-    /**
-     * Close mobile drawer when resizing to bigger width
-     */
-    window.onresize = () => {
-      const { width } = this.props;
-      const { mobileOpen } = this.state;
-      if (isWidthUp("sm", width) && mobileOpen) {
-        this.setState({ mobileOpen: false });
-      }
-    };
-  }
-  /**
-   * Toggles the drawer on the left side when the width of the device is small and
-   * therefore the mobile drawer is open.
-   */
-  handleMobileDrawerToggle = () => {
-    const { mobileOpen } = this.state;
-    if (mobileOpen) {
-      this.setState({ mobileOpen: false });
-    } else {
-      this.setState({ mobileOpen: true });
-    }
+  openMobileDrawer = () => {
+    this.setState({ mobileOpen: true });
+  };
+
+  closeMobileDrawer = () => {
+    this.setState({ mobileOpen: false });
   };
 
   render() {
@@ -151,7 +134,7 @@ class NavBar extends PureComponent {
         link: "/c/dashboard",
         name: "Dashboard",
         onClick: () => {
-          this.handleMobileDrawerToggle();
+          this.closeMobileDrawer();
         },
         icon: {
           desktop: (
@@ -169,7 +152,7 @@ class NavBar extends PureComponent {
         link: "/c/schedule-posts",
         name: "Schedule Posts",
         onClick: () => {
-          this.handleMobileDrawerToggle();
+          this.closeMobileDrawer();
         },
         icon: {
           desktop: (
@@ -189,7 +172,7 @@ class NavBar extends PureComponent {
         link: "/c/subscription",
         name: "Subscription",
         onClick: () => {
-          this.handleMobileDrawerToggle();
+          this.closeMobileDrawer();
         },
         icon: {
           desktop: (
@@ -228,7 +211,7 @@ class NavBar extends PureComponent {
             <div className="d-flex align-items-center">
               <Hidden smUp>
                 <IconButton
-                  onClick={this.handleMobileDrawerToggle}
+                  onClick={this.openMobileDrawer}
                   className="mr-1"
                   color="primary"
                 >
@@ -328,7 +311,7 @@ class NavBar extends PureComponent {
           anchor="left"
           open={mobileOpen}
           selectedItem={selectedTab}
-          onClose={this.handleMobileDrawerToggle}
+          onClose={this.closeMobileDrawer}
         />
       </Fragment>
     );
