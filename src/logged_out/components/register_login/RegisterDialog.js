@@ -44,43 +44,6 @@ class RegisterDialog extends PureComponent {
     }, 1500);
   };
 
-  printStatus = () => {
-    const { status } = this.props;
-    switch (status) {
-      case null:
-        return;
-      case "acceptTerms":
-        return;
-      case "passwordsDontMatch":
-        return;
-      case "passwordTooShort":
-        return;
-      case "invalidEmail":
-        return;
-      case "accountCreated":
-        return (
-          <HighlightedInformation>
-            We have created your account. Please click on the link in the email
-            we have sent to you before logging in.
-          </HighlightedInformation>
-        );
-      case "invalidPassword":
-        return (
-          <HighlightedInformation>
-            Please choose another password.
-          </HighlightedInformation>
-        );
-      case "unknownError":
-        return (
-          <HighlightedInformation>
-            An unknown error occurred.
-          </HighlightedInformation>
-        );
-      default:
-        throw new Error("No branch selected in switch statement");
-    }
-  };
-
   render() {
     const {
       theme,
@@ -231,11 +194,16 @@ class RegisterDialog extends PureComponent {
                 service.
               </FormHelperText>
             )}
-
-            <HighlightedInformation>
-              Registration is disabled until we go live.
-            </HighlightedInformation>
-            {this.printStatus()}
+            {status === "accountCreated" ? (
+              <HighlightedInformation>
+                We have created your account. Please click on the link in the
+                email we have sent to you before logging in.
+              </HighlightedInformation>
+            ) : (
+              <HighlightedInformation>
+                Registration is disabled until we go live.
+              </HighlightedInformation>
+            )}
           </Fragment>
         }
         actions={
