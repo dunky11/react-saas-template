@@ -26,7 +26,7 @@ npm install
 ```
 npm start
 ```
-Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser.
+Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
 
 ## Mainly Build With
 
