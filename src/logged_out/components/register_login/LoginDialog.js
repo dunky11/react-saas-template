@@ -77,7 +77,6 @@ class LoginDialog extends PureComponent {
           }}
           hideBackdrop
           headline="Login"
-          hasCloseIcon
           content={
             <Fragment>
               <TextField
