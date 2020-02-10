@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from "react";
+import PropTypes from "prop-types";
 import {
   Drawer,
   IconButton,
@@ -10,7 +11,6 @@ import {
 } from "@material-ui/core";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import CloseIcon from "@material-ui/icons/Close";
-import PropTypes from "prop-types";
 
 const drawerWidth = 240;
 
@@ -47,14 +47,21 @@ class SideDrawer extends PureComponent {
           variant="temporary"
           onClose={this.closeDrawer}
         >
-          <Box pl={3} pr={1} justifyContent="space-between">
-            <Toolbar disableGutters className={classes.toolbar}>
+          <Toolbar disableGutters className={classes.toolbar}>
+            <Box
+              pl={3}
+              pr={3}
+              display="flex"
+              justifyContent="space-between"
+              width="100%"
+              alignItems="center"
+            >
               <Typography variant="h6">A Sidedrawer</Typography>
               <IconButton onClick={this.closeDrawer} color="primary">
                 <CloseIcon />
               </IconButton>
-            </Toolbar>
-          </Box>
+            </Box>
+          </Toolbar>
           <Divider />
         </Drawer>
       </Fragment>

@@ -145,7 +145,7 @@ class AddScheduledPost extends PureComponent {
           }
           actions={
             <Fragment>
-              <Button onClick={onClose} className="mr-1">
+              <Button onClick={onClose} className="mr-1" disabled={loading}>
                 Back
               </Button>
               <Button

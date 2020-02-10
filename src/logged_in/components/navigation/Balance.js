@@ -25,7 +25,6 @@ function Balance(props) {
   return (
     <div className={classes.wrapper}>
       <OutlinedInput
-        // === null so 0 is a displayed value
         value={balance === null ? "" : currencyPrettyPrint(balance)}
         className={classes.outlinedInput}
         classes={{ input: classes.input }}
@@ -37,7 +36,7 @@ function Balance(props) {
 }
 
 Balance.propTypes = {
-  balance: PropTypes.number,
+  balance: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired
 };
 

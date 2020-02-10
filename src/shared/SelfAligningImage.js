@@ -2,8 +2,6 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
 import { GridListTileBar, withStyles } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import VertOptions from "./VertOptions";
 
 const styles = {
@@ -26,16 +24,6 @@ const styles = {
 class SelfAligningImage extends PureComponent {
   state = { moreWidthThanHeight: null, loaded: false };
 
-  onEdit = () => {
-    const { onEdit, id } = this.props;
-    onEdit(id);
-  };
-
-  onDelete = () => {
-    const { onDelete, id } = this.props;
-    onDelete(id);
-  };
-
   render() {
     const { moreWidthThanHeight, loaded } = this.state;
     const {
@@ -43,26 +31,10 @@ class SelfAligningImage extends PureComponent {
       src,
       title,
       timeStamp,
-      onEdit,
-      onDelete,
+      options,
       roundedBorder,
       theme
     } = this.props;
-    const options = [];
-    if (onEdit) {
-      options.push({
-        name: "Edit",
-        onClick: this.onEdit,
-        icon: <EditIcon />
-      });
-    }
-    if (onDelete) {
-      options.push({
-        name: "Delete",
-        onClick: this.onDelete,
-        icon: <DeleteIcon />
-      });
-    }
     return (
       <div className={classes.imageContainer}>
         <img
@@ -111,11 +83,10 @@ SelfAligningImage.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   timeStamp: PropTypes.number,
-  onEdit: PropTypes.func,
-  onDelete: PropTypes.func,
   id: PropTypes.number,
   roundedBorder: PropTypes.bool,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  options: PropTypes.array
 };
 
 export default withStyles(styles, { withTheme: true })(SelfAligningImage);

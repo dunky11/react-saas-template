@@ -14,7 +14,6 @@ import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import classNames from "classnames";
-import ClickableComponent from "../../../shared/ClickableComponent";
 import EnhancedTableHead from "../../../shared/EnhancedTableHead";
 import stableSort from "../../../shared/stableSort";
 import getSorting from "../../../shared/getSorting";
@@ -78,7 +77,6 @@ class CustomTable extends PureComponent {
   handleRequestSort = (__, property) => {
     const orderBy = property;
     let order = "desc";
-    // eslint-disable-next-line
     if (this.state.orderBy === property && this.state.order === "desc") {
       order = "asc";
     }
@@ -177,34 +175,35 @@ class CustomTable extends PureComponent {
                   <TableCell component="th" scope="row">
                     <div className="d-flex justify-content-end">
                       {row.isActivated ? (
-                        <ClickableComponent
-                          function={this.toggleTarget}
-                          parameters={[row.id, false]}
+                        <IconButton
+                          className="p-1"
+                          onClick={() => {
+                            this.toggleTarget(row.id);
+                          }}
                         >
-                          <IconButton className="p-1">
-                            <PauseCircleOutlineIcon
-                              className={classes.blackIcon}
-                            />
-                          </IconButton>
-                        </ClickableComponent>
-                      ) : (
-                        <ClickableComponent
-                          function={this.toggleTarget}
-                          parameters={[row.id, true]}
-                        >
-                          <IconButton className="p-1" color="primary">
-                            <PlayCirlceOutlineIcon />
-                          </IconButton>
-                        </ClickableComponent>
-                      )}
-                      <ClickableComponent
-                        function={this.handleDeleteTargetDialogOpen}
-                        parameters={[row.id, row.name]}
-                      >
-                        <IconButton className="p-1">
-                          <DeleteIcon className={classes.blackIcon} />
+                          <PauseCircleOutlineIcon
+                            className={classes.blackIcon}
+                          />
                         </IconButton>
-                      </ClickableComponent>
+                      ) : (
+                        <IconButton
+                          className="p-1"
+                          color="primary"
+                          onClick={() => {
+                            this.toggleTarget(row.id);
+                          }}
+                        >
+                          <PlayCirlceOutlineIcon />
+                        </IconButton>
+                      )}
+                      <IconButton
+                        className="p-1"
+                        onClick={() => {
+                          this.handleDeleteTargetDialogOpen(row.id, row.name);
+                        }}
+                      >
+                        <DeleteIcon className={classes.blackIcon} />
+                      </IconButton>
                     </div>
                   </TableCell>
                 </TableRow>
