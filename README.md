@@ -57,6 +57,16 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 - [ ] Improving look of the Footer
 - [ ] .css files -> jss
 
+## Deployment
+
+If you are happy with the changes youve made you can run
+
+```
+npm run build
+```
+
+it will create a build folder with your compiled project. After that copy its content into your webroot and you are ready to go.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details
