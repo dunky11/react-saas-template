@@ -9,7 +9,6 @@ import {
   Switch,
   withStyles
 } from "@material-ui/core";
-import "../../../css/spin.css";
 import LoopIcon from "@material-ui/icons/Loop";
 import classNames from "classnames";
 
@@ -20,7 +19,12 @@ const styles = {
   },
   scaleMinus: {
     transform: "scaleX(-1)"
-  }
+  },
+  "@keyframes spin": {
+    from: { transform: "rotate(359deg)" },
+    to: { transform: "rotate(0deg)" }
+  },
+  spin: { animation: "$spin 2s infinite linear" }
 };
 
 function AccountInformationArea(props) {
@@ -37,7 +41,7 @@ function AccountInformationArea(props) {
           <ListItemIcon>
             <LoopIcon
               className={classNames(
-                isAccountActivated ? "spin" : null,
+                isAccountActivated ? classes.spin : null,
                 classes.scaleMinus
               )}
             />
