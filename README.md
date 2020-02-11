@@ -20,6 +20,7 @@ https://nodejs.org/en/
 ### Installing
 
 1. Clone the repository
+
    ```
    git clone https://github.com/dunky11/react-saas-template
    cd react-saas-template
