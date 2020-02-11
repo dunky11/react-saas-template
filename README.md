@@ -38,8 +38,9 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
 
-## Mainly Build With
+## Build With
 
+* [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
 * [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
 * [React-Router](https://github.com/ReactTraining/react-router) - Routing of the app
 * [Pace](https://github.com/HubSpot/pace) - Loading bar at the top
