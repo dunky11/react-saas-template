@@ -15,7 +15,10 @@ import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 
 const styles = theme => ({
   link: {
-    transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.complex}ms`,
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeInOut
+    }),
     cursor: "pointer",
     color: theme.palette.primary.main,
     "&:hover": {

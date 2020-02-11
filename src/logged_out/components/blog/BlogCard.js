@@ -14,7 +14,10 @@ const styles = theme => ({
     }
   },
   title: {
-    transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.standard}ms`,
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.standard,
+      easing: theme.transitions.easing.easeInOut
+    }),
     "&:hover": {
       color: theme.palette.secondary.main
     },
@@ -27,7 +30,10 @@ const styles = theme => ({
     textDecoration: "none !important"
   },
   link: {
-    transition: `background-color ${theme.transitions.easing.easeInOut} ${theme.transitions.duration.complex}ms`,
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeInOut
+    }),
     cursor: "pointer",
     color: theme.palette.primary.main,
     "&:hover": {

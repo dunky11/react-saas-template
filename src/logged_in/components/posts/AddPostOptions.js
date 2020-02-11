@@ -44,8 +44,10 @@ const styles = theme => ({
   },
   uploadIcon: {
     fontSize: 48,
-    transition:
-      "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
+    transition: theme.transitions.create(["color", "box-shadow", "border"], {
+      duration: theme.transitions.duration.short,
+      easing: theme.transitions.easing.easeInOut
+    })
   },
   tabsIndicator: {
     backgroundColor: theme.palette.secondary.main
@@ -84,8 +86,10 @@ const styles = theme => ({
     borderColor: "rgba(0, 0, 0, 0.23)"
   },
   uploadText: {
-    transition:
-      "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
+    transition: theme.transitions.create(["color", "box-shadow", "border"], {
+      duration: theme.transitions.duration.short,
+      easing: theme.transitions.easing.easeInOut
+    })
   },
   numberInput: {
     width: 110
