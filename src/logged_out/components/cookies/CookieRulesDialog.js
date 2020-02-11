@@ -10,7 +10,7 @@ import {
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import BlackButton from "../../../shared/BlackButton";
+import ColoredButton from "../../../shared/ColoredButton";
 
 const styles = {
   dialogActions: {
@@ -22,7 +22,7 @@ const styles = {
 };
 
 function CookieRulesDialog(props) {
-  const { classes, onClose, open } = props;
+  const { classes, onClose, open, theme } = props;
   return (
     <Dialog
       open={open}
@@ -72,11 +72,11 @@ function CookieRulesDialog(props) {
         </Typography>
         <Typography paragraph>Login related cookies:</Typography>
         <Typography paragraph>
-          We use cookies when you are logged in so that we can remember this
-          fact. This prevents you from having to log in every single time you
-          visit a new page. These cookies are typically removed or cleared when
-          you log out to ensure that you can only access restricted features and
-          areas when logged in.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet.
         </Typography>
         <Typography paragraph>Site preferences cookies:</Typography>
         <Typography paragraph>
@@ -109,10 +109,14 @@ function CookieRulesDialog(props) {
         </Typography>
       </DialogContent>
       <DialogActions className={classNames("py-2 pr-2", classes.DialogActions)}>
-        <BlackButton onClick={onClose} variant="contained">
+        <ColoredButton
+          onClick={onClose}
+          variant="contained"
+          color={theme.palette.common.black}
+        >
           <ArrowBackIcon className="mr-1" />
           Back
-        </BlackButton>
+        </ColoredButton>
       </DialogActions>
     </Dialog>
   );
@@ -121,7 +125,8 @@ function CookieRulesDialog(props) {
 CookieRulesDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CookieRulesDialog);
+export default withStyles(styles, { withTheme: true })(CookieRulesDialog);

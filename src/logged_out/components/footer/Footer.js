@@ -146,9 +146,9 @@ function Footer(props) {
 }
 
 Footer.propTypes = {
-  width: PropTypes.string,
-  theme: PropTypes.object,
-  classes: PropTypes.object,
+  width: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   openLoginDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,
   handleCookieRulesDialogOpen: PropTypes.func.isRequired

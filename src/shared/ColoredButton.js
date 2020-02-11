@@ -2,18 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
-const buttonTheme = theme =>
-  createMuiTheme({
+function ColoredButton(props) {
+  const {
+    variant,
+    size,
+    disabled,
+    onClick,
+    className,
+    children,
+    theme,
+    color
+  } = props;
+  const buttonTheme = createMuiTheme({
+    ...theme,
     palette: {
-      primary: { main: theme.palette.common.black }
-    },
-    typography: {
-      useNextVariants: true
+      primary: {
+        main: color
+      }
     }
   });
-
-function BlackButton(props) {
-  const { variant, size, disabled, onClick, className, children } = props;
   return (
     <MuiThemeProvider theme={buttonTheme}>
       <Button
@@ -30,18 +37,14 @@ function BlackButton(props) {
   );
 }
 
-BlackButton.propTypes = {
+ColoredButton.propTypes = {
+  color: PropTypes.string.isRequired,
   size: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.array,
-    PropTypes.func,
-    PropTypes.string
-  ]),
+  children: PropTypes.node,
   variant: PropTypes.string
 };
 
-export default BlackButton;
+export default ColoredButton;
