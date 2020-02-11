@@ -10,7 +10,7 @@ import {
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import BlackButton from "../../../shared/BlackButton";
+import ColoredButton from "../../../shared/ColoredButton";
 
 const styles = theme => ({
   termsConditionsListitem: {
@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 function TermsOfServiceDialog(props) {
-  const { classes, onClose } = props;
+  const { classes, onClose, theme } = props;
   return (
     <Dialog open scroll="paper" onClose={onClose} hideBackdrop>
       <DialogTitle>Terms and Conditions</DialogTitle>
@@ -173,10 +173,14 @@ function TermsOfServiceDialog(props) {
         </Typography>
       </DialogContent>
       <DialogActions className={classNames("py-2 pr-2", classes.DialogActions)}>
-        <BlackButton onClick={onClose} variant="contained">
+        <ColoredButton
+          onClick={onClose}
+          variant="contained"
+          color={theme.palette.common.black}
+        >
           <ArrowBackIcon className="mr-1" />
           Back
-        </BlackButton>
+        </ColoredButton>
       </DialogActions>
     </Dialog>
   );
@@ -184,7 +188,8 @@ function TermsOfServiceDialog(props) {
 
 TermsOfServiceDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TermsOfServiceDialog);
+export default withStyles(styles, { withTheme: true })(TermsOfServiceDialog);
