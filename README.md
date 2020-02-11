@@ -9,13 +9,13 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 Linux:
 
-```
-sudo apt install nodejs
-```
+   ```
+   sudo apt install nodejs
+   ```
 
 Windows:
 
-https://nodejs.org/en/
+   https://nodejs.org/en/
 
 ### Installing
 
