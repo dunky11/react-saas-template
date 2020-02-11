@@ -79,13 +79,12 @@ class SelfAligningImage extends PureComponent {
 }
 
 SelfAligningImage.propTypes = {
-  classes: PropTypes.object,
-  src: PropTypes.string,
+  classes: PropTypes.object.isRequired,
+  src: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
   title: PropTypes.string,
   timeStamp: PropTypes.number,
-  id: PropTypes.number,
   roundedBorder: PropTypes.bool,
-  theme: PropTypes.object,
   options: PropTypes.array
 };
 
