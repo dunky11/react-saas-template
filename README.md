@@ -7,13 +7,13 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 #### Node.js
 
-Linux:
+* Linux:
 
    ```
    sudo apt install nodejs
    ```
 
-Windows:
+* Windows:
 
    https://nodejs.org/en/
 
