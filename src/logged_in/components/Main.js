@@ -185,7 +185,8 @@ class Main extends PureComponent {
       const post = {
         id: i,
         src: person.profilePicUrl,
-        timestamp: curUnix
+        timestamp: curUnix,
+        name: person.name
       };
       curUnix += oneDaySeconds;
       posts.reverse();

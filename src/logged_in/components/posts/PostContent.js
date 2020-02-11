@@ -73,12 +73,11 @@ class PostContent extends PureComponent {
               page * this.rowsPerPage + this.rowsPerPage
             )
             .map(element => (
-              <Grid item xs={4} md={3} key={element.id}>
+              <Grid item xs={6} sm={4} md={3} key={element.id}>
                 <SelfAligningImage
                   src={element.src}
-                  title="Picture"
+                  title={element.name}
                   timeStamp={element.timestamp}
-                  id={element.id}
                   options={options}
                 />
               </Grid>
@@ -147,7 +146,7 @@ class PostContent extends PureComponent {
 
 PostContent.propTypes = {
   openAddPostModal: PropTypes.func.isRequired,
-  posts: PropTypes.array,
+  posts: PropTypes.array.isRequired,
   pushMessageToSnackbar: PropTypes.func
 };
 
