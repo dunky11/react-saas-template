@@ -8,7 +8,6 @@ import {
   isWidthDown,
   withWidth
 } from "@material-ui/core";
-import HoverTypo from "../../../shared/HoverTypo";
 import WaveBorder from "../../../shared/WaveBorder";
 
 const styles = theme => ({
@@ -21,21 +20,45 @@ const styles = theme => ({
   },
   footerBottom: {
     backgroundColor: "#171a1c",
-    /**
-     * This will fix a pixel bug at the border on mobile
-     */
-    marginTop: -2
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1)
+    }
   },
   socialIcon: {
-    border: `1px solid ${theme.palette.common.white}`
+    border: `1px solid ${theme.palette.common.white}`,
+    transition: theme.transitions.create(["fill"], {
+      duration: theme.transitions.duration.shortest
+    }),
+    "&:hover": {
+      border: `1px solid ${theme.palette.primary.light}`
+    },
+    "&:hover $socialSVG": {
+      fill: theme.palette.primary.light
+    }
   },
   socialSVG: {
+    transition: theme.transitions.create(["fill"], {
+      duration: theme.transitions.duration.shortest
+    }),
     width: "1em",
     height: "1em",
     fill: theme.palette.common.white
   },
   footer: {
     backgroundColor: "#FFFFFF"
+  },
+  footerTextLinks: {
+    color: theme.palette.common.white,
+    cursor: "pointer",
+    transition: theme.transitions.create(["color"], {
+      duration: theme.transitions.duration.shortest
+    }),
+    "&:hover": {
+      color: theme.palette.primary.light
+    }
   }
 });
 
@@ -62,33 +85,33 @@ function Footer(props) {
           )}
         >
           <div className="d-flex">
-            <HoverTypo
-              text="Login"
-              className="mx-1"
-              color="#FFFFFF"
+            <Typography
+              className={classNames(classes.footerTextLinks, "mx-1")}
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
               onClick={openLoginDialog}
-            />
-            <HoverTypo
-              text="Register"
-              className="mx-1"
-              color="#FFFFFF"
+            >
+              Login
+            </Typography>
+            <Typography
+              className={classNames(classes.footerTextLinks, "mx-1")}
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
               onClick={openRegisterDialog}
-            />
-            <HoverTypo
-              text="Impressum"
-              className="mx-1"
-              color="#FFFFFF"
+            >
+              Register
+            </Typography>
+            <Typography
+              className={classNames(classes.footerTextLinks, "mx-1")}
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
-            />
-            <HoverTypo
-              text="Cookies"
-              className="mx-1"
-              color="#FFFFFF"
+            >
+              Impressum
+            </Typography>
+            <Typography
+              className={classNames(classes.footerTextLinks, "mx-1")}
               variant={isWidthDown("xs", width) ? "body1" : "h6"}
               onClick={handleCookieRulesDialogOpen}
-            />
+            >
+              Cookies
+            </Typography>
           </div>
           <div className="d-flex mt-2">
             <IconButton
@@ -136,7 +159,7 @@ function Footer(props) {
           </div>
         </div>
       </div>
-      <div className={classNames(classes.footerBottom, "py-2")}>
+      <div className={classNames(classes.footerBottom)}>
         <Typography className="text-white" align="center" variant="body1">
           © 2020 <b>yourwebsite.com</b>. All rights reserved.
         </Typography>
