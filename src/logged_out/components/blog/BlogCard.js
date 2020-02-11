@@ -46,9 +46,11 @@ function BlogCard(props) {
   const { classes, url, src, date, title, snippet } = props;
   return (
     <Card className={classes.card}>
-      <Link to={url}>
-        <img src={src} className={classes.img} alt="" />
-      </Link>
+      {src && (
+        <Link to={url}>
+          <img src={src} className={classes.img} alt="" />
+        </Link>
+      )}
       <div className="p-2">
         <Typography variant="body2" color="textSecondary">
           {format(new Date(date * 1000), "PPP", {
@@ -56,10 +58,7 @@ function BlogCard(props) {
           })}
         </Typography>
         <Link to={url} className={classes.noDecoration}>
-          <Typography
-            variant="h6" /* If we dont place the className into the child
-        component the whole width will  clickable */
-          >
+          <Typography variant="h6">
             <span className={classes.title}>{title}</span>
           </Typography>
         </Link>
