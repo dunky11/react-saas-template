@@ -63,9 +63,8 @@ class ImageCropprDialog extends PureComponent {
 }
 
 ImageCropprDialog.propTypes = {
-  // TODO find correct PropType
-  ImageCroppr: PropTypes.any,
-  classes: PropTypes.object,
+  ImageCroppr: PropTypes.elementType,
+  classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
   open: PropTypes.bool,
   src: PropTypes.string,

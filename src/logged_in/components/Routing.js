@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
@@ -45,7 +45,6 @@ const styles = theme => ({
 function Routing(props) {
   const {
     classes,
-    location,
     EmojiTextArea,
     ImageCroppr,
     Dropzone,
@@ -69,7 +68,6 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          location={location}
           path="/c/posts"
           component={Posts}
           EmojiTextArea={EmojiTextArea}
@@ -81,7 +79,6 @@ function Routing(props) {
           selectPosts={selectPosts}
         />
         <PropsRoute
-          location={location}
           path="/c/subscription"
           component={Subscription}
           transactions={transactions}
@@ -89,7 +86,6 @@ function Routing(props) {
           selectSubscription={selectSubscription}
         />
         <PropsRoute
-          location={location}
           path=""
           component={Dashboard}
           handleNumberChange={handleNumberChange}
@@ -110,15 +106,10 @@ function Routing(props) {
 
 Routing.propTypes = {
   classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  // TODO find correct proptype
-  EmojiTextArea: PropTypes.any,
-  // TODO find correct proptype
-  ImageCroppr: PropTypes.any,
-  // TODO find correct proptype
-  Dropzone: PropTypes.any,
-  // TODO find correct proptype
-  DateTimePicker: PropTypes.any,
+  EmojiTextArea: PropTypes.elementType,
+  ImageCroppr: PropTypes.elementType,
+  Dropzone: PropTypes.elementType,
+  DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
   posts: PropTypes.array.isRequired,
   transactions: PropTypes.array.isRequired,
@@ -126,8 +117,7 @@ Routing.propTypes = {
   handleSwitchToggle: PropTypes.func,
   handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
-  // TODO find correct proptype
-  CardChart: PropTypes.any,
+  CardChart: PropTypes.elementType,
   statistics: PropTypes.array.isRequired,
   targets: PropTypes.array.isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
@@ -136,4 +126,4 @@ Routing.propTypes = {
   selectSubscription: PropTypes.func.isRequired
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(Routing));
+export default withStyles(styles, { withTheme: true })(Routing);

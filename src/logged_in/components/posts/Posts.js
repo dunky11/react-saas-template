@@ -56,14 +56,10 @@ class Posts extends PureComponent {
 }
 
 Posts.propTypes = {
-  // TODO find correct PropType
-  EmojiTextArea: PropTypes.any,
-  // TODO find correct PropType
-  ImageCroppr: PropTypes.any,
-  // TODO find correct PropType
-  Dropzone: PropTypes.any,
-  // TODO find correct PropType
-  DateTimePicker: PropTypes.any,
+  EmojiTextArea: PropTypes.elementType,
+  ImageCroppr: PropTypes.elementType,
+  Dropzone: PropTypes.elementType,
+  DateTimePicker: PropTypes.elementType,
   posts: PropTypes.array.isRequired,
   pushMessageToSnackbar: PropTypes.func,
   selectPosts: PropTypes.func.isRequired
