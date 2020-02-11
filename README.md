@@ -53,6 +53,10 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 - [] Improving look of the Footer
 - [] .css files -> jss
 
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details
