@@ -72,11 +72,11 @@ function CookieRulesDialog(props) {
         </Typography>
         <Typography paragraph>Login related cookies:</Typography>
         <Typography paragraph>
-          We use cookies when you are logged in so that we can remember this
-          fact. This prevents you from having to log in every single time you
-          visit a new page. These cookies are typically removed or cleared when
-          you log out to ensure that you can only access restricted features and
-          areas when logged in.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet.
         </Typography>
         <Typography paragraph>Site preferences cookies:</Typography>
         <Typography paragraph>
