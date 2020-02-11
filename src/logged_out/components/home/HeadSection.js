@@ -6,6 +6,7 @@ import {
   Typography,
   Card,
   Button,
+  Hidden,
   withStyles,
   withWidth,
   isWidthUp
@@ -30,11 +31,6 @@ const styles = theme => ({
     [theme.breakpoints.up("lg")]: {
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(2)
-    }
-  },
-  informationGrid: {
-    [theme.breakpoints.down("sm")]: {
-      marginBottom: theme.spacing(6)
     }
   },
   card: {
@@ -109,7 +105,7 @@ function HeadSection(props) {
             >
               <div className={classNames(classes.containerFix, "container")}>
                 <div className="row justify-content-between">
-                  <Grid item md={5} className={classes.informationGrid}>
+                  <Grid item xs={12} md={5}>
                     <div className="d-flex flex-column justify-content-between h-100">
                       <Typography
                         variant={isWidthUp("lg", width) ? "h3" : "h4"}
@@ -139,13 +135,15 @@ function HeadSection(props) {
                       </div>
                     </div>
                   </Grid>
-                  <Grid item md={6}>
-                    <img
-                      src={headerImage}
-                      className={classes.image}
-                      alt="header example"
-                    />
-                  </Grid>
+                  <Hidden smDown>
+                    <Grid item md={6}>
+                      <img
+                        src={headerImage}
+                        className={classes.image}
+                        alt="header example"
+                      />
+                    </Grid>
+                  </Hidden>
                 </div>
               </div>
             </Card>

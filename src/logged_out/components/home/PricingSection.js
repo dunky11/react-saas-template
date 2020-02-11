@@ -1,19 +1,54 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
+import classNames from "classnames";
+import {
+  Grid,
+  Typography,
+  isWidthUp,
+  withWidth,
+  withStyles
+} from "@material-ui/core";
 import PriceCard from "./PriceCard";
 import calculateSpacing from "./calculateSpacing";
 
+const styles = theme => ({
+  containerFix: {
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: theme.spacing(6),
+      paddingRight: theme.spacing(6)
+    },
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4)
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2)
+    }
+  }
+});
+
 function PricingSection(props) {
-  const { width } = props;
+  const { width, classes } = props;
   return (
     <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
       <Typography variant="h3" align="center" className="lg-mg-bottom">
         Pricing
       </Typography>
-      <div className="container-fluid">
-        <Grid container spacing={calculateSpacing(width)}>
-          <Grid item xs={12} sm={6} lg={3} data-aos="zoom-in-up">
+      <div className={classNames("container-fluid", classes.containerFix)}>
+        <Grid
+          container
+          spacing={calculateSpacing(width)}
+          className={classes.gridContainer}
+        >
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            lg={3}
+            data-aos="zoom-in-up"
+            justify="space-evenly"
+          >
             <PriceCard
               title="Starter"
               pricing={
@@ -93,4 +128,6 @@ PricingSection.propTypes = {
   width: PropTypes.string.isRequired
 };
 
-export default withWidth()(PricingSection);
+export default withStyles(styles, { withTheme: true })(
+  withWidth()(PricingSection)
+);
