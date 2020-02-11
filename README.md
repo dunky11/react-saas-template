@@ -47,15 +47,11 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Things im currently working on
 
-- [] Transitioning from global jss to Material-UIs Box component
-- [] Improving reusability of components
-- [] Adding a "update balance" dialog
-- [] Improving look of the Footer
-- [] .css files -> jss
-
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
+- [ ] Transitioning from global jss to Material-UIs Box component
+- [ ] Improving reusability of components
+- [ ] Adding a "update balance" dialog
+- [ ] Improving look of the Footer
+- [ ] .css files -> jss
 
 ## License
 
