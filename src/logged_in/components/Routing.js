@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter, Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
-import SchedulePosts from "./schedule_posts/SchedulePosts";
+import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import PropsRoute from "../../shared/PropsRoute";
 
@@ -51,7 +51,7 @@ function Routing(props) {
     Dropzone,
     DateTimePicker,
     pushMessageToSnackbar,
-    scheduledPosts,
+    posts,
     transactions,
     handleNumberChange,
     handleSwitchToggle,
@@ -62,7 +62,7 @@ function Routing(props) {
     targets,
     isAccountActivated,
     selectDashboard,
-    selectSchedulePosts,
+    selectPosts,
     selectSubscription
   } = props;
   return (
@@ -70,15 +70,15 @@ function Routing(props) {
       <Switch>
         <PropsRoute
           location={location}
-          path="/c/schedule-posts"
-          component={SchedulePosts}
+          path="/c/posts"
+          component={Posts}
           EmojiTextArea={EmojiTextArea}
           ImageCroppr={ImageCroppr}
           Dropzone={Dropzone}
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
-          scheduledPosts={scheduledPosts}
-          selectSchedulePosts={selectSchedulePosts}
+          posts={posts}
+          selectPosts={selectPosts}
         />
         <PropsRoute
           location={location}
@@ -109,8 +109,8 @@ function Routing(props) {
 }
 
 Routing.propTypes = {
-  classes: PropTypes.object,
-  location: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   // TODO find correct proptype
   EmojiTextArea: PropTypes.any,
   // TODO find correct proptype
@@ -120,19 +120,19 @@ Routing.propTypes = {
   // TODO find correct proptype
   DateTimePicker: PropTypes.any,
   pushMessageToSnackbar: PropTypes.func,
-  scheduledPosts: PropTypes.array,
-  transactions: PropTypes.array,
+  posts: PropTypes.array.isRequired,
+  transactions: PropTypes.array.isRequired,
   handleNumberChange: PropTypes.func,
   handleSwitchToggle: PropTypes.func,
   handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
   // TODO find correct proptype
   CardChart: PropTypes.any,
-  statistics: PropTypes.array,
+  statistics: PropTypes.array.isRequired,
   targets: PropTypes.array.isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired,
-  selectSchedulePosts: PropTypes.func.isRequired,
+  selectPosts: PropTypes.func.isRequired,
   selectSubscription: PropTypes.func.isRequired
 };
 

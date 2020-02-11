@@ -1,16 +1,16 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import ScheduledPostContent from "./ScheduledPostContent";
-import AddScheduledPost from "./AddScheduledPost";
+import PostContent from "./PostContent";
+import AddPost from "./AddPost";
 
-class SchedulePosts extends PureComponent {
+class Posts extends PureComponent {
   state = {
     addPostPaperOpen: false
   };
 
   componentDidMount() {
-    const { selectSchedulePosts } = this.props;
-    selectSchedulePosts();
+    const { selectPosts } = this.props;
+    selectPosts();
   }
 
   openAddPostModal = () => {
@@ -29,12 +29,12 @@ class SchedulePosts extends PureComponent {
       Dropzone,
       DateTimePicker,
       pushMessageToSnackbar,
-      scheduledPosts
+      posts
     } = this.props;
     return (
       <Fragment>
         {addPostPaperOpen ? (
-          <AddScheduledPost
+          <AddPost
             onClose={this.closeAddPostModal}
             open={addPostModalOpen}
             EmojiTextArea={EmojiTextArea}
@@ -44,9 +44,9 @@ class SchedulePosts extends PureComponent {
             pushMessageToSnackbar={pushMessageToSnackbar}
           />
         ) : (
-          <ScheduledPostContent
+          <PostContent
             openAddPostModal={this.openAddPostModal}
-            scheduledPosts={scheduledPosts}
+            posts={posts}
             pushMessageToSnackbar={pushMessageToSnackbar}
           />
         )}
@@ -55,7 +55,7 @@ class SchedulePosts extends PureComponent {
   }
 }
 
-SchedulePosts.propTypes = {
+Posts.propTypes = {
   // TODO find correct PropType
   EmojiTextArea: PropTypes.any,
   // TODO find correct PropType
@@ -64,9 +64,9 @@ SchedulePosts.propTypes = {
   Dropzone: PropTypes.any,
   // TODO find correct PropType
   DateTimePicker: PropTypes.any,
-  scheduledPosts: PropTypes.array,
+  posts: PropTypes.array.isRequired,
   pushMessageToSnackbar: PropTypes.func,
-  selectSchedulePosts: PropTypes.func.isRequired
+  selectPosts: PropTypes.func.isRequired
 };
 
-export default SchedulePosts;
+export default Posts;

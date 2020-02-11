@@ -38,7 +38,7 @@ class Main extends PureComponent {
     DateTimePicker: null,
     transactions: [],
     statistics: [],
-    scheduledPosts: [],
+    posts: [],
     targets: [],
     messages: [],
     isAccountActivated: false
@@ -191,7 +191,7 @@ class Main extends PureComponent {
       posts.reverse();
       posts.push(post);
     }
-    this.setState({ scheduledPosts: posts });
+    this.setState({ posts });
   };
 
   /**
@@ -234,11 +234,11 @@ class Main extends PureComponent {
     }
   };
 
-  selectSchedulePosts = () => {
+  selectPosts = () => {
     smoothScrollTop();
-    document.title = "WaVer - Upload Post";
+    document.title = "WaVer - Posts";
     this.setState({
-      selectedTab: "Schedule Posts"
+      selectedTab: "Posts"
     });
     if (!this.hasFetchedEmojiTextArea) {
       this.hasFetchedEmojiTextArea = true;
@@ -285,7 +285,7 @@ class Main extends PureComponent {
       DateTimePicker,
       transactions,
       statistics,
-      scheduledPosts,
+      posts,
       targets,
       isAccountActivated,
       messages
@@ -313,10 +313,10 @@ class Main extends PureComponent {
             pushMessageToSnackbar={this.pushMessageToSnackbar}
             transactions={transactions}
             statistics={statistics}
-            scheduledPosts={scheduledPosts}
+            posts={posts}
             targets={targets}
             selectDashboard={this.selectDashboard}
-            selectSchedulePosts={this.selectSchedulePosts}
+            selectPosts={this.selectPosts}
             selectSubscription={this.selectSubscription}
           />
         </main>
