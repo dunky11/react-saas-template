@@ -13,7 +13,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
    sudo apt install nodejs
    ```
 
-* Windows:
+* Windows or Mac:
 
    https://nodejs.org/en/
 
