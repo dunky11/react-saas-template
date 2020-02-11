@@ -59,7 +59,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Deployment
 
-If you are happy with the changes you have made you can run:
+If you are happy with the state of your website you can run:
 
 ```
 npm run build
