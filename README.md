@@ -59,13 +59,13 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ## Deployment
 
-If you are happy with the changes youve made you can run
+If you are happy with the changes you have made you can run:
 
 ```
 npm run build
 ```
 
-it will create a build folder with your compiled project. After that copy its content into your webroot and you are ready to go.
+It will create a build folder with your compiled project. After that copy its content into your webroot and you are ready to go.
 
 ## License
 
