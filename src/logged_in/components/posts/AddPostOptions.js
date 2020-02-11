@@ -326,14 +326,10 @@ class AddPostOptions extends PureComponent {
 
 AddPostOptions.propTypes = {
   onEmojiTextareaChange: PropTypes.func,
-  // TODO find correct PropType
-  DateTimePicker: PropTypes.any,
-  // TODO find correct PropType
-  EmojiTextArea: PropTypes.any,
-  // TODO find correct PropType
-  Dropzone: PropTypes.any,
-  // TODO find correct PropType
-  ImageCroppr: PropTypes.any,
+  DateTimePicker: PropTypes.elementType,
+  EmojiTextArea: PropTypes.elementType,
+  Dropzone: PropTypes.elementType,
+  ImageCroppr: PropTypes.elementType,
   classes: PropTypes.object,
   tabIndex: PropTypes.number,
   cropprFile: PropTypes.object,

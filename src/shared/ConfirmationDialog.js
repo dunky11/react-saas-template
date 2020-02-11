@@ -45,7 +45,7 @@ ConfirmationDialog.propTypes = {
   onClose: PropTypes.func,
   loading: PropTypes.bool,
   title: PropTypes.string,
-  content: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onConfirm: PropTypes.func
 };
 

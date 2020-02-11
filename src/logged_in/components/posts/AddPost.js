@@ -168,14 +168,10 @@ class AddPost extends PureComponent {
 AddPost.propTypes = {
   pushMessageToSnackbar: PropTypes.func,
   onClose: PropTypes.func,
-  // TODO find correct PropType
-  Dropzone: PropTypes.any,
-  // TODO find correct PropType
-  EmojiTextArea: PropTypes.any,
-  // TODO find correct PropType
-  DateTimePicker: PropTypes.any,
-  // TODO find correct PropType
-  ImageCroppr: PropTypes.any
+  Dropzone: PropTypes.elementType,
+  EmojiTextArea: PropTypes.elementType,
+  DateTimePicker: PropTypes.elementType,
+  ImageCroppr: PropTypes.elementType
 };
 
 export default AddPost;

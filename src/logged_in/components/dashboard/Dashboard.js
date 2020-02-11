@@ -45,7 +45,7 @@ class Dashboard extends PureComponent {
 }
 
 Dashboard.propTypes = {
-  CardChart: PropTypes.any,
+  CardChart: PropTypes.elementType,
   statistics: PropTypes.array,
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,

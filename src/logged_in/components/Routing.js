@@ -106,14 +106,10 @@ function Routing(props) {
 
 Routing.propTypes = {
   classes: PropTypes.object.isRequired,
-  // TODO find correct proptype
-  EmojiTextArea: PropTypes.any,
-  // TODO find correct proptype
-  ImageCroppr: PropTypes.any,
-  // TODO find correct proptype
-  Dropzone: PropTypes.any,
-  // TODO find correct proptype
-  DateTimePicker: PropTypes.any,
+  EmojiTextArea: PropTypes.elementType,
+  ImageCroppr: PropTypes.elementType,
+  Dropzone: PropTypes.elementType,
+  DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
   posts: PropTypes.array.isRequired,
   transactions: PropTypes.array.isRequired,
@@ -121,8 +117,7 @@ Routing.propTypes = {
   handleSwitchToggle: PropTypes.func,
   handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
-  // TODO find correct proptype
-  CardChart: PropTypes.any,
+  CardChart: PropTypes.elementType,
   statistics: PropTypes.array.isRequired,
   targets: PropTypes.array.isRequired,
   isAccountActivated: PropTypes.bool.isRequired,

@@ -67,7 +67,7 @@ class HelpIcon extends PureComponent {
 
 HelpIcon.propTypes = {
   classes: PropTypes.object,
-  title: PropTypes.oneOfType(PropTypes.string, PropTypes.node)
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 export default withStyles(styles, { withTheme: true })(HelpIcon);
