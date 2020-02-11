@@ -7,7 +7,7 @@ const styles = theme => ({
     position: "relative",
     width: "100%",
     height: "15vh",
-    marginBottom: "-7px",
+    marginBottom: -7,
     minHeight: 100,
     maxHeight: 150,
     [theme.breakpoints.down("sm")]: {
