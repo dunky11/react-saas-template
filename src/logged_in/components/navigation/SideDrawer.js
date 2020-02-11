@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {
   Drawer,
@@ -9,7 +9,6 @@ import {
   Box,
   withStyles
 } from "@material-ui/core";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import CloseIcon from "@material-ui/icons/Close";
 
 const drawerWidth = 240;
@@ -21,57 +20,34 @@ const styles = {
   }
 };
 
-class SideDrawer extends PureComponent {
-  state = {
-    open: false
-  };
-
-  closeDrawer = () => {
-    this.setState({ open: false });
-  };
-
-  openDrawer = () => {
-    this.setState({ open: true });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-    return (
-      <Fragment>
-        <IconButton onClick={this.openDrawer} color="primary">
-          <SupervisorAccountIcon />
-        </IconButton>
-        <Drawer
-          anchor="right"
-          open={open}
-          variant="temporary"
-          onClose={this.closeDrawer}
+function SideDrawer(props) {
+  const { classes, onClose, open } = props;
+  return (
+    <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
+      <Toolbar disableGutters className={classes.toolbar}>
+        <Box
+          pl={3}
+          pr={3}
+          display="flex"
+          justifyContent="space-between"
+          width="100%"
+          alignItems="center"
         >
-          <Toolbar disableGutters className={classes.toolbar}>
-            <Box
-              pl={3}
-              pr={3}
-              display="flex"
-              justifyContent="space-between"
-              width="100%"
-              alignItems="center"
-            >
-              <Typography variant="h6">A Sidedrawer</Typography>
-              <IconButton onClick={this.closeDrawer} color="primary">
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-          <Divider />
-        </Drawer>
-      </Fragment>
-    );
-  }
+          <Typography variant="h6">A Sidedrawer</Typography>
+          <IconButton onClick={onClose} color="primary">
+            <CloseIcon />
+          </IconButton>
+        </Box>
+      </Toolbar>
+      <Divider />
+    </Drawer>
+  );
 }
 
 SideDrawer.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object.isRequired,
+  open: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(SideDrawer);

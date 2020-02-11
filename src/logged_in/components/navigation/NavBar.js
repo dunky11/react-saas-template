@@ -24,6 +24,7 @@ import ImageIcon from "@material-ui/icons/Image";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
@@ -113,7 +114,7 @@ const styles = theme => ({
 });
 
 class NavBar extends PureComponent {
-  state = { mobileOpen: false };
+  state = { mobileOpen: false, sideDrawerOpen: false };
 
   openMobileDrawer = () => {
     this.setState({ mobileOpen: true });
@@ -123,8 +124,16 @@ class NavBar extends PureComponent {
     this.setState({ mobileOpen: false });
   };
 
+  closeDrawer = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
+  openDrawer = () => {
+    this.setState({ sideDrawerOpen: true });
+  };
+
   render() {
-    const { mobileOpen } = this.state;
+    const { mobileOpen, sideDrawerOpen } = this.state;
     const { selectedTab, messages, classes, width } = this.props;
     const menuItems = [
       {
@@ -254,7 +263,10 @@ class NavBar extends PureComponent {
                 )}
               </ListItem>
             </div>
-            <SideDrawer />
+            <IconButton onClick={this.openDrawer} color="primary">
+              <SupervisorAccountIcon />
+            </IconButton>
+            <SideDrawer open={sideDrawerOpen} onClose={this.closeDrawer} />
           </Toolbar>
         </AppBar>
         <Hidden xsDown>
