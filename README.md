@@ -26,13 +26,16 @@ https://nodejs.org/en/
    cd react-saas-template
    ```
 2. Install dependencies
-```
-npm install
-```
+
+   ```
+   npm install
+   ```
 3. Start the local server
-```
-npm start
-```
+
+   ```
+   npm start
+   ```
+
 Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
 
 ## Mainly Build With
