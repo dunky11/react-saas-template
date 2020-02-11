@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
@@ -45,7 +45,6 @@ const styles = theme => ({
 function Routing(props) {
   const {
     classes,
-    location,
     EmojiTextArea,
     ImageCroppr,
     Dropzone,
@@ -69,7 +68,6 @@ function Routing(props) {
     <div className={classes.wrapper}>
       <Switch>
         <PropsRoute
-          location={location}
           path="/c/posts"
           component={Posts}
           EmojiTextArea={EmojiTextArea}
@@ -136,4 +134,4 @@ Routing.propTypes = {
   selectSubscription: PropTypes.func.isRequired
 };
 
-export default withRouter(withStyles(styles, { withTheme: true })(Routing));
+export default withStyles(styles, { withTheme: true })(Routing);
