@@ -16,7 +16,8 @@ const drawerWidth = 240;
 
 const styles = {
   toolbar: {
-    minWidth: drawerWidth
+    minWidth: drawerWidth,
+    height: 64
   }
 };
 
