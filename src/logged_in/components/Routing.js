@@ -79,7 +79,6 @@ function Routing(props) {
           selectPosts={selectPosts}
         />
         <PropsRoute
-          location={location}
           path="/c/subscription"
           component={Subscription}
           transactions={transactions}
@@ -87,7 +86,6 @@ function Routing(props) {
           selectSubscription={selectSubscription}
         />
         <PropsRoute
-          location={location}
           path=""
           component={Dashboard}
           handleNumberChange={handleNumberChange}
@@ -108,7 +106,6 @@ function Routing(props) {
 
 Routing.propTypes = {
   classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
   // TODO find correct proptype
   EmojiTextArea: PropTypes.any,
   // TODO find correct proptype
