@@ -20,7 +20,7 @@ import {
   withWidth
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ScheduleIcon from "@material-ui/icons/Schedule";
+import ImageIcon from "@material-ui/icons/Image";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -146,23 +146,21 @@ class NavBar extends PureComponent {
         }
       },
       {
-        link: "/c/schedule-posts",
-        name: "Schedule Posts",
+        link: "/c/posts",
+        name: "Posts",
         onClick: () => {
           this.closeMobileDrawer();
         },
         icon: {
           desktop: (
-            <ScheduleIcon
+            <ImageIcon
               className={
-                selectedTab === "Schedule Posts"
-                  ? classes.textPrimary
-                  : "text-white"
+                selectedTab === "Posts" ? classes.textPrimary : "text-white"
               }
               fontSize="small"
             />
           ),
-          mobile: <ScheduleIcon className="text-white" />
+          mobile: <ImageIcon className="text-white" />
         }
       },
       {

@@ -15,29 +15,29 @@ import SelfAligningImage from "../../../shared/SelfAligningImage";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/ConfirmationDialog";
 
-class ScheduledPostContent extends PureComponent {
+class PostContent extends PureComponent {
   state = {
     page: 0,
-    deleteScheduledPostDialogOpen: false,
-    deleteScheduledPostLoading: false
+    deletePostDialogOpen: false,
+    deletePostLoading: false
   };
 
   rowsPerPage = 25;
 
-  closeDeleteScheduledPostDialog = () => {
+  closeDeletePostDialog = () => {
     this.setState({
-      deleteScheduledPostDialogOpen: false,
-      deleteScheduledPostLoading: false
+      deletePostDialogOpen: false,
+      deletePostLoading: false
     });
   };
 
-  deleteScheduledPost = () => {
+  deletePost = () => {
     const { pushMessageToSnackbar } = this.props;
-    this.setState({ deleteScheduledPostLoading: true });
+    this.setState({ deletePostLoading: true });
     setTimeout(() => {
       this.setState({
-        deleteScheduledPostLoading: false,
-        deleteScheduledPostDialogOpen: false
+        deletePostLoading: false,
+        deletePostDialogOpen: false
       });
       pushMessageToSnackbar({
         text: "Your scheduled post has been deleted"
@@ -47,7 +47,7 @@ class ScheduledPostContent extends PureComponent {
 
   onDelete = () => {
     this.setState({
-      deleteScheduledPostDialogOpen: true
+      deletePostDialogOpen: true
     });
   };
 
@@ -62,12 +62,12 @@ class ScheduledPostContent extends PureComponent {
       onClick: this.onDelete,
       icon: <DeleteIcon />
     });
-    const { scheduledPosts } = this.props;
+    const { posts } = this.props;
     const { page } = this.state;
-    if (scheduledPosts.length > 0) {
+    if (posts.length > 0) {
       return (
         <Grid container spacing={1} className="p-1">
-          {scheduledPosts
+          {posts
             .slice(
               page * this.rowsPerPage,
               page * this.rowsPerPage + this.rowsPerPage
@@ -88,24 +88,19 @@ class ScheduledPostContent extends PureComponent {
     }
     return (
       <HighlightedInformation className="m-2">
-        No scheduled posts added yet. Click on &quot;NEW&quot; to create your
-        first one.
+        No posts added yet. Click on &quot;NEW&quot; to create your first one.
       </HighlightedInformation>
     );
   };
 
   render() {
-    const {
-      page,
-      deleteScheduledPostDialogOpen,
-      deleteScheduledPostLoading
-    } = this.state;
-    const { openAddPostModal, scheduledPosts } = this.props;
+    const { page, deletePostDialogOpen, deletePostLoading } = this.state;
+    const { openAddPostModal, posts } = this.props;
 
     return (
       <Paper>
         <Toolbar className="justify-content-between">
-          <Typography variant="h6">Your scheduled posts</Typography>
+          <Typography variant="h6">Your Posts</Typography>
           <Button
             variant="contained"
             color="secondary"
@@ -119,7 +114,7 @@ class ScheduledPostContent extends PureComponent {
         {this.printImageGrid()}
         <TablePagination
           component="div"
-          count={scheduledPosts.length}
+          count={posts.length}
           rowsPerPage={this.rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -132,28 +127,28 @@ class ScheduledPostContent extends PureComponent {
           classes={{
             select: "d-none",
             selectIcon: "d-none",
-            actions: scheduledPosts.length > 0 ? "d-block" : "d-none",
-            caption: scheduledPosts.length > 0 ? "d-block" : "d-none"
+            actions: posts.length > 0 ? "d-block" : "d-none",
+            caption: posts.length > 0 ? "d-block" : "d-none"
           }}
           labelRowsPerPage=""
         />
         <ConfirmationDialog
-          open={deleteScheduledPostDialogOpen}
+          open={deletePostDialogOpen}
           title="Confirmation"
           content="Do you really want to delete the post?"
-          onClose={this.closeDeleteScheduledPostDialog}
-          loading={deleteScheduledPostLoading}
-          onConfirm={this.deleteScheduledPost}
+          onClose={this.closeDeletePostDialog}
+          loading={deletePostLoading}
+          onConfirm={this.deletePost}
         />
       </Paper>
     );
   }
 }
 
-ScheduledPostContent.propTypes = {
+PostContent.propTypes = {
   openAddPostModal: PropTypes.func.isRequired,
-  scheduledPosts: PropTypes.array,
+  posts: PropTypes.array,
   pushMessageToSnackbar: PropTypes.func
 };
 
-export default ScheduledPostContent;
+export default PostContent;

@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import ActionPaper from "../../../shared/ActionPaper";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
-import AddScheduledPostOptions from "./AddScheduledPostOptions";
+import AddPostOptions from "./AddPostOptions";
 
 const now = new Date();
 
-class AddScheduledPost extends PureComponent {
+class AddPost extends PureComponent {
   state = {
     files: [],
     cropFunction: null,
@@ -121,7 +121,7 @@ class AddScheduledPost extends PureComponent {
           helpPadding
           maxWidth="md"
           content={
-            <AddScheduledPostOptions
+            <AddPostOptions
               EmojiTextArea={EmojiTextArea}
               Dropzone={Dropzone}
               files={files}
@@ -165,7 +165,7 @@ class AddScheduledPost extends PureComponent {
   }
 }
 
-AddScheduledPost.propTypes = {
+AddPost.propTypes = {
   pushMessageToSnackbar: PropTypes.func,
   onClose: PropTypes.func,
   // TODO find correct PropType
@@ -178,4 +178,4 @@ AddScheduledPost.propTypes = {
   ImageCroppr: PropTypes.any
 };
 
-export default AddScheduledPost;
+export default AddPost;

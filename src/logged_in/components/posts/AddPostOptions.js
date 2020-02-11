@@ -103,7 +103,7 @@ const styles = theme => ({
 
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
-class AddScheduledPostOptions extends PureComponent {
+class AddPostOptions extends PureComponent {
   state = {
     option1: "None",
     option2: "None",
@@ -156,11 +156,7 @@ class AddScheduledPostOptions extends PureComponent {
       );
     }
     return (
-      <Dropzone
-        accept="image/png, image/jpeg, video/mp4"
-        onDrop={onDrop}
-        fullHeight
-      >
+      <Dropzone accept="image/png, image/jpeg" onDrop={onDrop} fullHeight>
         <span className={classes.uploadText}>
           Click / Drop file <br /> here
         </span>
@@ -328,7 +324,7 @@ class AddScheduledPostOptions extends PureComponent {
   }
 }
 
-AddScheduledPostOptions.propTypes = {
+AddPostOptions.propTypes = {
   onEmojiTextareaChange: PropTypes.func,
   // TODO find correct PropType
   DateTimePicker: PropTypes.any,
@@ -355,4 +351,4 @@ AddScheduledPostOptions.propTypes = {
   onChangeUploadAt: PropTypes.func
 };
 
-export default withStyles(styles, { withTheme: true })(AddScheduledPostOptions);
+export default withStyles(styles, { withTheme: true })(AddPostOptions);
