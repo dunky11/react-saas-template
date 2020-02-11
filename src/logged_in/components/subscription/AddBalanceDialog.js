@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
 import { TextField, Grid, Button, InputAdornment } from "@material-ui/core";
 import FormDialog from "../../../shared/FormDialog";
+import CardTextField from "./CardTextField";
 
 class AddBalanceDialog extends PureComponent {
   state = { value: 0 };
@@ -55,16 +56,7 @@ class AddBalanceDialog extends PureComponent {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Credit Card"
-                  autoFocus
-                  autoComplete="off"
-                  FormHelperTextProps={{ error: true }}
-                />
+                <CardTextField />
               </Grid>
             </Grid>
           </Fragment>
