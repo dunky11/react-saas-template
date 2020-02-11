@@ -5,11 +5,17 @@ Remains of a failed SaaS business I once tried to build. Now transformed into a 
 
 ### Prerequisites
 
-Node.js
+#Node.js
+
+Linux:
 
 ```
 sudo apt install nodejs
 ```
+
+Windows:
+
+https://nodejs.org/en/
 
 ### Installing
 
