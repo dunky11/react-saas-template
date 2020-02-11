@@ -51,6 +51,10 @@ class CardChart extends PureComponent {
     this.setState({ anchorEl: event.currentTarget });
   };
 
+  formatter = value => {
+    return [value, this.props.title];
+  };
+
   getSeconds = () => {
     const { selectedOption } = this.state;
     switch (selectedOption) {
@@ -176,6 +180,7 @@ class CardChart extends PureComponent {
                 />
                 <Tooltip
                   labelFormatter={labelFormatter}
+                  formatter={this.formatter}
                   cursor={false}
                   contentStyle={{
                     border: "none",
