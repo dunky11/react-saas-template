@@ -1,13 +1,49 @@
+import React, { Fragment } from "react";
+import { withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+
+const styles = {
+  "@global": {
+    ".pace": {
+      pointerEvents: "none",
+      userSelect: "none"
+    },
+    ".pace-inactive": {
+      display: "none"
+    },
+    ".pace .pace-progress": {
+      background: props => props.color || null,
+      position: "fixed",
+      zIndex: 2000,
+      top: 0,
+      right: "100%",
+      width: "100%",
+      height: 3
+    }
+  }
+};
+
+function Pace() {
+  return <Fragment />;
+}
+
+Pace.propTypes = {
+  color: PropTypes.string.isRequired
+};
+
+export default withStyles(styles)(Pace);
+
 /* eslint-disable */
+
 /**
- * Pace has defaultly only GET enabled. Enable for Post too
+ * Pace has defaultly only GET requests enabled. Enable for Post requets too.
  */
 window.paceOptions = {
   ajax: {
     trackMethods: ["GET", "POST"]
   }
 };
-import "../css/pace.css";
+
 /*! pace 1.0.0 */
 (function() {
   var a,
