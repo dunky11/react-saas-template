@@ -2,14 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core";
 
-const styles = {
+const styles = theme => ({
   waves: {
     position: "relative",
     width: "100%",
     height: "15vh",
     marginBottom: "-7px",
     minHeight: 100,
-    maxHeight: 150
+    maxHeight: 150,
+    [theme.breakpoints.down("sm")]: {
+      height: 40,
+      minHeight: 40
+    }
   },
   "@keyframes moveForever": {
     from: { transform: "translate3d(-90px, 0, 0)" },
@@ -21,7 +25,7 @@ const styles = {
       animationDelay: "-2s"
     }
   }
-};
+});
 
 /**
  *  https://codepen.io/csspoints/pen/WNeOEqd
@@ -59,4 +63,4 @@ WaveBorder.propTypes = {
   className: PropTypes.string
 };
 
-export default withStyles(styles)(WaveBorder);
+export default withStyles(styles, { withTheme: true })(WaveBorder);
