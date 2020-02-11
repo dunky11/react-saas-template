@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { DateTimePicker as DTPicker } from "@material-ui/pickers";
+import {
+  MuiPickersUtilsProvider,
+  DateTimePicker as DTPicker
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import { withTheme, MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import AccessTime from "@material-ui/icons/AccessTime";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -35,20 +39,22 @@ function DateTimePicker(props) {
   const { disabled, value, onChange } = props;
   return (
     <MuiThemeProvider theme={Theme2}>
-      <DTPicker
-        inputVariant="outlined"
-        leftArrowIcon={<KeyboardArrowLeft />}
-        rightArrowIcon={<KeyboardArrowRight />}
-        timeIcon={<AccessTime />}
-        dateRangeIcon={<DateRange />}
-        format="yyyy/MM/dd hh:mm a"
-        variant="outlined"
-        className="w-100"
-        disabled={disabled}
-        value={value}
-        onChange={onChange}
-        {...props}
-      />
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <DTPicker
+          inputVariant="outlined"
+          leftArrowIcon={<KeyboardArrowLeft />}
+          rightArrowIcon={<KeyboardArrowRight />}
+          timeIcon={<AccessTime />}
+          dateRangeIcon={<DateRange />}
+          format="yyyy/MM/dd hh:mm a"
+          variant="outlined"
+          className="w-100"
+          disabled={disabled}
+          value={value}
+          onChange={onChange}
+          {...props}
+        />
+      </MuiPickersUtilsProvider>
     </MuiThemeProvider>
   );
 }

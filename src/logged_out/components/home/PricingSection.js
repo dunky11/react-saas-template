@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
 import PriceCard from "./PriceCard";
-import PriceCardHighlighted from "./PriceCardHighlighted";
 import calculateSpacing from "./calculateSpacing";
 
 function PricingSection(props) {
@@ -17,8 +16,13 @@ function PricingSection(props) {
           <Grid item xs={12} sm={6} lg={3} data-aos="zoom-in-up">
             <PriceCard
               title="Starter"
-              pricing="14.99"
-              accountDescription="10.000 requests per month"
+              pricing={
+                <span>
+                  $14.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -29,10 +33,16 @@ function PricingSection(props) {
             data-aos="zoom-in-up"
             data-aos-delay="200"
           >
-            <PriceCardHighlighted
+            <PriceCard
+              highlighted
               title="Premium"
-              pricing="29.99"
-              accountDescription="50.000 requests per month"
+              pricing={
+                <span>
+                  $29.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -45,8 +55,13 @@ function PricingSection(props) {
           >
             <PriceCard
               title="Business"
-              pricing="49.99"
-              accountDescription="250.000 requests per month"
+              pricing={
+                <span>
+                  $49.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
           <Grid
@@ -59,8 +74,13 @@ function PricingSection(props) {
           >
             <PriceCard
               title="Tycoon"
-              pricing="99.99"
-              accountDescription="1.000.000 requests per month"
+              pricing={
+                <span>
+                  $99.99
+                  <Typography display="inline"> / month</Typography>
+                </span>
+              }
+              features={["Feature 1", "Feature 2", "Feature 3"]}
             />
           </Grid>
         </Grid>

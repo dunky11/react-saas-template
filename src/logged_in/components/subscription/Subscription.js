@@ -4,33 +4,11 @@ import { List, Divider, Paper, withStyles } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
 
-const styles = theme => ({
-  RoutingInnerArea: {
-    margin: theme.spacing(1),
-    width: "auto",
-    [theme.breakpoints.up("xs")]: {
-      width: "90%",
-      marginLeft: "auto",
-      marginRight: "auto",
-      marginTop: theme.spacing(4),
-      marginBottom: theme.spacing(4)
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      width: "70%",
-      marginLeft: "auto",
-      marginRight: "auto"
-    },
-    [theme.breakpoints.up("md")]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      width: "50%",
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
+const styles = {
+  divider: {
+    backgroundColor: "rgba(0, 0, 0, 0.26)"
   }
-});
+};
 
 class Subscription extends PureComponent {
   componentDidMount() {
@@ -39,12 +17,12 @@ class Subscription extends PureComponent {
   }
 
   render() {
-    const { transactions } = this.props;
+    const { transactions, classes } = this.props;
     return (
       <Paper>
         <List disablePadding>
           <SubscriptionInfo />
-          <Divider />
+          <Divider className={classes.divider} />
           <SubscriptionTable transactions={transactions} />
         </List>
       </Paper>
@@ -53,8 +31,9 @@ class Subscription extends PureComponent {
 }
 
 Subscription.propTypes = {
-  transactions: PropTypes.array,
+  classes: PropTypes.object.isRequired,
+  transactions: PropTypes.array.isRequired,
   selectSubscription: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Subscription);
+export default withStyles(styles)(Subscription);
