@@ -86,7 +86,7 @@ class AddPost extends PureComponent {
     this.setState({ loading: true });
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your post has been scheduled"
+        text: "Your post has been uploaded"
       });
       onClose();
     }, 1500);
