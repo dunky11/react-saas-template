@@ -2,59 +2,64 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
+  Grid,
   Typography,
+  Box,
   IconButton,
-  withStyles,
-  isWidthDown,
-  withWidth
+  Hidden,
+  withStyles
 } from "@material-ui/core";
+import PhoneIcon from "@material-ui/icons/Phone";
+import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/WaveBorder";
+import transitions from "@material-ui/core/styles/transitions";
 
 const styles = theme => ({
-  footerWrapper: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  },
-  bgPrimaryDark: {
-    backgroundColor: theme.palette.common.darkBlack
-  },
-  footerBottom: {
-    backgroundColor: "#171a1c",
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1)
-    }
-  },
-  socialIcon: {
-    border: `1px solid ${theme.palette.common.white}`,
-    transition: theme.transitions.create(["fill"], {
-      duration: theme.transitions.duration.shortest
-    }),
-    "&:hover": {
-      border: `1px solid ${theme.palette.primary.light}`
-    },
-    "&:hover $socialSVG": {
-      fill: theme.palette.primary.light
-    }
-  },
-  socialSVG: {
-    transition: theme.transitions.create(["fill"], {
-      duration: theme.transitions.duration.shortest
-    }),
-    width: "1em",
-    height: "1em",
-    fill: theme.palette.common.white
-  },
   footer: {
     backgroundColor: "#FFFFFF"
   },
-  footerTextLinks: {
+  footerInner: {
+    backgroundColor: theme.palette.common.darkBlack,
+    [theme.breakpoints.up("md")]: {
+      paddingTop: theme.spacing(10),
+      paddingLeft: theme.spacing(10),
+      paddingRight: theme.spacing(10),
+      paddingBottom: theme.spacing(10)
+    },
+    paddingTop: theme.spacing(8),
+    paddingLeft: theme.spacing(6),
+    paddingRight: theme.spacing(6),
+    paddingBottom: theme.spacing(6)
+  },
+  brandText: {
+    fontFamily: "'Baloo Bhaijaan', cursive",
+    fontWeight: 400,
+    color: theme.palette.common.white
+  },
+  footerLinks: {
+    marginTop: theme.spacing(2.5),
+    marginBot: theme.spacing(1.5),
+    color: theme.palette.common.white
+  },
+  infoIcon: {
     color: theme.palette.common.white,
-    cursor: "pointer",
-    transition: theme.transitions.create(["color"], {
-      duration: theme.transitions.duration.shortest
+    backgroundColor: "#33383b !important",
+    cursor: "auto"
+  },
+  socialIcon: {
+    fill: theme.palette.common.white,
+    backgroundColor: "#33383b",
+    borderRadius: theme.shape.borderRadius,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.light
+    }
+  },
+  link: {
+    cursor: "Pointer",
+    color: theme.palette.common.white,
+    transition: transitions.create(["color"], {
+      duration: theme.transitions.duration.shortest,
+      easing: theme.transitions.easing.easeIn
     }),
     "&:hover": {
       color: theme.palette.primary.light
@@ -62,11 +67,84 @@ const styles = theme => ({
   }
 });
 
+const infos = [
+  {
+    icon: <PhoneIcon />,
+    description: "+1 555 123456"
+  },
+  {
+    icon: <MailIcon />,
+    description: "support@company.com"
+  }
+];
+
+const socialIcons = [
+  {
+    icon: (
+      <svg
+        role="img"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>GitHub</title>
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </svg>
+    ),
+    href: "https://github.com/dunky11/react-saas-template"
+  },
+  {
+    icon: (
+      <svg
+        role="img"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Facebook</title>
+        <path d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z" />
+      </svg>
+    ),
+    href: "https://facebook.com"
+  },
+  {
+    icon: (
+      <svg
+        role="img"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>LinkedIn</title>
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </svg>
+    ),
+    href: "https://www.linkedin.com/"
+  },
+  {
+    icon: (
+      <svg
+        role="img"
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Twitter</title>
+        <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
+      </svg>
+    ),
+    href: "https://www.twitter.com/"
+  }
+];
+
 function Footer(props) {
   const {
     classes,
     theme,
-    width,
     openLoginDialog,
     openRegisterDialog,
     handleCookieRulesDialogOpen
@@ -77,99 +155,115 @@ function Footer(props) {
         upperColor="#FFFFFF"
         lowerColor={theme.palette.common.darkBlack}
       />
-      <div className={classNames(classes.bgPrimaryDark, "pt-4")}>
-        <div
-          className={classNames(
-            "container align-items-center d-flex flex-column",
-            classes.footerWrapper
-          )}
-        >
-          <div className="d-flex">
-            <Typography
-              className={classNames(classes.footerTextLinks, "mx-1")}
-              variant={isWidthDown("xs", width) ? "body1" : "h6"}
-              onClick={openLoginDialog}
-            >
-              Login
-            </Typography>
-            <Typography
-              className={classNames(classes.footerTextLinks, "mx-1")}
-              variant={isWidthDown("xs", width) ? "body1" : "h6"}
-              onClick={openRegisterDialog}
-            >
-              Register
-            </Typography>
-            <Typography
-              className={classNames(classes.footerTextLinks, "mx-1")}
-              variant={isWidthDown("xs", width) ? "body1" : "h6"}
-            >
-              Impressum
-            </Typography>
-            <Typography
-              className={classNames(classes.footerTextLinks, "mx-1")}
-              variant={isWidthDown("xs", width) ? "body1" : "h6"}
-              onClick={handleCookieRulesDialogOpen}
-            >
-              Cookies
-            </Typography>
-          </div>
-          <div className="d-flex mt-2">
-            <IconButton
-              className={classNames(classes.socialIcon, "mx-2")}
-              href="https://google.com"
-            >
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                className={classes.socialSVG}
+      <div className={classes.footerInner}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={4}>
+            <div>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
               >
-                <title>Google icon</title>
-                <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" />
-              </svg>
-            </IconButton>
-            <IconButton
-              className={classNames(classes.socialIcon, "mx-2")}
-              href="https://twitter.com"
-            >
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                className={classes.socialSVG}
+                Wa
+              </Typography>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
               >
-                <title>Twitter icon</title>
-                <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
-              </svg>
-            </IconButton>
-            <IconButton
-              className={classNames(classes.socialIcon, "mx-2")}
-              href="https://youtube.com"
-            >
-              <svg
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className={classes.socialSVG}
-              >
-                <title>YouTube icon</title>
-                <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" />
-              </svg>
-            </IconButton>
-          </div>
-        </div>
-      </div>
-      <div className={classNames(classes.footerBottom)}>
-        <Typography className="text-white" align="center" variant="body1">
-          © 2020 <b>yourwebsite.com</b>. All rights reserved.
-        </Typography>
+                Ver
+              </Typography>
+            </div>
+            <Box display="flex" mt={2} mb={1}>
+              <Grid container spacing={1}>
+                <Grid item>
+                  <Typography
+                    inline
+                    variant="h6"
+                    className={classes.link}
+                    onClick={openLoginDialog}
+                  >
+                    Login
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    inline
+                    variant="h6"
+                    className={classes.link}
+                    onClick={openRegisterDialog}
+                  >
+                    Register
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    inline
+                    variant="h6"
+                    className={classes.link}
+                    onClick={handleCookieRulesDialogOpen}
+                  >
+                    Cookies
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+            <Typography variant="subtitle2" style={{ color: "#8f9296" }}>
+              WaVer © 2020
+            </Typography>
+          </Grid>
+          <Hidden mdDown>
+            <Grid item xs={12} md={6} lg={4}>
+              {infos.map((info, index) => (
+                <Box display="flex" mb={1} key={index}>
+                  <Box mr={2}>
+                    <IconButton className={classes.infoIcon}>
+                      {info.icon}
+                    </IconButton>
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    <Typography variant="h6" className="text-white">
+                      {info.description}
+                    </Typography>
+                  </Box>
+                </Box>
+              ))}
+            </Grid>
+          </Hidden>
+          <Grid item xs={12} md={6} lg={4}>
+            <Typography variant="h6" paragraph className="text-white">
+              About the Company
+            </Typography>
+            <Typography style={{ color: "#8f9296" }} paragraph>
+              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
+              euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </Typography>
+            <Box display="flex">
+              {socialIcons.map((socialIcon, index) => (
+                <IconButton
+                  key={index}
+                  className={classNames(
+                    classes.socialIcon,
+                    index !== socialIcons.length - 1 ? "mr-1" : null
+                  )}
+                  href={socialIcon.href}
+                >
+                  {socialIcon.icon}
+                </IconButton>
+              ))}
+            </Box>
+          </Grid>
+        </Grid>
       </div>
     </footer>
   );
 }
 
 Footer.propTypes = {
-  width: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   openLoginDialog: PropTypes.func.isRequired,
@@ -177,4 +271,4 @@ Footer.propTypes = {
   handleCookieRulesDialogOpen: PropTypes.func.isRequired
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Footer));
+export default withStyles(styles, { withTheme: true })(Footer);
