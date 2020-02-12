@@ -47,6 +47,7 @@ class ImageCropprDialog extends PureComponent {
             setCropFunction={this.setCropFunction}
             onCrop={onCrop}
             aspectRatio={aspectRatio}
+            color="#3399FF"
           />
         </DialogContent>
         <DialogActions>

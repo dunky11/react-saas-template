@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Cropper from "react-cropper";
 import { withStyles } from "@material-ui/core";
+import shadeColor from "./shadeColor";
 
 const styles = {
   cropperWrapper: {
@@ -61,8 +62,8 @@ const styles = {
     ".cropper-view-box": {
       display: "block",
       height: "100%",
-      outline: "1px solid #39f",
-      outlineColor: "rgba(51, 153, 255, 0.75)",
+      outline: props => `1px solid ${props.color}`,
+      outlineColor: props => `1px solid ${shadeColor(props.color, 0.75)}`,
       overflow: "hidden",
       width: "100%"
     },
@@ -128,7 +129,7 @@ const styles = {
       top: "0"
     },
     ".cropper-line": {
-      backgroundColor: "#39f"
+      backgroundColor: props => props.color
     },
     ".cropper-line.line-e": {
       cursor: "ew-resize",
@@ -155,7 +156,7 @@ const styles = {
       left: "0"
     },
     ".cropper-point": {
-      backgroundColor: "#39f",
+      backgroundColor: props => props.color,
       height: 5,
       opacity: "0.75",
       width: 5
@@ -227,7 +228,7 @@ const styles = {
       }
     },
     ".cropper-point.point-se::before": {
-      backgroundColor: "#39f",
+      backgroundColor: props => props.color,
       bottom: "-50%",
       content: "' '",
       display: "block",
@@ -321,6 +322,7 @@ class ImageCroppr extends PureComponent {
 
 ImageCroppr.propTypes = {
   classes: PropTypes.object,
+  baseColor: PropTypes.string.isRequired,
   src: PropTypes.string,
   onCrop: PropTypes.func,
   setCropFunction: PropTypes.func,
