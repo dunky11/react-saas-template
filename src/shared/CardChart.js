@@ -41,7 +41,7 @@ function calculateMin(data, yKey, factor) {
   return Math.round(max - max * factor);
 }
 
-const ITEM_HEIGHT = 48;
+const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months"];
 
 class CardChart extends PureComponent {
@@ -134,7 +134,7 @@ class CardChart extends PureComponent {
                 onClose={this.handleClose}
                 PaperProps={{
                   style: {
-                    maxHeight: ITEM_HEIGHT * 4.5,
+                    maxHeight: itemHeight,
                     width: 200
                   }
                 }}
