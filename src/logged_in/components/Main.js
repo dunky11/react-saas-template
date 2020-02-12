@@ -33,7 +33,7 @@ class Main extends PureComponent {
     selectedTab: null,
     CardChart: null,
     EmojiTextArea: null,
-    ImageCroppr: null,
+    Imagecropper: null,
     Dropzone: null,
     DateTimePicker: null,
     transactions: [],
@@ -247,10 +247,10 @@ class Main extends PureComponent {
         this.setState({ EmojiTextArea: Component.default });
       });
     }
-    if (!this.hasFetchedImageCroppr) {
-      this.hasFetchedImageCroppr = true;
-      import("../../shared/ImageCroppr").then(Component => {
-        this.setState({ ImageCroppr: Component.default });
+    if (!this.hasFetchedImagecropper) {
+      this.hasFetchedImagecropper = true;
+      import("../../shared/Imagecropper").then(Component => {
+        this.setState({ Imagecropper: Component.default });
       });
     }
     if (!this.hasFetchedDropzone) {
@@ -279,7 +279,7 @@ class Main extends PureComponent {
     const { classes } = this.props;
     const {
       selectedTab,
-      ImageCroppr,
+      Imagecropper,
       EmojiTextArea,
       CardChart,
       Dropzone,
@@ -302,7 +302,7 @@ class Main extends PureComponent {
         <main className={classNames(classes.main)}>
           <Routing
             isAccountActivated={isAccountActivated}
-            ImageCroppr={ImageCroppr}
+            Imagecropper={Imagecropper}
             EmojiTextArea={EmojiTextArea}
             CardChart={CardChart}
             Dropzone={Dropzone}

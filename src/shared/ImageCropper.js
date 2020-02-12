@@ -266,7 +266,7 @@ const styles = {
   }
 };
 
-class ImageCroppr extends PureComponent {
+class Imagecropper extends PureComponent {
   componentDidMount() {
     const { setCropFunction } = this.props;
     setCropFunction(this.crop);
@@ -320,7 +320,7 @@ class ImageCroppr extends PureComponent {
   }
 }
 
-ImageCroppr.propTypes = {
+Imagecropper.propTypes = {
   classes: PropTypes.object,
   baseColor: PropTypes.string.isRequired,
   src: PropTypes.string,
@@ -329,4 +329,4 @@ ImageCroppr.propTypes = {
   aspectRatio: PropTypes.number
 };
 
-export default withStyles(styles)(ImageCroppr);
+export default withStyles(styles)(Imagecropper);

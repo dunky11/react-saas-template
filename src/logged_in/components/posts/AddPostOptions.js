@@ -16,7 +16,7 @@ import {
   withStyles
 } from "@material-ui/core";
 import Bordered from "../../../shared/Bordered";
-import ImageCropprDialog from "../../../shared/ImageCropprDialog";
+import ImagecropperDialog from "../../../shared/ImagecropperDialog";
 
 const styles = theme => ({
   floatButtonWrapper: {
@@ -171,13 +171,13 @@ class AddPostOptions extends PureComponent {
   render() {
     const {
       EmojiTextArea,
-      ImageCroppr,
+      Imagecropper,
       classes,
       DateTimePicker,
       tabIndex,
-      cropprFile,
+      cropperFile,
       onCrop,
-      onCropprClose,
+      oncropperClose,
       handleTabChange,
       category1Value,
       category2Value,
@@ -211,13 +211,13 @@ class AddPostOptions extends PureComponent {
     ];
     return (
       <Fragment>
-        {ImageCroppr && (
-          <ImageCropprDialog
-            open={cropprFile ? true : false}
-            ImageCroppr={ImageCroppr}
-            src={cropprFile ? cropprFile.preview : ""}
+        {Imagecropper && (
+          <ImagecropperDialog
+            open={cropperFile ? true : false}
+            Imagecropper={Imagecropper}
+            src={cropperFile ? cropperFile.preview : ""}
             onCrop={onCrop}
-            onClose={onCropprClose}
+            onClose={oncropperClose}
             aspectRatio={4 / 3}
           />
         )}
@@ -333,12 +333,12 @@ AddPostOptions.propTypes = {
   DateTimePicker: PropTypes.elementType,
   EmojiTextArea: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
-  ImageCroppr: PropTypes.elementType,
+  Imagecropper: PropTypes.elementType,
   classes: PropTypes.object,
   tabIndex: PropTypes.number,
-  cropprFile: PropTypes.object,
+  cropperFile: PropTypes.object,
   onCrop: PropTypes.func,
-  onCropprClose: PropTypes.func,
+  oncropperClose: PropTypes.func,
   files: PropTypes.array,
   deleteItem: PropTypes.func,
   onDrop: PropTypes.func,
