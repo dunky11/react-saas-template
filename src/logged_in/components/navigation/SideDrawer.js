@@ -46,7 +46,7 @@ function SideDrawer(props) {
 
 SideDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  open: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired
 };
 
