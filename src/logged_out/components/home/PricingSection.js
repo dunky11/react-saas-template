@@ -24,7 +24,10 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
-    }
+    },
+    overflow: "hidden",
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   }
 });
 
