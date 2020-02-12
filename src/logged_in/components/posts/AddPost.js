@@ -18,7 +18,7 @@ class AddPost extends PureComponent {
     uploadAt: now,
     loading: false,
     tabIndex: 0,
-    cropprFile: null
+    cropperFile: null
   };
 
   acceptDrop = file => {
@@ -41,7 +41,7 @@ class AddPost extends PureComponent {
       const file = acceptedFiles[0];
       file.preview = URL.createObjectURL(file);
       file.key = new Date().getTime();
-      this.setState({ cropprFile: file });
+      this.setState({ cropperFile: file });
     }
   };
 
@@ -65,8 +65,8 @@ class AddPost extends PureComponent {
     });
   };
 
-  onCropprClose = () => {
-    this.setState({ cropprFile: null });
+  oncropperClose = () => {
+    this.setState({ cropperFile: null });
   };
 
   deleteItem = () => {
@@ -74,11 +74,11 @@ class AddPost extends PureComponent {
   };
 
   onCrop = dataUrl => {
-    const { cropprFile } = this.state;
-    const file = cropprFile;
+    const { cropperFile } = this.state;
+    const file = cropperFile;
     file.preview = dataUrl;
     this.acceptDrop(file);
-    this.setState({ cropprFile: null });
+    this.setState({ cropperFile: null });
   };
 
   handleUpload = () => {
@@ -105,14 +105,14 @@ class AddPost extends PureComponent {
       category2Characters,
       uploadAt,
       tabIndex,
-      cropprFile,
+      cropperFile,
       loading
     } = this.state;
     const {
       Dropzone,
       EmojiTextArea,
       DateTimePicker,
-      ImageCroppr,
+      Imagecropper,
       onClose
     } = this.props;
     return (
@@ -138,9 +138,9 @@ class AddPost extends PureComponent {
               handleTabChange={this.handleTabChange}
               tabIndex={tabIndex}
               onCrop={this.onCrop}
-              ImageCroppr={ImageCroppr}
-              cropprFile={cropprFile}
-              onCropprClose={this.onCropprClose}
+              Imagecropper={Imagecropper}
+              cropperFile={cropperFile}
+              oncropperClose={this.oncropperClose}
             />
           }
           actions={
@@ -171,7 +171,7 @@ AddPost.propTypes = {
   Dropzone: PropTypes.elementType,
   EmojiTextArea: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
-  ImageCroppr: PropTypes.elementType
+  Imagecropper: PropTypes.elementType
 };
 
 export default AddPost;

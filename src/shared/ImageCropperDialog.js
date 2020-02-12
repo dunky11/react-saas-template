@@ -12,7 +12,7 @@ const styles = theme => ({
   dialogPaper: { maxWidth: `${theme.breakpoints.values.md}px !important` }
 });
 
-class ImageCropprDialog extends PureComponent {
+class ImagecropperDialog extends PureComponent {
   setCropFunction = cropFunction => {
     this.cropFunction = cropFunction;
   };
@@ -26,7 +26,7 @@ class ImageCropprDialog extends PureComponent {
 
   render() {
     const {
-      ImageCroppr,
+      Imagecropper,
       classes,
       onClose,
       open,
@@ -42,11 +42,12 @@ class ImageCropprDialog extends PureComponent {
         style={{ overflowX: "visible" }}
       >
         <DialogContent className="pt-2 px-2">
-          <ImageCroppr
+          <Imagecropper
             src={src}
             setCropFunction={this.setCropFunction}
             onCrop={onCrop}
             aspectRatio={aspectRatio}
+            color="#3399FF"
           />
         </DialogContent>
         <DialogActions>
@@ -62,8 +63,8 @@ class ImageCropprDialog extends PureComponent {
   }
 }
 
-ImageCropprDialog.propTypes = {
-  ImageCroppr: PropTypes.elementType,
+ImagecropperDialog.propTypes = {
+  Imagecropper: PropTypes.elementType,
   classes: PropTypes.object.isRequired,
   onClose: PropTypes.func,
   open: PropTypes.bool,
@@ -72,4 +73,4 @@ ImageCropprDialog.propTypes = {
   aspectRatio: PropTypes.number
 };
 
-export default withStyles(styles, { withTheme: true })(ImageCropprDialog);
+export default withStyles(styles, { withTheme: true })(ImagecropperDialog);
