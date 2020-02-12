@@ -65,7 +65,7 @@ class AddPost extends PureComponent {
     });
   };
 
-  oncropperClose = () => {
+  onCropperClose = () => {
     this.setState({ cropperFile: null });
   };
 
@@ -112,7 +112,7 @@ class AddPost extends PureComponent {
       Dropzone,
       EmojiTextArea,
       DateTimePicker,
-      Imagecropper,
+      ImageCropper,
       onClose
     } = this.props;
     return (
@@ -138,9 +138,9 @@ class AddPost extends PureComponent {
               handleTabChange={this.handleTabChange}
               tabIndex={tabIndex}
               onCrop={this.onCrop}
-              Imagecropper={Imagecropper}
+              ImageCropper={ImageCropper}
               cropperFile={cropperFile}
-              oncropperClose={this.oncropperClose}
+              onCropperClose={this.onCropperClose}
             />
           }
           actions={
@@ -171,7 +171,7 @@ AddPost.propTypes = {
   Dropzone: PropTypes.elementType,
   EmojiTextArea: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
-  Imagecropper: PropTypes.elementType
+  ImageCropper: PropTypes.elementType
 };
 
 export default AddPost;
