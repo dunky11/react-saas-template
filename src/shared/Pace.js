@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -24,7 +23,7 @@ const styles = {
 };
 
 function Pace() {
-  return <Fragment />;
+  return null;
 }
 
 Pace.propTypes = {
