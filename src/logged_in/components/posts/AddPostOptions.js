@@ -16,7 +16,7 @@ import {
   withStyles
 } from "@material-ui/core";
 import Bordered from "../../../shared/Bordered";
-import ImagecropperDialog from "../../../shared/ImagecropperDialog";
+import ImageCropperDialog from "../../../shared/ImageCropperDialog";
 
 const styles = theme => ({
   floatButtonWrapper: {
@@ -212,7 +212,7 @@ class AddPostOptions extends PureComponent {
     return (
       <Fragment>
         {Imagecropper && (
-          <ImagecropperDialog
+          <ImageCropperDialog
             open={cropperFile ? true : false}
             Imagecropper={Imagecropper}
             src={cropperFile ? cropperFile.preview : ""}
