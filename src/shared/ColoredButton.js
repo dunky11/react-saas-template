@@ -11,7 +11,9 @@ function ColoredButton(props) {
     className,
     children,
     theme,
-    color
+    color,
+    style,
+    fullWidth
   } = props;
   const buttonTheme = createMuiTheme({
     ...theme,
@@ -30,6 +32,8 @@ function ColoredButton(props) {
         disabled={disabled ? disabled : false}
         onClick={onClick}
         className={className}
+        style={style}
+        fullWidth={fullWidth ? fullWidth : false}
       >
         {children}
       </Button>
@@ -44,7 +48,9 @@ ColoredButton.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   children: PropTypes.node,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  style: PropTypes.object,
+  fullWidth: PropTypes.bool
 };
 
 export default ColoredButton;
