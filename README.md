@@ -64,7 +64,7 @@ If you are happy with the state of your website you can run:
 npm run build
 ```
 
-It will create a build folder with your compiled project. After that copy its content into your webroot and you are ready to go.
+It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
 
 ## License
 
