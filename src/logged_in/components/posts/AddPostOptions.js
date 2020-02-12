@@ -171,13 +171,13 @@ class AddPostOptions extends PureComponent {
   render() {
     const {
       EmojiTextArea,
-      Imagecropper,
+      ImageCropper,
       classes,
       DateTimePicker,
       tabIndex,
       cropperFile,
       onCrop,
-      oncropperClose,
+      onCropperClose,
       handleTabChange,
       category1Value,
       category2Value,
@@ -211,13 +211,13 @@ class AddPostOptions extends PureComponent {
     ];
     return (
       <Fragment>
-        {Imagecropper && (
+        {ImageCropper && (
           <ImageCropperDialog
             open={cropperFile ? true : false}
-            Imagecropper={Imagecropper}
+            ImageCropper={ImageCropper}
             src={cropperFile ? cropperFile.preview : ""}
             onCrop={onCrop}
-            onClose={oncropperClose}
+            onClose={onCropperClose}
             aspectRatio={4 / 3}
           />
         )}
@@ -333,12 +333,12 @@ AddPostOptions.propTypes = {
   DateTimePicker: PropTypes.elementType,
   EmojiTextArea: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
-  Imagecropper: PropTypes.elementType,
+  ImageCropper: PropTypes.elementType,
   classes: PropTypes.object,
   tabIndex: PropTypes.number,
   cropperFile: PropTypes.object,
   onCrop: PropTypes.func,
-  oncropperClose: PropTypes.func,
+  onCropperClose: PropTypes.func,
   files: PropTypes.array,
   deleteItem: PropTypes.func,
   onDrop: PropTypes.func,

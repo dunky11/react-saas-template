@@ -25,7 +25,7 @@ class Posts extends PureComponent {
     const { addPostPaperOpen, addPostModalOpen } = this.state;
     const {
       EmojiTextArea,
-      Imagecropper,
+      ImageCropper,
       Dropzone,
       DateTimePicker,
       pushMessageToSnackbar,
@@ -38,7 +38,7 @@ class Posts extends PureComponent {
             onClose={this.closeAddPostModal}
             open={addPostModalOpen}
             EmojiTextArea={EmojiTextArea}
-            Imagecropper={Imagecropper}
+            ImageCropper={ImageCropper}
             Dropzone={Dropzone}
             DateTimePicker={DateTimePicker}
             pushMessageToSnackbar={pushMessageToSnackbar}
@@ -57,7 +57,7 @@ class Posts extends PureComponent {
 
 Posts.propTypes = {
   EmojiTextArea: PropTypes.elementType,
-  Imagecropper: PropTypes.elementType,
+  ImageCropper: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
   posts: PropTypes.array.isRequired,

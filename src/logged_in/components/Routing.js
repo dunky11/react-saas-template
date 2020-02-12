@@ -46,7 +46,7 @@ function Routing(props) {
   const {
     classes,
     EmojiTextArea,
-    Imagecropper,
+    ImageCropper,
     Dropzone,
     DateTimePicker,
     pushMessageToSnackbar,
@@ -71,7 +71,7 @@ function Routing(props) {
           path="/c/posts"
           component={Posts}
           EmojiTextArea={EmojiTextArea}
-          Imagecropper={Imagecropper}
+          ImageCropper={ImageCropper}
           Dropzone={Dropzone}
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
@@ -107,7 +107,7 @@ function Routing(props) {
 Routing.propTypes = {
   classes: PropTypes.object.isRequired,
   EmojiTextArea: PropTypes.elementType,
-  Imagecropper: PropTypes.elementType,
+  ImageCropper: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
