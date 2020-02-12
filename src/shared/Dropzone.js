@@ -2,17 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDropzone } from "react-dropzone";
 import classNames from "classnames";
-import { withStyles, Button } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
+import ColoredButton from "./ColoredButton";
 
 const styles = theme => ({
-  dropzoneAccept: {
-    color: theme.palette.success.main,
-    borderColor: theme.palette.success.main
-  },
-  dropzoneReject: {
-    color: theme.palette.error.dark,
-    borderColor: theme.palette.error.dark
-  },
   button: {
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.23)",
@@ -21,8 +14,18 @@ const styles = theme => ({
   }
 });
 
+function getColor(isDragAccept, isDragReject, theme) {
+  if (isDragAccept) {
+    return theme.palette.success.main;
+  }
+  if (isDragReject) {
+    return theme.palette.error.dark;
+  }
+  return theme.palette.common.black;
+}
+
 function Dropzone(props) {
-  const { onDrop, accept, fullHeight, children, classes, style } = props;
+  const { onDrop, accept, fullHeight, children, classes, style, theme } = props;
   const {
     getRootProps,
     getInputProps,
@@ -35,26 +38,22 @@ function Dropzone(props) {
   return (
     <div {...getRootProps()} style={{ height: "100%" }}>
       <input {...getInputProps()} />
-      <Button
+      <ColoredButton
         fullWidth
-        className={classNames(
-          fullHeight ? "h-100" : null,
-          isDragAccept ? classes.dropzoneAccept : null,
-          isDragReject ? classes.dropzoneReject : null,
-          classes.button
-        )}
+        className={classNames(fullHeight ? "h-100" : null, classes.button)}
         variant="outlined"
-        color="primary"
+        color={getColor(isDragAccept, isDragReject, theme)}
         style={style}
       >
         {children}
-      </Button>
+      </ColoredButton>
     </div>
   );
 }
 
 Dropzone.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   onDrop: PropTypes.func,
   accept: PropTypes.string,
   fullHeight: PropTypes.bool,
