@@ -178,7 +178,6 @@ function Footer(props) {
               <Grid container spacing={1}>
                 <Grid item>
                   <Typography
-                    inline
                     variant="h6"
                     className={classes.link}
                     onClick={openLoginDialog}
@@ -188,7 +187,6 @@ function Footer(props) {
                 </Grid>
                 <Grid item>
                   <Typography
-                    inline
                     variant="h6"
                     className={classes.link}
                     onClick={openRegisterDialog}
@@ -198,7 +196,6 @@ function Footer(props) {
                 </Grid>
                 <Grid item>
                   <Typography
-                    inline
                     variant="h6"
                     className={classes.link}
                     onClick={handleCookieRulesDialogOpen}
