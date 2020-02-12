@@ -41,14 +41,7 @@ function PricingSection(props) {
           spacing={calculateSpacing(width)}
           className={classes.gridContainer}
         >
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            lg={3}
-            data-aos="zoom-in-up"
-            justify="space-evenly"
-          >
+          <Grid item xs={12} sm={6} lg={3} data-aos="zoom-in-up">
             <PriceCard
               title="Starter"
               pricing={
