@@ -27,6 +27,8 @@ const styles = theme => ({
   }
 });
 
+const id = String(Math.random());
+
 /**
  *  https://codepen.io/csspoints/pen/WNeOEqd
  */
@@ -44,12 +46,12 @@ function WaveBorder(props) {
       >
         <defs>
           <path
-            id="gentle-wave"
+            id={id}
             d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
           />
         </defs>
         <g className={classes.parallax}>
-          <use href="#gentle-wave" x="48" y="0" fill={lowerColor} />
+          <use href={`#${id}`} x="48" y="0" fill={lowerColor} />
         </g>
       </svg>
     </div>
