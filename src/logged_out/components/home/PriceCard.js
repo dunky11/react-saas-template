@@ -20,7 +20,10 @@ const styles = theme => ({
     paddingRight: theme.spacing(4),
     border: `3px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 2,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: theme.spacing(2)
+    }
   }
 });
 
