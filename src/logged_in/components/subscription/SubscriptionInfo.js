@@ -1,9 +1,17 @@
 import React from "react";
-import { ListItemText, Button, Toolbar } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { ListItemText, Button, Toolbar, withStyles } from "@material-ui/core";
 
-function SubscriptionInfo() {
+const styles = {
+  toolbar: {
+    justifyContent: "space-between"
+  }
+};
+
+function SubscriptionInfo(props) {
+  const { classes } = props;
   return (
-    <Toolbar className="justify-content-between">
+    <Toolbar className={classes.toolbar}>
       <ListItemText primary="Status" secondary="Premium Account" />
       <Button variant="contained" color="secondary" disabled>
         Update
@@ -12,4 +20,6 @@ function SubscriptionInfo() {
   );
 }
 
-export default SubscriptionInfo;
+SubscriptionInfo.propTypes = { classes: PropTypes.object.isRequired };
+
+export default withStyles(styles)(SubscriptionInfo);

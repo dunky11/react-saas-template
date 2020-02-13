@@ -4,6 +4,7 @@ import {
   IconButton,
   DialogTitle,
   Typography,
+  Box,
   withTheme
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -27,7 +28,8 @@ function DialogTitleWithCloseIcon(props) {
           : theme.spacing(3),
         paddingLeft: disablePadding ? 0 : null,
         paddingRight: disablePadding ? 0 : null,
-        paddingTop: disablePadding ? 0 : theme.spacing(2)
+        paddingTop: disablePadding ? 0 : theme.spacing(2),
+        width: "100%"
       }}
       disableTypography
     >

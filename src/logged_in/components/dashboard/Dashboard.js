@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import SettingsArea from "./SettingsArea";
 import TargetArea from "./TargetArea";
 import AccountInformationArea from "./AccountInformationArea";
@@ -24,16 +24,20 @@ class Dashboard extends PureComponent {
     return (
       <Fragment>
         <StatisticsArea CardChart={CardChart} data={statistics} />
-        <Typography className="mt-4" variant="subtitle1" gutterBottom>
-          Your Account
-        </Typography>
+        <Box mt={4}>
+          <Typography variant="subtitle1" gutterBottom>
+            Your Account
+          </Typography>
+        </Box>
         <AccountInformationArea
           isAccountActivated={isAccountActivated}
           toggleAccountActivation={toggleAccountActivation}
         />
-        <Typography variant="subtitle1" gutterBottom className="mt-4">
-          Settings
-        </Typography>
+        <Box mt={4}>
+          <Typography variant="subtitle1" gutterBottom>
+            Settings
+          </Typography>
+        </Box>
         <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} />
         <TargetArea
           pushMessageToSnackbar={pushMessageToSnackbar}

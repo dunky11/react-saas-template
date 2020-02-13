@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -53,20 +52,20 @@ class NavigationDrawer extends PureComponent {
       open,
       onClose,
       menuItems,
-      selectedItem
+      selectedItem,
+      theme
     } = this.props;
     return (
       <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
         <List disablePadding className={classes.headSection}>
           <ListItem
             divider
-            className={classNames(
-              "py-0 h-100",
-              classes.mobileDrawerBrandingListitem,
-              anchor === "left"
-                ? "justify-content-start"
-                : "justify-content-end"
-            )}
+            style={{
+              paddingTop: theme.spacing(0),
+              paddingBottom: theme.spacing(0),
+              height: "100%",
+              justifyContent: anchor === "left" ? "flex-start" : "flex-end"
+            }}
           >
             <ListItemIcon className={classes.closeIcon}>
               <IconButton onClick={onClose}>
@@ -128,6 +127,7 @@ class NavigationDrawer extends PureComponent {
 
 NavigationDrawer.propTypes = {
   anchor: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   menuItems: PropTypes.array.isRequired,

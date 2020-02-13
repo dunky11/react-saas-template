@@ -6,9 +6,21 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  Typography
+  Typography,
+  withStyles
 } from "@material-ui/core";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+
+const styles = theme => ({
+  dialogContent: {
+    paddingTop: theme.spacing(2)
+  },
+  dialogActions: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingRight: theme.spacing(2)
+  }
+});
 
 class ChangePassword extends PureComponent {
   state = { loading: false };
@@ -24,7 +36,7 @@ class ChangePassword extends PureComponent {
   };
 
   render() {
-    const { onClose } = this.props;
+    const { onClose, classes } = this.props;
     const { loading } = this.state;
     return (
       <Dialog
@@ -41,7 +53,7 @@ class ChangePassword extends PureComponent {
             this.sendPasswordEmail();
           }}
         >
-          <DialogContent className="pt-2">
+          <DialogContent className={classes.dialogContent}>
             <Typography paragraph>
               Enter your email address below and we will send you instructions
               on how to reset your password.
@@ -57,7 +69,7 @@ class ChangePassword extends PureComponent {
               autoComplete="off"
             />
           </DialogContent>
-          <DialogActions className="py-2 pr-2">
+          <DialogActions className={classes.dialogActions}>
             <Button onClick={onClose} disabled={loading}>
               Cancel
             </Button>
@@ -79,7 +91,9 @@ class ChangePassword extends PureComponent {
 
 ChangePassword.propTypes = {
   onClose: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   setLoginStatus: PropTypes.func.isRequired
 };
 
-export default ChangePassword;
+export default withStyles(styles, { withTheme: true })(ChangePassword);

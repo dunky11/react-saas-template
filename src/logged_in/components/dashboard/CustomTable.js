@@ -8,6 +8,7 @@ import {
   TableRow,
   IconButton,
   Avatar,
+  Box,
   withStyles
 } from "@material-ui/core";
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
@@ -25,7 +26,10 @@ const styles = theme => ({
     overflowX: "auto"
   },
   alignRight: {
-    flexDirection: "row-reverse"
+    display: "flex",
+    flexDirection: "row-reverse",
+    alignItems: "center",
+    paddingLeft: theme.spacing(2)
   },
   blackIcon: {
     color: theme.palette.common.black
@@ -33,6 +37,18 @@ const styles = theme => ({
   avatar: {
     width: 28,
     height: 28
+  },
+  firstData: {
+    paddingLeft: theme.spacing(3)
+  },
+  iconButton: {
+    padding: theme.spacing(1)
+  },
+  dBlock: {
+    display: "block"
+  },
+  dNone: {
+    display: "none"
   }
 });
 
@@ -151,7 +167,11 @@ class CustomTable extends PureComponent {
               )
               .map((row, index) => (
                 <TableRow hover tabIndex={-1} key={index}>
-                  <TableCell component="th" scope="row" className="pl-3">
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={classes.firstData}
+                  >
                     <Avatar
                       className={classes.avatar}
                       src={row.profilePicUrl}
@@ -173,10 +193,10 @@ class CustomTable extends PureComponent {
                     {row.number4}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <div className="d-flex justify-content-end">
+                    <Box display="flex" justifyContent="flex-end">
                       {row.isActivated ? (
                         <IconButton
-                          className="p-1"
+                          className={classes.iconButton}
                           onClick={() => {
                             this.toggleTarget(row.id);
                           }}
@@ -187,7 +207,7 @@ class CustomTable extends PureComponent {
                         </IconButton>
                       ) : (
                         <IconButton
-                          className="p-1"
+                          className={classes.iconButton}
                           color="primary"
                           onClick={() => {
                             this.toggleTarget(row.id);
@@ -197,14 +217,14 @@ class CustomTable extends PureComponent {
                         </IconButton>
                       )}
                       <IconButton
-                        className="p-1"
+                        className={classes.iconButton}
                         onClick={() => {
                           this.handleDeleteTargetDialogOpen(row.id, row.name);
                         }}
                       >
                         <DeleteIcon className={classes.blackIcon} />
                       </IconButton>
-                    </div>
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
@@ -213,9 +233,9 @@ class CustomTable extends PureComponent {
       );
     }
     return (
-      <HighlightedInformation className="m-2">
-        No friends added yet.
-      </HighlightedInformation>
+      <Box m={2}>
+        <HighlightedInformation>No friends added yet.</HighlightedInformation>
+      </Box>
     );
   };
 
@@ -244,14 +264,9 @@ class CustomTable extends PureComponent {
           onConfirm={this.deleteTarget}
           loading={deleteTargetLoading}
         />
-        <div className="w-100">
+        <Box width="100%">
           <div className={classes.tableWrapper}>{this.printTable()}</div>
-          <div
-            className={classNames(
-              "d-flex align-items-center pl-2",
-              classes.alignRight
-            )}
-          >
+          <div className={classes.alignRight}>
             <TablePagination
               component="div"
               count={targets.length}
@@ -265,15 +280,15 @@ class CustomTable extends PureComponent {
               }}
               onChangePage={this.handleChangePage}
               classes={{
-                select: "d-none",
-                selectIcon: "d-none",
-                actions: targets.length > 0 ? "d-block" : "d-none",
-                caption: targets.length > 0 ? "d-block" : "d-none"
+                select: classes.dNone,
+                selectIcon: classes.dNone,
+                actions: targets.length > 0 ? classes.dBlock : classes.dNone,
+                caption: targets.length > 0 ? classes.dBlock : classes.dNone
               }}
               labelRowsPerPage=""
             />
           </div>
-        </div>
+        </Box>
       </Fragment>
     );
   }

@@ -7,11 +7,12 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
+  Box,
   withStyles
 } from "@material-ui/core";
 import classNames from "classnames";
 
-const styles = {
+const styles = theme => ({
   tableSortLabel: {
     cursor: "text",
     userSelect: "auto",
@@ -20,7 +21,7 @@ const styles = {
   noPointerEvents: {
     pointerEvents: "none"
   }
-};
+});
 
 function EnhancedTableHead(props) {
   const { order, orderBy, rows, onRequestSort, classes } = props;
@@ -38,32 +39,35 @@ function EnhancedTableHead(props) {
             align={row.numeric ? "right" : "inherit"}
             padding="default"
             sortDirection={orderBy === row.name ? order : false}
-            className={index === 0 ? "pl-3" : null}
           >
-            {onRequestSort ? (
-              <Tooltip
-                title="Sort"
-                placement={row.numeric ? "bottom-end" : "bottom-start"}
-                enterDelay={300}
-              >
-                <TableSortLabel
-                  active={orderBy === row.id}
-                  direction={order}
-                  onClick={createSortHandler(row.id)}
+            <Box pl={index === 0 ? 3 : 0}>
+              {onRequestSort ? (
+                <Tooltip
+                  title="Sort"
+                  placement={row.numeric ? "bottom-end" : "bottom-start"}
+                  enterDelay={300}
                 >
-                  <Typography variant="body2">{row.label}</Typography>
+                  <TableSortLabel
+                    active={orderBy === row.id}
+                    direction={order}
+                    onClick={createSortHandler(row.id)}
+                  >
+                    <Typography variant="body2">{row.label}</Typography>
+                  </TableSortLabel>
+                </Tooltip>
+              ) : (
+                <TableSortLabel
+                  className={classNames(
+                    classes.tableSortLabel,
+                    classes.noPointerEvents
+                  )}
+                >
+                  <Typography variant="body2" className={classes.label}>
+                    {row.label}
+                  </Typography>
                 </TableSortLabel>
-              </Tooltip>
-            ) : (
-              <TableSortLabel
-                className={classNames(
-                  classes.tableSortLabel,
-                  classes.noPointerEvents
-                )}
-              >
-                <Typography variant="body2">{row.label}</Typography>
-              </TableSortLabel>
-            )}
+              )}
+            </Box>
           </TableCell>
         ))}
       </TableRow>
@@ -71,11 +75,12 @@ function EnhancedTableHead(props) {
   );
 }
 EnhancedTableHead.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   onRequestSort: PropTypes.func,
   order: PropTypes.string,
   orderBy: PropTypes.string,
-  rows: PropTypes.array,
-  classes: PropTypes.object.isRequired
+  rows: PropTypes.array
 };
 
-export default withStyles(styles)(EnhancedTableHead);
+export default withStyles(styles, { withTheme: true })(EnhancedTableHead);

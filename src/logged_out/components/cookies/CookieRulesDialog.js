@@ -1,25 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Typography,
+  Box,
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ColoredButton from "../../../shared/ColoredButton";
 
-const styles = {
+const styles = theme => ({
   dialogActions: {
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   dialog: {
     zIndex: 1400
   }
-};
+});
 
 function CookieRulesDialog(props) {
   const { classes, onClose, open, theme } = props;
@@ -108,13 +111,15 @@ function CookieRulesDialog(props) {
           sed diam voluptua.
         </Typography>
       </DialogContent>
-      <DialogActions className={classNames("py-2 pr-2", classes.DialogActions)}>
+      <DialogActions className={classes.dialogActions}>
         <ColoredButton
           onClick={onClose}
           variant="contained"
           color={theme.palette.common.black}
         >
-          <ArrowBackIcon className="mr-1" />
+          <Box mr={1}>
+            <ArrowBackIcon />
+          </Box>
           Back
         </ColoredButton>
       </DialogActions>

@@ -7,13 +7,23 @@ import {
   Toolbar,
   Typography,
   Button,
-  Paper
+  Paper,
+  Box,
+  withStyles
 } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/SelfAligningImage";
 import HighlightedInformation from "../../../shared/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/ConfirmationDialog";
+
+const styles = {
+  dBlock: { display: "block" },
+  dNone: { display: "none" },
+  toolbar: {
+    justifyContent: "space-between"
+  }
+};
 
 class PostContent extends PureComponent {
   state = {
@@ -66,46 +76,52 @@ class PostContent extends PureComponent {
     const { page } = this.state;
     if (posts.length > 0) {
       return (
-        <Grid container spacing={1} className="p-1">
-          {posts
-            .slice(
-              page * this.rowsPerPage,
-              page * this.rowsPerPage + this.rowsPerPage
-            )
-            .map(element => (
-              <Grid item xs={6} sm={4} md={3} key={element.id}>
-                <SelfAligningImage
-                  src={element.src}
-                  title={element.name}
-                  timeStamp={element.timestamp}
-                  options={options}
-                />
-              </Grid>
-            ))}
-        </Grid>
+        <Box p={1}>
+          <Grid container spacing={1}>
+            {posts
+              .slice(
+                page * this.rowsPerPage,
+                page * this.rowsPerPage + this.rowsPerPage
+              )
+              .map(element => (
+                <Grid item xs={6} sm={4} md={3} key={element.id}>
+                  <SelfAligningImage
+                    src={element.src}
+                    title={element.name}
+                    timeStamp={element.timestamp}
+                    options={options}
+                  />
+                </Grid>
+              ))}
+          </Grid>
+        </Box>
       );
     }
     return (
-      <HighlightedInformation className="m-2">
-        No posts added yet. Click on &quot;NEW&quot; to create your first one.
-      </HighlightedInformation>
+      <Box m={2}>
+        <HighlightedInformation>
+          No posts added yet. Click on &quot;NEW&quot; to create your first one.
+        </HighlightedInformation>
+      </Box>
     );
   };
 
   render() {
     const { page, deletePostDialogOpen, deletePostLoading } = this.state;
-    const { openAddPostModal, posts } = this.props;
+    const { openAddPostModal, posts, classes } = this.props;
 
     return (
       <Paper>
-        <Toolbar className="justify-content-between">
+        <Toolbar className={classes.toolbar}>
           <Typography variant="h6">Your Posts</Typography>
           <Button
             variant="contained"
             color="secondary"
             onClick={openAddPostModal}
           >
-            <AddCircleOutlineIcon className="mr-1" fontSize="small" />
+            <Box mr={1} display="flex" alignItems="center">
+              <AddCircleOutlineIcon fontSize="small" />
+            </Box>
             New
           </Button>
         </Toolbar>
@@ -124,10 +140,10 @@ class PostContent extends PureComponent {
           }}
           onChangePage={this.handleChangePage}
           classes={{
-            select: "d-none",
-            selectIcon: "d-none",
-            actions: posts.length > 0 ? "d-block" : "d-none",
-            caption: posts.length > 0 ? "d-block" : "d-none"
+            select: classes.dNone,
+            selectIcon: classes.dNone,
+            actions: posts.length > 0 ? classes.dBlock : classes.dNone,
+            caption: posts.length > 0 ? classes.dBlock : classes.dNone
           }}
           labelRowsPerPage=""
         />
@@ -146,8 +162,9 @@ class PostContent extends PureComponent {
 
 PostContent.propTypes = {
   openAddPostModal: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   pushMessageToSnackbar: PropTypes.func
 };
 
-export default PostContent;
+export default withStyles(styles)(PostContent);

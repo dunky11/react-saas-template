@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Grid, isWidthUp, withWidth, withStyles } from "@material-ui/core";
 import classNames from "classnames";
+import { Grid, Box, isWidthUp, withWidth, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 
 const styles = theme => ({
@@ -46,14 +46,16 @@ class Blog extends PureComponent {
     }
     blogPosts.forEach((blogPost, index) => {
       gridRows[index % rows].push(
-        <Grid key={blogPost.id} item xs={12} className="mb-3">
-          <BlogCard
-            src={blogPost.imageSrc}
-            title={blogPost.title}
-            snippet={blogPost.snippet}
-            date={blogPost.date}
-            url={blogPost.url}
-          />
+        <Grid key={blogPost.id} item xs={12}>
+          <Box mb={3}>
+            <BlogCard
+              src={blogPost.imageSrc}
+              title={blogPost.title}
+              snippet={blogPost.snippet}
+              date={blogPost.date}
+              url={blogPost.url}
+            />
+          </Box>
         </Grid>
       );
     });
@@ -67,27 +69,26 @@ class Blog extends PureComponent {
   render() {
     const { classes } = this.props;
     return (
-      <div
-        className={classNames(
-          "lg-p-top d-flex justify-content-center",
-          classes.wrapper
-        )}
+      <Box
+        display="flex"
+        justifyContent="center"
+        className={classNames(classes.wrapper, "lg-p-top")}
       >
         <div className={classes.blogContentWrapper}>
           <Grid container spacing={3}>
             {this.getVerticalBlogposts()}
           </Grid>
         </div>
-      </div>
+      </Box>
     );
   }
 }
 
 Blog.propTypes = {
-  selectBlog: PropTypes.func,
-  classes: PropTypes.object,
-  width: PropTypes.string,
-  blogPosts: PropTypes.array
+  selectBlog: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  width: PropTypes.string.isRequired,
+  blogPosts: PropTypes.array.isRequired
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Blog));

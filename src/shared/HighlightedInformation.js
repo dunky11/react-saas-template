@@ -22,13 +22,13 @@ function HighlighedInformation(props) {
 }
 
 HighlighedInformation.propTypes = {
-  className: PropTypes.string,
+  classes: PropTypes.object.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
     PropTypes.array
-  ]),
-  classes: PropTypes.object
+  ]).isRequired,
+  className: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(HighlighedInformation);

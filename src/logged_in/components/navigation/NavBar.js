@@ -45,6 +45,8 @@ const styles = theme => ({
     }
   },
   appBarToolbar: {
+    display: "flex",
+    justifyContent: "space-between",
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     minHeight: 64,
@@ -206,12 +208,7 @@ class NavBar extends PureComponent {
     return (
       <Fragment>
         <AppBar position="sticky" className={classes.appBar}>
-          <Toolbar
-            className={classNames(
-              classes.appBarToolbar,
-              "d-flex justify-content-between"
-            )}
-          >
+          <Toolbar className={classes.appBarToolbar}>
             <div className="d-flex align-items-center">
               <Hidden smUp>
                 <IconButton

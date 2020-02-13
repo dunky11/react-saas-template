@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import ActionPaper from "../../../shared/ActionPaper";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";
@@ -145,12 +145,13 @@ class AddPost extends PureComponent {
           }
           actions={
             <Fragment>
-              <Button onClick={onClose} className="mr-1" disabled={loading}>
-                Back
-              </Button>
+              <Box mr={1}>
+                <Button onClick={onClose} disabled={loading}>
+                  Back
+                </Button>
+              </Box>
               <Button
                 onClick={this.handleUpload}
-                className="mr-1"
                 variant="contained"
                 color="secondary"
                 disabled={files.length === 0 || loading}

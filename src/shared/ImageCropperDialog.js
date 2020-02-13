@@ -5,11 +5,17 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Box,
   withStyles
 } from "@material-ui/core";
 
 const styles = theme => ({
-  dialogPaper: { maxWidth: `${theme.breakpoints.values.md}px !important` }
+  dialogPaper: { maxWidth: `${theme.breakpoints.values.md}px !important` },
+  dialogContent: {
+    paddingTop: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2)
+  }
 });
 
 class ImageCropperDialog extends PureComponent {
@@ -41,7 +47,7 @@ class ImageCropperDialog extends PureComponent {
         classes={{ paper: classes.dialogPaper }}
         style={{ overflowX: "visible" }}
       >
-        <DialogContent className="pt-2 px-2">
+        <DialogContent className={classes.dialogContent}>
           <ImageCropper
             src={src}
             setCropFunction={this.setCropFunction}
@@ -51,9 +57,9 @@ class ImageCropperDialog extends PureComponent {
           />
         </DialogContent>
         <DialogActions>
-          <Button className="mr-1" onClick={onClose}>
-            Close
-          </Button>
+          <Box mr={1}>
+            <Button onClick={onClose}>Close</Button>
+          </Box>
           <Button variant="contained" color="secondary" onClick={this.crop}>
             Crop
           </Button>
@@ -66,10 +72,10 @@ class ImageCropperDialog extends PureComponent {
 ImageCropperDialog.propTypes = {
   ImageCropper: PropTypes.elementType,
   classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  onCrop: PropTypes.func.isRequired,
   src: PropTypes.string,
-  onCrop: PropTypes.func,
   aspectRatio: PropTypes.number
 };
 

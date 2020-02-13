@@ -18,7 +18,10 @@ const styles = theme => ({
     marginTop: theme.spacing(1)
   },
   dialogActions: {
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   }
 });
 
@@ -172,7 +175,7 @@ function TermsOfServiceDialog(props) {
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
         </Typography>
       </DialogContent>
-      <DialogActions className={classNames("py-2 pr-2", classes.DialogActions)}>
+      <DialogActions className={classes.dialogActions}>
         <ColoredButton
           onClick={onClose}
           variant="contained"
