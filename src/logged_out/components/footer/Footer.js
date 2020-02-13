@@ -241,16 +241,14 @@ function Footer(props) {
             </Typography>
             <Box display="flex">
               {socialIcons.map((socialIcon, index) => (
-                <IconButton
-                  key={index}
-                  className={classNames(
-                    classes.socialIcon,
-                    index !== socialIcons.length - 1 ? "mr-1" : null
-                  )}
-                  href={socialIcon.href}
-                >
-                  {socialIcon.icon}
-                </IconButton>
+                <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
+                  <IconButton
+                    className={classes.socialIcon}
+                    href={socialIcon.href}
+                  >
+                    {socialIcon.icon}
+                  </IconButton>
+                </Box>
               ))}
             </Box>
           </Grid>

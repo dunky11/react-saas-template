@@ -29,7 +29,7 @@ const styles = theme => ({
     padding: "9px 34px 9px 14.5px"
   },
   dBlock: { display: "block" },
-  listItemSecondaryPadding: {
+  listItemLeftPadding: {
     paddingRight: theme.spacing(3)
   },
   expansionPanelDetails: {
@@ -114,7 +114,7 @@ class Settings1 extends Component {
             <Bordered disableVerticalPadding>
               {inputs.map((element, index) => (
                 <ListItem
-                  className="listItemSecondaryPadding"
+                  className="listItemLeftPadding"
                   disableGutters
                   divider
                   key={index}
@@ -148,11 +148,7 @@ class Settings1 extends Component {
                   </FormControl>
                 </ListItem>
               ))}
-              <ListItem
-                className="listItemSecondaryPadding"
-                disableGutters
-                divider
-              >
+              <ListItem className="listItemLeftPadding" disableGutters divider>
                 <ListItemText>
                   <Typography variant="body2">Option 5</Typography>
                 </ListItemText>
@@ -189,7 +185,7 @@ class Settings1 extends Component {
                   </ListItemSecondaryAction>
                 </FormControl>
               </ListItem>
-              <ListItem className="listItemSecondaryPadding" disableGutters>
+              <ListItem className="listItemLeftPadding" disableGutters>
                 <ListItemText>
                   <Typography variant="body2">Option 6</Typography>
                 </ListItemText>

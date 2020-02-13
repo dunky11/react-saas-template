@@ -20,6 +20,9 @@ const styles = theme => ({
   },
   noPointerEvents: {
     pointerEvents: "none"
+  },
+  paddingFix: {
+    paddingLeft: theme.spacing(3)
   }
 });
 
@@ -39,35 +42,34 @@ function EnhancedTableHead(props) {
             align={row.numeric ? "right" : "inherit"}
             padding="default"
             sortDirection={orderBy === row.name ? order : false}
+            className={index === 0 ? classes.paddingFix : null}
           >
-            <Box pl={index === 0 ? 3 : 0}>
-              {onRequestSort ? (
-                <Tooltip
-                  title="Sort"
-                  placement={row.numeric ? "bottom-end" : "bottom-start"}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={orderBy === row.id}
-                    direction={order}
-                    onClick={createSortHandler(row.id)}
-                  >
-                    <Typography variant="body2">{row.label}</Typography>
-                  </TableSortLabel>
-                </Tooltip>
-              ) : (
+            {onRequestSort ? (
+              <Tooltip
+                title="Sort"
+                placement={row.numeric ? "bottom-end" : "bottom-start"}
+                enterDelay={300}
+              >
                 <TableSortLabel
-                  className={classNames(
-                    classes.tableSortLabel,
-                    classes.noPointerEvents
-                  )}
+                  active={orderBy === row.id}
+                  direction={order}
+                  onClick={createSortHandler(row.id)}
                 >
-                  <Typography variant="body2" className={classes.label}>
-                    {row.label}
-                  </Typography>
+                  <Typography variant="body2">{row.label}</Typography>
                 </TableSortLabel>
-              )}
-            </Box>
+              </Tooltip>
+            ) : (
+              <TableSortLabel
+                className={classNames(
+                  classes.tableSortLabel,
+                  classes.noPointerEvents
+                )}
+              >
+                <Typography variant="body2" className={classes.label}>
+                  {row.label}
+                </Typography>
+              </TableSortLabel>
+            )}
           </TableCell>
         ))}
       </TableRow>

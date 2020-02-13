@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Typography,
+  Box,
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -22,6 +22,9 @@ const styles = theme => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(2)
+  },
+  backIcon: {
+    marginRight: theme.spacing(1)
   }
 });
 
@@ -181,7 +184,7 @@ function TermsOfServiceDialog(props) {
           variant="contained"
           color={theme.palette.common.black}
         >
-          <ArrowBackIcon className="mr-1" />
+          <ArrowBackIcon className={classes.backIcon} />
           Back
         </ColoredButton>
       </DialogActions>

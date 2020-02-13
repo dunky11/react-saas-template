@@ -3,8 +3,8 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 const primary = "#b3294e";
 const secondary = "#4829B2";
 const black = "#343a40";
-const success = "#4caf50";
 const darkBlack = "rgb(36, 40, 44)";
+const success = "#4caf50";
 const borderWidth = 2;
 const borderColor = "rgba(0, 0, 0, 0.13)";
 
@@ -12,9 +12,6 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: primary },
     secondary: { main: secondary },
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
-    contrastThreshold: 3,
     common: {
       black,
       darkBlack
@@ -64,11 +61,8 @@ const theme = createMuiTheme({
     borderWidth: borderWidth
   },
   overrides: {
-    // Name of the component ⚛️ / style sheet
     MuiExpansionPanel: {
-      // Name of the rule
       root: {
-        // Some CSS
         position: "static"
       }
     },
@@ -92,14 +86,6 @@ const theme = createMuiTheme({
     MuiPrivateNotchedOutline: {
       root: {
         borderWidth: borderWidth
-      }
-    },
-    MuiListItemSecondaryAction: {
-      root: {
-        paddingRight: 32,
-        "@media (max-width:  600px)": {
-          paddingRight: 8
-        }
       }
     },
     MuiListItem: {
@@ -138,6 +124,4 @@ const theme = createMuiTheme({
   }
 });
 
-const responsiveTheme = responsiveFontSizes(theme);
-
-export default responsiveTheme;
+export default responsiveFontSizes(theme);

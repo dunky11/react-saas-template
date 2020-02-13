@@ -54,7 +54,7 @@ class BlogPost extends PureComponent {
           <Grid container spacing={5}>
             <Grid item md={9}>
               <Card className={classes.card}>
-                <div className="p-3">
+                <Box p={3}>
                   <Typography
                     align="center"
                     variant="body1"
@@ -67,11 +67,9 @@ class BlogPost extends PureComponent {
                   <Typography align="center" variant="h4">
                     <b>{title}</b>
                   </Typography>
-                </div>
-                <img className={classes.img} src={src} alt="" />
-                <Box p={3}>
-                  <div className="blog-content">{content}</div>
                 </Box>
+                <img className={classes.img} src={src} alt="" />
+                <Box p={3}>{content}</Box>
               </Card>
             </Grid>
             <Grid item md={3}>

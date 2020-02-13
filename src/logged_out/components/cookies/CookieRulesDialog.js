@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogActions,
   Typography,
-  Box,
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -21,6 +20,9 @@ const styles = theme => ({
   },
   dialog: {
     zIndex: 1400
+  },
+  backIcon: {
+    marginRight: theme.spacing(1)
   }
 });
 
@@ -117,9 +119,7 @@ function CookieRulesDialog(props) {
           variant="contained"
           color={theme.palette.common.black}
         >
-          <Box mr={1}>
-            <ArrowBackIcon />
-          </Box>
+          <ArrowBackIcon className={classes.backIcon} />
           Back
         </ColoredButton>
       </DialogActions>

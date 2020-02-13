@@ -106,9 +106,6 @@ const styles = theme => ({
   },
   dNone: {
     display: "none"
-  },
-  listItemSecondaryAction: {
-    paddingRight: theme.spacing(3)
   }
 });
 
@@ -278,17 +275,11 @@ class AddPostOptions extends PureComponent {
         </Box>
         <List>
           <Bordered disableVerticalPadding>
-            <ListItem
-              divider
-              disableGutters
-              className="listItemSecondaryPadding"
-            >
+            <ListItem divider disableGutters className="listItemLeftPadding">
               <ListItemText>
                 <Typography variant="body2">Upload at</Typography>
               </ListItemText>
-              <ListItemSecondaryAction
-                className={classes.listItemSecondaryAction}
-              >
+              <ListItemSecondaryAction>
                 {DateTimePicker && (
                   <DateTimePicker
                     value={uploadAt}
@@ -300,7 +291,7 @@ class AddPostOptions extends PureComponent {
             </ListItem>
             {inputs.map((element, index) => (
               <ListItem
-                className="listItemSecondaryPadding"
+                className="listItemLeftPadding"
                 disableGutters
                 divider={index !== inputs.length - 1}
                 key={index}
@@ -309,9 +300,7 @@ class AddPostOptions extends PureComponent {
                   <Typography variant="body2">{element.label}</Typography>
                 </ListItemText>
                 <FormControl variant="outlined">
-                  <ListItemSecondaryAction
-                    className={classes.listItemSecondaryAction}
-                  >
+                  <ListItemSecondaryAction>
                     <Select
                       value={element.state}
                       onChange={this.handleChange}

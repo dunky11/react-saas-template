@@ -11,6 +11,9 @@ const styles = {
     borderColor: "rgba(0, 0, 0, 0.23)",
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0
+  },
+  fullHeight: {
+    height: "100%"
   }
 };
 
@@ -40,7 +43,10 @@ function Dropzone(props) {
       <input {...getInputProps()} />
       <ColoredButton
         fullWidth
-        className={classNames(fullHeight ? "h-100" : null, classes.button)}
+        className={classNames(
+          fullHeight ? classes.fullHeight : null,
+          classes.button
+        )}
         variant="outlined"
         color={getColor(isDragAccept, isDragReject, theme)}
         style={style}
