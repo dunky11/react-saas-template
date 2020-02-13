@@ -48,11 +48,11 @@ function DateTimePicker(props) {
           dateRangeIcon={<DateRange />}
           format="yyyy/MM/dd hh:mm a"
           variant="outlined"
-          className="w-100"
           disabled={disabled}
           value={value}
           onChange={onChange}
           {...props}
+          inputProps={{ style: { width: "100%", cursor: "pointer" } }}
         />
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>

@@ -7,6 +7,7 @@ import {
   IconButton,
   Collapse,
   FormHelperText,
+  Box,
   withStyles
 } from "@material-ui/core";
 import countWithEmojis from "./countWithEmojis";
@@ -106,7 +107,7 @@ class EmojiTextarea extends PureComponent {
     } = this.props;
     return (
       <Fragment>
-        <div className="d-flex">
+        <Box display="flex">
           <div
             style={{
               position: "relative",
@@ -162,14 +163,14 @@ class EmojiTextarea extends PureComponent {
           {rightContent && (
             <div style={{ maxWidth: "25%" }}>{rightContent}</div>
           )}
-        </div>
+        </Box>
         {maxCharacters && (
           <FormHelperText error={characters >= maxCharacters}>
             {`${characters}/${maxCharacters} characters`}
           </FormHelperText>
         )}
         <Collapse in={open}>
-          <div className="mt-1">
+          <Box mt={1}>
             <Picker
               set={emojiSet}
               color={theme.palette.primary.main}
@@ -177,7 +178,7 @@ class EmojiTextarea extends PureComponent {
               onSelect={this.onSelectEmoji}
               emojisToShowFilter={this.emojisToShowFilter}
             />
-          </div>
+          </Box>
         </Collapse>
       </Fragment>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import format from "date-fns/format";
-import { Typography, Card, withStyles } from "@material-ui/core";
+import { Typography, Card, Box, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   img: {
@@ -51,7 +51,7 @@ function BlogCard(props) {
           <img src={src} className={classes.img} alt="" />
         </Link>
       )}
-      <div className="p-2">
+      <Box p={2}>
         <Typography variant="body2" color="textSecondary">
           {format(new Date(date * 1000), "PPP", {
             awareOfUnicodeTokens: true
@@ -68,7 +68,7 @@ function BlogCard(props) {
             <span className={classes.link}> read more...</span>
           </Link>
         </Typography>
-      </div>
+      </Box>
     </Card>
   );
 }

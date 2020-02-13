@@ -23,6 +23,9 @@ const styles = theme => ({
   disabledText: {
     cursor: "auto",
     color: theme.palette.text.disabled
+  },
+  formControlLabel: {
+    marginRight: 0
   }
 });
 
@@ -133,7 +136,7 @@ class LoginDialog extends PureComponent {
                 FormHelperTextProps={{ error: true }}
               />
               <FormControlLabel
-                className="mr-0"
+                className={classes.formControlLabel}
                 control={
                   <Checkbox
                     inputRef={node => {

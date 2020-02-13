@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography, Box, withStyles } from "@material-ui/core";
 import CheckIcon from "@material-ui/icons/Check";
 
 const styles = theme => ({
@@ -31,21 +31,25 @@ function PriceCard(props) {
   const { classes, theme, title, pricing, features, highlighted } = props;
   return (
     <div className={highlighted ? classes.cardHightlighted : classes.card}>
-      <Typography
-        variant={highlighted ? "h5" : "h6"}
-        className={highlighted ? "mb-2 text-white" : "mb-2"}
-        style={{ color: theme.palette.primary.main }}
-      >
-        {title}
-      </Typography>
-      <Typography
-        variant={highlighted ? "h3" : "h4"}
-        className={highlighted ? "mb-2 text-white" : "mb-2"}
-      >
-        {pricing}
-      </Typography>
+      <Box mb={2}>
+        <Typography
+          variant={highlighted ? "h5" : "h6"}
+          className={highlighted ? "text-white" : null}
+          style={{ color: theme.palette.primary.main }}
+        >
+          {title}
+        </Typography>
+      </Box>
+      <Box mb={2}>
+        <Typography
+          variant={highlighted ? "h3" : "h4"}
+          className={highlighted ? "text-white" : null}
+        >
+          {pricing}
+        </Typography>
+      </Box>
       {features.map((feature, index) => (
-        <div className="d-flex align-items-center mb-1" key={index}>
+        <Box display="flex" alignItems="center" mb={1} key={index}>
           <CheckIcon
             style={{
               color: highlighted
@@ -53,13 +57,15 @@ function PriceCard(props) {
                 : theme.palette.primary.dark
             }}
           />
-          <Typography
-            className={highlighted ? "ml-1 text-white" : "ml-1"}
-            variant={highlighted ? "h6" : "body1"}
-          >
-            {feature}
-          </Typography>
-        </div>
+          <Box ml={1}>
+            <Typography
+              className={highlighted ? "text-white" : null}
+              variant={highlighted ? "h6" : "body1"}
+            >
+              {feature}
+            </Typography>
+          </Box>
+        </Box>
       ))}
     </div>
   );

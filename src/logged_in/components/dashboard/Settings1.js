@@ -21,14 +21,22 @@ import withWidth from "@material-ui/core/withWidth";
 import Bordered from "../../../shared/Bordered";
 import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 
-const styles = {
+const styles = theme => ({
   numberInput: {
     width: 110
   },
   numberInputInput: {
     padding: "9px 34px 9px 14.5px"
+  },
+  dBlock: { display: "block" },
+  listItemLeftPadding: {
+    paddingRight: theme.spacing(3)
+  },
+  expansionPanelDetails: {
+    paddintTop: theme.spacing(0),
+    justifyContent: "flex-end"
   }
-};
+});
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
 class Settings1 extends Component {
@@ -101,12 +109,12 @@ class Settings1 extends Component {
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Settings 1</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="d-block">
-          <List className="w-100">
+        <ExpansionPanelDetails className={classes.dBlock}>
+          <List>
             <Bordered disableVerticalPadding>
               {inputs.map((element, index) => (
                 <ListItem
-                  className="listItemSecondaryPadding"
+                  className="listItemLeftPadding"
                   disableGutters
                   divider
                   key={index}
@@ -115,7 +123,9 @@ class Settings1 extends Component {
                     <Typography variant="body2">{element.label}</Typography>
                   </ListItemText>
                   <FormControl variant="outlined">
-                    <ListItemSecondaryAction className="pr-3">
+                    <ListItemSecondaryAction
+                      className={classes.ListItemSecondaryAction}
+                    >
                       <Select
                         value={element.state}
                         onChange={this.handleChange}
@@ -138,16 +148,14 @@ class Settings1 extends Component {
                   </FormControl>
                 </ListItem>
               ))}
-              <ListItem
-                className="listItemSecondaryPadding"
-                disableGutters
-                divider
-              >
+              <ListItem className="listItemLeftPadding" disableGutters divider>
                 <ListItemText>
                   <Typography variant="body2">Option 5</Typography>
                 </ListItemText>
                 <FormControl variant="outlined">
-                  <ListItemSecondaryAction className="pr-3">
+                  <ListItemSecondaryAction
+                    className={classes.ListItemSecondaryAction}
+                  >
                     <Select
                       value={option5}
                       onChange={this.handleChange}
@@ -177,12 +185,14 @@ class Settings1 extends Component {
                   </ListItemSecondaryAction>
                 </FormControl>
               </ListItem>
-              <ListItem className="listItemSecondaryPadding" disableGutters>
+              <ListItem className="listItemLeftPadding" disableGutters>
                 <ListItemText>
                   <Typography variant="body2">Option 6</Typography>
                 </ListItemText>
                 <FormControl variant="outlined">
-                  <ListItemSecondaryAction className="pr-3">
+                  <ListItemSecondaryAction
+                    className={classes.ListItemSecondaryAction}
+                  >
                     <OutlinedInput
                       labelWidth={0}
                       name="option6"
@@ -199,7 +209,7 @@ class Settings1 extends Component {
             </Bordered>
           </List>
         </ExpansionPanelDetails>
-        <ExpansionPanelDetails className="pt-0 justify-content-end">
+        <ExpansionPanelDetails className={classes.expansionPanelDetails}>
           <Button
             variant="contained"
             color="secondary"
@@ -215,7 +225,8 @@ class Settings1 extends Component {
 }
 
 Settings1.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   pushMessageToSnackbar: PropTypes.func
 };
 

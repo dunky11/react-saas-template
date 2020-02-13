@@ -15,6 +15,9 @@ const styles = theme => ({
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1)
     }
+  },
+  fullWidth: {
+    width: "100%"
   }
 });
 
@@ -43,7 +46,7 @@ function ActionPaper(props) {
         {actions && (
           <Box pb={2} pr={2}>
             <DialogActions
-              classes={{ action: fullWidthActions ? "w-100" : null }}
+              classes={{ action: fullWidthActions ? classes.fullWidth : null }}
             >
               {actions}
             </DialogActions>
@@ -55,8 +58,8 @@ function ActionPaper(props) {
 }
 
 ActionPaper.propTypes = {
-  theme: PropTypes.object,
-  classes: PropTypes.object,
+  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   title: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,

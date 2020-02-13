@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Snackbar, Avatar, withStyles } from "@material-ui/core";
-import ErrorIcon from "@material-ui/icons/Error";
+import { Snackbar, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -12,9 +11,6 @@ const styles = theme => ({
 });
 
 class ConsecutiveSnackbars extends PureComponent {
-  /**
-   * Messages get pushed from node server,
-   */
   queue = [];
 
   state = {
@@ -65,30 +61,6 @@ class ConsecutiveSnackbars extends PureComponent {
     this.processQueue();
   };
 
-  getSnackbarIcon = () => {
-    const { messageInfo } = this.state;
-    const { message } = messageInfo;
-    if (!message) {
-      return;
-    }
-    if (message.isErrorMessage) {
-      return <ErrorIcon className="mr-2" style={{ width: 24, height: 24 }} />;
-    }
-    if (message.avatarUrl) {
-      return (
-        <Avatar
-          src={message.avatarUrl}
-          className="mr-2"
-          style={{ width: 24, height: 24 }}
-        />
-      );
-    }
-    /**
-     * saved message
-     */
-    return null;
-  };
-
   render() {
     const { classes } = this.props;
     const { messageInfo, open } = this.state;
@@ -110,10 +82,7 @@ class ConsecutiveSnackbars extends PureComponent {
           }
         }}
         message={
-          <div className="d-flex align-items-center">
-            {this.getSnackbarIcon()}
-            <span>{messageInfo.message ? messageInfo.message.text : null}</span>
-          </div>
+          <span>{messageInfo.message ? messageInfo.message.text : null}</span>
         }
       />
     );
@@ -121,7 +90,7 @@ class ConsecutiveSnackbars extends PureComponent {
 }
 
 ConsecutiveSnackbars.propTypes = {
-  getPushMessageFunctionFromChildComponent: PropTypes.func,
+  getPushMessageFunctionFromChildComponent: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 };
 

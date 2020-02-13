@@ -7,6 +7,7 @@ import {
   Card,
   Button,
   Hidden,
+  Box,
   withStyles,
   withWidth,
   isWidthUp
@@ -35,6 +36,8 @@ const styles = theme => ({
   },
   card: {
     boxShadow: theme.shadows[4],
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
     [theme.breakpoints.up("xs")]: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3)
@@ -63,7 +66,8 @@ const styles = theme => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    paddingBottom: theme.spacing(2)
   },
   image: {
     maxWidth: "100%",
@@ -88,6 +92,9 @@ const styles = theme => ({
     [theme.breakpoints.up("md")]: {
       maxWidth: "none !important"
     }
+  },
+  waveBorder: {
+    paddingTop: theme.spacing(4)
   }
 });
 
@@ -95,33 +102,41 @@ function HeadSection(props) {
   const { classes, theme, width } = props;
   return (
     <Fragment>
-      <div className={classNames("lg-p-top pb-2", classes.wrapper)}>
+      <div className={classNames("lg-p-top", classes.wrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
-          <div className="row d-flex justify-content-center">
+          <Box display="flex" justifyContent="center" className="row">
             <Card
-              className={classNames("mx-2", classes.card)}
+              className={classes.card}
               data-aos-delay="200"
               data-aos="zoom-in"
             >
               <div className={classNames(classes.containerFix, "container")}>
-                <div className="row justify-content-between">
+                <Box justifyContent="space-between" className="row">
                   <Grid item xs={12} md={5}>
-                    <div className="d-flex flex-column justify-content-between h-100">
-                      <Typography
-                        variant={isWidthUp("lg", width) ? "h3" : "h4"}
-                        className="mb-4"
-                      >
-                        Free Template for building an SaaS app using Material-UI
-                      </Typography>
-                      <div>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent="space-between"
+                      height="100%"
+                    >
+                      <Box mb={4}>
                         <Typography
-                          variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                          className="mb-2"
-                          color="textSecondary"
+                          variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         >
-                          Lorem ipsum dolor sit amet, consetetur sadipscing
-                          elitr, sed diam nonumy eirmod tempor invidunt
+                          Free Template for building an SaaS app using
+                          Material-UI
                         </Typography>
+                      </Box>
+                      <div>
+                        <Box mb={2}>
+                          <Typography
+                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
+                            color="textSecondary"
+                          >
+                            Lorem ipsum dolor sit amet, consetetur sadipscing
+                            elitr, sed diam nonumy eirmod tempor invidunt
+                          </Typography>
+                        </Box>
                         <Button
                           variant="contained"
                           color="secondary"
@@ -133,7 +148,7 @@ function HeadSection(props) {
                           Download from GitHub
                         </Button>
                       </div>
-                    </div>
+                    </Box>
                   </Grid>
                   <Hidden smDown>
                     <Grid item md={6}>
@@ -144,16 +159,16 @@ function HeadSection(props) {
                       />
                     </Grid>
                   </Hidden>
-                </div>
+                </Box>
               </div>
             </Card>
-          </div>
+          </Box>
         </div>
       </div>
       <WaveBorder
         upperColor={theme.palette.secondary.main}
         lowerColor="#FFFFFF"
-        className="pt-4"
+        className={classes.waveBorder}
       />
     </Fragment>
   );

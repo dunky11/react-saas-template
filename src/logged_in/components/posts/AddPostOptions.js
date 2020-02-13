@@ -13,6 +13,7 @@ import {
   Select,
   OutlinedInput,
   MenuItem,
+  Box,
   withStyles
 } from "@material-ui/core";
 import Bordered from "../../../shared/Bordered";
@@ -102,6 +103,9 @@ const styles = theme => ({
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     marginRight: -1
+  },
+  dNone: {
+    display: "none"
   }
 });
 
@@ -224,14 +228,14 @@ class AddPostOptions extends PureComponent {
         <Typography paragraph variant="h6">
           Upload Image
         </Typography>
-        <div className="mb-2">
+        <Box mb={2}>
           <Tabs
             value={tabIndex}
             indicatorColor="primary"
             textColor="primary"
             onChange={handleTabChange}
             classes={{
-              indicator: "d-none"
+              indicator: classes.dNone
             }}
             style={{ minHeight: 0 }}
           >
@@ -263,21 +267,19 @@ class AddPostOptions extends PureComponent {
               emojiSet="google"
             />
           )}
-        </div>
-        <Typography paragraph variant="h6" className="mt-3">
-          Options
-        </Typography>
-        <List className="w-100">
+        </Box>
+        <Box mt={3}>
+          <Typography paragraph variant="h6">
+            Options
+          </Typography>
+        </Box>
+        <List>
           <Bordered disableVerticalPadding>
-            <ListItem
-              divider
-              disableGutters
-              className="listItemSecondaryPadding"
-            >
+            <ListItem divider disableGutters className="listItemLeftPadding">
               <ListItemText>
                 <Typography variant="body2">Upload at</Typography>
               </ListItemText>
-              <ListItemSecondaryAction className="pr-3">
+              <ListItemSecondaryAction>
                 {DateTimePicker && (
                   <DateTimePicker
                     value={uploadAt}
@@ -289,7 +291,7 @@ class AddPostOptions extends PureComponent {
             </ListItem>
             {inputs.map((element, index) => (
               <ListItem
-                className="listItemSecondaryPadding"
+                className="listItemLeftPadding"
                 disableGutters
                 divider={index !== inputs.length - 1}
                 key={index}
@@ -298,7 +300,7 @@ class AddPostOptions extends PureComponent {
                   <Typography variant="body2">{element.label}</Typography>
                 </ListItemText>
                 <FormControl variant="outlined">
-                  <ListItemSecondaryAction className="pr-3">
+                  <ListItemSecondaryAction>
                     <Select
                       value={element.state}
                       onChange={this.handleChange}

@@ -8,7 +8,7 @@ function StatisticsArea(props) {
     CardChart &&
     data.length >= 2 && (
       <Grid container spacing={3}>
-        <Grid item md={6} className="w-100">
+        <Grid item xs={12} md={6}>
           <CardChart
             data={data.map(element => ({
               value: element.profit,
@@ -19,7 +19,7 @@ function StatisticsArea(props) {
             title="Profit"
           />
         </Grid>
-        <Grid item md={6} className="w-100">
+        <Grid item xs={12} md={6}>
           <CardChart
             data={data.map(element => ({
               value: element.views,

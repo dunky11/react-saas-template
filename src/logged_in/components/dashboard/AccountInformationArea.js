@@ -7,16 +7,18 @@ import {
   ListItemSecondaryAction,
   ListItemIcon,
   Switch,
+  Box,
   withStyles
 } from "@material-ui/core";
 import LoopIcon from "@material-ui/icons/Loop";
 import classNames from "classnames";
 
-const styles = {
+const styles = theme => ({
   paper: {
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0
   },
+  toolbar: { justifyContent: "space-between" },
   scaleMinus: {
     transform: "scaleX(-1)"
   },
@@ -24,20 +26,23 @@ const styles = {
     from: { transform: "rotate(359deg)" },
     to: { transform: "rotate(0deg)" }
   },
-  spin: { animation: "$spin 2s infinite linear" }
-};
+  spin: { animation: "$spin 2s infinite linear" },
+  listItemSecondaryAction: { paddingRight: theme.spacing(1) }
+});
 
 function AccountInformationArea(props) {
   const { classes, toggleAccountActivation, isAccountActivated } = props;
   return (
     <Paper className={classes.paper}>
-      <Toolbar className="justify-content-between">
-        <div className="d-flex align-items-center">
-          <ListItemText
-            primary="Status"
-            secondary={isAccountActivated ? "Activated" : "Not activated"}
-            className="mr-2"
-          />
+      <Toolbar className={classes.toolbar}>
+        <Box display="flex" alignItems="center">
+          <Box mr={2}>
+            <ListItemText
+              primary="Status"
+              secondary={isAccountActivated ? "Activated" : "Not activated"}
+              className="mr-2"
+            />
+          </Box>
           <ListItemIcon>
             <LoopIcon
               className={classNames(
@@ -46,8 +51,8 @@ function AccountInformationArea(props) {
               )}
             />
           </ListItemIcon>
-        </div>
-        <ListItemSecondaryAction className="pr-1">
+        </Box>
+        <ListItemSecondaryAction className={classes.listItemSecondaryAction}>
           <Switch
             color="secondary"
             checked={isAccountActivated}
@@ -60,9 +65,10 @@ function AccountInformationArea(props) {
 }
 
 AccountInformationArea.propTypes = {
-  classes: PropTypes.object,
-  toggleAccountActivation: PropTypes.func,
-  isAccountActivated: PropTypes.bool.isRequired
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  toggleAccountActivation: PropTypes.func.isRequired,
+  isAccountActivated: PropTypes.bool.isRequired.isRequired
 };
 
-export default withStyles(styles)(AccountInformationArea);
+export default withStyles(styles, { withTheme: true })(AccountInformationArea);

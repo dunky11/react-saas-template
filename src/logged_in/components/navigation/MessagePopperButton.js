@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  Box,
   withStyles
 } from "@material-ui/core";
 import MessageIcon from "@material-ui/icons/Message";
@@ -19,7 +20,6 @@ const styles = theme => ({
     overflowY: "auto",
     maxHeight: 350
   },
-  // This will center the element on the messageIcon
   popoverPaper: {
     width: "100%",
     maxWidth: 350,
@@ -114,9 +114,9 @@ class MessagePopperButton extends PureComponent {
               color="inherit"
               className={classes.noShadow}
             >
-              <Typography variant="subtitle1" className="p-1 pl-2">
-                Messages
-              </Typography>
+              <Box pt={1} pl={2} pb={1} pr={1}>
+                <Typography variant="subtitle1">Messages</Typography>
+              </Box>
               <Divider className={classes.divider} />
             </AppBar>
             <List dense className={classes.tabContainer}>

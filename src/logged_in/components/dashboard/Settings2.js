@@ -15,6 +15,7 @@ import {
   OutlinedInput,
   MenuItem,
   Checkbox,
+  Box,
   withStyles
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -46,6 +47,13 @@ const styles = theme => ({
       paddingLeft: theme.spacing(4)
     },
     paddingLeft: 100
+  },
+  expansionPanelDetails: {
+    paddingTop: theme.spacing(0),
+    justifyContent: "flex-end"
+  },
+  dBlock: {
+    display: "block"
   }
 });
 
@@ -222,14 +230,14 @@ class Settings2 extends PureComponent {
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Settings 2</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className="d-block">
-          <List className="w-100">
+        <ExpansionPanelDetails className={classes.dBlock}>
+          <List>
             <Bordered disableVerticalPadding>
               {inputs.map((element, index) => (
                 <ListItem
                   key={index}
                   divider={index !== inputs.length - 1}
-                  className="listItemSecondaryPadding"
+                  className="listItemLeftPadding"
                 >
                   <ListItemText>
                     <Typography variant="body2">
@@ -249,14 +257,15 @@ class Settings2 extends PureComponent {
             </Bordered>
           </List>
         </ExpansionPanelDetails>
-        <ExpansionPanelDetails className="pt-0 justify-content-end">
-          <Button
-            onClick={this.onSetDefault}
-            disabled={saveLoading || defaultLoading}
-            className="mr-1"
-          >
-            Default {defaultLoading && <ButtonCircularProgress />}
-          </Button>
+        <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+          <Box mr={1}>
+            <Button
+              onClick={this.onSetDefault}
+              disabled={saveLoading || defaultLoading}
+            >
+              Default {defaultLoading && <ButtonCircularProgress />}
+            </Button>
+          </Box>
           <Button
             variant="contained"
             color="secondary"

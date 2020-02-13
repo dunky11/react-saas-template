@@ -62,11 +62,11 @@ function FeatureCard(props) {
 }
 
 FeatureCard.propTypes = {
-  classes: PropTypes.object,
-  Icon: PropTypes.element,
-  color: PropTypes.string,
-  headline: PropTypes.string,
-  text: PropTypes.string
+  classes: PropTypes.object.isRequired,
+  Icon: PropTypes.element.isRequired,
+  color: PropTypes.string.isRequired,
+  headline: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(FeatureCard);

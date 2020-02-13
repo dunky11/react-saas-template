@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import format from "date-fns/format";
-import { Grid, Typography, Card, withStyles } from "@material-ui/core";
+import { Grid, Typography, Card, Box, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 import smoothScrollTop from "../../../shared/smoothScrollTop";
 
@@ -45,17 +45,16 @@ class BlogPost extends PureComponent {
   render() {
     const { classes, date, title, src, content, otherArticles } = this.props;
     return (
-      <div
-        className={classNames(
-          "lg-p-top d-flex justify-content-center",
-          classes.wrapper
-        )}
+      <Box
+        className={classNames("lg-p-top", classes.wrapper)}
+        display="flex"
+        justifyContent="center"
       >
         <div className={classes.blogContentWrapper}>
           <Grid container spacing={5}>
             <Grid item md={9}>
               <Card className={classes.card}>
-                <div className="p-3">
+                <Box p={3}>
                   <Typography
                     align="center"
                     variant="body1"
@@ -68,11 +67,9 @@ class BlogPost extends PureComponent {
                   <Typography align="center" variant="h4">
                     <b>{title}</b>
                   </Typography>
-                </div>
+                </Box>
                 <img className={classes.img} src={src} alt="" />
-                <div className="p-3">
-                  <div className="blog-content">{content}</div>
-                </div>
+                <Box p={3}>{content}</Box>
               </Card>
             </Grid>
             <Grid item md={3}>
@@ -80,7 +77,7 @@ class BlogPost extends PureComponent {
                 Other arcticles
               </Typography>
               {otherArticles.map(blogPost => (
-                <div key={blogPost.id} className="mb-3">
+                <Box key={blogPost.id} mb={3}>
                   <BlogCard
                     src={blogPost.image_src}
                     title={blogPost.title}
@@ -88,12 +85,12 @@ class BlogPost extends PureComponent {
                     date={blogPost.date}
                     url={blogPost.url}
                   />
-                </div>
+                </Box>
               ))}
             </Grid>
           </Grid>
         </div>
-      </div>
+      </Box>
     );
   }
 }

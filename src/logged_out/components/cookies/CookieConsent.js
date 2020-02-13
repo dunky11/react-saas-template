@@ -1,7 +1,13 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
-import { Snackbar, Button, Typography, withStyles } from "@material-ui/core";
+import {
+  Snackbar,
+  Button,
+  Typography,
+  Box,
+  withStyles
+} from "@material-ui/core";
 import fetchIpData from "./fetchIpData";
 
 const styles = theme => ({
@@ -100,13 +106,11 @@ class CookieConsent extends PureComponent {
         }
         action={
           <Fragment>
-            <Button
-              color="primary"
-              className="mr-1"
-              onClick={handleCookieRulesDialogOpen}
-            >
-              More details
-            </Button>
+            <Box mr={1}>
+              <Button color="primary" onClick={handleCookieRulesDialogOpen}>
+                More details
+              </Button>
+            </Box>
             <Button color="primary" onClick={this.onAccept}>
               Got it!
             </Button>

@@ -15,6 +15,7 @@ import {
   ListItemText,
   Hidden,
   Tooltip,
+  Box,
   withStyles,
   isWidthUp,
   withWidth
@@ -45,6 +46,8 @@ const styles = theme => ({
     }
   },
   appBarToolbar: {
+    display: "flex",
+    justifyContent: "space-between",
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     minHeight: 64,
@@ -110,6 +113,13 @@ const styles = theme => ({
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400
+  },
+  username: {
+    paddingLeft: 0,
+    paddingRight: theme.spacing(2)
+  },
+  justifyCenter: {
+    justifyContent: "center"
   }
 });
 
@@ -206,21 +216,14 @@ class NavBar extends PureComponent {
     return (
       <Fragment>
         <AppBar position="sticky" className={classes.appBar}>
-          <Toolbar
-            className={classNames(
-              classes.appBarToolbar,
-              "d-flex justify-content-between"
-            )}
-          >
-            <div className="d-flex align-items-center">
+          <Toolbar className={classes.appBarToolbar}>
+            <Box display="flex" alignItems="center">
               <Hidden smUp>
-                <IconButton
-                  onClick={this.openMobileDrawer}
-                  className="mr-1"
-                  color="primary"
-                >
-                  <MenuIcon />
-                </IconButton>
+                <Box mr={1}>
+                  <IconButton onClick={this.openMobileDrawer} color="primary">
+                    <MenuIcon />
+                  </IconButton>
+                </Box>
               </Hidden>
               <Hidden xsDown>
                 <Typography
@@ -240,8 +243,13 @@ class NavBar extends PureComponent {
                   Ver
                 </Typography>
               </Hidden>
-            </div>
-            <div className="d-flex justify-content-end w-100 align-items-center">
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="center"
+              width="100%"
+            >
               {isWidthUp("sm", width) && <Balance balance={2573} />}
               <MessagePopperButton messages={messages} />
               <ListItem
@@ -255,14 +263,14 @@ class NavBar extends PureComponent {
                 />
                 {isWidthUp("sm", width) && (
                   <ListItemText
-                    className="pl-0 pr-2"
+                    className={classes.username}
                     primary={
                       <Typography color="textPrimary">Username</Typography>
                     }
                   />
                 )}
               </ListItem>
-            </div>
+            </Box>
             <IconButton onClick={this.openDrawer} color="primary">
               <SupervisorAccountIcon />
             </IconButton>
@@ -294,9 +302,9 @@ class NavBar extends PureComponent {
                       selected={selectedTab === element.name}
                       button
                       divider={index !== menuItems.length - 1}
-                      className="justify-content-center"
+                      className={classes.justifyCenter}
                     >
-                      <ListItemIcon className="justify-content-center">
+                      <ListItemIcon className={classes.justifyCenter}>
                         {element.icon.desktop}
                       </ListItemIcon>
                     </ListItem>

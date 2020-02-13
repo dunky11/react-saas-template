@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDropzone } from "react-dropzone";
 import classNames from "classnames";
-import { withStyles } from "@material-ui/core";
+import { Box, withStyles } from "@material-ui/core";
 import ColoredButton from "./ColoredButton";
 
-const styles = theme => ({
+const styles = {
   button: {
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.23)",
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0
+  },
+  fullHeight: {
+    height: "100%"
   }
-});
+};
 
 function getColor(isDragAccept, isDragReject, theme) {
   if (isDragAccept) {
@@ -36,18 +39,21 @@ function Dropzone(props) {
     onDrop: onDrop
   });
   return (
-    <div {...getRootProps()} style={{ height: "100%" }}>
+    <Box {...getRootProps()} height="100%">
       <input {...getInputProps()} />
       <ColoredButton
         fullWidth
-        className={classNames(fullHeight ? "h-100" : null, classes.button)}
+        className={classNames(
+          fullHeight ? classes.fullHeight : null,
+          classes.button
+        )}
         variant="outlined"
         color={getColor(isDragAccept, isDragReject, theme)}
         style={style}
       >
         {children}
       </ColoredButton>
-    </div>
+    </Box>
   );
 }
 

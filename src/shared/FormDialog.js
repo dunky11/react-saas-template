@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Dialog, DialogContent, withStyles } from "@material-ui/core";
+import { Dialog, DialogContent, Box, withStyles } from "@material-ui/core";
 import DialogTitleWithCloseIcon from "./DialogTitleWithCloseIcon";
 
 const styles = theme => ({
@@ -15,19 +14,19 @@ const styles = theme => ({
   actions: {
     marginTop: theme.spacing(2)
   },
-  /**
-   * This will eliminate the scroll on the paper
-   */
   dialogPaperScrollPaper: {
     maxHeight: "none"
+  },
+  dialogContent: {
+    paddingTop: 0,
+    paddingBottom: 0
   }
 });
 
 /**
- * This is a Wrapper around the Dialog component to create centered
- * Login, Register or other dialogs.
+ * A Wrapper around the Dialog component to create centered
+ * Login, Register or other Dialogs.
  */
-
 function FormDialog(props) {
   const {
     classes,
@@ -57,10 +56,12 @@ function FormDialog(props) {
         onClose={onClose}
         disabled={loading}
       />
-      <DialogContent className="py-0">
+      <DialogContent className={classes.dialogContent}>
         <form onSubmit={onFormSubmit}>
           <div>{content}</div>
-          <div className={classNames("w-100", classes.actions)}>{actions}</div>
+          <Box width="100%" className={classes.actions}>
+            {actions}
+          </Box>
         </form>
       </DialogContent>
     </Dialog>
@@ -68,15 +69,15 @@ function FormDialog(props) {
 }
 
 FormDialog.propTypes = {
-  classes: PropTypes.object,
-  open: PropTypes.bool,
-  onClose: PropTypes.func,
-  loading: PropTypes.bool,
-  headline: PropTypes.string,
-  onFormSubmit: PropTypes.func,
-  content: PropTypes.element,
-  actions: PropTypes.element,
-  hideBackdrop: PropTypes.bool
+  classes: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  headline: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  content: PropTypes.element.isRequired,
+  actions: PropTypes.element.isRequired,
+  hideBackdrop: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(FormDialog);

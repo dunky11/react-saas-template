@@ -8,7 +8,6 @@ import {
   TableRow,
   withStyles
 } from "@material-ui/core";
-import classNames from "classnames";
 import EnhancedTableHead from "../../../shared/EnhancedTableHead";
 import ColorfulChip from "../../../shared/ColorfulChip";
 import unixToDateString from "../../../shared/unixToDateString";
@@ -17,7 +16,8 @@ import currencyPrettyPrint from "../../../shared/currencyPrettyPrint";
 
 const styles = theme => ({
   tableWrapper: {
-    overflowX: "auto"
+    overflowX: "auto",
+    width: "100%"
   },
   blackBackground: {
     backgroundColor: theme.palette.primary.main
@@ -26,13 +26,17 @@ const styles = theme => ({
     padding: theme.spacing(3),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(2)
-    }
+    },
+    width: "100%"
   },
   dBlock: {
     display: "block !important"
   },
   dNone: {
     display: "none !important"
+  },
+  firstData: {
+    paddingLeft: theme.spacing(3)
   }
 });
 
@@ -75,7 +79,7 @@ class SubscriptionTable extends PureComponent {
     const { transactions, theme, classes } = this.props;
     if (transactions.length > 0) {
       return (
-        <div className={classNames("w-100", classes.tableWrapper)}>
+        <div className={classes.tableWrapper}>
           <Table aria-labelledby="tableTitle">
             <EnhancedTableHead rowCount={transactions.length} rows={rows} />
             <TableBody>
@@ -86,7 +90,11 @@ class SubscriptionTable extends PureComponent {
                 )
                 .map((transaction, index) => (
                   <TableRow hover tabIndex={-1} key={index}>
-                    <TableCell component="th" scope="row" className="pl-3">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.firstData}
+                    >
                       {transaction.description}
                     </TableCell>
                     <TableCell component="th" scope="row">
@@ -140,7 +148,7 @@ class SubscriptionTable extends PureComponent {
       );
     }
     return (
-      <div className={classNames("w-100", classes.contentWrapper)}>
+      <div className={classes.contentWrapper}>
         <HighlightedInformation>
           No transactions received yet.
         </HighlightedInformation>
@@ -152,7 +160,7 @@ class SubscriptionTable extends PureComponent {
 SubscriptionTable.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  transactions: PropTypes.array
+  transactions: PropTypes.array.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(SubscriptionTable);
