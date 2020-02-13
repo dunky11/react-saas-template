@@ -27,7 +27,7 @@
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "emoji-mart": "^2.11.2",
-    "file-loader": "2.0.0",
+    "file-loader": "5.0.2",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
