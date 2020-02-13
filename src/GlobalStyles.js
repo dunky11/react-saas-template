@@ -9,9 +9,6 @@ const styles = theme => ({
     "*:focus": {
       outline: 0
     },
-    ".w-100": {
-      width: "100% !important"
-    },
     ".text-white": {
       color: `${theme.palette.common.white} !important`
     },
