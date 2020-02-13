@@ -17,7 +17,7 @@ ReactDOM.render(
   <BrowserRouter>
     <MuiThemeProvider theme={theme}>
       <link
-        href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Roboto:300,400,500"
+        href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Roboto:300,400,500&display=swap"
         rel="stylesheet"
       />
       <CssBaseline />
