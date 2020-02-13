@@ -27,12 +27,11 @@ const styles = theme => ({
   }
 });
 
-const id = String(Math.random());
-
 /**
  *  https://codepen.io/csspoints/pen/WNeOEqd
  */
 function WaveBorder(props) {
+  const id = String(Math.random());
   const { className, lowerColor, upperColor, classes } = props;
   return (
     <div className={className} style={{ background: upperColor }}>
