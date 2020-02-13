@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core";
 import { PaymentInputsWrapper, usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 
-const styles = theme => ({});
+const styles = {};
 
 function CardTextField() {
   const {
