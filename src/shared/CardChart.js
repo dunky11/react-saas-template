@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import {
   AreaChart,
   Area,
@@ -17,7 +16,8 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  withStyles
+  withStyles,
+  Box
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
@@ -110,8 +110,8 @@ class CardChart extends PureComponent {
     const open = Boolean(anchorEl);
     return (
       <Card>
-        <div className="p-2">
-          <div className="d-flex justify-content-between mb-1">
+        <Box pt={2} px={2} pb={4}>
+          <Box display="flex" justifyContent="space-between">
             <div>
               <Typography variant="subtitle1">{title}</Typography>
               <Typography variant="body2" color="textSecondary">
@@ -153,13 +153,10 @@ class CardChart extends PureComponent {
                 ))}
               </Menu>
             </div>
-          </div>
-        </div>
+          </Box>
+        </Box>
         <CardContent>
-          <div
-            className={classNames(classes.cardContentInner, "w-100")}
-            style={{ height }}
-          >
+          <Box className={classes.cardContentInner} height={height}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={this.processData()} type="number">
                 <XAxis
@@ -199,7 +196,7 @@ class CardChart extends PureComponent {
                 />
               </AreaChart>
             </ResponsiveContainer>
-          </div>
+          </Box>
         </CardContent>
       </Card>
     );
@@ -207,12 +204,12 @@ class CardChart extends PureComponent {
 }
 
 CardChart.propTypes = {
-  color: PropTypes.string,
-  data: PropTypes.array,
-  title: PropTypes.string,
-  classes: PropTypes.object,
-  theme: PropTypes.object,
-  height: PropTypes.string
+  color: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  height: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(CardChart);
