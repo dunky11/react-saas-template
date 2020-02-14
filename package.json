@@ -1,6 +1,6 @@
 {
   "name": "react-saas-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "",
   "description": "Template for building an SaaS/admin application using React + Material-UI",
