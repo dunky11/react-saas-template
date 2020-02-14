@@ -124,7 +124,7 @@
   "devDependencies": {
     "browserslist": "^4.8.7",
     "caniuse-lite": "^1.0.30001027",
-    "react-dev-utils": "^7.0.5"
+    "react-dev-utils": "^10.1.0"
   },
   "repository": {
     "type": "git",
