@@ -1,6 +1,8 @@
 # React SaaS Template
 Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
 
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
+
 ## Getting Started
 
 ### Prerequisites
