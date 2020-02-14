@@ -40,7 +40,7 @@
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
-    "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-flexbugs-fixes": "4.2.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
