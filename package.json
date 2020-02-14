@@ -122,7 +122,7 @@
     ]
   },
   "devDependencies": {
-    "browserslist": "^4.8.6",
+    "browserslist": "^4.8.7",
     "caniuse-lite": "^1.0.30001027",
     "react-dev-utils": "^7.0.5"
   },
