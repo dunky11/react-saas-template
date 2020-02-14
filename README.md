@@ -1,7 +1,7 @@
 # React SaaS Template
 Remains of a SaaS business I once tried to build. Now transformed into a template for building an SaaS/admin application using React + Material-UI.
 
-https://github.com/dunky11/react-saas-template/workflows/nodejs.yml/badge.svg [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
 
 ## Getting Started
 
