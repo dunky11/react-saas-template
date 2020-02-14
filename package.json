@@ -20,7 +20,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^9.1.1",
     "bfj": "6.1.1",
-    "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
     "css-loader": "3.4.2",
     "date-fns": "^2.9.0",
