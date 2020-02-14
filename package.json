@@ -19,7 +19,7 @@
     "babel-plugin-named-asset-import": "^0.3.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^7.0.2",
-    "bfj": "6.1.1",
+    "bfj": "7.0.2",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "classnames": "^2.2.6",
     "css-loader": "1.0.0",
