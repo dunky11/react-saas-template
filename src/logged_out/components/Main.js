@@ -13,7 +13,7 @@ import dummyBlogPosts from "../dummy_data/blogPosts";
 import DialogSelector from "./register_login/DialogSelector";
 import Routing from "./Routing";
 
-AOS.init();
+AOS.init({ once: true });
 
 const styles = theme => ({
   wrapper: {
