@@ -20,16 +20,22 @@ const styles = theme => ({
   },
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
+    paddingTop: theme.spacing(8),
+    paddingLeft: theme.spacing(7),
+    paddingRight: theme.spacing(7),
+    paddingBottom: theme.spacing(6),
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: theme.spacing(10),
+      paddingLeft: theme.spacing(16),
+      paddingRight: theme.spacing(16),
+      paddingBottom: theme.spacing(10)
+    },
     [theme.breakpoints.up("md")]: {
       paddingTop: theme.spacing(10),
       paddingLeft: theme.spacing(10),
       paddingRight: theme.spacing(10),
       paddingBottom: theme.spacing(10)
-    },
-    paddingTop: theme.spacing(8),
-    paddingLeft: theme.spacing(6),
-    paddingRight: theme.spacing(6),
-    paddingBottom: theme.spacing(6)
+    }
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
