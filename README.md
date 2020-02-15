@@ -10,7 +10,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 ### Prerequisites
 
-#### Node.js 12+ *(versions below could work, but are not tested)*
+#### Node.js 12+ (versions below could work, but are not tested)
 
 * Linux:
 
