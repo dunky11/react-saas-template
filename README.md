@@ -9,8 +9,6 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 [<img src="/.github/dashboard.png">](https://reactsaastemplate.com)
 
-![](/.github/dashboard.png)
-
 ## Getting Started
 
 ### Prerequisites
