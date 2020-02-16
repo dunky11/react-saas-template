@@ -81,7 +81,7 @@ const styles = theme => ({
     border: 0,
     width: theme.spacing(7),
     overflowX: "hidden",
-    marginTop: 64,
+    marginTop: theme.spacing(8),
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9)
     },
@@ -120,6 +120,11 @@ const styles = theme => ({
   },
   justifyCenter: {
     justifyContent: "center"
+  },
+  permanentDrawerListItem: {
+    justifyContent: "center",
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
   }
 });
 
@@ -302,7 +307,7 @@ class NavBar extends PureComponent {
                       selected={selectedTab === element.name}
                       button
                       divider={index !== menuItems.length - 1}
-                      className={classes.justifyCenter}
+                      className={classes.permanentDrawerListItem}
                     >
                       <ListItemIcon className={classes.justifyCenter}>
                         {element.icon.desktop}

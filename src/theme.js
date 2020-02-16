@@ -19,7 +19,7 @@ const sm = 600;
 const xs = 0;
 
 // spacing
-const spacing = 4;
+const spacing = 8;
 
 const theme = createMuiTheme({
   palette: {
@@ -41,13 +41,7 @@ const theme = createMuiTheme({
     background: {
       default: "#f5f5f5"
     },
-    accentColor1: {
-      main: "#975FE4"
-    },
-    accentColor2: {
-      main: "#26c6da"
-    },
-    spacing
+    spacing: spacing
   },
   breakpoints: {
     // Define custom breakpoint values.
@@ -96,10 +90,6 @@ const theme = createMuiTheme({
       }
     },
     MuiListItem: {
-      root: {
-        paddingTop: spacing * 2,
-        paddingBottom: spacing * 2
-      },
       divider: {
         borderBottom: `${borderWidth}px solid ${borderColor}`
       }
