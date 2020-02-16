@@ -10,17 +10,17 @@ const styles = theme => ({
       outline: 0
     },
     ".text-white": {
-      color: `${theme.palette.common.white} !important`
+      color: theme.palette.common.white
     },
     ".listItemLeftPadding": {
       paddingTop: 14,
       paddingBottom: 14,
-      paddingLeft: `${theme.spacing(4)}px !important`,
+      paddingLeft: theme.spacing(4),
       [theme.breakpoints.down("sm")]: {
-        paddingLeft: `${theme.spacing(2)}px !important`
+        paddingLeft: theme.spacing(2)
       },
       "@media (max-width:  420px)": {
-        paddingLeft: `${theme.spacing(1)}px !important`
+        paddingLeft: theme.spacing(1)
       }
     },
     ".container": {
@@ -54,39 +54,39 @@ const styles = theme => ({
       maxWidth: 1370
     },
     ".lg-mg-top": {
-      marginTop: `${theme.spacing(20)}px !important`,
+      marginTop: theme.spacing(20),
       [theme.breakpoints.down("md")]: {
-        marginTop: `${theme.spacing(18)}px !important`
+        marginTop: theme.spacing(18)
       },
       [theme.breakpoints.down("sm")]: {
-        marginTop: `${theme.spacing(16)}px !important`
+        marginTop: theme.spacing(16)
       },
       [theme.breakpoints.down("xs")]: {
-        marginTop: `${theme.spacing(14)}px !important`
+        marginTop: theme.spacing(14)
       }
     },
     ".lg-mg-bottom": {
-      marginBottom: `${theme.spacing(20)}px !important`,
+      marginBottom: theme.spacing(20),
       [theme.breakpoints.down("md")]: {
-        marginBottom: `${theme.spacing(18)}px !important`
+        marginBottom: theme.spacing(18)
       },
       [theme.breakpoints.down("sm")]: {
-        marginBottom: `${theme.spacing(16)}px !important`
+        marginBottom: theme.spacing(16)
       },
       [theme.breakpoints.down("xs")]: {
-        marginBottom: `${theme.spacing(14)}px !important`
+        marginBottom: theme.spacing(14)
       }
     },
     ".lg-p-top": {
-      paddingTop: `${theme.spacing(20)}px !important`,
+      paddingTop: theme.spacing(20),
       [theme.breakpoints.down("md")]: {
-        paddingTop: `${theme.spacing(18)}px !important`
+        paddingTop: theme.spacing(18)
       },
       [theme.breakpoints.down("sm")]: {
-        paddingTop: `${theme.spacing(16)}px !important`
+        paddingTop: theme.spacing(16)
       },
       [theme.breakpoints.down("xs")]: {
-        paddingTop: `${theme.spacing(14)}px !important`
+        paddingTop: theme.spacing(14)
       }
     }
   }
