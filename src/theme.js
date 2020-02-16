@@ -1,12 +1,25 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 
+// colors
 const primary = "#b3294e";
 const secondary = "#4829B2";
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
 const success = "#4caf50";
+
+// borders
 const borderWidth = 2;
 const borderColor = "rgba(0, 0, 0, 0.13)";
+
+// breakpoints
+const xl = 1920;
+const lg = 1280;
+const md = 960;
+const sm = 600;
+const xs = 0;
+
+// spacing
+const spacing = 4;
 
 const theme = createMuiTheme({
   palette: {
@@ -33,7 +46,8 @@ const theme = createMuiTheme({
     },
     accentColor2: {
       main: "#26c6da"
-    }
+    },
+    spacing
   },
   breakpoints: {
     // Define custom breakpoint values.
@@ -42,11 +56,11 @@ const theme = createMuiTheme({
     // theme breakpoint functions `up`, `down`, and `between` to create
     // media queries for these breakpoints
     values: {
-      lg: 1280,
-      md: 960,
-      sm: 600,
-      xl: 1920,
-      xs: 0
+      xl,
+      lg,
+      md,
+      sm,
+      xs
     }
   },
   border: {
@@ -61,12 +75,12 @@ const theme = createMuiTheme({
     },
     MuiTableCell: {
       root: {
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: spacing * 2,
+        paddingRight: spacing * 2,
         borderBottom: `${borderWidth}px solid ${borderColor}`,
-        "@media (max-width:  600px)": {
-          paddingLeft: 8,
-          paddingRight: 8
+        [`@media (max-width:  ${sm}px)`]: {
+          paddingLeft: spacing,
+          paddingRight: spacing
         }
       }
     },
@@ -83,8 +97,8 @@ const theme = createMuiTheme({
     },
     MuiListItem: {
       root: {
-        paddingTop: 16,
-        paddingBottom: 16
+        paddingTop: spacing * 2,
+        paddingBottom: spacing * 2
       },
       divider: {
         borderBottom: `${borderWidth}px solid ${borderColor}`
@@ -92,10 +106,10 @@ const theme = createMuiTheme({
     },
     MuiDialog: {
       paper: {
-        width: "100% !important",
-        maxWidth: "430px !important",
-        marginLeft: "8px !important",
-        marginRight: "8px !important"
+        width: "100%",
+        maxWidth: 430,
+        marginLeft: spacing,
+        marginRight: spacing
       }
     },
     MuiTooltip: {
@@ -105,9 +119,9 @@ const theme = createMuiTheme({
     },
     MuiExpansionPanelDetails: {
       root: {
-        "@media (max-width:  440px)": {
-          paddingLeft: 8,
-          paddingRight: 8
+        [`@media (max-width:  ${sm}px)`]: {
+          paddingLeft: spacing,
+          paddingRight: spacing
         }
       }
     }
