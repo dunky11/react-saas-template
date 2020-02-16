@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         {/* Roboto is used by Materia-UI, Baloo+Bhaijaan is only used for the brand
-          name in the navigation */}
+            name in the navigation */}
         <link
           href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Roboto:300,400,500&display=swap"
           rel="stylesheet"
