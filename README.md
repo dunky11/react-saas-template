@@ -5,6 +5,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 ![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Getting Started
 
