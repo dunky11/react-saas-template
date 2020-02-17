@@ -131,6 +131,9 @@ const styles = theme => ({
 class NavBar extends PureComponent {
   state = { mobileOpen: false, sideDrawerOpen: false };
 
+  // Will be use to make website mor accessible by screen readers
+  links = [];
+
   openMobileDrawer = () => {
     this.setState({ mobileOpen: true });
   };
@@ -297,7 +300,9 @@ class NavBar extends PureComponent {
                   className={classes.menuLink}
                   onClick={element.onClick}
                   key={index}
-                  id={`navigation-link-${index}`}
+                  ref={node => {
+                    this.links[index] = node;
+                  }}
                 >
                   <Tooltip
                     title={element.name}
@@ -310,9 +315,7 @@ class NavBar extends PureComponent {
                       divider={index !== menuItems.length - 1}
                       className={classes.permanentDrawerListItem}
                       onClick={() => {
-                        document
-                          .getElementById(`navigation-link-${index}`)
-                          .click();
+                        this.links[index].click();
                       }}
                     >
                       <ListItemIcon className={classes.justifyCenter}>
