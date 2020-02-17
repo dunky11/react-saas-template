@@ -63,7 +63,7 @@ function SharingButtons(props) {
                   className={forceWhite ? "text-white" : null}
                   variant="contained"
                   disableElevation
-                  href={`https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=${title}&amp;caption=${description}&amp;content=${site}&amp;canonicalUrl=${site}&amp;shareSource=tumblr_share_button`}
+                  href={`https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=Super+fast+and+easy+Social+Media+Sharing+Buttons.+No+JavaScript.+No+tracking.&caption=Super+fast+and+easy+Social+Media+Sharing+Buttons.+No+JavaScript.+No+tracking.&content=http%3A%2F%2Fsharingbuttons.io&canonicalUrl=http%3A%2F%2Fsharingbuttons.io&shareSource=tumblr_share_button`}
                   startIcon={
                     <SvgIcon>
                       <path d="M13.5.5v5h5v4h-5V15c0 5 3.5 4.4 6 2.8v4.4c-6.7 3.2-12 0-12-4.2V9.5h-3V6.7c1-.3 2.2-.7 3-1.3.5-.5 1-1.2 1.4-2 .3-.7.6-1.7.7-3h3.8z" />
@@ -209,7 +209,7 @@ function SharingButtons(props) {
                       <path
                         fill-rule="evenodd"
                         d="M60.94 82.314L17 0h20.08l25.85 52.093c.397.927.86 1.888 1.39 2.883.53.994.995 2.02 1.393 3.08.265.4.463.764.596 1.095.13.334.262.63.395.898.662 1.325 1.26 2.618 1.79 3.877.53 1.26.993 2.42 1.39 3.48 1.06-2.254 2.22-4.673 3.48-7.258 1.26-2.585 2.552-5.27 3.877-8.052L103.49 0h18.69L77.84 83.308v53.087h-16.9v-54.08z"
-                      />
+                      ></path>
                     </SvgIcon>
                   }
                 >
@@ -242,7 +242,7 @@ function SharingButtons(props) {
             return (
               <Grid item key={index}>
                 <ColoredButton
-                  color="#3b5998"
+                  color="#54A9EB"
                   className={forceWhite ? "text-white" : null}
                   variant="contained"
                   disableElevation
@@ -272,6 +272,7 @@ function SharingButtons(props) {
 SharingButtons.propTypes = {
   types: PropTypes.array.isRequired,
   description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   forceWhite: PropTypes.bool
 };
 
