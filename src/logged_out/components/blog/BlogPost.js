@@ -5,6 +5,7 @@ import format from "date-fns/format";
 import { Grid, Typography, Card, Box, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 import smoothScrollTop from "../../../shared/smoothScrollTop";
+import SharingButtons from "../../../shared/SharingButtons";
 
 const styles = theme => ({
   blogContentWrapper: {
@@ -33,12 +34,6 @@ class BlogPost extends PureComponent {
   componentDidMount() {
     const { title } = this.props;
     document.title = `WaVer - ${title}`;
-    /**
-     * TODO Not waiting 10ms before begin scrolling to the top
-     * leads to an uneasy animation.
-     * Haven't found a lifecycle hook yet where this could be called
-     * without waiting.
-     */
     smoothScrollTop();
   }
 
@@ -65,7 +60,16 @@ class BlogPost extends PureComponent {
                   </Typography>
                 </Box>
                 <img className={classes.img} src={src} alt="" />
-                <Box p={3}>{content}</Box>
+                <Box p={3}>
+                  {content}
+                  <Box pt={2}>
+                    <SharingButtons
+                      types={["Facebook", "Twitter", "Tumblr", "Pinterest"]}
+                      forceWhite
+                      description="I found an awesome template for a react webapp!"
+                    />
+                  </Box>
+                </Box>
               </Card>
             </Grid>
             <Grid item md={3}>
