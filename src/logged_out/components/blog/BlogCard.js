@@ -13,21 +13,22 @@ const styles = theme => ({
       boxShadow: "0 0 1.25rem rgba(108,118,134,.1)!important"
     }
   },
-  title: {
-    transition: theme.transitions.create(["background-color"], {
-      duration: theme.transitions.duration.standard,
-      easing: theme.transitions.easing.easeInOut
-    }),
-    "&:hover": {
-      color: theme.palette.secondary.main
-    },
-    cursor: "pointer"
-  },
   card: {
     boxShadow: theme.shadows[2]
   },
   noDecoration: {
     textDecoration: "none !important"
+  },
+  title: {
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeInOut
+    }),
+    cursor: "pointer",
+    color: theme.palette.secondary.main,
+    "&:hover": {
+      color: theme.palette.secondary.dark
+    }
   },
   link: {
     transition: theme.transitions.create(["background-color"], {
