@@ -131,7 +131,7 @@ const styles = theme => ({
 class NavBar extends PureComponent {
   state = { mobileOpen: false, sideDrawerOpen: false };
 
-  // Will be use to make website mor accessible by screen readers
+  // Will be use to make website more accessible by screen readers
   links = [];
 
   openMobileDrawer = () => {
