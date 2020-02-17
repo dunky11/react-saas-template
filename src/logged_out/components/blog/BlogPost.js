@@ -54,18 +54,14 @@ class BlogPost extends PureComponent {
           <Grid container spacing={5}>
             <Grid item md={9}>
               <Card className={classes.card}>
-                <Box p={3}>
-                  <Typography
-                    align="center"
-                    variant="body1"
-                    color="textSecondary"
-                  >
+                <Box pt={3} pr={3} pl={3} pb={2}>
+                  <Typography variant="h4">
+                    <b>{title}</b>
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary">
                     {format(new Date(date * 1000), "PPP", {
                       awareOfUnicodeTokens: true
                     })}
-                  </Typography>
-                  <Typography align="center" variant="h4">
-                    <b>{title}</b>
                   </Typography>
                 </Box>
                 <img className={classes.img} src={src} alt="" />

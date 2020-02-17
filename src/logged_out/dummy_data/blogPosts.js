@@ -9,11 +9,9 @@ import blogPost6 from "./images/blogPost6.jpg";
 
 const content = (
   <Fragment>
-    <Typography variant="h4" paragraph>
-      Heading
-    </Typography>
     <Typography variant="h6" paragraph>
-      Title
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+      eirmod tempor invidunt ut labore.
     </Typography>
     <Typography paragraph>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
