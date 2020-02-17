@@ -54,39 +54,39 @@ const styles = theme => ({
       maxWidth: 1370
     },
     ".lg-mg-top": {
-      marginTop: theme.spacing(20),
+      marginTop: `${theme.spacing(20)}px !important`,
       [theme.breakpoints.down("md")]: {
-        marginTop: theme.spacing(18)
+        marginTop: `${theme.spacing(18)}px !important`
       },
       [theme.breakpoints.down("sm")]: {
-        marginTop: theme.spacing(16)
+        marginTop: `${theme.spacing(16)}px !important`
       },
       [theme.breakpoints.down("xs")]: {
-        marginTop: theme.spacing(14)
+        marginTop: `${theme.spacing(14)}px !important`
       }
     },
     ".lg-mg-bottom": {
-      marginBottom: theme.spacing(20),
+      marginBottom: `${theme.spacing(20)}px !important`,
       [theme.breakpoints.down("md")]: {
-        marginBottom: theme.spacing(18)
+        marginBottom: `${theme.spacing(18)}px !important`
       },
       [theme.breakpoints.down("sm")]: {
-        marginBottom: theme.spacing(16)
+        marginBottom: `${theme.spacing(16)}px !important`
       },
       [theme.breakpoints.down("xs")]: {
-        marginBottom: theme.spacing(14)
+        marginBottom: `${theme.spacing(14)}px !important`
       }
     },
     ".lg-p-top": {
-      paddingTop: theme.spacing(20),
+      paddingTop: `${theme.spacing(20)}px !important`,
       [theme.breakpoints.down("md")]: {
-        paddingTop: theme.spacing(18)
+        paddingTop: `${theme.spacing(18)}px !important`
       },
       [theme.breakpoints.down("sm")]: {
-        paddingTop: theme.spacing(16)
+        paddingTop: `${theme.spacing(16)}px !important`
       },
       [theme.breakpoints.down("xs")]: {
-        paddingTop: theme.spacing(14)
+        paddingTop: `${theme.spacing(14)}px !important`
       }
     }
   }
