@@ -220,7 +220,7 @@ function Footer(props) {
               {infos.map((info, index) => (
                 <Box display="flex" mb={1} key={index}>
                   <Box mr={2}>
-                    <IconButton className={classes.infoIcon}>
+                    <IconButton className={classes.infoIcon} tabIndex={-1}>
                       {info.icon}
                     </IconButton>
                   </Box>

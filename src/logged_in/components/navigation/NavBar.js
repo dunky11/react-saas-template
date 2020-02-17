@@ -297,6 +297,7 @@ class NavBar extends PureComponent {
                   className={classes.menuLink}
                   onClick={element.onClick}
                   key={index}
+                  id={`navigation-link-${index}`}
                 >
                   <Tooltip
                     title={element.name}
@@ -308,6 +309,11 @@ class NavBar extends PureComponent {
                       button
                       divider={index !== menuItems.length - 1}
                       className={classes.permanentDrawerListItem}
+                      onClick={() => {
+                        document
+                          .getElementById(`navigation-link-${index}`)
+                          .click();
+                      }}
                     >
                       <ListItemIcon className={classes.justifyCenter}>
                         {element.icon.desktop}
