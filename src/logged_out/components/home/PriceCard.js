@@ -24,6 +24,9 @@ const styles = theme => ({
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2)
     }
+  },
+  title: {
+    color: theme.palette.primary.main
   }
 });
 
@@ -34,8 +37,7 @@ function PriceCard(props) {
       <Box mb={2}>
         <Typography
           variant={highlighted ? "h5" : "h6"}
-          className={highlighted ? "text-white" : null}
-          style={{ color: theme.palette.primary.main }}
+          className={highlighted ? "text-white" : classes.title}
         >
           {title}
         </Typography>
