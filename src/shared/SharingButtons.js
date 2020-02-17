@@ -22,6 +22,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#3b5998"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://facebook.com/sharer/sharer.php?u=${site}`}
@@ -41,6 +42,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#55acee"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://twitter.com/intent/tweet/?text=${description}&amp;url=${site}`}
@@ -61,6 +63,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#35465c"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://www.tumblr.com/widgets/share/tool/preview?posttype=link&title=Super+fast+and+easy+Social+Media+Sharing+Buttons.+No+JavaScript.+No+tracking.&caption=Super+fast+and+easy+Social+Media+Sharing+Buttons.+No+JavaScript.+No+tracking.&content=http%3A%2F%2Fsharingbuttons.io&canonicalUrl=http%3A%2F%2Fsharingbuttons.io&shareSource=tumblr_share_button`}
@@ -81,6 +84,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#777"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`mailto:?subject=${title}&amp;body=${site}`}
@@ -101,6 +105,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#bd081c"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://pinterest.com/pin/create/button/?url=${site}&amp;media=${site}&amp;description=${description}`}
@@ -121,6 +126,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#0077b5"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${site}&amp;title=${title}&amp;summary=${description}&amp;source=${site}`}
@@ -141,6 +147,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#5f99cf"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://reddit.com/submit/?url=${site}&amp;resubmit=true&amp;title=${title}`}
@@ -161,6 +168,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#1a7576"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://www.xing.com/app/user?op=share;url=${site};title=${description}`}
@@ -181,6 +189,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#25d366"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`whatsapp://send?text=${description}`}
@@ -201,6 +210,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#ff6600"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://news.ycombinator.com/submitlink?u=${site}&amp;t=${description}`}
@@ -224,6 +234,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#507299"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://vk.com/share.php?title=${description}&amp;url=${site}`}
@@ -244,6 +255,7 @@ function SharingButtons(props) {
                 <ColoredButton
                   color="#54A9EB"
                   className={forceWhite ? "text-white" : null}
+                  classes={{ label: forceWhite ? "text-white" : null }}
                   variant="contained"
                   disableElevation
                   href={`https://telegram.me/share/url?text=${description}&amp;url=${site}`}
