@@ -3,18 +3,7 @@ import PropTypes from "prop-types";
 import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 function ColoredButton(props) {
-  const {
-    variant,
-    size,
-    disabled,
-    onClick,
-    className,
-    children,
-    theme,
-    color,
-    style,
-    fullWidth
-  } = props;
+  const { color, children, theme } = props;
   const buttonTheme = createMuiTheme({
     ...theme,
     palette: {
@@ -23,18 +12,11 @@ function ColoredButton(props) {
       }
     }
   });
+  const buttonProps = (({ color, theme, children, ...o }) => o)(props);
+  console.log(buttonProps);
   return (
     <MuiThemeProvider theme={buttonTheme}>
-      <Button
-        variant={variant}
-        color="primary"
-        size={size ? size : "medium"}
-        disabled={disabled ? disabled : false}
-        onClick={onClick}
-        className={className}
-        style={style}
-        fullWidth={fullWidth ? fullWidth : false}
-      >
+      <Button {...buttonProps} color="primary">
         {children}
       </Button>
     </MuiThemeProvider>
@@ -42,15 +24,7 @@ function ColoredButton(props) {
 }
 
 ColoredButton.propTypes = {
-  color: PropTypes.string.isRequired,
-  size: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  variant: PropTypes.string,
-  style: PropTypes.object,
-  fullWidth: PropTypes.bool
+  color: PropTypes.string.isRequired
 };
 
 export default ColoredButton;
