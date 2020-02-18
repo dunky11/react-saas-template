@@ -7,8 +7,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-![Demo](/.github/gifs/showcase.gif)
-[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com)
+[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
 
 
 ## Getting Started
