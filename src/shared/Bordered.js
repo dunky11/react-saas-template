@@ -25,8 +25,8 @@ function Bordered(props) {
     <div
       className={variant === "greyed" ? classes.greyed : classes.wrapper}
       style={{
-        paddingLeft: disableVerticalPadding ? 0 : 14,
-        paddingRight: disableVerticalPadding ? 0 : 14,
+        paddingLeft: disableVerticalPadding ? 0 : theme.spacing(2),
+        paddingRight: disableVerticalPadding ? 0 : theme.spacing(2),
         borderRadius: disableBorderRadius ? 0 : theme.shape.borderRadius
       }}
     >

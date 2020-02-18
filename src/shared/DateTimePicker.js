@@ -46,7 +46,6 @@ function DateTimePicker(props) {
           rightArrowIcon={<KeyboardArrowRight />}
           timeIcon={<AccessTime />}
           dateRangeIcon={<DateRange />}
-          format="yyyy/MM/dd hh:mm a"
           variant="outlined"
           disabled={disabled}
           value={value}

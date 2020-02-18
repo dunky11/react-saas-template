@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import {
   Typography,
   IconButton,
-  Tabs,
-  Tab,
   List,
   ListItem,
   ListItemText,
@@ -16,6 +14,7 @@ import {
   Box,
   withStyles
 } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import Bordered from "../../../shared/Bordered";
 import ImageCropperDialog from "../../../shared/ImageCropperDialog";
 
@@ -25,11 +24,6 @@ const styles = theme => ({
     top: theme.spacing(1),
     right: theme.spacing(1),
     zIndex: 1000
-  },
-  floatButtonSVG: {
-    height: "1em",
-    width: "1em",
-    color: theme.palette.action.active
   },
   inputRoot: {
     width: 190,
@@ -50,26 +44,6 @@ const styles = theme => ({
       easing: theme.transitions.easing.easeInOut
     })
   },
-  tabsIndicator: {
-    backgroundColor: theme.palette.secondary.main
-  },
-  tabRoot: {
-    textTransform: "initial",
-    minWidth: 72,
-    borderStyle: "solid",
-    borderTopLeftRadius: theme.shape.borderRadius,
-    borderTopRightRadius: theme.shape.borderRadius,
-    fontWeight: theme.typography.fontWeightRegular,
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: "white",
-    "&:hover": {
-      color: theme.palette.primary.main,
-      opacity: 1
-    },
-    minHeight: 0
-  },
   imgWrapper: { position: "relative" },
   img: {
     width: "100%",
@@ -77,14 +51,6 @@ const styles = theme => ({
     borderRadius: theme.shape.borderRadius,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0
-  },
-  tabSelected: {
-    color: `${theme.palette.text.primary} !important`,
-    fontWeight: theme.typography.fontWeightMedium,
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: "rgba(0, 0, 0, 0.23)"
   },
   uploadText: {
     transition: theme.transitions.create(["color", "box-shadow", "border"], {
@@ -124,40 +90,20 @@ class AddPostOptions extends PureComponent {
     this.setState({ [name]: value });
   };
 
-  passOnEmojiTextareaChange = (value, characters) => {
-    const { onEmojiTextareaChange, tabIndex } = this.props;
-    if (tabIndex === 0) {
-      onEmojiTextareaChange(value, characters, "category1");
-    } else {
-      onEmojiTextareaChange(value, characters, "category2");
-    }
-  };
-
   printFile = () => {
     const { Dropzone, classes, files, deleteItem, onDrop } = this.props;
     if (files[0]) {
       return (
         <div className={classes.imgWrapper}>
           <img
-            alt=""
+            alt="Uploaded Image"
             src={files[0].preview}
             className={classes.img}
             style={{ height: 151 }}
           />
           <div className={classes.floatButtonWrapper}>
             <IconButton onClick={deleteItem}>
-              <svg
-                aria-hidden="true"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 352 512"
-                className={classes.floatButtonSVG}
-              >
-                <path
-                  fill="currentColor"
-                  d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                />
-              </svg>
+              <CloseIcon />
             </IconButton>
           </div>
         </div>
@@ -178,15 +124,9 @@ class AddPostOptions extends PureComponent {
       ImageCropper,
       classes,
       DateTimePicker,
-      tabIndex,
       cropperFile,
       onCrop,
       onCropperClose,
-      handleTabChange,
-      category1Value,
-      category2Value,
-      category1Characters,
-      category2Characters,
       uploadAt,
       onChangeUploadAt
     } = this.props;
@@ -229,51 +169,19 @@ class AddPostOptions extends PureComponent {
           Upload Image
         </Typography>
         <Box mb={2}>
-          <Tabs
-            value={tabIndex}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleTabChange}
-            classes={{
-              indicator: classes.dNone
-            }}
-            style={{ minHeight: 0 }}
-          >
-            <Tab
-              label="Category 1"
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected
-              }}
-            />
-            <Tab
-              label="Category 2"
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected
-              }}
-            />
-          </Tabs>
           {EmojiTextArea && (
             <EmojiTextArea
               inputClassName={classes.emojiTextArea}
-              onChange={this.passOnEmojiTextareaChange}
-              value={tabIndex === 0 ? category1Value : category2Value}
-              characters={
-                tabIndex === 0 ? category1Characters : category2Characters
-              }
-              maxChars={2200}
+              maxCharacters={2200}
               rightContent={this.printFile()}
               emojiSet="google"
             />
           )}
         </Box>
-        <Box mt={3}>
-          <Typography paragraph variant="h6">
-            Options
-          </Typography>
-        </Box>
-        <List>
+        <Typography paragraph variant="h6">
+          Options
+        </Typography>
+        <List disablePadding>
           <Bordered disableVerticalPadding>
             <ListItem divider disableGutters className="listItemLeftPadding">
               <ListItemText>
@@ -283,6 +191,7 @@ class AddPostOptions extends PureComponent {
                 {DateTimePicker && (
                   <DateTimePicker
                     value={uploadAt}
+                    format="yyyy/MM/dd hh:mm a"
                     onChange={onChangeUploadAt}
                     disablePast
                   />
@@ -337,18 +246,14 @@ AddPostOptions.propTypes = {
   Dropzone: PropTypes.elementType,
   ImageCropper: PropTypes.elementType,
   classes: PropTypes.object,
-  tabIndex: PropTypes.number,
   cropperFile: PropTypes.object,
   onCrop: PropTypes.func,
   onCropperClose: PropTypes.func,
   files: PropTypes.array,
   deleteItem: PropTypes.func,
   onDrop: PropTypes.func,
-  handleTabChange: PropTypes.func,
-  category1Value: PropTypes.string,
-  category2Value: PropTypes.string,
-  category1Characters: PropTypes.number,
-  category2Characters: PropTypes.number,
+  value: PropTypes.string,
+  characters: PropTypes.number,
   uploadAt: PropTypes.instanceOf(Date),
   onChangeUploadAt: PropTypes.func
 };

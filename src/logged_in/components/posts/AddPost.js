@@ -11,13 +11,8 @@ class AddPost extends PureComponent {
   state = {
     files: [],
     cropFunction: null,
-    category1Value: "",
-    category2Value: "",
-    category1Characters: 0,
-    category2Characters: 0,
     uploadAt: now,
     loading: false,
-    tabIndex: 0,
     cropperFile: null
   };
 
@@ -42,20 +37,6 @@ class AddPost extends PureComponent {
       file.preview = URL.createObjectURL(file);
       file.key = new Date().getTime();
       this.setState({ cropperFile: file });
-    }
-  };
-
-  onEmojiTextareaChange = (value, characters, type) => {
-    if (type === "category1") {
-      this.setState({
-        category1Value: value,
-        category1Characters: characters
-      });
-    } else {
-      this.setState({
-        category2Value: value,
-        category2Characters: characters
-      });
     }
   };
 
@@ -92,22 +73,8 @@ class AddPost extends PureComponent {
     }, 1500);
   };
 
-  handleTabChange = (__, tabIndex) => {
-    this.setState({ tabIndex });
-  };
-
   render() {
-    const {
-      files,
-      category1Value,
-      category2Value,
-      category1Characters,
-      category2Characters,
-      uploadAt,
-      tabIndex,
-      cropperFile,
-      loading
-    } = this.state;
+    const { files, uploadAt, cropperFile, loading } = this.state;
     const {
       Dropzone,
       EmojiTextArea,
@@ -127,16 +94,9 @@ class AddPost extends PureComponent {
               files={files}
               onDrop={this.onDrop}
               deleteItem={this.deleteItem}
-              category1Value={category1Value}
-              category2Value={category2Value}
-              category1Characters={category1Characters}
-              category2Characters={category2Characters}
-              onEmojiTextareaChange={this.onEmojiTextareaChange}
               DateTimePicker={DateTimePicker}
               uploadAt={uploadAt}
               onChangeUploadAt={this.onChangeUploadAt}
-              handleTabChange={this.handleTabChange}
-              tabIndex={tabIndex}
               onCrop={this.onCrop}
               ImageCropper={ImageCropper}
               cropperFile={cropperFile}
