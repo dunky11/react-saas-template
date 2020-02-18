@@ -43,6 +43,9 @@ const styles = theme => ({
   },
   floatButtonSVG: {
     color: theme.palette.primary.light
+  },
+  relative: {
+    position: "relative"
   }
 });
 
@@ -123,6 +126,7 @@ class EmojiTextarea extends PureComponent {
             xs={rightContent ? 8 : 12}
             sm={rightContent ? 9 : 12}
             lg={rightContent ? 10 : 12}
+            className={classes.relative}
           >
             <TextField
               fullWidth
