@@ -30,7 +30,7 @@ import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/NavigationDrawer";
-import profilePicture from "../../dummy_data/images/profilePicture.jfif";
+import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 
 const styles = theme => ({
   appBar: {
@@ -258,7 +258,11 @@ class NavBar extends PureComponent {
               alignItems="center"
               width="100%"
             >
-              {isWidthUp("sm", width) && <Balance balance={2573} />}
+              {isWidthUp("sm", width) && (
+                <Box mr={3}>
+                  <Balance balance={2573} />
+                </Box>
+              )}
               <MessagePopperButton messages={messages} />
               <ListItem
                 disableGutters

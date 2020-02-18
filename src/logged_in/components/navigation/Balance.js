@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { OutlinedInput, withStyles } from "@material-ui/core";
 import currencyPrettyPrint from "../../../shared/currencyPrettyPrint";
 
-const styles = theme => ({
+const styles = {
   input: { padding: "0px 9px" },
   outlinedInput: {
     width: 90,
@@ -12,13 +12,9 @@ const styles = theme => ({
   },
   wrapper: {
     display: "flex",
-    alignItems: "center",
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.down("sm")]: {
-      marginRight: theme.spacing(2)
-    }
+    alignItems: "center"
   }
-});
+};
 
 function Balance(props) {
   const { balance, classes } = props;
@@ -40,4 +36,4 @@ Balance.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Balance);
+export default withStyles(styles)(Balance);
