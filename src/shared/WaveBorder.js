@@ -22,7 +22,7 @@ const styles = theme => ({
   parallax: {
     "& > use": {
       animation: "$moveForever 4s cubic-bezier(0.62, 0.5, 0.38, 0.5) infinite",
-      animationDelay: "-2s"
+      animationDelay: props => `-${props.animationNegativeDelay}s`
     }
   }
 });
@@ -61,6 +61,7 @@ WaveBorder.propTypes = {
   lowerColor: PropTypes.string.isRequired,
   upperColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
+  animationNegativeDelay: PropTypes.number.isRequired,
   className: PropTypes.string
 };
 
