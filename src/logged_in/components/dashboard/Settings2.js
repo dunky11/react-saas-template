@@ -54,6 +54,10 @@ const styles = theme => ({
   },
   dBlock: {
     display: "block"
+  },
+  noHorizontalPadding: {
+    paddingTop: 0,
+    paddingBottom: 0
   }
 });
 
@@ -236,7 +240,7 @@ class Settings2 extends PureComponent {
           <Typography>Settings 2</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dBlock}>
-          <List disablePadding>
+          <List className={classes.noHorizontalPadding}>
             <Bordered disableVerticalPadding>
               {inputs.map((element, index) => (
                 <ListItem
