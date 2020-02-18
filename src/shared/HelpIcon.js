@@ -17,7 +17,11 @@ const styles = theme => ({
     marginLeft: theme.spacing(1),
     "@media (max-width: 350px)": {
       marginLeft: theme.spacing(0.5)
-    }
+    },
+    transition: theme.transitions.create(["color"], {
+      duration: theme.transitions.duration.short,
+      easing: theme.transitions.easing.easeInOut
+    })
   }
 });
 
