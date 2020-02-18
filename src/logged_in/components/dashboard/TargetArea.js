@@ -25,7 +25,7 @@ function TargetArea(props) {
 
 TargetArea.propTypes = {
   pushMessageToSnackbar: PropTypes.func,
-  targets: PropTypes.array.isRequired
+  targets: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default TargetArea;

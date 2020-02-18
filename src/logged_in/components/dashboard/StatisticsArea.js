@@ -37,7 +37,7 @@ function StatisticsArea(props) {
 
 StatisticsArea.propTypes = {
   theme: PropTypes.object.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   CardChart: PropTypes.elementType
 };
 

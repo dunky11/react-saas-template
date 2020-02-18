@@ -249,7 +249,7 @@ AddPostOptions.propTypes = {
   cropperFile: PropTypes.object,
   onCrop: PropTypes.func,
   onCropperClose: PropTypes.func,
-  files: PropTypes.array,
+  files: PropTypes.arrayOf(PropTypes.object).isRequired,
   deleteItem: PropTypes.func,
   onDrop: PropTypes.func,
   value: PropTypes.string,

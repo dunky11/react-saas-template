@@ -83,8 +83,8 @@ class VertOptions extends PureComponent {
 }
 
 VertOptions.propTypes = {
-  items: PropTypes.array,
-  classes: PropTypes.object
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(VertOptions);

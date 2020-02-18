@@ -295,7 +295,7 @@ class CustomTable extends PureComponent {
 
 CustomTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  targets: PropTypes.array,
+  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
   pushMessageToSnackbar: PropTypes.func
 };
 

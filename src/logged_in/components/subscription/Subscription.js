@@ -32,7 +32,7 @@ class Subscription extends PureComponent {
 
 Subscription.propTypes = {
   classes: PropTypes.object.isRequired,
-  transactions: PropTypes.array.isRequired,
+  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectSubscription: PropTypes.func.isRequired
 };
 
