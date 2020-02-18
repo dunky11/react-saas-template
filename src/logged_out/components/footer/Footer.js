@@ -48,9 +48,8 @@ const styles = theme => ({
     color: theme.palette.common.white
   },
   infoIcon: {
-    color: theme.palette.common.white,
-    backgroundColor: "#33383b !important",
-    cursor: "auto"
+    color: `${theme.palette.common.white} !important`,
+    backgroundColor: "#33383b !important"
   },
   socialIcon: {
     fill: theme.palette.common.white,
@@ -220,7 +219,11 @@ function Footer(props) {
               {infos.map((info, index) => (
                 <Box display="flex" mb={1} key={index}>
                   <Box mr={2}>
-                    <IconButton className={classes.infoIcon} tabIndex={-1}>
+                    <IconButton
+                      className={classes.infoIcon}
+                      tabIndex={-1}
+                      disabled
+                    >
                       {info.icon}
                     </IconButton>
                   </Box>
