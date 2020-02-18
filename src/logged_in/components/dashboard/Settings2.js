@@ -124,6 +124,7 @@ class Settings2 extends PureComponent {
         secondaryAction: (
           <Checkbox
             value="option1"
+            color="primary"
             checked={option1}
             onChange={this.handleCheckboxChange("option1")}
           />
@@ -134,6 +135,7 @@ class Settings2 extends PureComponent {
         secondaryAction: (
           <Checkbox
             value="option2"
+            color="primary"
             checked={option2}
             onChange={this.handleCheckboxChange("option2")}
           />
@@ -144,6 +146,7 @@ class Settings2 extends PureComponent {
         secondaryAction: (
           <Checkbox
             value="option3"
+            color="primary"
             checked={option3}
             onChange={this.handleCheckboxChange("option3")}
           />
@@ -155,6 +158,7 @@ class Settings2 extends PureComponent {
         secondaryAction: (
           <Checkbox
             value="option4"
+            color="primary"
             checked={option4}
             onChange={this.handleCheckboxChange("option4")}
           />
@@ -165,6 +169,7 @@ class Settings2 extends PureComponent {
         secondaryAction: (
           <Checkbox
             value="option5"
+            color="primary"
             checked={option5}
             onChange={this.handleCheckboxChange("option5")}
           />
