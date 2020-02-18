@@ -169,6 +169,7 @@ function HeadSection(props) {
         upperColor={theme.palette.secondary.main}
         lowerColor="#FFFFFF"
         className={classes.waveBorder}
+        animationNegativeDelay={2}
       />
     </Fragment>
   );
