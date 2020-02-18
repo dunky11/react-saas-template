@@ -130,8 +130,8 @@ class MessagePopperButton extends PureComponent {
 }
 
 MessagePopperButton.propTypes = {
-  classes: PropTypes.object,
-  messages: PropTypes.array
+  classes: PropTypes.object.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(MessagePopperButton);

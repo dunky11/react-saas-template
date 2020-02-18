@@ -102,7 +102,7 @@ BlogPost.propTypes = {
   date: PropTypes.number.isRequired,
   src: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
-  otherArticles: PropTypes.array
+  otherArticles: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(BlogPost);

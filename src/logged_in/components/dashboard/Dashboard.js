@@ -50,10 +50,10 @@ class Dashboard extends PureComponent {
 
 Dashboard.propTypes = {
   CardChart: PropTypes.elementType,
-  statistics: PropTypes.array,
+  statistics: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,
-  targets: PropTypes.array.isRequired,
+  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired
 };

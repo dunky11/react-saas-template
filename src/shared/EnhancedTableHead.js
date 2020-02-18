@@ -81,7 +81,7 @@ EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func,
   order: PropTypes.string,
   orderBy: PropTypes.string,
-  rows: PropTypes.array
+  rows: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(EnhancedTableHead);

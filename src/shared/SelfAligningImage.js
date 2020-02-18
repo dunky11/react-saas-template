@@ -85,7 +85,7 @@ SelfAligningImage.propTypes = {
   title: PropTypes.string,
   timeStamp: PropTypes.number,
   roundedBorder: PropTypes.bool,
-  options: PropTypes.array
+  options: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withStyles(styles, { withTheme: true })(SelfAligningImage);

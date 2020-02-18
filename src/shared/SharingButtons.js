@@ -282,7 +282,7 @@ function SharingButtons(props) {
 }
 
 SharingButtons.propTypes = {
-  types: PropTypes.array.isRequired,
+  types: PropTypes.arrayOf(PropTypes.string).isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   forceWhite: PropTypes.bool
