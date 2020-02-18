@@ -178,7 +178,7 @@ class RegisterDialog extends PureComponent {
                   <span
                     className={classes.link}
                     onClick={loading ? null : openTermsDialog}
-                    tabindex={0}
+                    tabIndex={0}
                     role="button"
                     onKeyDown={event => {
                       // For screenreaders listen to space and enter events
