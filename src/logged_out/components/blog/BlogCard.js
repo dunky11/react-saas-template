@@ -2,16 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import format from "date-fns/format";
+import classNames from "classnames";
 import { Typography, Card, Box, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   img: {
     width: "100%",
     height: "auto",
-    marginBottom: 8,
-    "&:hover": {
-      boxShadow: "0 0 1.25rem rgba(108,118,134,.1)!important"
-    }
+    marginBottom: 8
   },
   card: {
     boxShadow: theme.shadows[2]
@@ -28,6 +26,9 @@ const styles = theme => ({
     color: theme.palette.secondary.main,
     "&:hover": {
       color: theme.palette.secondary.dark
+    },
+    "&:active": {
+      color: theme.palette.primary.dark
     }
   },
   link: {
@@ -40,6 +41,11 @@ const styles = theme => ({
     "&:hover": {
       color: theme.palette.primary.dark
     }
+  },
+  showFocus: {
+    "&:focus span": {
+      color: theme.palette.secondary.dark
+    }
   }
 });
 
@@ -48,7 +54,7 @@ function BlogCard(props) {
   return (
     <Card className={classes.card}>
       {src && (
-        <Link to={url}>
+        <Link to={url} tabIndex={-1}>
           <img src={src} className={classes.img} alt="" />
         </Link>
       )}
@@ -58,14 +64,17 @@ function BlogCard(props) {
             awareOfUnicodeTokens: true
           })}
         </Typography>
-        <Link to={url} className={classes.noDecoration}>
+        <Link
+          to={url}
+          className={classNames(classes.noDecoration, classes.showFocus)}
+        >
           <Typography variant="h6">
             <span className={classes.title}>{title}</span>
           </Typography>
         </Link>
         <Typography variant="body1" color="textSecondary">
           {snippet}
-          <Link to={url} className={classes.noDecoration}>
+          <Link to={url} className={classes.noDecoration} tabIndex={-1}>
             <span className={classes.link}> read more...</span>
           </Link>
         </Typography>
