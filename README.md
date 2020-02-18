@@ -8,6 +8,8 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ![Demo](/.github/gifs/showcase.gif)
+[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com)
+
 
 ## Getting Started
 
