@@ -23,6 +23,9 @@ const styles = theme => ({
     color: theme.palette.primary.main,
     "&:hover": {
       color: theme.palette.primary.dark
+    },
+    "&:focus": {
+      color: theme.palette.primary.dark
     }
   }
 });
@@ -174,10 +177,18 @@ class RegisterDialog extends PureComponent {
                   I agree to the
                   <span
                     className={classes.link}
-                    onClick={openTermsDialog}
-                    onKeyUp={openTermsDialog}
+                    onClick={loading ? null : openTermsDialog}
+                    tabindex={0}
                     role="button"
-                    tabIndex={-1}
+                    onKeyDown={event => {
+                      // For screenreaders listen to space and enter events
+                      if (
+                        (!loading && event.keyCode === 13) ||
+                        event.keyCode == 32
+                      ) {
+                        openTermsDialog();
+                      }
+                    }}
                   >
                     {" "}
                     terms of service

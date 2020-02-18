@@ -17,8 +17,14 @@ import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
 const styles = theme => ({
   forgotPassword: {
     marginTop: theme.spacing(2),
-    color: theme.palette.primary.dark,
-    cursor: "pointer"
+    color: theme.palette.primary.main,
+    cursor: "pointer",
+    "&:hover": {
+      color: theme.palette.primary.dark
+    },
+    "&:focus": {
+      color: theme.palette.primary.dark
+    }
   },
   disabledText: {
     cursor: "auto",
@@ -182,6 +188,17 @@ class LoginDialog extends PureComponent {
                 )}
                 color="primary"
                 onClick={loading ? null : openChangePasswordDialog}
+                tabindex={0}
+                role="button"
+                onKeyDown={event => {
+                  // For screenreaders listen to space and enter events
+                  if (
+                    (!loading && event.keyCode === 13) ||
+                    event.keyCode == 32
+                  ) {
+                    openChangePasswordDialog();
+                  }
+                }}
               >
                 Forgot Password?
               </Typography>
