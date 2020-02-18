@@ -62,8 +62,11 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 - [ ] Improving the reusability of components
 - [ ] Adding a "update balance" dialog
-- [ ] Social media buttons for the blog
+- [ ] Improve acessability for screen readers
+- [ ] Disable ripple effect when info icon in footer is clicked
+- [ ] Fix tumblr social icon not working properly
 
+ 
 ## Deployment
 
 If you are happy with the state of your website you can run:
