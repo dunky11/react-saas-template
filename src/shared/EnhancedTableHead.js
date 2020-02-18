@@ -7,7 +7,6 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
-  Box,
   withStyles
 } from "@material-ui/core";
 import classNames from "classnames";

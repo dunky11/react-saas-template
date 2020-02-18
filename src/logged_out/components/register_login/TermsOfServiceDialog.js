@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogActions,
   Typography,
-  Box,
   withStyles
 } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";

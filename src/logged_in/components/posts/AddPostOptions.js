@@ -96,7 +96,7 @@ class AddPostOptions extends PureComponent {
       return (
         <div className={classes.imgWrapper}>
           <img
-            alt="Uploaded Image"
+            alt="uploaded item"
             src={files[0].preview}
             className={classes.img}
             style={{ height: 151 }}

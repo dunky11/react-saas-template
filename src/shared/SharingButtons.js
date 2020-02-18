@@ -271,6 +271,7 @@ function SharingButtons(props) {
             );
           }
           default: {
+            // eslint-disable-next-line
             throw new Exception(
               `No branch taken in switch-statement: ${element} is not a valid type.`
             );

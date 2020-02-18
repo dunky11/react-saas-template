@@ -14,7 +14,6 @@ import {
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
-import classNames from "classnames";
 import EnhancedTableHead from "../../../shared/EnhancedTableHead";
 import stableSort from "../../../shared/stableSort";
 import getSorting from "../../../shared/getSorting";

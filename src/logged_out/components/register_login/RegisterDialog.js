@@ -184,7 +184,7 @@ class RegisterDialog extends PureComponent {
                       // For screenreaders listen to space and enter events
                       if (
                         (!loading && event.keyCode === 13) ||
-                        event.keyCode == 32
+                        event.keyCode === 32
                       ) {
                         openTermsDialog();
                       }
