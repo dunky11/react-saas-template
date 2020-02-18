@@ -32,11 +32,11 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
    ```
    git clone https://github.com/dunky11/react-saas-template
-   cd react-saas-template
    ```
 2. Install dependencies, this can take a minute
 
    ```
+   cd react-saas-template
    npm install
    ```
 3. Start the local server
