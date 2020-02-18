@@ -13,14 +13,14 @@ const styles = theme => ({
       color: theme.palette.common.white
     },
     ".listItemLeftPadding": {
-      paddingTop: 14,
-      paddingBottom: 14,
-      paddingLeft: theme.spacing(4),
+      paddingTop: `${theme.spacing(1.75)}px !important`,
+      paddingBottom: `${theme.spacing(1.75)}px !important`,
+      paddingLeft: `${theme.spacing(4)}px !important`,
       [theme.breakpoints.down("sm")]: {
-        paddingLeft: theme.spacing(2)
+        paddingLeft: `${theme.spacing(4)}px !important`
       },
       "@media (max-width:  420px)": {
-        paddingLeft: theme.spacing(1)
+        paddingLeft: `${theme.spacing(1)}px !important`
       }
     },
     ".container": {

@@ -72,10 +72,6 @@ const styles = theme => ({
   },
   dNone: {
     display: "none"
-  },
-  noHorizontalPadding: {
-    paddingTop: 0,
-    paddingBottom: 0
   }
 });
 
@@ -185,7 +181,7 @@ class AddPostOptions extends PureComponent {
         <Typography paragraph variant="h6">
           Options
         </Typography>
-        <List className={classes.noHorizontalPadding}>
+        <List disablePadding>
           <Bordered disableVerticalPadding>
             <ListItem divider disableGutters className="listItemLeftPadding">
               <ListItemText>

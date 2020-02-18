@@ -35,10 +35,6 @@ const styles = theme => ({
   expansionPanelDetails: {
     paddintTop: theme.spacing(0),
     justifyContent: "flex-end"
-  },
-  noHorizontalPadding: {
-    paddingTop: 0,
-    paddingBottom: 0
   }
 });
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
@@ -114,7 +110,7 @@ class Settings1 extends Component {
           <Typography>Settings 1</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dBlock}>
-          <List className={classes.noHorizontalPadding}>
+          <List disablePadding>
             <Bordered disableVerticalPadding>
               {inputs.map((element, index) => (
                 <ListItem
