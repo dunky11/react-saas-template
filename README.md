@@ -55,6 +55,16 @@ If you already know React, then most of the information you need is in the [Mate
 
 You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
 
+## Deployment
+
+If you are happy with the state of your website you can run:
+
+```
+npm run build 
+```
+
+It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
+
 ## Build With
 
 * [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
@@ -73,16 +83,6 @@ You can go into [src/theme.js](/src/theme.js) and change the primary and seconda
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
 - [ ] Fix tumblr social icon not working properly
- 
-## Deployment
-
-If you are happy with the state of your website you can run:
-
-```
-npm run build 
-```
-
-It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
 
 ## License
 
