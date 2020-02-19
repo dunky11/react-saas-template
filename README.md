@@ -7,7 +7,8 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-[<img src="/.github/images/dashboard.png">](https://reactsaastemplate.com/c/dashboard "View demo")
+[<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
+
 
 ## Getting Started
 
@@ -31,11 +32,11 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
    ```
    git clone https://github.com/dunky11/react-saas-template
-   cd react-saas-template
    ```
 2. Install dependencies, this can take a minute
 
    ```
+   cd react-saas-template
    npm install
    ```
 3. Start the local server
@@ -64,7 +65,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
 - [ ] Fix tumblr social icon not working properly
-- [ ] Automated tests are not properly since we restored create-react-app
+- [ ] Automated tests are not working properly since we restored create-react-app
  
 ## Deployment
 

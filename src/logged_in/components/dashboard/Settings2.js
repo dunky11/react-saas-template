@@ -61,11 +61,11 @@ class Settings2 extends PureComponent {
   defaultState = {
     defaultLoading: false,
     saveLoading: false,
-    option1: null,
-    option2: null,
-    option3: null,
-    option4: null,
-    option5: null,
+    option1: false,
+    option2: false,
+    option3: false,
+    option4: false,
+    option5: false,
     option6: "Both",
     option7: "2 weeks"
   };

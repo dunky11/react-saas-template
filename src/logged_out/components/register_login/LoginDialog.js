@@ -188,7 +188,7 @@ class LoginDialog extends PureComponent {
                 )}
                 color="primary"
                 onClick={loading ? null : openChangePasswordDialog}
-                tabindex={0}
+                tabIndex={0}
                 role="button"
                 onKeyDown={event => {
                   // For screenreaders listen to space and enter events

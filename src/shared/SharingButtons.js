@@ -271,8 +271,7 @@ function SharingButtons(props) {
             );
           }
           default: {
-            // eslint-disable-next-line
-            throw new Exception(
+            throw new Error(
               `No branch taken in switch-statement: ${element} is not a valid type.`
             );
           }
@@ -283,7 +282,7 @@ function SharingButtons(props) {
 }
 
 SharingButtons.propTypes = {
-  types: PropTypes.array.isRequired,
+  types: PropTypes.arrayOf(PropTypes.string).isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   forceWhite: PropTypes.bool

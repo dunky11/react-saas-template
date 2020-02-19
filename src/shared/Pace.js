@@ -23,6 +23,7 @@ const styles = {
 };
 
 function Pace() {
+  activatePace.call(this);
   return null;
 }
 
@@ -44,7 +45,7 @@ window.paceOptions = {
 };
 
 /*! pace 1.0.0 */
-(function() {
+function activatePace() {
   var a,
     b,
     c,
@@ -886,4 +887,4 @@ window.paceOptions = {
       : "object" == typeof exports
       ? (module.exports = j)
       : D.startOnPageLoad && j.start();
-}.call(this));
+}

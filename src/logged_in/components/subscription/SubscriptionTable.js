@@ -160,7 +160,7 @@ class SubscriptionTable extends PureComponent {
 SubscriptionTable.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(SubscriptionTable);

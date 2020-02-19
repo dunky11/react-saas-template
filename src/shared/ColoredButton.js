@@ -13,7 +13,6 @@ function ColoredButton(props) {
     }
   });
   const buttonProps = (({ color, theme, children, ...o }) => o)(props);
-  console.log(buttonProps);
   return (
     <MuiThemeProvider theme={buttonTheme}>
       <Button {...buttonProps} color="primary">

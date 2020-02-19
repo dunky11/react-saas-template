@@ -88,7 +88,7 @@ Blog.propTypes = {
   selectBlog: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
-  blogPosts: PropTypes.array.isRequired
+  blogposts: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Blog));

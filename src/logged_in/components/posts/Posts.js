@@ -60,7 +60,7 @@ Posts.propTypes = {
   ImageCropper: PropTypes.elementType,
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   pushMessageToSnackbar: PropTypes.func,
   selectPosts: PropTypes.func.isRequired
 };

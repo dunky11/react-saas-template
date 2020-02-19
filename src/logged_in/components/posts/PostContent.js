@@ -163,7 +163,7 @@ class PostContent extends PureComponent {
 PostContent.propTypes = {
   openAddPostModal: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   pushMessageToSnackbar: PropTypes.func
 };
 
