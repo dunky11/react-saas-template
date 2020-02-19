@@ -53,7 +53,7 @@ If you are new to React, you should watch a [basic react tutorial](https://www.y
 
 If you already know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
 
-You can go into src/theme.js and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
+You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
 
 ## Build With
 
