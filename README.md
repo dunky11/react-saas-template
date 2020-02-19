@@ -65,7 +65,6 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
 - [ ] Fix tumblr social icon not working properly
-- [ ] Automated tests are not working properly since we restored create-react-app
  
 ## Deployment
 
