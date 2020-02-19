@@ -28,6 +28,20 @@ const styles = theme => ({
     overflow: "hidden",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1)
+  },
+  cardWrapper: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      maxWidth: 340
+    }
+  },
+  cardWrapperHighlighted: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      maxWidth: 360
+    }
   }
 });
 
@@ -44,7 +58,14 @@ function PricingSection(props) {
           spacing={calculateSpacing(width)}
           className={classes.gridContainer}
         >
-          <Grid item xs={12} sm={6} lg={3} data-aos="zoom-in-up">
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            lg={3}
+            className={classes.cardWrapper}
+            data-aos="zoom-in-up"
+          >
             <PriceCard
               title="Starter"
               pricing={
@@ -58,6 +79,7 @@ function PricingSection(props) {
           </Grid>
           <Grid
             item
+            className={classes.cardWrapperHighlighted}
             xs={12}
             sm={6}
             lg={3}
@@ -78,6 +100,7 @@ function PricingSection(props) {
           </Grid>
           <Grid
             item
+            className={classes.cardWrapper}
             xs={12}
             sm={6}
             lg={3}
@@ -97,6 +120,7 @@ function PricingSection(props) {
           </Grid>
           <Grid
             item
+            className={classes.cardWrapper}
             xs={12}
             sm={6}
             lg={3}
