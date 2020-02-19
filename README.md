@@ -65,14 +65,13 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
 - [ ] Fix tumblr social icon not working properly
-- [ ] Automated tests are not working properly since we restored create-react-app
  
 ## Deployment
 
 If you are happy with the state of your website you can run:
 
 ```
-npm run build
+npm run build 
 ```
 
 It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
