@@ -70,7 +70,14 @@ class SelfAligningImage extends PureComponent {
             subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
               awareOfUnicodeTokens: true
             })}
-            actionIcon={options.length > 0 && <VertOptions items={options} />}
+            actionIcon={
+              options.length > 0 && (
+                <VertOptions
+                  color={theme.palette.common.white}
+                  items={options}
+                />
+              )
+            }
           />
         )}
       </div>
