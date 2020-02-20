@@ -5,8 +5,8 @@ import { Typography, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   main: {
-    backgroundColor: theme.palette.information.background,
-    border: `${theme.border.borderWidth}px solid ${theme.palette.information.border}`,
+    backgroundColor: theme.palette.warning.light,
+    border: `${theme.border.borderWidth}px solid ${theme.palette.warning.main}`,
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius
   }

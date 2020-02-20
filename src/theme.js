@@ -5,7 +5,10 @@ const primary = "#b3294e";
 const secondary = "#4829B2";
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const success = "#4caf50";
+const background = "#f5f5f5";
+const warningLight = "rgba(253, 200, 69, .3)";
+const warningMain = "rgba(253, 200, 69, .5)";
+const warningDark = "rgba(253, 200, 69, .7)";
 
 // borders
 const borderWidth = 2;
@@ -29,17 +32,17 @@ const theme = createMuiTheme({
       black,
       darkBlack
     },
+    warning: {
+      light: warningLight,
+      main: warningMain,
+      dark: warningDark
+    },
     // Used to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
-    success: { main: success },
-    information: {
-      background: "rgba(253, 200, 69, .2)",
-      border: "rgba(253, 200, 69, .4)"
-    },
     background: {
-      default: "#f5f5f5"
+      default: background
     },
     spacing: spacing
   },
