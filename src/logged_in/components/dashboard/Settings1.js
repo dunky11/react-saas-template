@@ -111,7 +111,7 @@ class Settings1 extends Component {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dBlock}>
           <List disablePadding>
-            <Bordered disableVerticalPadding>
+            <Bordered disableVerticalPadding disableBorderRadius>
               {inputs.map((element, index) => (
                 <ListItem
                   className="listItemLeftPadding"
