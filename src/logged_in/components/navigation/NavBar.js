@@ -50,7 +50,6 @@ const styles = theme => ({
     justifyContent: "space-between",
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    minHeight: 64,
     [theme.breakpoints.up("sm")]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
