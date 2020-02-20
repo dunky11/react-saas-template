@@ -49,7 +49,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ### What to do next?
 
-If you are new to React, you should watch a [basic react tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
+If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
 
 If you already know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
 
