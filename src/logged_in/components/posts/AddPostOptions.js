@@ -65,7 +65,6 @@ const styles = theme => ({
     padding: "9px 34px 9px 14.5px"
   },
   emojiTextArea: {
-    borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     marginRight: -1
@@ -182,7 +181,7 @@ class AddPostOptions extends PureComponent {
           Options
         </Typography>
         <List disablePadding>
-          <Bordered disableVerticalPadding>
+          <Bordered disableVerticalPadding disableBorderRadius>
             <ListItem divider disableGutters className="listItemLeftPadding">
               <ListItemText>
                 <Typography variant="body2">Upload at</Typography>

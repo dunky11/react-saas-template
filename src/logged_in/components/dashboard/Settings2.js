@@ -237,7 +237,7 @@ class Settings2 extends PureComponent {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dBlock}>
           <List disablePadding>
-            <Bordered disableVerticalPadding>
+            <Bordered disableVerticalPadding disableBorderRadius>
               {inputs.map((element, index) => (
                 <ListItem
                   key={index}
