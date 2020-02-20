@@ -103,7 +103,7 @@ class SubscriptionTable extends PureComponent {
                           label={`+${currencyPrettyPrint(
                             transaction.balanceChange
                           )}`}
-                          color={theme.palette.secondary.main}
+                          color={theme.palette.success.dark}
                         />
                       ) : (
                         <ColorfulChip
