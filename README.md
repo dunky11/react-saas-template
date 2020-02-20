@@ -83,6 +83,7 @@ It will create a folder named build with your compiled project inside. After tha
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
 - [ ] Fix tumblr social icon not working properly
+- [ ] SmoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
 
 ## License
 
