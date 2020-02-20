@@ -44,7 +44,7 @@ class VertOptions extends PureComponent {
           className="text-white"
           aria-describedby={id}
         >
-          <MoreVertIcon />
+          <MoreVertIcon className="text-white" />
         </IconButton>
         <Popover
           id={id}
