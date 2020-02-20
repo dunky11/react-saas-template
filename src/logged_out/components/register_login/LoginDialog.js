@@ -19,10 +19,10 @@ const styles = theme => ({
     marginTop: theme.spacing(2),
     color: theme.palette.primary.main,
     cursor: "pointer",
-    "&:hover": {
+    "&:enabled:hover": {
       color: theme.palette.primary.dark
     },
-    "&:focus": {
+    "&:enabled:focus": {
       color: theme.palette.primary.dark
     }
   },
