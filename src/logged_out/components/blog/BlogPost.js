@@ -64,7 +64,7 @@ class BlogPost extends PureComponent {
                   {content}
                   <Box pt={2}>
                     <SharingButtons
-                      types={["Facebook", "Twitter", "VK", "Tumblr"]}
+                      types={["Facebook", "Twitter", "Reddit", "Tumblr"]}
                       forceWhite
                       title="React SaaS Template"
                       description="I found an awesome template for an react webapplication!"
