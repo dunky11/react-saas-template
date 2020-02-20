@@ -21,10 +21,10 @@ const styles = theme => ({
     }),
     cursor: "pointer",
     color: theme.palette.primary.main,
-    "&:hover": {
+    "&:enabled:hover": {
       color: theme.palette.primary.dark
     },
-    "&:focus": {
+    "&:enabled:focus": {
       color: theme.palette.primary.dark
     }
   }
