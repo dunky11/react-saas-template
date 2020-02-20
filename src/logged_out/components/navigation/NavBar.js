@@ -20,8 +20,7 @@ import NavigationDrawer from "../../../shared/NavigationDrawer";
 const styles = theme => ({
   appBar: {
     boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(0.5)
+    backgroundColor: theme.palette.common.white
   },
   toolbar: {
     display: "flex",
@@ -100,7 +99,7 @@ function NavBar(props) {
                 className={classes.menuButton}
                 onClick={handleMobileDrawerOpen}
               >
-                <MenuIcon fontSize="large" color="primary" />
+                <MenuIcon color="primary" />
               </IconButton>
             </Hidden>
             <Hidden smDown>
