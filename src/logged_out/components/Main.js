@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
-import urlify from "../../shared/urlify";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
@@ -91,7 +90,7 @@ class Main extends PureComponent {
     this.blogPostsMaxUnix = dummyBlogPosts[dummyBlogPosts.length - 1].date;
     const blogPosts = dummyBlogPosts.map(blogPost => {
       const post = blogPost;
-      post.url = `/blog/post/${urlify(post.title)}?id=${post.id}`;
+      post.url = `/blog/post/${encodeURIComponent(post.title)}?id=${post.id}`;
       return post;
     });
     this.setState({
