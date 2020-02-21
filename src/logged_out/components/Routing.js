@@ -9,7 +9,7 @@ import BlogPost from "./blog/BlogPost";
 
 function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
-  const otherArticles = blogPosts.filter(blogPost => blogPost.id !== post.id);
+
   return (
     <Switch>
       {blogPosts.map(post => (
@@ -22,7 +22,7 @@ function Routing(props) {
           src={post.imageSrc}
           date={post.date}
           content={post.content}
-          otherArticles={otherArticles}
+          otherArticles={blogPosts.filter(blogPost => blogPost.id !== post.id)}
         />
       ))}
       <PropsRoute
