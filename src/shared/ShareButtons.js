@@ -6,7 +6,7 @@ import ColoredButton from "./ColoredButton";
 /**
  * Losely based on: https://sharingbuttons.io/
  */
-function SharingButtons(props) {
+function ShareButtons(props) {
   const { types, forceWhite } = props;
   let { title, description } = props;
   const site = window.location.href;
@@ -281,11 +281,11 @@ function SharingButtons(props) {
   );
 }
 
-SharingButtons.propTypes = {
+ShareButtons.propTypes = {
   types: PropTypes.arrayOf(PropTypes.string).isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   forceWhite: PropTypes.bool
 };
 
-export default SharingButtons;
+export default ShareButtons;
