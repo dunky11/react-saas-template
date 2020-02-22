@@ -5,7 +5,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 
 ![Node.js CI](https://github.com/dunky11/react-saas-template/workflows/Node.js%20CI/badge.svg)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dunky11/react-saas-template)](https://dependabot.com)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 [<img src="/.github/gifs/showcase.gif">](https://reactsaastemplate.com "Go to demo website")
 
@@ -49,7 +49,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 ### What to do next?
 
-If you are new to React, you should watch a [basic react tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
+If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
 
 If you already know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
 
@@ -82,7 +82,7 @@ It will create a folder named build with your compiled project inside. After tha
 - [ ] Improving the reusability of components
 - [ ] Adding a "update balance" dialog
 - [ ] Improve acessability for screen readers
-- [ ] Fix tumblr social icon not working properly
+- [ ] smoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
 
 ## License
 
