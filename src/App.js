@@ -12,7 +12,6 @@ const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 function App() {
-  const test = "test";
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
