@@ -202,6 +202,7 @@ function Footer(props) {
                 </Grid>
                 <Grid item>
                   <Typography
+                    tabIndex={0}
                     variant="h6"
                     className={classes.link}
                     onClick={handleCookieRulesDialogOpen}
