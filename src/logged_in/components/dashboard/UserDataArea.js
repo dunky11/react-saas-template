@@ -18,11 +18,11 @@ import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EnhancedTableHead from "../../../shared/EnhancedTableHead";
-import stableSort from "../../../shared/stableSort";
-import getSorting from "../../../shared/getSorting";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/ConfirmationDialog";
+import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
+import stableSort from "../../../shared/functions/stableSort";
+import getSorting from "../../../shared/functions/getSorting";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
 
 const styles = theme => ({
   tableWrapper: {

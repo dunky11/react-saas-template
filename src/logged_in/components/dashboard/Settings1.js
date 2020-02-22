@@ -18,8 +18,8 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import withWidth from "@material-ui/core/withWidth";
-import Bordered from "../../../shared/Bordered";
-import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+import Bordered from "../../../shared/components/Bordered";
+import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = theme => ({
   numberInput: {

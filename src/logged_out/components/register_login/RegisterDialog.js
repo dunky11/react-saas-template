@@ -9,9 +9,9 @@ import {
   FormControlLabel,
   withStyles
 } from "@material-ui/core";
-import FormDialog from "../../../shared/FormDialog";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+import FormDialog from "../../../shared/components/FormDialog";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = theme => ({
   link: {

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
   Typography,
   TableCell,
@@ -9,7 +10,6 @@ import {
   Tooltip,
   withStyles
 } from "@material-ui/core";
-import classNames from "classnames";
 
 const styles = theme => ({
   tableSortLabel: {

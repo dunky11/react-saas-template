@@ -15,8 +15,8 @@ import {
   withStyles
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import Bordered from "../../../shared/Bordered";
-import ImageCropperDialog from "../../../shared/ImageCropperDialog";
+import Bordered from "../../../shared/components/Bordered";
+import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
 
 const styles = theme => ({
   floatButtonWrapper: {
