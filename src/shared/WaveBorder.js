@@ -2,18 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = {
   waves: {
     position: "relative",
     width: "100%",
-    height: "15vh",
     marginBottom: -7,
-    minHeight: 100,
-    maxHeight: 150,
-    [theme.breakpoints.down("sm")]: {
-      height: 40,
-      minHeight: 40
-    }
+    height: "7vw",
+    minHeight: "7vw"
   },
   "@keyframes moveForever": {
     from: { transform: "translate3d(-90px, 0, 0)" },
@@ -25,16 +20,16 @@ const styles = theme => ({
       animationDelay: props => `-${props.animationNegativeDelay}s`
     }
   }
-});
+};
 
 /**
  *  https://codepen.io/csspoints/pen/WNeOEqd
  */
 function WaveBorder(props) {
   const id = String(Math.random());
-  const { className, lowerColor, upperColor, classes } = props;
+  const { className, lowerColor, upperColor, classes, ...rest } = props;
   return (
-    <div className={className} style={{ background: upperColor }}>
+    <div className={className} style={{ background: upperColor }} {...rest}>
       <svg
         className={classes.waves}
         xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +56,7 @@ WaveBorder.propTypes = {
   lowerColor: PropTypes.string.isRequired,
   upperColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
-  animationNegativeDelay: PropTypes.number.isRequired,
-  className: PropTypes.string
+  animationNegativeDelay: PropTypes.number.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(WaveBorder);
+export default withStyles(styles)(WaveBorder);
