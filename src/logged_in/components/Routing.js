@@ -118,7 +118,7 @@ Routing.propTypes = {
   handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
-  statistics: PropTypes.arrayOf(PropTypes.object).isRequired,
+  statistics: PropTypes.object.isRequired,
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired,
