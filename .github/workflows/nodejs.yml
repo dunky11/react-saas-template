@@ -18,6 +18,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
+    - run: ./node_modules/eslint/bin/eslint.js src
     - run: npm run build
     - run: npm run test
       env:
