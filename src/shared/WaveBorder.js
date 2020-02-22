@@ -27,7 +27,14 @@ const styles = {
  */
 function WaveBorder(props) {
   const id = String(Math.random());
-  const { className, lowerColor, upperColor, classes, ...rest } = props;
+  const {
+    className,
+    lowerColor,
+    upperColor,
+    classes,
+    animationNegativeDelay,
+    ...rest
+  } = props;
   return (
     <div className={className} style={{ background: upperColor }} {...rest}>
       <svg

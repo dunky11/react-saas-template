@@ -2,7 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Typography, Box } from "@material-ui/core";
 import SettingsArea from "./SettingsArea";
-import TargetArea from "./TargetArea";
+import UserDataArea from "./UserDataArea";
 import AccountInformationArea from "./AccountInformationArea";
 import StatisticsArea from "./StatisticsArea";
 
@@ -39,7 +39,7 @@ class Dashboard extends PureComponent {
           </Typography>
         </Box>
         <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} />
-        <TargetArea
+        <UserDataArea
           pushMessageToSnackbar={pushMessageToSnackbar}
           targets={targets}
         />
@@ -50,7 +50,7 @@ class Dashboard extends PureComponent {
 
 Dashboard.propTypes = {
   CardChart: PropTypes.elementType,
-  statistics: PropTypes.arrayOf(PropTypes.object).isRequired,
+  statistics: PropTypes.object.isRequired,
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,

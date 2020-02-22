@@ -37,7 +37,7 @@ class Main extends PureComponent {
     Dropzone: null,
     DateTimePicker: null,
     transactions: [],
-    statistics: [],
+    statistics: { views: [], profit: [] },
     posts: [],
     targets: [],
     messages: [],
@@ -72,7 +72,7 @@ class Main extends PureComponent {
   };
 
   fetchRandomStatistics = () => {
-    const statistics = [];
+    const statistics = { profit: [], views: [] };
     const iterations = 300;
     const oneYearSeconds = 60 * 60 * 24 * 365;
     let curProfit = Math.round(3000 + Math.random() * 1000);
@@ -82,9 +82,12 @@ class Main extends PureComponent {
       curUnix += Math.round(oneYearSeconds / iterations);
       curProfit += Math.round((Math.random() * 2 - 1) * 10);
       curViews += Math.round((Math.random() * 2 - 1) * 10);
-      statistics.push({
-        views: curViews,
-        profit: curProfit,
+      statistics.profit.push({
+        value: curProfit,
+        timestamp: curUnix
+      });
+      statistics.views.push({
+        value: curViews,
         timestamp: curUnix
       });
     }
@@ -200,7 +203,7 @@ class Main extends PureComponent {
    * child's consecutiveSnackbarMessages component. Thats why we pass it
    * when the component did mount to this components state.
    */
-  getPushMessageFunctionFromChildComponent = pushFunction => {
+  getPushMessageFromChild = pushFunction => {
     this.pushMessageToSnackbar = pushFunction;
   };
 
@@ -295,9 +298,7 @@ class Main extends PureComponent {
       <Fragment>
         <NavBar selectedTab={selectedTab} messages={messages} />
         <ConsecutiveSnackbarMessages
-          getPushMessageFunctionFromChildComponent={
-            this.getPushMessageFunctionFromChildComponent
-          }
+          getPushMessageFromChild={this.getPushMessageFromChild}
         />
         <main className={classNames(classes.main)}>
           <Routing

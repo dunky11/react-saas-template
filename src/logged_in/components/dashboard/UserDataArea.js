@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -9,10 +9,14 @@ import {
   IconButton,
   Avatar,
   Box,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  Typography,
   withStyles
 } from "@material-ui/core";
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EnhancedTableHead from "../../../shared/EnhancedTableHead";
 import stableSort from "../../../shared/stableSort";
@@ -247,7 +251,10 @@ class CustomTable extends PureComponent {
     } = this.state;
     const { classes, targets } = this.props;
     return (
-      <Fragment>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Some user data</Typography>
+        </ExpansionPanelSummary>
         <ConfirmationDialog
           open={deleteTargetDialogOpen}
           title="Confirmation"
@@ -288,7 +295,7 @@ class CustomTable extends PureComponent {
             />
           </div>
         </Box>
-      </Fragment>
+      </ExpansionPanel>
     );
   }
 }

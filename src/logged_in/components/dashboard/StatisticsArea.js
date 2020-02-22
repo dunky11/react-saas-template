@@ -6,14 +6,12 @@ function StatisticsArea(props) {
   const { theme, CardChart, data } = props;
   return (
     CardChart &&
-    data.length >= 2 && (
+    data.profit.length >= 2 &&
+    data.views.length >= 2 && (
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <CardChart
-            data={data.map(element => ({
-              value: element.profit,
-              timestamp: element.timestamp
-            }))}
+            data={data.profit}
             color={theme.palette.secondary.light}
             height="70px"
             title="Profit"
@@ -21,10 +19,7 @@ function StatisticsArea(props) {
         </Grid>
         <Grid item xs={12} md={6}>
           <CardChart
-            data={data.map(element => ({
-              value: element.views,
-              timestamp: element.timestamp
-            }))}
+            data={data.views}
             color={theme.palette.primary.light}
             height="70px"
             title="Views"
@@ -37,7 +32,7 @@ function StatisticsArea(props) {
 
 StatisticsArea.propTypes = {
   theme: PropTypes.object.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.object.isRequired,
   CardChart: PropTypes.elementType
 };
 
