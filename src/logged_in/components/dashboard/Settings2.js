@@ -151,7 +151,7 @@ class Settings2 extends PureComponent {
             onChange={this.handleCheckboxChange("option3")}
           />
         ),
-        helpText: "If you want you can add some further explanation here."
+        helpText: "You can add some further explanation here."
       },
       {
         title: "Option 4",
@@ -197,7 +197,7 @@ class Settings2 extends PureComponent {
             <MenuItem value="Only female">Only female</MenuItem>
           </Select>
         ),
-        helpText: "If you want you can add some further explanation here."
+        helpText: "You can add some further explanation here."
       },
       {
         title: "Option 7",
