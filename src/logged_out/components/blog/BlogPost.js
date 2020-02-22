@@ -93,7 +93,6 @@ class BlogPost extends PureComponent {
               {otherArticles.map(blogPost => (
                 <Box key={blogPost.id} mb={3}>
                   <BlogCard
-                    src={blogPost.imageSrc}
                     title={blogPost.title}
                     snippet={blogPost.snippet}
                     date={blogPost.date}

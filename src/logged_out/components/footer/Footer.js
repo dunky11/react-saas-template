@@ -7,12 +7,16 @@ import {
   Box,
   IconButton,
   Hidden,
-  withStyles
+  withStyles,
+  withWidth,
+  isWidthUp,
+  TextField
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import WaveBorder from "../../../shared/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
+import ColoredButton from "../../../shared/ColoredButton";
 
 const styles = theme => ({
   footer: {
@@ -21,8 +25,8 @@ const styles = theme => ({
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
     paddingTop: theme.spacing(8),
-    paddingLeft: theme.spacing(7),
-    paddingRight: theme.spacing(7),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     paddingBottom: theme.spacing(6),
     [theme.breakpoints.up("sm")]: {
       paddingTop: theme.spacing(10),
@@ -69,6 +73,9 @@ const styles = theme => ({
     "&:hover": {
       color: theme.palette.primary.light
     }
+  },
+  whiteBg: {
+    backgroundColor: theme.palette.common.white
   }
 });
 
@@ -152,7 +159,8 @@ function Footer(props) {
     theme,
     openLoginDialog,
     openRegisterDialog,
-    handleCookieRulesDialogOpen
+    handleCookieRulesDialogOpen,
+    width
   } = props;
   return (
     <footer className={classNames(classes.footer, "lg-p-top")}>
@@ -162,84 +170,59 @@ function Footer(props) {
         animationNegativeDelay={4}
       />
       <div className={classes.footerInner}>
-        <Grid container spacing={3}>
+        <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>
-            <div>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-              >
-                Wa
-              </Typography>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-              >
-                Ver
-              </Typography>
-            </div>
-            <Box display="flex" mt={2} mb={1}>
-              <Grid container spacing={1}>
-                <Grid item>
-                  <Typography
-                    variant="h6"
-                    className={classes.link}
-                    onClick={openLoginDialog}
-                  >
-                    Login
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    variant="h6"
-                    className={classes.link}
-                    onClick={openRegisterDialog}
-                  >
-                    Register
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    tabIndex={0}
-                    variant="h6"
-                    className={classes.link}
-                    onClick={handleCookieRulesDialogOpen}
-                  >
-                    Cookies
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-            <Typography variant="subtitle2" style={{ color: "#8f9296" }}>
-              WaVer © 2020
-            </Typography>
+            <form>
+              <Box display="flex" flexDirection="column">
+                <Box mb={1}>
+                  <TextField
+                    variant="outlined"
+                    multiline
+                    placeholder="Send us a message"
+                    rows={4}
+                    InputProps={{ className: classes.whiteBg }}
+                    fullWidth
+                    required
+                  />
+                </Box>
+                <ColoredButton
+                  color={theme.palette.common.white}
+                  variant="outlined"
+                  type="submit"
+                >
+                  Send Message
+                </ColoredButton>
+              </Box>
+            </form>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6} lg={4}>
-              {infos.map((info, index) => (
-                <Box display="flex" mb={1} key={index}>
-                  <Box mr={2}>
-                    <IconButton
-                      className={classes.infoIcon}
-                      tabIndex={-1}
-                      disabled
-                    >
-                      {info.icon}
-                    </IconButton>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                  >
-                    <Typography variant="h6" className="text-white">
-                      {info.description}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
+              <Box display="flex" justifyContent="center">
+                <div>
+                  {infos.map((info, index) => (
+                    <Box display="flex" mb={1} key={index}>
+                      <Box mr={2}>
+                        <IconButton
+                          className={classes.infoIcon}
+                          tabIndex={-1}
+                          disabled
+                        >
+                          {info.icon}
+                        </IconButton>
+                      </Box>
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="center"
+                      >
+                        <Typography variant="h6" className="text-white">
+                          {info.description}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  ))}
+                </div>
+              </Box>
             </Grid>
           </Hidden>
           <Grid item xs={12} md={6} lg={4}>
@@ -274,7 +257,8 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired,
   openLoginDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,
-  handleCookieRulesDialogOpen: PropTypes.func.isRequired
+  handleCookieRulesDialogOpen: PropTypes.func.isRequired,
+  width: PropTypes.string.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Footer);
+export default withWidth()(withStyles(styles, { withTheme: true })(Footer));
