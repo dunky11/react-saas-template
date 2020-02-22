@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import CloseIcon from "@material-ui/icons/Close";
-import countWithEmojis from "./countWithEmojis";
+import countWithEmojis from "../functions/countWithEmojis";
 
 const styles = theme => ({
   "@global": {

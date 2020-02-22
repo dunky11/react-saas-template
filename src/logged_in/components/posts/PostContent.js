@@ -13,9 +13,9 @@ import {
 } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SelfAligningImage from "../../../shared/SelfAligningImage";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/ConfirmationDialog";
+import SelfAligningImage from "../../../shared/components/SelfAligningImage";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
 
 const styles = {
   dBlock: { display: "block" },

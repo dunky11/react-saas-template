@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
-import PropsRoute from "../../shared/PropsRoute";
+import PropsRoute from "../../shared/components/PropsRoute";
 
 const styles = theme => ({
   wrapper: {

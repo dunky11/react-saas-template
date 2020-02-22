@@ -4,8 +4,8 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
-import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
-import smoothScrollTop from "../../shared/smoothScrollTop";
+import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
+import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 
 const styles = theme => ({
@@ -232,7 +232,7 @@ class Main extends PureComponent {
     });
     if (!this.hasFetchedCardChart) {
       this.hasFetchedCardChart = true;
-      import("../../shared/CardChart").then(Component => {
+      import("../../shared/components/CardChart").then(Component => {
         this.setState({ CardChart: Component.default });
       });
     }
@@ -246,25 +246,25 @@ class Main extends PureComponent {
     });
     if (!this.hasFetchedEmojiTextArea) {
       this.hasFetchedEmojiTextArea = true;
-      import("../../shared/EmojiTextArea").then(Component => {
+      import("../../shared/components/EmojiTextArea").then(Component => {
         this.setState({ EmojiTextArea: Component.default });
       });
     }
     if (!this.hasFetchedImageCropper) {
       this.hasFetchedImageCropper = true;
-      import("../../shared/ImageCropper").then(Component => {
+      import("../../shared/components/ImageCropper").then(Component => {
         this.setState({ ImageCropper: Component.default });
       });
     }
     if (!this.hasFetchedDropzone) {
       this.hasFetchedDropzone = true;
-      import("../../shared/Dropzone").then(Component => {
+      import("../../shared/components/Dropzone").then(Component => {
         this.setState({ Dropzone: Component.default });
       });
     }
     if (!this.hasFetchedDateTimePicker) {
       this.hasFetchedDateTimePicker = true;
-      import("../../shared/DateTimePicker").then(Component => {
+      import("../../shared/components/DateTimePicker").then(Component => {
         this.setState({ DateTimePicker: Component.default });
       });
     }

@@ -1,8 +1,8 @@
 import React, { PureComponent, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Button, Box } from "@material-ui/core";
-import ActionPaper from "../../../shared/ActionPaper";
-import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+import ActionPaper from "../../../shared/components/ActionPaper";
+import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";
 
 const now = new Date();

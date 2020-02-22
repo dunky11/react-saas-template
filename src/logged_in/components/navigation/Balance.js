@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { OutlinedInput, withStyles } from "@material-ui/core";
-import currencyPrettyPrint from "../../../shared/currencyPrettyPrint";
+import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 
 const styles = {
   input: { padding: "0px 9px" },

@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
 import { TextField, Grid, Button, InputAdornment } from "@material-ui/core";
-import FormDialog from "../../../shared/FormDialog";
+import FormDialog from "../../../shared/components/FormDialog";
 import CardTextField from "./CardTextField";
 
 class AddBalanceDialog extends PureComponent {

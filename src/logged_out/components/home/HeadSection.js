@@ -13,7 +13,7 @@ import {
   isWidthUp
 } from "@material-ui/core";
 import headerImage from "../../dummy_data/images/headerImage.jpg";
-import WaveBorder from "../../../shared/WaveBorder";
+import WaveBorder from "../../../shared/components/WaveBorder";
 
 const styles = theme => ({
   extraLargeButtonLabel: {

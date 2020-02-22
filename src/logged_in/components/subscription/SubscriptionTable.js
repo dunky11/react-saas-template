@@ -8,11 +8,11 @@ import {
   TableRow,
   withStyles
 } from "@material-ui/core";
-import EnhancedTableHead from "../../../shared/EnhancedTableHead";
-import ColorfulChip from "../../../shared/ColorfulChip";
-import unixToDateString from "../../../shared/unixToDateString";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import currencyPrettyPrint from "../../../shared/currencyPrettyPrint";
+import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
+import ColorfulChip from "../../../shared/components/ColorfulChip";
+import unixToDateString from "../../../shared/functions/unixToDateString";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 
 const styles = theme => ({
   tableWrapper: {

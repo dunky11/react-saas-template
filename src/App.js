@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
-import Pace from "./shared/Pace";
+import Pace from "./shared/components/Pace";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 

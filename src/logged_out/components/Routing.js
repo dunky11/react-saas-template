@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import PropsRoute from "../../shared/PropsRoute";
+import PropsRoute from "../../shared/components/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
 import BlogPost from "./blog/BlogPost";

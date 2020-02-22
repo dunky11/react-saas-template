@@ -54,7 +54,7 @@ class NavigationDrawer extends PureComponent {
     } = this.props;
     return (
       <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
-        <Toolbar disablePadding className={classes.headSection}>
+        <Toolbar className={classes.headSection}>
           <ListItem
             style={{
               paddingTop: theme.spacing(0),
