@@ -4,8 +4,8 @@ import classNames from "classnames";
 import format from "date-fns/format";
 import { Grid, Typography, Card, Box, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
+import ShareButton from "../../../shared/ShareButton";
 import smoothScrollTop from "../../../shared/smoothScrollTop";
-import SharingButtons from "../../../shared/SharingButtons";
 
 const styles = theme => ({
   blogContentWrapper: {
@@ -63,12 +63,25 @@ class BlogPost extends PureComponent {
                 <Box p={3}>
                   {content}
                   <Box pt={2}>
-                    <SharingButtons
-                      types={["Facebook", "Twitter", "Reddit", "Tumblr"]}
-                      forceWhite
-                      title="React SaaS Template"
-                      description="I found an awesome template for an react webapplication!"
-                    />
+                    <Grid spacing={1} container>
+                      {["Facebook", "Twitter", "Reddit", "Tumblr"].map(
+                        (type, index) => (
+                          <Grid item key={index}>
+                            <ShareButton
+                              type={type}
+                              title="React SaaS Template"
+                              description="I found an awesome template for an webapp using React!"
+                              disableElevation
+                              variant="contained"
+                              className="text-white"
+                              classes={{
+                                label: "text-white"
+                              }}
+                            />
+                          </Grid>
+                        )
+                      )}
+                    </Grid>
                   </Box>
                 </Box>
               </Card>
@@ -80,11 +93,10 @@ class BlogPost extends PureComponent {
               {otherArticles.map(blogPost => (
                 <Box key={blogPost.id} mb={3}>
                   <BlogCard
-                    src={blogPost.image_src}
                     title={blogPost.title}
                     snippet={blogPost.snippet}
                     date={blogPost.date}
-                    url={blogPost.url}
+                    url={`${blogPost.url}${blogPost.params}`}
                   />
                 </Box>
               ))}

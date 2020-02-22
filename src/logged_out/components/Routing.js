@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import urlify from "../../shared/urlify";
 import PropsRoute from "../../shared/PropsRoute";
 import Home from "./home/Home";
 import Blog from "./blog/Blog";
@@ -15,7 +14,7 @@ function Routing(props) {
       {blogPosts.map(post => (
         <PropsRoute
           /* We cannot use the url here as it contains the get params */
-          path={`/blog/post/${urlify(post.title)}`}
+          path={post.url}
           component={BlogPost}
           title={post.title}
           key={post.title}
