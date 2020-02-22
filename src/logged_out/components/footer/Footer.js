@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import {
   Grid,
   Typography,
@@ -19,9 +18,6 @@ import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/ColoredButton";
 
 const styles = theme => ({
-  footer: {
-    backgroundColor: "#FFFFFF"
-  },
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
     paddingTop: theme.spacing(8),
@@ -154,16 +150,9 @@ const socialIcons = [
 ];
 
 function Footer(props) {
-  const {
-    classes,
-    theme,
-    openLoginDialog,
-    openRegisterDialog,
-    handleCookieRulesDialogOpen,
-    width
-  } = props;
+  const { classes, theme, width } = props;
   return (
-    <footer className={classNames(classes.footer, "lg-p-top")}>
+    <footer className="lg-p-top">
       <WaveBorder
         upperColor="#FFFFFF"
         lowerColor={theme.palette.common.darkBlack}
@@ -255,9 +244,6 @@ function Footer(props) {
 Footer.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  openLoginDialog: PropTypes.func.isRequired,
-  openRegisterDialog: PropTypes.func.isRequired,
-  handleCookieRulesDialogOpen: PropTypes.func.isRequired,
   width: PropTypes.string.isRequired
 };
 
