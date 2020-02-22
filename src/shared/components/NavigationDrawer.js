@@ -62,6 +62,7 @@ class NavigationDrawer extends PureComponent {
               height: "100%",
               justifyContent: anchor === "left" ? "flex-start" : "flex-end"
             }}
+            disableGutters
           >
             <ListItemIcon className={classes.closeIcon}>
               <IconButton onClick={onClose}>
