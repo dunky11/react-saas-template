@@ -19,7 +19,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 * Linux:
 
    ```
-   sudo apt install nodejs
+   sudo apt install nodejs npm
    ```
 
 * Windows or macOS:
