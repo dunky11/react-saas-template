@@ -7,8 +7,7 @@ const styles = theme => ({
     border: `${theme.border.borderWidth}px solid ${theme.border.borderColor}`
   },
   greyed: {
-    border: `${theme.border.borderWidth}px solid rgba(0, 0, 0, 0.23)`,
-    borderRadius: 0
+    border: `${theme.border.borderWidth}px solid rgba(0, 0, 0, 0.23)`
   }
 });
 
