@@ -19,7 +19,7 @@ Remains of a SaaS business I once tried to build. Now transformed into a templat
 * Linux:
 
    ```
-   sudo apt install nodejs
+   sudo apt install nodejs npm
    ```
 
 * Windows or macOS:
@@ -81,7 +81,6 @@ It will create a folder named build with your compiled project inside. After tha
 
 - [ ] Improving the reusability of components
 - [ ] Adding a "update balance" dialog
-- [ ] Improve acessability for screen readers
 - [ ] smoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
 
 ## License
