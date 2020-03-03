@@ -44,7 +44,7 @@ const theme = createMuiTheme({
     background: {
       default: background
     },
-    spacing: spacing
+    spacing
   },
   breakpoints: {
     // Define custom breakpoint values.
