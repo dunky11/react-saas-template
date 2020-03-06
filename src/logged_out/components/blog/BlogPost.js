@@ -5,6 +5,7 @@ import format from "date-fns/format";
 import { Grid, Typography, Card, Box, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 import ShareButton from "../../../shared/components/ShareButton";
+import ZoomImage from "../../../shared/components/ZoomImage";
 import smoothScrollTop from "../../../shared/functions/smoothScrollTop";
 
 const styles = theme => ({
@@ -59,7 +60,7 @@ class BlogPost extends PureComponent {
                     })}
                   </Typography>
                 </Box>
-                <img className={classes.img} src={src} alt="" />
+                <ZoomImage className={classes.img} src={src} alt="" />
                 <Box p={3}>
                   {content}
                   <Box pt={2}>
