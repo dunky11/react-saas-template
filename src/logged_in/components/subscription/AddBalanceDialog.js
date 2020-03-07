@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Grid, Button, Box } from "@material-ui/core";
 import FormDialog from "../../../shared/components/FormDialog";
-import StripeCardForm from "./StripeCardForm";
+import StripeCardForm from "./stripe/StripeCardForm";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 

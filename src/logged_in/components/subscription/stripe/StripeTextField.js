@@ -1,5 +1,7 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent, cloneElement } from "react";
+import PropTypes from "prop-types";
 import { withStyles, InputLabel, FormControl } from "@material-ui/core";
+import getStripeStylingOptions from "./getStripeStylingOptions";
 
 const styles = theme => ({
   likeInputBase: {
@@ -34,6 +36,13 @@ const styles = theme => ({
       paddingLeft: 5,
       paddingRight: 5
     }
+  },
+  stripeElementWrapper: {
+    padding: "18.5px 14px",
+    animationName: "mui-auto-fill-cancel"
+  },
+  label: {
+    transform: "translate(14px, -6px) scale(0.75)"
   }
 });
 
@@ -61,36 +70,39 @@ class StripeTextField extends PureComponent {
       variant,
       required,
       color,
-      StripeElement
+      StripeElement,
+      margin
     } = this.props;
+    const { isFocused } = this.state;
     return (
-      <FormControl fullWidth={fullWidth} variant={variant} required={required}>
+      <FormControl
+        fullWidth={fullWidth}
+        variant={variant}
+        required={required}
+        margin={margin}
+      >
         {label && (
-          <InputLabel focused shrink>
+          <InputLabel focused shrink className={classes.label}>
             {label}
           </InputLabel>
         )}
         <div className={classes.likeInputBase}>
-          <div
-            style={{
-              padding: "18.5px 14px",
-              animationName: "mui-auto-fill-cancel"
-            }}
-          >
-            <StripeElement
-              onReady={this.onReady}
-              onBlur={this.onBlur}
-              onFocus={this.onFocus}
-            ></StripeElement>
+          <div className={classes.stripeElementWrapper}>
+            {cloneElement(StripeElement, {
+              options: getStripeStylingOptions(theme, variant),
+              onReady: this.onReady,
+              onFocus: this.onFocus,
+              onBlur: this.onBlur
+            })}
           </div>
           <fieldset
             aria-hidden="true"
             className={classes.likeInput}
             style={{
               borderColor: isFocused
-                ? color === "primary"
-                  ? theme.palette.color.primary.main
-                  : primary.palette.palette.secondary.main
+                ? color === "secondary"
+                  ? theme.palette.secondary.main
+                  : theme.palette.primary.main
                 : null,
               borderWidth: isFocused ? 2 : null
             }}
@@ -110,8 +122,6 @@ class StripeTextField extends PureComponent {
   }
 }
 
-StripeTextField.propTypes = {
-  children: PropTypes.node.isRequired
-};
+StripeTextField.propTypes = {};
 
 export default withStyles(styles, { withTheme: true })(StripeTextField);
