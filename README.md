@@ -80,9 +80,11 @@ It will create a folder named build with your compiled project inside. After tha
 ## Things im currently working on
 
 - [ ] Improving the reusability of components
-- [ ] Adding a "update balance" dialog
+- [ ] Adding a AddBalance dialog
+- [ ] PaymentComponents which are integratable with Stripe
 - [ ] smoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
-- [ ] When a Dialog/Modal is opened there is a margin on the right side of the viewport
+- [ ] When a Dialog is opened there is a margin on the right side of the viewport (could be that this is not fixable without shaking the viewport on dialog open)
+- [ ] shadeColor() throws errors on certain color codes
 
 ## License
 
