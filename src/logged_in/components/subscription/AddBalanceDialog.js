@@ -1,65 +1,67 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { TextField, Grid, Button, InputAdornment } from "@material-ui/core";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { Grid, Button, Box } from "@material-ui/core";
 import FormDialog from "../../../shared/components/FormDialog";
-import CardTextField from "./CardTextField";
+import StripeCardForm from "./StripeCardForm";
+
+const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+
+const paymentOptions = ["Credit Card", "iDEAL", "IBAN", "FPX Bank"];
 
 class AddBalanceDialog extends PureComponent {
-  state = { value: 0 };
+  state = { value: 0, paymentOption: "Credit Card" };
 
-  onChange = event => {
-    const { value } = event.target;
-    if (value >= 0) {
-      this.setState({ value: event.target.value });
+  renderPaymentComponent = () => {
+    const { paymentOption } = this.state;
+    switch (paymentOption) {
+      case "Credit Card":
+        return <StripeCardForm />;
+      case "iDEAL":
+        return;
+      case "IBAN":
+        return;
+      case "FPX Bank":
+        return;
+      default:
+        throw new Error("No case selected in switch statement");
     }
   };
 
   render() {
     const { open } = this.props;
-    const { value } = this.state;
+    const { paymentOption } = this.state;
     return (
       <FormDialog
         open={open}
         headline="Add Balance"
         content={
-          <Fragment>
-            <Grid container spacing={0} justify="space-between">
-              <Grid item xs={8}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  label="Your Name"
-                  fullWidth
-                  autoFocus
-                  autoComplete="off"
-                  type="text"
-                  FormHelperTextProps={{ error: true }}
-                />
-              </Grid>
-              <Grid item xs={3}>
-                <TextField
-                  required
-                  value={value}
-                  onChange={this.onChange}
-                  variant="outlined"
-                  fullWidth
-                  type="number"
-                  margin="normal"
-                  label="amount"
-                  style={{ marginTop: 16, marginBottom: 8 }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">$</InputAdornment>
-                    )
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <CardTextField />
-              </Grid>
-            </Grid>
-          </Fragment>
+          <Box pb={2}>
+            <Elements stripe={stripePromise}>
+              <Box mb={2}>
+                <Grid container spacing={1}>
+                  {paymentOptions.map(option => (
+                    <Grid item key={option}>
+                      <Button
+                        variant={
+                          option === paymentOption ? "contained" : "outlined"
+                        }
+                        color="primary"
+                        disableElevation
+                        onClick={() => {
+                          this.setState({ paymentOption: option });
+                        }}
+                      >
+                        {option}
+                      </Button>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+              {this.renderPaymentComponent()}
+            </Elements>
+          </Box>
         }
         actions={
           <Button fullWidth variant="contained" color="secondary" size="large">
