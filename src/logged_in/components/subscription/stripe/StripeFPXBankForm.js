@@ -50,11 +50,13 @@ class StripeFBXBankForm extends PureComponent {
           <Grid item xs={12}>
             <StripeTextField
               margin="none"
+              variant="outlined"
               fullWidth
               label="iDEAL"
               required
-              StripeElement={<FpxBankElement />}
-              extraOptions={{ accountHolderType: "individual" }}
+              select
+              StripeElement={FpxBankElement}
+              stripeOptions={{ accountHolderType: "individual" }}
             ></StripeTextField>
           </Grid>
         </Grid>

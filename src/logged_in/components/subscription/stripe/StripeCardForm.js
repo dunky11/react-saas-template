@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from "react";
 import { TextField, Grid, InputAdornment } from "@material-ui/core";
-import StripeTextField from "./StripeTextField";
 import { CardElement } from "@stripe/react-stripe-js";
+import StripeTextField from "./StripeTextField";
 
 class StripeCardForm extends PureComponent {
   state = { value: 0 };
@@ -15,6 +15,8 @@ class StripeCardForm extends PureComponent {
 
   render() {
     const { value } = this.state;
+    console.log(StripeTextField);
+    console.log("here");
     return (
       <Fragment>
         <Grid container spacing={2} justify="space-between">
@@ -52,8 +54,9 @@ class StripeCardForm extends PureComponent {
               margin="none"
               fullWidth
               label="Credit Card"
+              variant="outlined"
               required
-              StripeElement={<CardElement />}
+              StripeElement={CardElement}
             ></StripeTextField>
           </Grid>
         </Grid>

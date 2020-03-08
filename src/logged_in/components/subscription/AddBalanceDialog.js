@@ -6,33 +6,24 @@ import { Grid, Button, Box, withTheme } from "@material-ui/core";
 import FormDialog from "../../../shared/components/FormDialog";
 import ColoredButton from "../../../shared/components/ColoredButton";
 import StripeCardForm from "./stripe/StripeCardForm";
-import StripeIDEALForm from "./stripe/StripeIDEALForm";
-import StripeIBANForm from "./stripe/StripeIBANForm";
+import StripeIbanForm from "./stripe/StripeIBANForm";
 import StripeFPXBankForm from "./stripe/StripeFPXBankForm";
-import TestStripe from "./stripe/TestStripe";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
-const paymentOptions = [
-  "Credit Card",
-  "iDEAL",
-  "FPX Bank",
-  "SEPA Direct Debit"
-];
+const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 class AddBalanceDialog extends PureComponent {
   state = { value: 0, paymentOption: "Credit Card" };
 
   renderPaymentComponent = () => {
     const { paymentOption } = this.state;
-    return <TestStripe></TestStripe>;
     switch (paymentOption) {
       case "Credit Card":
         return <StripeCardForm />;
       case "iDEAL":
-        return <StripeIDEALForm />;
       case "SEPA Direct Debit":
-        return <StripeIBANForm />;
+        return <StripeIbanForm />;
       case "FPX Bank":
         return <StripeFPXBankForm />;
       default:

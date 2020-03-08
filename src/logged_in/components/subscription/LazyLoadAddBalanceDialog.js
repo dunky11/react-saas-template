@@ -7,7 +7,6 @@ class LazyLoadAddBalanceDialog extends PureComponent {
   componentDidUpdate() {
     const { open } = this.props;
     if (open && !this.hasFetchedAddBalanceDialog) {
-      console.log("here2");
       this.hasFetchedAddBalanceDialog = true;
       import("./AddBalanceDialog").then(Component => {
         this.setState({ AddBalanceDialog: Component.default });

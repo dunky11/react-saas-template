@@ -60,11 +60,12 @@ class StripeIBANForm extends PureComponent {
           <Grid item xs={12}>
             <StripeTextField
               margin="none"
+              variant="outlined"
               fullWidth
               label="IBAN"
               required
-              StripeElement={<IbanElement />}
-              extraOptions={{ supportedCountries: ["SEPA"] }}
+              StripeElement={IbanElement}
+              stripeOptions={{ supportedCountries: ["SEPA"] }}
             ></StripeTextField>
           </Grid>
         </Grid>

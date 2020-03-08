@@ -1,131 +1,54 @@
-import React, { PureComponent, cloneElement } from "react";
-import PropTypes from "prop-types";
-import { withStyles, InputLabel, FormControl } from "@material-ui/core";
-import getStripeStylingOptions from "./getStripeStylingOptions";
+import React from "react";
+import { TextField, withTheme } from "@material-ui/core";
 
-const styles = theme => ({
-  likeInputBase: {
-    borderRadius: theme.shape.borderRadius,
-    position: "relative"
-  },
-  likeInput: {
-    top: -5,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    margin: 0,
-    padding: 0,
-    position: "absolute",
-    borderStyle: "solid",
-    borderWidth: 1,
-    paddingLeft: 8,
-    borderRadius: "inherit",
-    pointerEvents: "none"
-  },
-  legend: {
-    width: "auto",
-    height: 11,
-    display: "block",
-    padding: 0,
-    fontSize: 8,
-    maxWidth: 1000,
-    textAlign: "left",
-    transition: "max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
-    visibility: "hidden",
-    "& span": {
-      paddingLeft: 5,
-      paddingRight: 5
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
     }
-  },
-  stripeElementWrapper: {
-    padding: "18.5px 14px",
-    animationName: "mui-auto-fill-cancel"
-  },
-  label: {
-    transform: "translate(14px, -6px) scale(0.75)"
-  }
-});
+    // hiding the value e.g. react-stripe-elements
+  }));
 
-class StripeTextField extends PureComponent {
-  state = { isReady: false, isFocused: false };
-
-  onFocus = () => {
-    this.setState({ isFocused: true });
-  };
-
-  onBlur = () => {
-    this.setState({ isFocused: false });
-  };
-
-  onReady = () => {
-    this.setState({ isReady: true });
-  };
-
-  render() {
-    const {
-      classes,
-      theme,
-      label,
-      fullWidth,
-      variant,
-      required,
-      color,
-      StripeElement,
-      margin,
-      extraOptions
-    } = this.props;
-    const { isFocused } = this.state;
-    return (
-      <FormControl
-        fullWidth={fullWidth}
-        variant={variant}
-        required={required}
-        margin={margin}
-      >
-        {label && (
-          <InputLabel focused shrink className={classes.label}>
-            {label}
-          </InputLabel>
-        )}
-        <div className={classes.likeInputBase}>
-          <div className={classes.stripeElementWrapper}>
-            {cloneElement(StripeElement, {
-              options: {
-                ...getStripeStylingOptions(theme, variant),
-                ...extraOptions
-              },
-              onReady: this.onReady,
-              onFocus: this.onFocus,
-              onBlur: this.onBlur
-            })}
-          </div>
-          <fieldset
-            aria-hidden="true"
-            className={classes.likeInput}
-            style={{
-              borderColor: isFocused
-                ? color === "secondary"
-                  ? theme.palette.secondary.main
-                  : theme.palette.primary.main
-                : null,
-              borderWidth: isFocused ? 2 : null
-            }}
-          >
-            {label && (
-              <legend className={classes.legend}>
-                <span>
-                  {label}
-                  {required ? "&nbsp;*" : ""}
-                </span>
-              </legend>
-            )}
-          </fieldset>
-        </div>
-      </FormControl>
-    );
-  }
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
 }
 
-StripeTextField.propTypes = {};
+function StripeTextField(props) {
+  const { stripeOptions, StripeElement, select, theme, ...rest } = props;
+  const options = {
+    style: {
+      iconStyle: "solid",
+      base: {
+        ...theme.typography.body1,
+        color: theme.palette.text.primary,
+        fontSize: "16px",
+        fontSmoothing: "antialiased",
+        "::placeholder": {
+          color: theme.palette.text.secondary
+        }
+      },
+      invalid: {
+        iconColor: theme.palette.error.main,
+        color: theme.palette.error.main
+      }
+    },
+    ...stripeOptions
+  };
+  return (
+    <TextField
+      InputLabelProps={{
+        shrink: true
+      }}
+      InputProps={{
+        inputComponent: MyInputComponent,
+        inputProps: { component: StripeElement, options: options }
+      }}
+      {...rest}
+    />
+  );
+}
 
-export default withStyles(styles, { withTheme: true })(StripeTextField);
+export default withTheme(StripeTextField);
