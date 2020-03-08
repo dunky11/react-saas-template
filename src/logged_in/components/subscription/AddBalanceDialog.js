@@ -9,6 +9,7 @@ import StripeCardForm from "./stripe/StripeCardForm";
 import StripeIDEALForm from "./stripe/StripeIDEALForm";
 import StripeIBANForm from "./stripe/StripeIBANForm";
 import StripeFPXBankForm from "./stripe/StripeFPXBankForm";
+import TestStripe from "./stripe/TestStripe";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
@@ -24,6 +25,7 @@ class AddBalanceDialog extends PureComponent {
 
   renderPaymentComponent = () => {
     const { paymentOption } = this.state;
+    return <TestStripe></TestStripe>;
     switch (paymentOption) {
       case "Credit Card":
         return <StripeCardForm />;

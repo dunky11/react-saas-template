@@ -11,7 +11,8 @@ function getStylingOptions(theme, variant) {
         letterSpacing: "0.00938em",
         "::placeholder": {
           color: theme.palette.text.secondary
-        }
+        },
+        padding: "10px 14px"
       },
       invalid: {
         iconColor: theme.palette.error.main,
