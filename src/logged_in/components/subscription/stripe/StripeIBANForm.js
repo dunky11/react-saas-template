@@ -1,9 +1,9 @@
 import React, { PureComponent, Fragment } from "react";
 import { TextField, Grid, InputAdornment } from "@material-ui/core";
 import StripeTextField from "./StripeTextField";
-import { CardElement } from "@stripe/react-stripe-js";
+import { IbanElement } from "@stripe/react-stripe-js";
 
-class StripeCardForm extends PureComponent {
+class StripeIBANForm extends PureComponent {
   state = { value: 0 };
 
   onChange = event => {
@@ -48,12 +48,23 @@ class StripeCardForm extends PureComponent {
             />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              required
+              variant="outlined"
+              fullWidth
+              type="email"
+              margin="none"
+              label="Email"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <StripeTextField
               margin="none"
               fullWidth
-              label="Credit Card"
+              label="IBAN"
               required
-              StripeElement={<CardElement />}
+              StripeElement={<IbanElement />}
+              extraOptions={{ supportedCountries: ["SEPA"] }}
             ></StripeTextField>
           </Grid>
         </Grid>
@@ -62,4 +73,4 @@ class StripeCardForm extends PureComponent {
   }
 }
 
-export default StripeCardForm;
+export default StripeIBANForm;

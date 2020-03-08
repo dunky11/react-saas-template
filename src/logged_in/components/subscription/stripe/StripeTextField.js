@@ -71,7 +71,8 @@ class StripeTextField extends PureComponent {
       required,
       color,
       StripeElement,
-      margin
+      margin,
+      extraOptions
     } = this.props;
     const { isFocused } = this.state;
     return (
@@ -89,7 +90,10 @@ class StripeTextField extends PureComponent {
         <div className={classes.likeInputBase}>
           <div className={classes.stripeElementWrapper}>
             {cloneElement(StripeElement, {
-              options: getStripeStylingOptions(theme, variant),
+              options: {
+                ...getStripeStylingOptions(theme, variant),
+                ...extraOptions
+              },
               onReady: this.onReady,
               onFocus: this.onFocus,
               onBlur: this.onBlur
