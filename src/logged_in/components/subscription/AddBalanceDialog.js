@@ -21,11 +21,8 @@ class AddBalanceDialog extends PureComponent {
     switch (paymentOption) {
       case "Credit Card":
         return <StripeCardForm />;
-      case "iDEAL":
       case "SEPA Direct Debit":
         return <StripeIbanForm />;
-      case "FPX Bank":
-        return <StripeFPXBankForm />;
       default:
         throw new Error("No case selected in switch statement");
     }
@@ -68,7 +65,7 @@ class AddBalanceDialog extends PureComponent {
         }
         actions={
           <Button fullWidth variant="contained" color="secondary" size="large">
-            Update
+            Pay
           </Button>
         }
       />
