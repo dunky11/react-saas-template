@@ -81,6 +81,15 @@ class Main extends PureComponent {
     this.setState({ addBalanceDialogOpen: false });
   };
 
+  onPaymentSuccess = () => {
+    if (this.pushMessageToSnackbar) {
+      this.pushMessageToSnackbar({
+        text: "Your balance has been updated."
+      });
+    }
+    this.setState({ addBalanceDialogOpen: false });
+  };
+
   fetchRandomStatistics = () => {
     const statistics = { profit: [], views: [] };
     const iterations = 300;
@@ -310,6 +319,7 @@ class Main extends PureComponent {
         <LazyLoadAddBalanceDialog
           open={addBalanceDialogOpen}
           onClose={this.closeAddBalanceDialog}
+          onSuccess={this.onPaymentSuccess}
         />
         <NavBar
           selectedTab={selectedTab}

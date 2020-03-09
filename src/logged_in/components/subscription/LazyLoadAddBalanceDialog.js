@@ -15,12 +15,16 @@ class LazyLoadAddBalanceDialog extends PureComponent {
   }
 
   render() {
-    const { open, onClose } = this.props;
+    const { open, onClose, onSuccess } = this.props;
     const { AddBalanceDialog } = this.state;
     return (
       <Fragment>
         {AddBalanceDialog && (
-          <AddBalanceDialog open={open} onClose={onClose}></AddBalanceDialog>
+          <AddBalanceDialog
+            open={open}
+            onClose={onClose}
+            onSuccess={onSuccess}
+          ></AddBalanceDialog>
         )}
       </Fragment>
     );
@@ -29,7 +33,8 @@ class LazyLoadAddBalanceDialog extends PureComponent {
 
 LazyLoadAddBalanceDialog.propTypes = {
   open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func.isRequired
 };
 
 export default LazyLoadAddBalanceDialog;

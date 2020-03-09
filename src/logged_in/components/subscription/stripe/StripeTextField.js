@@ -20,7 +20,6 @@ function StripeTextField(props) {
   const { stripeOptions, StripeElement, select, theme, ...rest } = props;
   const options = {
     style: {
-      iconStyle: "solid",
       base: {
         ...theme.typography.body1,
         color: theme.palette.text.primary,
