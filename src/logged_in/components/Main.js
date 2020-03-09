@@ -349,6 +349,7 @@ class Main extends PureComponent {
             selectDashboard={this.selectDashboard}
             selectPosts={this.selectPosts}
             selectSubscription={this.selectSubscription}
+            openAddBalanceDialog={this.openAddBalanceDialog}
           />
         </main>
       </Fragment>

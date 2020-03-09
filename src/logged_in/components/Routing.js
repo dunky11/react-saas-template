@@ -62,7 +62,8 @@ function Routing(props) {
     isAccountActivated,
     selectDashboard,
     selectPosts,
-    selectSubscription
+    selectSubscription,
+    openAddBalanceDialog
   } = props;
   return (
     <div className={classes.wrapper}>
@@ -84,6 +85,7 @@ function Routing(props) {
           transactions={transactions}
           pushMessageToSnackbar={pushMessageToSnackbar}
           selectSubscription={selectSubscription}
+          openAddBalanceDialog={openAddBalanceDialog}
         />
         <PropsRoute
           path=""
@@ -123,7 +125,8 @@ Routing.propTypes = {
   isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired,
   selectPosts: PropTypes.func.isRequired,
-  selectSubscription: PropTypes.func.isRequired
+  selectSubscription: PropTypes.func.isRequired,
+  openAddBalanceDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Routing);
