@@ -4,11 +4,11 @@ import { OutlinedInput, withStyles } from "@material-ui/core";
 import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 
 const styles = {
-  input: { padding: "0px 9px" },
+  input: { padding: "0px 9px", cursor: "pointer" },
   outlinedInput: {
     width: 90,
     height: 40,
-    pointerEvents: "none !important"
+    cursor: "pointer"
   },
   wrapper: {
     display: "flex",
@@ -17,7 +17,7 @@ const styles = {
 };
 
 function Balance(props) {
-  const { balance, classes } = props;
+  const { balance, classes, openAddBalanceDialog } = props;
   return (
     <div className={classes.wrapper}>
       <OutlinedInput
@@ -26,6 +26,7 @@ function Balance(props) {
         classes={{ input: classes.input }}
         readOnly
         labelWidth={0}
+        onClick={openAddBalanceDialog}
       />
     </div>
   );
@@ -33,7 +34,8 @@ function Balance(props) {
 
 Balance.propTypes = {
   balance: PropTypes.number.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openAddBalanceDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Balance);

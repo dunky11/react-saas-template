@@ -10,9 +10,8 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/system": "^4.9.3",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.1",
-    "@testing-library/user-event": "^10.0.0",
+    "@stripe/react-stripe-js": "^1.0.3",
+    "@stripe/stripe-js": "^1.0.2",
     "aos": "^2.3.4",
     "classnames": "^2.2.6",
     "date-fns": "^2.10.0",
@@ -27,6 +26,11 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "recharts": "^1.8.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^10.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
