@@ -76,6 +76,7 @@ It will create a folder named build with your compiled project inside. After tha
 * [Recharts](https://github.com/recharts/recharts) - Charting library I used for the statistics
 * [Aos](https://github.com/michalsnik/aos) - Animations based on viewport
 * [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
+* [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
 
 ## Things im currently working on
 
@@ -83,6 +84,7 @@ It will create a folder named build with your compiled project inside. After tha
 - [ ] smoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
 - [ ] When a Dialog is opened there is a margin on the right side of the viewport (could be that this is not fixable without shaking the viewport on dialog open)
 - [ ] shadeColor() throws errors on certain color codes
+- [ ] Adding iDEAL, FBX and PaymentRequestButton to avaible payment methods
 
 ## License
 
