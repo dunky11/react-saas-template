@@ -87,7 +87,7 @@ It will create a folder named build with your compiled project inside. After tha
 - [ ] Adding iDEAL, FBX and PaymentRequestButton to avaible payment methods
 
 ## Contribute
-Show your support by 🌟 the project.
+Show your support by ⭐ the project.
 
 ## License
 
