@@ -33,7 +33,11 @@ function SideDrawer(props) {
           alignItems="center"
         >
           <Typography variant="h6">A Sidedrawer</Typography>
-          <IconButton onClick={onClose} color="primary">
+          <IconButton
+            onClick={onClose}
+            color="primary"
+            aria-label="Close Sidedrawer"
+          >
             <CloseIcon />
           </IconButton>
         </Box>

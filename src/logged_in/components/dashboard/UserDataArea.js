@@ -203,6 +203,7 @@ class CustomTable extends PureComponent {
                           onClick={() => {
                             this.toggleTarget(row.id);
                           }}
+                          aria-label="Pause"
                         >
                           <PauseCircleOutlineIcon
                             className={classes.blackIcon}
@@ -215,6 +216,7 @@ class CustomTable extends PureComponent {
                           onClick={() => {
                             this.toggleTarget(row.id);
                           }}
+                          aria-label="Resume"
                         >
                           <PlayCirlceOutlineIcon />
                         </IconButton>
@@ -224,6 +226,7 @@ class CustomTable extends PureComponent {
                         onClick={() => {
                           this.handleDeleteTargetDialogOpen(row.id, row.name);
                         }}
+                        aria-label="Delete"
                       >
                         <DeleteIcon className={classes.blackIcon} />
                       </IconButton>

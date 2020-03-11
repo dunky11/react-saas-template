@@ -39,6 +39,7 @@ function DialogTitleWithCloseIcon(props) {
           onClick={onClose}
           style={{ marginRight: -12, marginTop: -10 }}
           disabled={disabled}
+          aria-label="Close"
         >
           <CloseIcon />
         </IconButton>

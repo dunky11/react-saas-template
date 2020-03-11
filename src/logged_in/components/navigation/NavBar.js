@@ -233,7 +233,11 @@ class NavBar extends PureComponent {
             <Box display="flex" alignItems="center">
               <Hidden smUp>
                 <Box mr={1}>
-                  <IconButton onClick={this.openMobileDrawer} color="primary">
+                  <IconButton
+                    aria-label="Open Navigation"
+                    onClick={this.openMobileDrawer}
+                    color="primary"
+                  >
                     <MenuIcon />
                   </IconButton>
                 </Box>
@@ -291,7 +295,11 @@ class NavBar extends PureComponent {
                 )}
               </ListItem>
             </Box>
-            <IconButton onClick={this.openDrawer} color="primary">
+            <IconButton
+              onClick={this.openDrawer}
+              color="primary"
+              aria-label="Open Sidedrawer"
+            >
               <SupervisorAccountIcon />
             </IconButton>
             <SideDrawer open={sideDrawerOpen} onClose={this.closeDrawer} />
@@ -329,6 +337,11 @@ class NavBar extends PureComponent {
                       onClick={() => {
                         this.links[index].click();
                       }}
+                      aria-label={
+                        element.name === "Logout"
+                          ? "Logout"
+                          : `Go to ${element.name}`
+                      }
                     >
                       <ListItemIcon className={classes.justifyCenter}>
                         {element.icon.desktop}
