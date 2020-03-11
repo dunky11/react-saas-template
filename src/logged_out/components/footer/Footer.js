@@ -172,6 +172,7 @@ function Footer(props) {
                     variant="outlined"
                     multiline
                     placeholder="Get in touch with us"
+                    inputProps={{ "aria-label": "Get in touch" }}
                     rows={4}
                     InputProps={{ className: classes.whiteBg }}
                     fullWidth
@@ -230,7 +231,7 @@ function Footer(props) {
               {socialIcons.map((socialIcon, index) => (
                 <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
                   <IconButton
-                    ariaLabel={socialIcon.label}
+                    aria-label={socialIcon.label}
                     className={classes.socialIcon}
                     href={socialIcon.href}
                   >
