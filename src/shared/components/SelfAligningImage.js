@@ -13,10 +13,10 @@ const styles = {
   },
   image: {
     position: "absolute",
-    top: -9999,
-    bottom: -9999,
-    left: -9999,
-    right: -9999,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
     margin: "auto"
   }
 };
