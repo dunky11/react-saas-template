@@ -57,6 +57,11 @@ function AccountInformationArea(props) {
             color="secondary"
             checked={isAccountActivated}
             onClick={toggleAccountActivation}
+            inputProps={{
+              "aria-label": isAccountActivated
+                ? "Deactivate Account"
+                : "Activate Account"
+            }}
           />
         </ListItemSecondaryAction>
       </Toolbar>
