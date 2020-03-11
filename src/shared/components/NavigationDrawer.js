@@ -65,7 +65,7 @@ class NavigationDrawer extends PureComponent {
             disableGutters
           >
             <ListItemIcon className={classes.closeIcon}>
-              <IconButton onClick={onClose}>
+              <IconButton onClick={onClose} aria-label="Close navigation">
                 <CloseIcon color="primary" />
               </IconButton>
             </ListItemIcon>
