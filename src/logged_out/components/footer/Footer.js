@@ -172,7 +172,7 @@ function Footer(props) {
                     variant="outlined"
                     multiline
                     placeholder="Get in touch with us"
-                    inputProps={{ "aria-label": "Get in touch" }}
+                    inputProps={{ "aria-label": "Get in Touch" }}
                     InputProps={{
                       className: classes.whiteBg
                     }}

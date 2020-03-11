@@ -43,6 +43,7 @@ class VertOptions extends PureComponent {
           }}
           style={{ color: color ? color : null }}
           aria-describedby={id}
+          aria-label="More Options"
         >
           <MoreVertIcon style={{ color: color ? color : null }} />
         </IconButton>
