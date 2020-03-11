@@ -11,7 +11,6 @@ import {
   Box,
   withStyles
 } from "@material-ui/core";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
@@ -120,10 +119,7 @@ class PostContent extends PureComponent {
             onClick={openAddPostModal}
             disableElevation
           >
-            <Box mr={1} display="flex" alignItems="center">
-              <AddCircleOutlineIcon fontSize="small" />
-            </Box>
-            New
+            Add Post
           </Button>
         </Toolbar>
         <Divider />
