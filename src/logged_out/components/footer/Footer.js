@@ -173,8 +173,10 @@ function Footer(props) {
                     multiline
                     placeholder="Get in touch with us"
                     inputProps={{ "aria-label": "Get in touch" }}
+                    InputProps={{
+                      className: classes.whiteBg
+                    }}
                     rows={4}
-                    InputProps={{ className: classes.whiteBg }}
                     fullWidth
                     required
                   />
