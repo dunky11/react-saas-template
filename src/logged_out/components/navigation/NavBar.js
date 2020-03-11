@@ -98,6 +98,7 @@ function NavBar(props) {
               <IconButton
                 className={classes.menuButton}
                 onClick={handleMobileDrawerOpen}
+                aria-label="Navigation"
               >
                 <MenuIcon color="primary" />
               </IconButton>

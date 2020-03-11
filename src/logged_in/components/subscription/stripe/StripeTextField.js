@@ -41,9 +41,9 @@ function StripeTextField(props) {
       InputLabelProps={{
         shrink: true
       }}
+      inputProps={{ component: StripeElement, options: options }}
       InputProps={{
-        inputComponent: MyInputComponent,
-        inputProps: { component: StripeElement, options: options }
+        inputComponent: MyInputComponent
       }}
       {...rest}
     />
