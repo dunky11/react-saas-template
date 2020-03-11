@@ -118,6 +118,7 @@ class PostContent extends PureComponent {
             variant="contained"
             color="secondary"
             onClick={openAddPostModal}
+            disableElevation
           >
             <Box mr={1} display="flex" alignItems="center">
               <AddCircleOutlineIcon fontSize="small" />
