@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import CloseIcon from "@material-ui/icons/Close";
-import countWithEmojis from "./countWithEmojis";
+import countWithEmojis from "../functions/countWithEmojis";
 
 const styles = theme => ({
   "@global": {
@@ -23,10 +23,15 @@ const styles = theme => ({
       ...theme.typography.body1,
       ...theme.border
     },
-
+    ".emoji-mart-search": {
+      marginTop: `${theme.spacing(1)}px !important`,
+      paddingRight: `${theme.spacing(1)}px !important`,
+      paddingLeft: `${theme.spacing(1)}px !important`,
+      paddingBottom: `${theme.spacing(1)}px !important`
+    },
     ".emoji-mart-search-icon": {
-      top: 8,
-      right: 20,
+      top: "5px !important",
+      right: "14px !important",
       fontSize: 20
     },
     ".emoji-mart-scroll": {

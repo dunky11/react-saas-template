@@ -15,13 +15,12 @@ import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
-import NavigationDrawer from "../../../shared/NavigationDrawer";
+import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = theme => ({
   appBar: {
     boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white,
-    padding: theme.spacing(0.5)
+    backgroundColor: theme.palette.common.white
   },
   toolbar: {
     display: "flex",
@@ -99,8 +98,9 @@ function NavBar(props) {
               <IconButton
                 className={classes.menuButton}
                 onClick={handleMobileDrawerOpen}
+                aria-label="Open Navigation"
               >
-                <MenuIcon fontSize="large" color="primary" />
+                <MenuIcon color="primary" />
               </IconButton>
             </Hidden>
             <Hidden smDown>

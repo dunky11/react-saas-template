@@ -2,22 +2,22 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
-import urlify from "../../shared/urlify";
 import NavBar from "./navigation/NavBar";
 import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
-import smoothScrollTop from "../../shared/smoothScrollTop";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import dummyBlogPosts from "../dummy_data/blogPosts";
 import DialogSelector from "./register_login/DialogSelector";
 import Routing from "./Routing";
+import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 
 AOS.init({ once: true });
 
 const styles = theme => ({
   wrapper: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
+    overflowX: "hidden"
   }
 });
 
@@ -90,9 +90,17 @@ class Main extends PureComponent {
      */
     this.blogPostsMaxUnix = dummyBlogPosts[dummyBlogPosts.length - 1].date;
     const blogPosts = dummyBlogPosts.map(blogPost => {
-      const post = blogPost;
-      post.url = `/blog/post/${urlify(post.title)}?id=${post.id}`;
-      return post;
+      let title = blogPost.title;
+      title = title.toLowerCase();
+      /* Remove unwanted characters, only accept alphanumeric and space */
+      title = title.replace(/[^A-Za-z0-9 ]/g, "");
+      /* Replace multi spaces with a single space */
+      title = title.replace(/\s{2,}/g, " ");
+      /* Replace space with a '-' symbol */
+      title = title.replace(/\s/g, "-");
+      blogPost.url = `/blog/post/${title}`;
+      blogPost.params = `?id=${blogPost.id}`;
+      return blogPost;
     });
     this.setState({
       blogPosts
@@ -149,11 +157,7 @@ class Main extends PureComponent {
           selectHome={this.selectHome}
           selectBlog={this.selectBlog}
         />
-        <Footer
-          openLoginDialog={this.openLoginDialog}
-          openRegisterDialog={this.openRegisterDialog}
-          handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
-        />
+        <Footer />
       </div>
     );
   }

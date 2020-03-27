@@ -29,7 +29,7 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
-import NavigationDrawer from "../../../shared/NavigationDrawer";
+import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 
 const styles = theme => ({
@@ -50,7 +50,6 @@ const styles = theme => ({
     justifyContent: "space-between",
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    minHeight: 64,
     [theme.breakpoints.up("sm")]: {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
@@ -152,7 +151,13 @@ class NavBar extends PureComponent {
 
   render() {
     const { mobileOpen, sideDrawerOpen } = this.state;
-    const { selectedTab, messages, classes, width } = this.props;
+    const {
+      selectedTab,
+      messages,
+      classes,
+      width,
+      openAddBalanceDialog
+    } = this.props;
     const menuItems = [
       {
         link: "/c/dashboard",
@@ -228,7 +233,11 @@ class NavBar extends PureComponent {
             <Box display="flex" alignItems="center">
               <Hidden smUp>
                 <Box mr={1}>
-                  <IconButton onClick={this.openMobileDrawer} color="primary">
+                  <IconButton
+                    aria-label="Open Navigation"
+                    onClick={this.openMobileDrawer}
+                    color="primary"
+                  >
                     <MenuIcon />
                   </IconButton>
                 </Box>
@@ -260,7 +269,10 @@ class NavBar extends PureComponent {
             >
               {isWidthUp("sm", width) && (
                 <Box mr={3}>
-                  <Balance balance={2573} />
+                  <Balance
+                    balance={2573}
+                    openAddBalanceDialog={openAddBalanceDialog}
+                  />
                 </Box>
               )}
               <MessagePopperButton messages={messages} />
@@ -283,7 +295,11 @@ class NavBar extends PureComponent {
                 )}
               </ListItem>
             </Box>
-            <IconButton onClick={this.openDrawer} color="primary">
+            <IconButton
+              onClick={this.openDrawer}
+              color="primary"
+              aria-label="Open Sidedrawer"
+            >
               <SupervisorAccountIcon />
             </IconButton>
             <SideDrawer open={sideDrawerOpen} onClose={this.closeDrawer} />
@@ -321,6 +337,11 @@ class NavBar extends PureComponent {
                       onClick={() => {
                         this.links[index].click();
                       }}
+                      aria-label={
+                        element.name === "Logout"
+                          ? "Logout"
+                          : `Go to ${element.name}`
+                      }
                     >
                       <ListItemIcon className={classes.justifyCenter}>
                         {element.icon.desktop}
@@ -353,7 +374,8 @@ NavBar.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedTab: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openAddBalanceDialog: PropTypes.func.isRequired
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(NavBar));

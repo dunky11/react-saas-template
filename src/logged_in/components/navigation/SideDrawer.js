@@ -15,8 +15,7 @@ const drawerWidth = 240;
 
 const styles = {
   toolbar: {
-    minWidth: drawerWidth,
-    height: 64
+    minWidth: drawerWidth
   }
 };
 
@@ -34,7 +33,11 @@ function SideDrawer(props) {
           alignItems="center"
         >
           <Typography variant="h6">A Sidedrawer</Typography>
-          <IconButton onClick={onClose} color="primary">
+          <IconButton
+            onClick={onClose}
+            color="primary"
+            aria-label="Close Sidedrawer"
+          >
             <CloseIcon />
           </IconButton>
         </Box>

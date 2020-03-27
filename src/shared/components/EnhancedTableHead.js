@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
   Typography,
   TableCell,
@@ -9,7 +10,6 @@ import {
   Tooltip,
   withStyles
 } from "@material-ui/core";
-import classNames from "classnames";
 
 const styles = theme => ({
   tableSortLabel: {
@@ -17,8 +17,10 @@ const styles = theme => ({
     userSelect: "auto",
     color: "inherit !important"
   },
-  noPointerEvents: {
-    pointerEvents: "none"
+  noIcon: {
+    "& path": {
+      display: "none !important"
+    }
   },
   paddingFix: {
     paddingLeft: theme.spacing(3)
@@ -59,10 +61,7 @@ function EnhancedTableHead(props) {
               </Tooltip>
             ) : (
               <TableSortLabel
-                className={classNames(
-                  classes.tableSortLabel,
-                  classes.noPointerEvents
-                )}
+                className={classNames(classes.tableSortLabel, classes.noIcon)}
               >
                 <Typography variant="body2" className={classes.label}>
                   {row.label}

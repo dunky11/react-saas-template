@@ -19,9 +19,9 @@ import {
   withStyles
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import HelpIcon from "../../../shared/HelpIcon";
-import Bordered from "../../../shared/Bordered";
-import ButtonCircularProgress from "../../../shared/ButtonCircularProgress";
+import HelpIcon from "../../../shared/components/HelpIcon";
+import Bordered from "../../../shared/components/Bordered";
+import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = theme => ({
   numberInput: {
@@ -151,7 +151,7 @@ class Settings2 extends PureComponent {
             onChange={this.handleCheckboxChange("option3")}
           />
         ),
-        helpText: "If you want you can add some further explanation here."
+        helpText: "You can add some further explanation here."
       },
       {
         title: "Option 4",
@@ -197,7 +197,7 @@ class Settings2 extends PureComponent {
             <MenuItem value="Only female">Only female</MenuItem>
           </Select>
         ),
-        helpText: "If you want you can add some further explanation here."
+        helpText: "You can add some further explanation here."
       },
       {
         title: "Option 7",
@@ -237,7 +237,7 @@ class Settings2 extends PureComponent {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dBlock}>
           <List disablePadding>
-            <Bordered disableVerticalPadding>
+            <Bordered disableVerticalPadding disableBorderRadius>
               {inputs.map((element, index) => (
                 <ListItem
                   key={index}

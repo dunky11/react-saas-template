@@ -17,11 +17,11 @@ class Subscription extends PureComponent {
   }
 
   render() {
-    const { transactions, classes } = this.props;
+    const { transactions, classes, openAddBalanceDialog } = this.props;
     return (
       <Paper>
         <List disablePadding>
-          <SubscriptionInfo />
+          <SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
           <Divider className={classes.divider} />
           <SubscriptionTable transactions={transactions} />
         </List>
@@ -33,7 +33,8 @@ class Subscription extends PureComponent {
 Subscription.propTypes = {
   classes: PropTypes.object.isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectSubscription: PropTypes.func.isRequired
+  selectSubscription: PropTypes.func.isRequired,
+  openAddBalanceDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Subscription);

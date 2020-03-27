@@ -11,11 +11,10 @@ import {
   Box,
   withStyles
 } from "@material-ui/core";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
-import SelfAligningImage from "../../../shared/SelfAligningImage";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/ConfirmationDialog";
+import SelfAligningImage from "../../../shared/components/SelfAligningImage";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
 
 const styles = {
   dBlock: { display: "block" },
@@ -118,11 +117,9 @@ class PostContent extends PureComponent {
             variant="contained"
             color="secondary"
             onClick={openAddPostModal}
+            disableElevation
           >
-            <Box mr={1} display="flex" alignItems="center">
-              <AddCircleOutlineIcon fontSize="small" />
-            </Box>
-            New
+            Add Post
           </Button>
         </Toolbar>
         <Divider />

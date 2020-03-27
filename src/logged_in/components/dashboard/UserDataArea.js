@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -9,16 +9,20 @@ import {
   IconButton,
   Avatar,
   Box,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  Typography,
   withStyles
 } from "@material-ui/core";
 import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EnhancedTableHead from "../../../shared/EnhancedTableHead";
-import stableSort from "../../../shared/stableSort";
-import getSorting from "../../../shared/getSorting";
-import HighlightedInformation from "../../../shared/HighlightedInformation";
-import ConfirmationDialog from "../../../shared/ConfirmationDialog";
+import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
+import stableSort from "../../../shared/functions/stableSort";
+import getSorting from "../../../shared/functions/getSorting";
+import HighlightedInformation from "../../../shared/components/HighlightedInformation";
+import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
 
 const styles = theme => ({
   tableWrapper: {
@@ -199,6 +203,7 @@ class CustomTable extends PureComponent {
                           onClick={() => {
                             this.toggleTarget(row.id);
                           }}
+                          aria-label="Pause"
                         >
                           <PauseCircleOutlineIcon
                             className={classes.blackIcon}
@@ -211,6 +216,7 @@ class CustomTable extends PureComponent {
                           onClick={() => {
                             this.toggleTarget(row.id);
                           }}
+                          aria-label="Resume"
                         >
                           <PlayCirlceOutlineIcon />
                         </IconButton>
@@ -220,6 +226,7 @@ class CustomTable extends PureComponent {
                         onClick={() => {
                           this.handleDeleteTargetDialogOpen(row.id, row.name);
                         }}
+                        aria-label="Delete"
                       >
                         <DeleteIcon className={classes.blackIcon} />
                       </IconButton>
@@ -247,7 +254,10 @@ class CustomTable extends PureComponent {
     } = this.state;
     const { classes, targets } = this.props;
     return (
-      <Fragment>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Some user data</Typography>
+        </ExpansionPanelSummary>
         <ConfirmationDialog
           open={deleteTargetDialogOpen}
           title="Confirmation"
@@ -288,7 +298,7 @@ class CustomTable extends PureComponent {
             />
           </div>
         </Box>
-      </Fragment>
+      </ExpansionPanel>
     );
   }
 }

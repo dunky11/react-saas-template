@@ -4,7 +4,7 @@ import RegisterDialog from "./RegisterDialog";
 import TermsOfServiceDialog from "./TermsOfServiceDialog";
 import LoginDialog from "./LoginDialog";
 import ChangePasswordDialog from "./ChangePasswordDialog";
-import ModalBackdrop from "../../../shared/ModalBackdrop";
+import ModalBackdrop from "../../../shared/components/ModalBackdrop";
 
 class DialogSelector extends PureComponent {
   state = {

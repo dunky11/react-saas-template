@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import {
   Paper,
   Toolbar,
@@ -11,7 +12,6 @@ import {
   withStyles
 } from "@material-ui/core";
 import LoopIcon from "@material-ui/icons/Loop";
-import classNames from "classnames";
 
 const styles = theme => ({
   paper: {
@@ -57,6 +57,11 @@ function AccountInformationArea(props) {
             color="secondary"
             checked={isAccountActivated}
             onClick={toggleAccountActivation}
+            inputProps={{
+              "aria-label": isAccountActivated
+                ? "Deactivate Account"
+                : "Activate Account"
+            }}
           />
         </ListItemSecondaryAction>
       </Toolbar>

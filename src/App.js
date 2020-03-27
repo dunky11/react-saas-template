@@ -1,11 +1,10 @@
-// Used to prevent googlebot from rendering our page as blank, should be imported first
 import React, { Fragment, Suspense, lazy } from "react";
 import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 import * as serviceWorker from "./serviceWorker";
-import Pace from "./shared/Pace";
+import Pace from "./shared/components/Pace";
 
 const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
@@ -15,12 +14,6 @@ function App() {
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
-        {/* Roboto is used by Material-UI, Baloo+Bhaijaan is used for the brand
-            name in the navigation */}
-        <link
-          href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Roboto:300,400,500&display=swap"
-          rel="stylesheet"
-        />
         <CssBaseline />
         <GlobalStyles />
         <Pace color={theme.palette.primary.light} />

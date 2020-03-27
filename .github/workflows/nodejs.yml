@@ -1,6 +1,9 @@
 name: Node.js CI
 
-on: [push]
+on:
+  push:
+    branches: 
+      - master 
 
 jobs:
   build:
@@ -18,6 +21,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
+    - run: ./node_modules/eslint/bin/eslint.js src --max-warnings=0
     - run: npm run build
     - run: npm run test
       env:

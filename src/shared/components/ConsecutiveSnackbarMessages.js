@@ -19,14 +19,14 @@ class ConsecutiveSnackbars extends PureComponent {
   };
 
   componentDidMount() {
-    const { getPushMessageFunctionFromChildComponent } = this.props;
+    const { getPushMessageFromChild } = this.props;
     /**
      * Pass the function to parent, so it can use it.
      */
-    getPushMessageFunctionFromChildComponent(this.pushSnackbar);
+    getPushMessageFromChild(this.pushMessage);
   }
 
-  pushSnackbar = message => {
+  pushMessage = message => {
     const { open } = this.state;
     this.queue.push({
       message,
@@ -90,7 +90,7 @@ class ConsecutiveSnackbars extends PureComponent {
 }
 
 ConsecutiveSnackbars.propTypes = {
-  getPushMessageFunctionFromChildComponent: PropTypes.func.isRequired,
+  getPushMessageFromChild: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 };
 

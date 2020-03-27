@@ -4,9 +4,10 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
-import ConsecutiveSnackbarMessages from "../../shared/ConsecutiveSnackbarMessages";
-import smoothScrollTop from "../../shared/smoothScrollTop";
+import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
+import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
+import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
 const styles = theme => ({
   main: {
@@ -37,11 +38,12 @@ class Main extends PureComponent {
     Dropzone: null,
     DateTimePicker: null,
     transactions: [],
-    statistics: [],
+    statistics: { views: [], profit: [] },
     posts: [],
     targets: [],
     messages: [],
-    isAccountActivated: false
+    isAccountActivated: false,
+    addBalanceDialogOpen: false
   };
 
   componentDidMount() {
@@ -71,8 +73,25 @@ class Main extends PureComponent {
     this.setState({ targets });
   };
 
+  openAddBalanceDialog = () => {
+    this.setState({ addBalanceDialogOpen: true });
+  };
+
+  closeAddBalanceDialog = () => {
+    this.setState({ addBalanceDialogOpen: false });
+  };
+
+  onPaymentSuccess = () => {
+    if (this.pushMessageToSnackbar) {
+      this.pushMessageToSnackbar({
+        text: "Your balance has been updated."
+      });
+    }
+    this.setState({ addBalanceDialogOpen: false });
+  };
+
   fetchRandomStatistics = () => {
-    const statistics = [];
+    const statistics = { profit: [], views: [] };
     const iterations = 300;
     const oneYearSeconds = 60 * 60 * 24 * 365;
     let curProfit = Math.round(3000 + Math.random() * 1000);
@@ -82,9 +101,12 @@ class Main extends PureComponent {
       curUnix += Math.round(oneYearSeconds / iterations);
       curProfit += Math.round((Math.random() * 2 - 1) * 10);
       curViews += Math.round((Math.random() * 2 - 1) * 10);
-      statistics.push({
-        views: curViews,
-        profit: curProfit,
+      statistics.profit.push({
+        value: curProfit,
+        timestamp: curUnix
+      });
+      statistics.views.push({
+        value: curViews,
         timestamp: curUnix
       });
     }
@@ -200,7 +222,7 @@ class Main extends PureComponent {
    * child's consecutiveSnackbarMessages component. Thats why we pass it
    * when the component did mount to this components state.
    */
-  getPushMessageFunctionFromChildComponent = pushFunction => {
+  getPushMessageFromChild = pushFunction => {
     this.pushMessageToSnackbar = pushFunction;
   };
 
@@ -229,7 +251,7 @@ class Main extends PureComponent {
     });
     if (!this.hasFetchedCardChart) {
       this.hasFetchedCardChart = true;
-      import("../../shared/CardChart").then(Component => {
+      import("../../shared/components/CardChart").then(Component => {
         this.setState({ CardChart: Component.default });
       });
     }
@@ -243,25 +265,25 @@ class Main extends PureComponent {
     });
     if (!this.hasFetchedEmojiTextArea) {
       this.hasFetchedEmojiTextArea = true;
-      import("../../shared/EmojiTextArea").then(Component => {
+      import("../../shared/components/EmojiTextArea").then(Component => {
         this.setState({ EmojiTextArea: Component.default });
       });
     }
     if (!this.hasFetchedImageCropper) {
       this.hasFetchedImageCropper = true;
-      import("../../shared/ImageCropper").then(Component => {
+      import("../../shared/components/ImageCropper").then(Component => {
         this.setState({ ImageCropper: Component.default });
       });
     }
     if (!this.hasFetchedDropzone) {
       this.hasFetchedDropzone = true;
-      import("../../shared/Dropzone").then(Component => {
+      import("../../shared/components/Dropzone").then(Component => {
         this.setState({ Dropzone: Component.default });
       });
     }
     if (!this.hasFetchedDateTimePicker) {
       this.hasFetchedDateTimePicker = true;
-      import("../../shared/DateTimePicker").then(Component => {
+      import("../../shared/components/DateTimePicker").then(Component => {
         this.setState({ DateTimePicker: Component.default });
       });
     }
@@ -289,15 +311,23 @@ class Main extends PureComponent {
       posts,
       targets,
       isAccountActivated,
-      messages
+      messages,
+      addBalanceDialogOpen
     } = this.state;
     return (
       <Fragment>
-        <NavBar selectedTab={selectedTab} messages={messages} />
+        <LazyLoadAddBalanceDialog
+          open={addBalanceDialogOpen}
+          onClose={this.closeAddBalanceDialog}
+          onSuccess={this.onPaymentSuccess}
+        />
+        <NavBar
+          selectedTab={selectedTab}
+          messages={messages}
+          openAddBalanceDialog={this.openAddBalanceDialog}
+        />
         <ConsecutiveSnackbarMessages
-          getPushMessageFunctionFromChildComponent={
-            this.getPushMessageFunctionFromChildComponent
-          }
+          getPushMessageFromChild={this.getPushMessageFromChild}
         />
         <main className={classNames(classes.main)}>
           <Routing
@@ -319,6 +349,7 @@ class Main extends PureComponent {
             selectDashboard={this.selectDashboard}
             selectPosts={this.selectPosts}
             selectSubscription={this.selectSubscription}
+            openAddBalanceDialog={this.openAddBalanceDialog}
           />
         </main>
       </Fragment>

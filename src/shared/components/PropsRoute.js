@@ -10,7 +10,7 @@ const renderMergedProps = (component, ...rest) => {
 /**
  * Wrapper around the Router component, which makes it pass the properties
  * to it's child.
- * taken from https://github.com/ReactTraining/react-router/issues/4105
+ * Taken from https://github.com/ReactTraining/react-router/issues/4105
  */
 const PropsRoute = ({ component, ...rest }) => (
   <Route

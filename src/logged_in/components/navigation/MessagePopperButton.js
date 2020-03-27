@@ -87,6 +87,7 @@ class MessagePopperButton extends PureComponent {
           buttonRef={node => {
             this.anchorEl = node;
           }}
+          aria-label="Open Messages"
           aria-describedby={id}
           color="primary"
         >
