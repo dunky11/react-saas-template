@@ -12,6 +12,7 @@ import {
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+import PasswordTextField from "../../../shared/components/PasswordTextField";
 
 const styles = theme => ({
   link: {
@@ -94,7 +95,7 @@ class RegisterDialog extends PureComponent {
               }}
               FormHelperTextProps={{ error: true }}
             />
-            <TextField
+            <PasswordTextField
               variant="outlined"
               margin="normal"
               required
@@ -103,7 +104,6 @@ class RegisterDialog extends PureComponent {
                 status === "passwordTooShort" || status === "passwordsDontMatch"
               }
               label="Password"
-              type="password"
               inputRef={node => {
                 this.registerPassword = node;
               }}
@@ -127,7 +127,7 @@ class RegisterDialog extends PureComponent {
               })()}
               FormHelperTextProps={{ error: true }}
             />
-            <TextField
+            <PasswordTextField
               variant="outlined"
               margin="normal"
               required
@@ -136,7 +136,6 @@ class RegisterDialog extends PureComponent {
                 status === "passwordTooShort" || status === "passwordsDontMatch"
               }
               label="Repeat Password"
-              type="password"
               inputRef={node => {
                 this.registerPasswordRepeat = node;
               }}
