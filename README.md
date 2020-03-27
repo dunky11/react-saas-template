@@ -86,6 +86,9 @@ It will create a folder named build with your compiled project inside. After tha
 - [ ] shadeColor() throws errors on certain color codes
 - [ ] Adding iDEAL, FBX and PaymentRequestButton to avaible payment methods
 
+## Contribute
+Show your support by ⭐ the project.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.
