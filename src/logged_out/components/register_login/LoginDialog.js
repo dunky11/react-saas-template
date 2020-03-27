@@ -13,6 +13,7 @@ import {
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+import PasswordTextField from "../../../shared/components/PasswordTextField";
 
 const styles = theme => ({
   forgotPassword: {
@@ -112,14 +113,13 @@ class LoginDialog extends PureComponent {
                 }
                 FormHelperTextProps={{ error: true }}
               />
-              <TextField
+              <PasswordTextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
                 error={status === "invalidPassword"}
                 label="Password"
-                type="password"
                 inputRef={node => {
                   this.loginPassword = node;
                 }}
