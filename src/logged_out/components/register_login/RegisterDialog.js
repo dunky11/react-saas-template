@@ -12,7 +12,7 @@ import {
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import PasswordTextField from "../../../shared/components/PasswordTextField";
+import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
 const styles = theme => ({
   link: {
@@ -103,7 +103,7 @@ class RegisterDialog extends PureComponent {
               }}
               FormHelperTextProps={{ error: true }}
             />
-            <PasswordTextField
+            <VisibilityPasswordTextField
               variant="outlined"
               margin="normal"
               required
@@ -137,7 +137,7 @@ class RegisterDialog extends PureComponent {
               isVisible={passwordIsVisible}
               onVisibilityChange={this.onVisibilityChange}
             />
-            <PasswordTextField
+            <VisibilityPasswordTextField
               variant="outlined"
               margin="normal"
               required

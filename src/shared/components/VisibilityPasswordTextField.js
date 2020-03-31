@@ -3,7 +3,7 @@ import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
-function PasswordTextField(props) {
+function VisibilityPasswordTextField(props) {
   const { isVisible, onVisibilityChange, ...rest } = props;
   return (
     <TextField
@@ -30,4 +30,4 @@ function PasswordTextField(props) {
   );
 }
 
-export default PasswordTextField;
+export default VisibilityPasswordTextField;
