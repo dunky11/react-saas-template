@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import PropsRoute from "../../shared/components/PropsRoute";
@@ -8,7 +8,6 @@ import BlogPost from "./blog/BlogPost";
 
 function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
-
   return (
     <Switch>
       {blogPosts.map(post => (
@@ -43,4 +42,4 @@ Routing.propTypes = {
   selectBlog: PropTypes.func.isRequired
 };
 
-export default Routing;
+export default memo(Routing);

@@ -51,6 +51,7 @@ const styles = theme => ({
 
 function BlogCard(props) {
   const { classes, url, src, date, title, snippet } = props;
+
   return (
     <Card className={classes.card}>
       {src && (

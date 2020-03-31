@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -160,4 +160,4 @@ NavBar.propTypes = {
   openLoginDialog: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(NavBar);
+export default withStyles(styles, { withTheme: true })(memo(NavBar));
