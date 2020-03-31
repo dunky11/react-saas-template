@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
@@ -129,4 +129,4 @@ Routing.propTypes = {
   openAddBalanceDialog: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Routing);
+export default withStyles(styles, { withTheme: true })(memo(Routing));
