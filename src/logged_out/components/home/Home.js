@@ -1,24 +1,21 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
 import FeatureSection from "./FeatureSection";
 import PricingSection from "./PricingSection";
 
-class Home extends PureComponent {
-  componentDidMount() {
-    const { selectHome } = this.props;
+function Home(props) {
+  const { selectHome } = props;
+  useEffect(() => {
     selectHome();
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <HeadSection />
-        <FeatureSection />
-        <PricingSection />
-      </Fragment>
-    );
-  }
+  }, [selectHome]);
+  return (
+    <Fragment>
+      <HeadSection />
+      <FeatureSection />
+      <PricingSection />
+    </Fragment>
+  );
 }
 
 Home.propTypes = {
