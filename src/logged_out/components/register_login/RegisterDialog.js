@@ -32,7 +32,11 @@ const styles = theme => ({
 });
 
 class RegisterDialog extends PureComponent {
-  state = { loading: false, termsOfServiceError: false };
+  state = {
+    loading: false,
+    termsOfServiceError: false,
+    passwordIsVisible: false
+  };
 
   register = () => {
     const { setStatus } = this.props;
@@ -51,6 +55,10 @@ class RegisterDialog extends PureComponent {
     }, 1500);
   };
 
+  onVisibilityChange = isVisible => {
+    this.setState({ passwordIsVisible: isVisible });
+  };
+
   render() {
     const {
       theme,
@@ -60,7 +68,7 @@ class RegisterDialog extends PureComponent {
       status,
       classes
     } = this.props;
-    const { loading, termsOfServiceError } = this.state;
+    const { loading, termsOfServiceError, passwordIsVisible } = this.state;
     return (
       <FormDialog
         loading={loading}
@@ -126,6 +134,8 @@ class RegisterDialog extends PureComponent {
                 return null;
               })()}
               FormHelperTextProps={{ error: true }}
+              isVisible={passwordIsVisible}
+              onVisibilityChange={this.onVisibilityChange}
             />
             <PasswordTextField
               variant="outlined"
@@ -157,6 +167,8 @@ class RegisterDialog extends PureComponent {
                 }
               })()}
               FormHelperTextProps={{ error: true }}
+              isVisible={passwordIsVisible}
+              onVisibilityChange={this.onVisibilityChange}
             />
             <FormControlLabel
               style={{ marginRight: 0 }}

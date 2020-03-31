@@ -37,7 +37,11 @@ const styles = theme => ({
 });
 
 class LoginDialog extends PureComponent {
-  state = { loading: false };
+  state = { loading: false, passwordIsVisible: false };
+
+  onVisibilityChange = isVisible => {
+    this.setState({ passwordIsVisible: isVisible });
+  };
 
   login = () => {
     const { setStatus, history } = this.props;
@@ -74,7 +78,7 @@ class LoginDialog extends PureComponent {
       status,
       setStatus
     } = this.props;
-    const { loading } = this.state;
+    const { loading, passwordIsVisible } = this.state;
     return (
       <Fragment>
         <FormDialog
@@ -140,6 +144,8 @@ class LoginDialog extends PureComponent {
                   )
                 }
                 FormHelperTextProps={{ error: true }}
+                onVisibilityChange={this.onVisibilityChange}
+                isVisible={passwordIsVisible}
               />
               <FormControlLabel
                 className={classes.formControlLabel}
