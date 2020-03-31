@@ -13,7 +13,7 @@ import {
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import PasswordTextField from "../../../shared/components/PasswordTextField";
+import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
 const styles = theme => ({
   forgotPassword: {
@@ -37,7 +37,11 @@ const styles = theme => ({
 });
 
 class LoginDialog extends PureComponent {
-  state = { loading: false };
+  state = { loading: false, passwordIsVisible: false };
+
+  onVisibilityChange = isVisible => {
+    this.setState({ passwordIsVisible: isVisible });
+  };
 
   login = () => {
     const { setStatus, history } = this.props;
@@ -74,7 +78,7 @@ class LoginDialog extends PureComponent {
       status,
       setStatus
     } = this.props;
-    const { loading } = this.state;
+    const { loading, passwordIsVisible } = this.state;
     return (
       <Fragment>
         <FormDialog
@@ -113,7 +117,7 @@ class LoginDialog extends PureComponent {
                 }
                 FormHelperTextProps={{ error: true }}
               />
-              <PasswordTextField
+              <VisibilityPasswordTextField
                 variant="outlined"
                 margin="normal"
                 required
@@ -140,6 +144,8 @@ class LoginDialog extends PureComponent {
                   )
                 }
                 FormHelperTextProps={{ error: true }}
+                onVisibilityChange={this.onVisibilityChange}
+                isVisible={passwordIsVisible}
               />
               <FormControlLabel
                 className={classes.formControlLabel}

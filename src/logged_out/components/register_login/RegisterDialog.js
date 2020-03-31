@@ -12,7 +12,7 @@ import {
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import PasswordTextField from "../../../shared/components/PasswordTextField";
+import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
 const styles = theme => ({
   link: {
@@ -32,7 +32,11 @@ const styles = theme => ({
 });
 
 class RegisterDialog extends PureComponent {
-  state = { loading: false, termsOfServiceError: false };
+  state = {
+    loading: false,
+    termsOfServiceError: false,
+    passwordIsVisible: false
+  };
 
   register = () => {
     const { setStatus } = this.props;
@@ -51,6 +55,10 @@ class RegisterDialog extends PureComponent {
     }, 1500);
   };
 
+  onVisibilityChange = isVisible => {
+    this.setState({ passwordIsVisible: isVisible });
+  };
+
   render() {
     const {
       theme,
@@ -60,7 +68,7 @@ class RegisterDialog extends PureComponent {
       status,
       classes
     } = this.props;
-    const { loading, termsOfServiceError } = this.state;
+    const { loading, termsOfServiceError, passwordIsVisible } = this.state;
     return (
       <FormDialog
         loading={loading}
@@ -95,7 +103,7 @@ class RegisterDialog extends PureComponent {
               }}
               FormHelperTextProps={{ error: true }}
             />
-            <PasswordTextField
+            <VisibilityPasswordTextField
               variant="outlined"
               margin="normal"
               required
@@ -126,8 +134,10 @@ class RegisterDialog extends PureComponent {
                 return null;
               })()}
               FormHelperTextProps={{ error: true }}
+              isVisible={passwordIsVisible}
+              onVisibilityChange={this.onVisibilityChange}
             />
-            <PasswordTextField
+            <VisibilityPasswordTextField
               variant="outlined"
               margin="normal"
               required
@@ -157,6 +167,8 @@ class RegisterDialog extends PureComponent {
                 }
               })()}
               FormHelperTextProps={{ error: true }}
+              isVisible={passwordIsVisible}
+              onVisibilityChange={this.onVisibilityChange}
             />
             <FormControlLabel
               style={{ marginRight: 0 }}
