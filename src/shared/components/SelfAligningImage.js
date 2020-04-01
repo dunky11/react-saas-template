@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
 import { GridListTileBar, withStyles } from "@material-ui/core";
@@ -21,68 +21,57 @@ const styles = {
   }
 };
 
-class SelfAligningImage extends PureComponent {
-  state = { moreWidthThanHeight: null, loaded: false };
+function SelfAligningImage(props) {
+  const {
+    classes,
+    src,
+    title,
+    timeStamp,
+    options,
+    roundedBorder,
+    theme
+  } = props;
+  const img = useRef();
+  const [moreWidthThanHeight, setMoreWidthThanHeight] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
-  render() {
-    const { moreWidthThanHeight, loaded } = this.state;
-    const {
-      classes,
-      src,
-      title,
-      timeStamp,
-      options,
-      roundedBorder,
-      theme
-    } = this.props;
-    return (
-      <div className={classes.imageContainer}>
-        <img
-          style={{
-            height: moreWidthThanHeight ? "100%" : "auto",
-            width: moreWidthThanHeight ? "auto" : "100%",
-            display: loaded ? "block" : "none",
-            borderRadius: roundedBorder ? theme.shape.borderRadius : 0
-          }}
-          ref={node => {
-            this.img = node;
-          }}
-          className={classes.image}
-          onLoad={() => {
-            if (this.img.naturalHeight > this.img.naturalWidth) {
-              this.setState({
-                moreWidthThanHeight: false,
-                loaded: true
-              });
-            } else {
-              this.setState({
-                moreWidthThanHeight: true,
-                loaded: true
-              });
-            }
-          }}
-          src={src}
-          alt=""
+  return (
+    <div className={classes.imageContainer}>
+      <img
+        style={{
+          height: moreWidthThanHeight ? "100%" : "auto",
+          width: moreWidthThanHeight ? "auto" : "100%",
+          display: hasLoaded ? "block" : "none",
+          borderRadius: roundedBorder ? theme.shape.borderRadius : 0
+        }}
+        ref={img}
+        className={classes.image}
+        onLoad={() => {
+          if (img.naturalHeight > img.naturalWidth) {
+            setMoreWidthThanHeight(true);
+          } else {
+            setMoreWidthThanHeight(false);
+          }
+          setHasLoaded(true);
+        }}
+        src={src}
+        alt=""
+      />
+      {title && (
+        <GridListTileBar
+          title={title}
+          subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
+            awareOfUnicodeTokens: true
+          })}
+          actionIcon={
+            options.length > 0 && (
+              <VertOptions color={theme.palette.common.white} items={options} />
+            )
+          }
         />
-        {title && (
-          <GridListTileBar
-            title={title}
-            subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
-              awareOfUnicodeTokens: true
-            })}
-            actionIcon={
-              options.length > 0 && (
-                <VertOptions
-                  color={theme.palette.common.white}
-                  items={options}
-                />
-              )
-            }
-          />
-        )}
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
 
 SelfAligningImage.propTypes = {

@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment, useState, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   Popover,
@@ -17,70 +17,64 @@ const styles = {
   }
 };
 
-class VertOptions extends PureComponent {
-  state = {
-    open: false
-  };
+function VertOptions(props) {
+  const { items, classes, color } = props;
+  const anchorEl = useRef();
+  const [open, setOpen] = useState(false);
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
+  const handleOpen = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
 
-  render() {
-    const { open } = this.state;
-    const { items, classes, color } = this.props;
-    const id = open ? "scroll-playground" : null;
-    return (
-      <Fragment>
-        <IconButton
-          onClick={this.handleOpen}
-          buttonRef={node => {
-            this.anchorEl = node;
-          }}
-          style={{ color: color ? color : null }}
-          aria-describedby={id}
-          aria-label="More Options"
-        >
-          <MoreVertIcon style={{ color: color ? color : null }} />
-        </IconButton>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={this.anchorEl}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center"
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "center"
-          }}
-          onClose={this.handleClose}
-        >
-          <MenuList dense>
-            {items.map(item => (
-              <MenuItem
-                key={item.name}
-                onClick={() => {
-                  this.handleClose();
-                  item.onClick();
-                }}
-              >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText className={classes.listItemtext}>
-                  {item.name}
-                </ListItemText>
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Popover>
-      </Fragment>
-    );
-  }
+  const id = open ? "scroll-playground" : null;
+  return (
+    <Fragment>
+      <IconButton
+        onClick={handleOpen}
+        buttonRef={anchorEl}
+        style={{ color: color ? color : null }}
+        aria-describedby={id}
+        aria-label="More Options"
+      >
+        <MoreVertIcon style={{ color: color ? color : null }} />
+      </IconButton>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center"
+        }}
+        onClose={handleClose}
+      >
+        <MenuList dense>
+          {items.map(item => (
+            <MenuItem
+              key={item.name}
+              onClick={() => {
+                handleClose();
+                item.onClick();
+              }}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText className={classes.listItemtext}>
+                {item.name}
+              </ListItemText>
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Popover>
+    </Fragment>
+  );
 }
 
 VertOptions.propTypes = {

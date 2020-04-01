@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   AreaChart,
@@ -44,33 +44,26 @@ function calculateMin(data, yKey, factor) {
 const itemHeight = 216;
 const options = ["1 Week", "1 Month", "6 Months"];
 
-class CardChart extends PureComponent {
-  state = { anchorEl: null, selectedOption: "1 Month" };
+function CardChart(props) {
+  const { color, data, title, classes, theme, height } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("1 Month");
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+  const handleClick = useCallback(
+    event => {
+      setAnchorEl(event.currentTarget);
+    },
+    [setAnchorEl]
+  );
 
-  formatter = value => {
-    return [value, this.props.title];
-  };
+  const formatter = useCallback(
+    value => {
+      return [value, title];
+    },
+    [title]
+  );
 
-  getSeconds = () => {
-    const { selectedOption } = this.state;
-    switch (selectedOption) {
-      case "1 Week":
-        return 60 * 60 * 24 * 7;
-      case "1 Month":
-        return 60 * 60 * 24 * 7 * 31;
-      case "6 Months":
-        return 60 * 60 * 24 * 7 * 31 * 6;
-      default:
-        throw new Error("No branch selected in switch-statement");
-    }
-  };
-
-  getSubtitle = () => {
-    const { selectedOption } = this.state;
+  const getSubtitle = useCallback(() => {
     switch (selectedOption) {
       case "1 Week":
         return "Last week";
@@ -81,11 +74,23 @@ class CardChart extends PureComponent {
       default:
         throw new Error("No branch selected in switch-statement");
     }
-  };
+  }, [selectedOption]);
 
-  processData = () => {
-    const { data } = this.props;
-    const seconds = this.getSeconds();
+  const processData = useCallback(() => {
+    let seconds;
+    switch (selectedOption) {
+      case "1 Week":
+        seconds = 60 * 60 * 24 * 7;
+        break;
+      case "1 Month":
+        seconds = 60 * 60 * 24 * 7 * 31;
+        break;
+      case "6 Months":
+        seconds = 60 * 60 * 24 * 7 * 31 * 6;
+        break;
+      default:
+        throw new Error("No branch selected in switch-statement");
+    }
     const minSeconds = new Date() / 1000 - seconds;
     const arr = [];
     for (let i = 0; i < data.length; i += 1) {
@@ -94,113 +99,113 @@ class CardChart extends PureComponent {
       }
     }
     return arr;
-  };
+  }, [data, selectedOption]);
 
-  selectOption = selectedOption => {
-    this.setState({ selectedOption, anchorEl: null });
-  };
+  const handleClose = useCallback(() => {
+    setAnchorEl(null);
+  }, [setAnchorEl]);
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+  const selectOption = useCallback(
+    selectedOption => {
+      setSelectedOption(selectedOption);
+      handleClose();
+    },
+    [setSelectedOption, handleClose]
+  );
 
-  render() {
-    const { color, data, title, classes, theme, height } = this.props;
-    const { anchorEl, selectedOption } = this.state;
-    const open = Boolean(anchorEl);
-    return (
-      <Card>
-        <Box pt={2} px={2} pb={4}>
-          <Box display="flex" justifyContent="space-between">
-            <div>
-              <Typography variant="subtitle1">{title}</Typography>
-              <Typography variant="body2" color="textSecondary">
-                {this.getSubtitle()}
-              </Typography>
-            </div>
-            <div>
-              <IconButton
-                aria-label="More"
-                aria-owns={open ? "long-menu" : undefined}
-                aria-haspopup="true"
-                onClick={this.handleClick}
-              >
-                <MoreVertIcon />
-              </IconButton>
-              <Menu
-                id="long-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={this.handleClose}
-                PaperProps={{
-                  style: {
-                    maxHeight: itemHeight,
-                    width: 200
-                  }
-                }}
-              >
-                {options.map(option => (
-                  <MenuItem
-                    key={option}
-                    selected={option === selectedOption}
-                    onClick={() => {
-                      this.selectOption(option);
-                    }}
-                    name={option}
-                  >
-                    {option}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </div>
-          </Box>
+  const isOpen = Boolean(anchorEl);
+  return (
+    <Card>
+      <Box pt={2} px={2} pb={4}>
+        <Box display="flex" justifyContent="space-between">
+          <div>
+            <Typography variant="subtitle1">{title}</Typography>
+            <Typography variant="body2" color="textSecondary">
+              {getSubtitle()}
+            </Typography>
+          </div>
+          <div>
+            <IconButton
+              aria-label="More"
+              aria-owns={isOpen ? "long-menu" : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="long-menu"
+              anchorEl={anchorEl}
+              open={isOpen}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: itemHeight,
+                  width: 200
+                }
+              }}
+            >
+              {options.map(option => (
+                <MenuItem
+                  key={option}
+                  selected={option === selectedOption}
+                  onClick={() => {
+                    selectOption(option);
+                  }}
+                  name={option}
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Menu>
+          </div>
         </Box>
-        <CardContent>
-          <Box className={classes.cardContentInner} height={height}>
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={this.processData()} type="number">
-                <XAxis
-                  dataKey="timestamp"
-                  type="number"
-                  domain={["dataMin", "dataMax"]}
-                  hide
-                />
-                <YAxis
-                  domain={[calculateMin(data, "value", 0.05), "dataMax"]}
-                  hide
-                />
-                <Area
-                  type="monotone"
-                  dataKey="value"
-                  stroke={color}
-                  fill={color}
-                />
-                <Tooltip
-                  labelFormatter={labelFormatter}
-                  formatter={this.formatter}
-                  cursor={false}
-                  contentStyle={{
-                    border: "none",
-                    padding: theme.spacing(1),
-                    borderRadius: theme.shape.borderRadius,
-                    boxShadow: theme.shadows[1]
-                  }}
-                  labelStyle={theme.typography.body1}
-                  itemStyle={{
-                    fontSize: theme.typography.body1.fontSize,
-                    letterSpacing: theme.typography.body1.letterSpacing,
-                    fontFamily: theme.typography.body1.fontFamily,
-                    lineHeight: theme.typography.body1.lineHeight,
-                    fontWeight: theme.typography.body1.fontWeight
-                  }}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </Box>
-        </CardContent>
-      </Card>
-    );
-  }
+      </Box>
+      <CardContent>
+        <Box className={classes.cardContentInner} height={height}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={processData()} type="number">
+              <XAxis
+                dataKey="timestamp"
+                type="number"
+                domain={["dataMin", "dataMax"]}
+                hide
+              />
+              <YAxis
+                domain={[calculateMin(data, "value", 0.05), "dataMax"]}
+                hide
+              />
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke={color}
+                fill={color}
+              />
+              <Tooltip
+                labelFormatter={labelFormatter}
+                formatter={formatter}
+                cursor={false}
+                contentStyle={{
+                  border: "none",
+                  padding: theme.spacing(1),
+                  borderRadius: theme.shape.borderRadius,
+                  boxShadow: theme.shadows[1]
+                }}
+                labelStyle={theme.typography.body1}
+                itemStyle={{
+                  fontSize: theme.typography.body1.fontSize,
+                  letterSpacing: theme.typography.body1.letterSpacing,
+                  fontFamily: theme.typography.body1.fontFamily,
+                  lineHeight: theme.typography.body1.lineHeight,
+                  fontWeight: theme.typography.body1.fontWeight
+                }}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </Box>
+      </CardContent>
+    </Card>
+  );
 }
 
 CardChart.propTypes = {

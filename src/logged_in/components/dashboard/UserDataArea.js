@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -81,226 +81,215 @@ const rows = [
   }
 ];
 
-class CustomTable extends PureComponent {
-  state = {
-    order: "asc",
-    orderBy: null,
-    page: 0,
-    deleteTargetDialogOpen: false,
-    deleteTargetDialogName: null,
-    deleteTargetLoading: false
-  };
+const rowsPerPage = 25;
 
-  rowsPerPage = 25;
+function CustomTable(props) {
+  const { pushMessageToSnackbar, classes, targets } = props;
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState(null);
+  const [page, setPage] = useState(0);
+  const [isDeleteTargetDialogOpen, setIsDeleteTargetDialogOpen] = useState(
+    false
+  );
+  const [deleteTargetDialogName, setDeleteTargetDialogName] = useState(null);
+  const [isDeleteTargetLoading, setIsDeleteTargetLoading] = useState(false);
 
-  handleRequestSort = (__, property) => {
-    const orderBy = property;
-    let order = "desc";
-    if (this.state.orderBy === property && this.state.order === "desc") {
-      order = "asc";
-    }
-    this.setState({ order, orderBy });
-  };
+  const handleRequestSort = useCallback(
+    (__, property) => {
+      const orderBy = property;
+      let order = "desc";
+      if (orderBy === property && order === "desc") {
+        order = "asc";
+      }
+      setOrder(order);
+      setOrderBy(orderBy);
+    },
+    [setOrder, setOrderBy]
+  );
 
-  deleteTarget = () => {
-    const { pushMessageToSnackbar } = this.props;
-    this.setState({ deleteTargetLoading: true });
+  const deleteTarget = useCallback(() => {
+    setIsDeleteTargetLoading(true);
     setTimeout(() => {
-      this.setState({
-        deleteTargetLoading: false,
-        deleteTargetDialogOpen: false
-      });
+      setIsDeleteTargetDialogOpen(false);
+      setIsDeleteTargetLoading(false);
       pushMessageToSnackbar({
         text: "Your friend has been removed"
       });
     }, 1500);
-  };
+  }, [
+    setIsDeleteTargetDialogOpen,
+    setIsDeleteTargetLoading,
+    pushMessageToSnackbar
+  ]);
 
-  handleChangePage = (_, page) => {
-    this.setState({ page });
-  };
+  const handleChangePage = useCallback(
+    (_, page) => {
+      setPage(page);
+    },
+    [setPage]
+  );
 
-  handleDeleteTargetDialogClose = () => {
-    this.setState({
-      deleteTargetDialogOpen: false
-    });
-  };
+  const handleDeleteTargetDialogClose = useCallback(() => {
+    setIsDeleteTargetDialogOpen(false);
+  }, [setIsDeleteTargetDialogOpen]);
 
-  handleDeleteTargetDialogOpen = (_, name) => {
-    this.setState({
-      deleteTargetDialogOpen: true,
-      deleteTargetDialogName: name
-    });
-  };
+  const handleDeleteTargetDialogOpen = useCallback(
+    (_, name) => {
+      setIsDeleteTargetDialogOpen(true);
+      setDeleteTargetDialogName(name);
+    },
+    [setIsDeleteTargetDialogOpen, setDeleteTargetDialogName]
+  );
 
-  /**
-   * Sets the variable is_activated in the db of the target to the second parameter
-   */
-  toggleTarget = (_, activate) => {
-    const { pushMessageToSnackbar } = this.props;
-    if (activate) {
-      pushMessageToSnackbar({
-        text: "The row is now activated"
-      });
-    } else {
-      pushMessageToSnackbar({
-        text: "The row is now deactivated"
-      });
-    }
-  };
+  const toggleTarget = useCallback(
+    (_, activate) => {
+      if (activate) {
+        pushMessageToSnackbar({
+          text: "The row is now activated"
+        });
+      } else {
+        pushMessageToSnackbar({
+          text: "The row is now deactivated"
+        });
+      }
+    },
+    [pushMessageToSnackbar]
+  );
 
-  printTable = () => {
-    const { order, orderBy, page } = this.state;
-    const { targets, classes } = this.props;
-    if (targets.length > 0) {
-      return (
-        <Table aria-labelledby="tableTitle">
-          <EnhancedTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={this.handleRequestSort}
-            rowCount={targets.length}
-            rows={rows}
-          />
-          <TableBody>
-            {stableSort(targets, getSorting(order, orderBy))
-              .slice(
-                page * this.rowsPerPage,
-                page * this.rowsPerPage + this.rowsPerPage
-              )
-              .map((row, index) => (
-                <TableRow hover tabIndex={-1} key={index}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.firstData}
-                  >
-                    <Avatar
-                      className={classes.avatar}
-                      src={row.profilePicUrl}
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.number1}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.number2}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.number3}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.number4}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <Box display="flex" justifyContent="flex-end">
-                      {row.isActivated ? (
-                        <IconButton
-                          className={classes.iconButton}
-                          onClick={() => {
-                            this.toggleTarget(row.id);
-                          }}
-                          aria-label="Pause"
-                        >
-                          <PauseCircleOutlineIcon
-                            className={classes.blackIcon}
-                          />
-                        </IconButton>
-                      ) : (
-                        <IconButton
-                          className={classes.iconButton}
-                          color="primary"
-                          onClick={() => {
-                            this.toggleTarget(row.id);
-                          }}
-                          aria-label="Resume"
-                        >
-                          <PlayCirlceOutlineIcon />
-                        </IconButton>
-                      )}
-                      <IconButton
-                        className={classes.iconButton}
-                        onClick={() => {
-                          this.handleDeleteTargetDialogOpen(row.id, row.name);
-                        }}
-                        aria-label="Delete"
+  return (
+    <ExpansionPanel>
+      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography>Some user data</Typography>
+      </ExpansionPanelSummary>
+      <ConfirmationDialog
+        open={isDeleteTargetDialogOpen}
+        title="Confirmation"
+        content={
+          <span>
+            {"Do you really want to remove the friend "}
+            <b>{deleteTargetDialogName}</b>
+            {" from your list?"}
+          </span>
+        }
+        onClose={handleDeleteTargetDialogClose}
+        onConfirm={deleteTarget}
+        loading={isDeleteTargetLoading}
+      />
+      <Box width="100%">
+        <div className={classes.tableWrapper}>
+          {targets.length > 0 ? (
+            <Table aria-labelledby="tableTitle">
+              <EnhancedTableHead
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                rowCount={targets.length}
+                rows={rows}
+              />
+              <TableBody>
+                {stableSort(targets, getSorting(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => (
+                    <TableRow hover tabIndex={-1} key={index}>
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        className={classes.firstData}
                       >
-                        <DeleteIcon className={classes.blackIcon} />
-                      </IconButton>
-                    </Box>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      );
-    }
-    return (
-      <Box m={2}>
-        <HighlightedInformation>No friends added yet.</HighlightedInformation>
+                        <Avatar
+                          className={classes.avatar}
+                          src={row.profilePicUrl}
+                        />
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.number1}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.number2}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.number3}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.number4}
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        <Box display="flex" justifyContent="flex-end">
+                          {row.isActivated ? (
+                            <IconButton
+                              className={classes.iconButton}
+                              onClick={() => {
+                                toggleTarget(row.id);
+                              }}
+                              aria-label="Pause"
+                            >
+                              <PauseCircleOutlineIcon
+                                className={classes.blackIcon}
+                              />
+                            </IconButton>
+                          ) : (
+                            <IconButton
+                              className={classes.iconButton}
+                              color="primary"
+                              onClick={() => {
+                                toggleTarget(row.id);
+                              }}
+                              aria-label="Resume"
+                            >
+                              <PlayCirlceOutlineIcon />
+                            </IconButton>
+                          )}
+                          <IconButton
+                            className={classes.iconButton}
+                            onClick={() => {
+                              handleDeleteTargetDialogOpen(row.id, row.name);
+                            }}
+                            aria-label="Delete"
+                          >
+                            <DeleteIcon className={classes.blackIcon} />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <Box m={2}>
+              <HighlightedInformation>
+                No friends added yet.
+              </HighlightedInformation>
+            </Box>
+          )}
+        </div>
+        <div className={classes.alignRight}>
+          <TablePagination
+            component="div"
+            count={targets.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            backIconButtonProps={{
+              "aria-label": "Previous Page"
+            }}
+            nextIconButtonProps={{
+              "aria-label": "Next Page"
+            }}
+            onChangePage={handleChangePage}
+            classes={{
+              select: classes.dNone,
+              selectIcon: classes.dNone,
+              actions: targets.length > 0 ? classes.dBlock : classes.dNone,
+              caption: targets.length > 0 ? classes.dBlock : classes.dNone
+            }}
+            labelRowsPerPage=""
+          />
+        </div>
       </Box>
-    );
-  };
-
-  render() {
-    const {
-      page,
-      deleteTargetDialogOpen,
-      deleteTargetDialogName,
-      deleteTargetLoading
-    } = this.state;
-    const { classes, targets } = this.props;
-    return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Some user data</Typography>
-        </ExpansionPanelSummary>
-        <ConfirmationDialog
-          open={deleteTargetDialogOpen}
-          title="Confirmation"
-          content={
-            <span
-              dangerouslySetInnerHTML={{
-                __html: `Do you really want to remove the friend
-            <b>${deleteTargetDialogName}</b> from your list?`
-              }}
-            />
-          }
-          onClose={this.handleDeleteTargetDialogClose}
-          onConfirm={this.deleteTarget}
-          loading={deleteTargetLoading}
-        />
-        <Box width="100%">
-          <div className={classes.tableWrapper}>{this.printTable()}</div>
-          <div className={classes.alignRight}>
-            <TablePagination
-              component="div"
-              count={targets.length}
-              rowsPerPage={this.rowsPerPage}
-              page={page}
-              backIconButtonProps={{
-                "aria-label": "Previous Page"
-              }}
-              nextIconButtonProps={{
-                "aria-label": "Next Page"
-              }}
-              onChangePage={this.handleChangePage}
-              classes={{
-                select: classes.dNone,
-                selectIcon: classes.dNone,
-                actions: targets.length > 0 ? classes.dBlock : classes.dNone,
-                caption: targets.length > 0 ? classes.dBlock : classes.dNone
-              }}
-              labelRowsPerPage=""
-            />
-          </div>
-        </Box>
-      </ExpansionPanel>
-    );
-  }
+    </ExpansionPanel>
+  );
 }
 
 CustomTable.propTypes = {

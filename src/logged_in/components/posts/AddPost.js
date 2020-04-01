@@ -1,129 +1,123 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { Button, Box } from "@material-ui/core";
 import ActionPaper from "../../../shared/components/ActionPaper";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";
 
-const now = new Date();
+function AddPost(props) {
+  const {
+    pushMessageToSnackbar,
+    Dropzone,
+    EmojiTextArea,
+    DateTimePicker,
+    ImageCropper,
+    onClose
+  } = props;
 
-class AddPost extends PureComponent {
-  state = {
-    files: [],
-    cropFunction: null,
-    uploadAt: now,
-    loading: false,
-    cropperFile: null
-  };
+  const [files, setFiles] = useState([]);
+  const [uploadAt, setUploadAt] = useState(new Date());
+  const [loading, setLoading] = useState(false);
+  const [cropperFile, setCropperFile] = useState(null);
 
-  acceptDrop = file => {
-    this.setState({ files: [file] });
-  };
+  const acceptDrop = useCallback(
+    file => {
+      setFiles([file]);
+    },
+    [setFiles]
+  );
 
-  onDrop = (acceptedFiles, rejectedFiles) => {
-    const { pushMessageToSnackbar } = this.props;
-    if (acceptedFiles.length + rejectedFiles.length > 1) {
-      pushMessageToSnackbar({
-        isErrorMessage: true,
-        text: "You cannot upload more than one file at once"
-      });
-    } else if (acceptedFiles.length === 0) {
-      pushMessageToSnackbar({
-        isErrorMessage: true,
-        text: "The file you wanted to upload isn't an image"
-      });
-    } else if (acceptedFiles.length === 1) {
-      const file = acceptedFiles[0];
-      file.preview = URL.createObjectURL(file);
-      file.key = new Date().getTime();
-      this.setState({ cropperFile: file });
-    }
-  };
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFiles) => {
+      if (acceptedFiles.length + rejectedFiles.length > 1) {
+        pushMessageToSnackbar({
+          isErrorMessage: true,
+          text: "You cannot upload more than one file at once"
+        });
+      } else if (acceptedFiles.length === 0) {
+        pushMessageToSnackbar({
+          isErrorMessage: true,
+          text: "The file you wanted to upload isn't an image"
+        });
+      } else if (acceptedFiles.length === 1) {
+        const file = acceptedFiles[0];
+        file.preview = URL.createObjectURL(file);
+        file.key = new Date().getTime();
+        setCropperFile(file);
+      }
+    },
+    [pushMessageToSnackbar, setCropperFile]
+  );
 
-  onChangeUploadAt = uploadAt => {
-    this.setState({
-      uploadAt
-    });
-  };
+  const onCropperClose = useCallback(() => {
+    setCropperFile(null);
+  }, [setCropperFile]);
 
-  onCropperClose = () => {
-    this.setState({ cropperFile: null });
-  };
+  const deleteItem = useCallback(() => {
+    setCropperFile({});
+  }, [setCropperFile]);
 
-  deleteItem = () => {
-    this.setState({ files: [] });
-  };
+  const onCrop = useCallback(
+    dataUrl => {
+      const file = { ...cropperFile };
+      file.preview = dataUrl;
+      acceptDrop(file);
+      setCropperFile(null);
+    },
+    [acceptDrop, cropperFile, setCropperFile]
+  );
 
-  onCrop = dataUrl => {
-    const { cropperFile } = this.state;
-    const file = cropperFile;
-    file.preview = dataUrl;
-    this.acceptDrop(file);
-    this.setState({ cropperFile: null });
-  };
-
-  handleUpload = () => {
-    const { pushMessageToSnackbar, onClose } = this.props;
-    this.setState({ loading: true });
+  const handleUpload = useCallback(() => {
+    setLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your post has been uploaded"
       });
       onClose();
     }, 1500);
-  };
+  }, [setLoading, onClose, pushMessageToSnackbar]);
 
-  render() {
-    const { files, uploadAt, cropperFile, loading } = this.state;
-    const {
-      Dropzone,
-      EmojiTextArea,
-      DateTimePicker,
-      ImageCropper,
-      onClose
-    } = this.props;
-    return (
-      <Fragment>
-        <ActionPaper
-          helpPadding
-          maxWidth="md"
-          content={
-            <AddPostOptions
-              EmojiTextArea={EmojiTextArea}
-              Dropzone={Dropzone}
-              files={files}
-              onDrop={this.onDrop}
-              deleteItem={this.deleteItem}
-              DateTimePicker={DateTimePicker}
-              uploadAt={uploadAt}
-              onChangeUploadAt={this.onChangeUploadAt}
-              onCrop={this.onCrop}
-              ImageCropper={ImageCropper}
-              cropperFile={cropperFile}
-              onCropperClose={this.onCropperClose}
-            />
-          }
-          actions={
-            <Fragment>
-              <Box mr={1}>
-                <Button onClick={onClose} disabled={loading}>
-                  Back
-                </Button>
-              </Box>
-              <Button
-                onClick={this.handleUpload}
-                variant="contained"
-                color="secondary"
-                disabled={files.length === 0 || loading}
-              >
-                Upload {loading && <ButtonCircularProgress />}
+  return (
+    <Fragment>
+      <ActionPaper
+        helpPadding
+        maxWidth="md"
+        content={
+          <AddPostOptions
+            EmojiTextArea={EmojiTextArea}
+            Dropzone={Dropzone}
+            files={files}
+            onDrop={onDrop}
+            deleteItem={deleteItem}
+            DateTimePicker={DateTimePicker}
+            uploadAt={uploadAt}
+            onChangeUploadAt={setUploadAt}
+            onCrop={onCrop}
+            ImageCropper={ImageCropper}
+            cropperFile={cropperFile}
+            onCropperClose={onCropperClose}
+          />
+        }
+        actions={
+          <Fragment>
+            <Box mr={1}>
+              <Button onClick={onClose} disabled={loading}>
+                Back
               </Button>
-            </Fragment>
-          }
-        />
-      </Fragment>
-    );
-  }
+            </Box>
+            <Button
+              onClick={handleUpload}
+              variant="contained"
+              color="secondary"
+              disabled={files.length === 0 || loading}
+            >
+              Upload {loading && <ButtonCircularProgress />}
+            </Button>
+          </Fragment>
+        }
+      />
+    </Fragment>
+  );
 }
 
 AddPost.propTypes = {

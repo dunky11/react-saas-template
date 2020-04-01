@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Portal, Backdrop, withStyles } from "@material-ui/core";
 import ScrollbarSize from "@material-ui/core/Tabs/ScrollbarSize";
@@ -35,66 +35,64 @@ const styles = theme => ({
   }
 });
 
-class ZoomImage extends PureComponent {
-  state = { zoomedIn: false, scrollbarSize: null };
+function ZoomImage(props) {
+  const { alt, src, zoomedImgProps, classes, ...rest } = props;
+  const [zoomedIn, setZoomedIn] = useState(false);
+  const [scrollbarSize, setScrollbarSize] = useState(null);
 
-  zoomIn = () => {
-    this.setState({ zoomedIn: true }, () => {
-      const { scrollbarSize } = this.state;
+  const zoomIn = useCallback(() => {
+    setZoomedIn(true);
+  }, [setZoomedIn]);
+
+  const zoomOut = useCallback(() => {
+    setZoomedIn(false);
+  }, [setZoomedIn]);
+
+  useEffect(() => {
+    if (zoomedIn) {
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = `${scrollbarSize}px`;
       document.querySelector(
         "header"
       ).style.paddingRight = `${scrollbarSize}px`;
-    });
-  };
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
+      document.querySelector("header").style.paddingRight = "0px";
+    }
+  }, [zoomedIn, scrollbarSize]);
 
-  zoomOut = () => {
-    document.body.style.overflow = "auto";
-    document.body.style.paddingRight = "0px";
-    document.querySelector("header").style.paddingRight = "0px";
-    this.setState({ zoomedIn: false });
-  };
-
-  changeScrollbarSize = scrollbarSize => {
-    this.setState({ scrollbarSize });
-  };
-
-  render() {
-    const { alt, src, zoomedImgProps, classes, ...rest } = this.props;
-    const { zoomedIn } = this.state;
-    return (
-      <div>
-        <ScrollbarSize onChange={this.changeScrollbarSize}></ScrollbarSize>
-        <Backdrop
-          open={zoomedIn}
-          className={classes.backdrop}
-          onClick={this.zoomOut}
-        ></Backdrop>
-        {zoomedIn && (
-          <Portal>
-            <div onClick={this.zoomOut} className={classes.portalImgWrapper}>
-              <div className={classes.portalImgInnerWrapper}>
-                <img
-                  alt={alt}
-                  src={src}
-                  className={classes.portalImg}
-                  {...zoomedImgProps}
-                ></img>
-              </div>
+  return (
+    <Fragment>
+      <ScrollbarSize onChange={setScrollbarSize}></ScrollbarSize>
+      <Backdrop
+        open={zoomedIn}
+        className={classes.backdrop}
+        onClick={zoomOut}
+      ></Backdrop>
+      {zoomedIn && (
+        <Portal>
+          <div onClick={zoomOut} className={classes.portalImgWrapper}>
+            <div className={classes.portalImgInnerWrapper}>
+              <img
+                alt={alt}
+                src={src}
+                className={classes.portalImg}
+                {...zoomedImgProps}
+              ></img>
             </div>
-          </Portal>
-        )}
-        <img
-          alt={alt}
-          src={src}
-          onClick={this.zoomIn}
-          style={{ cursor: "pointer" }}
-          {...rest}
-        ></img>
-      </div>
-    );
-  }
+          </div>
+        </Portal>
+      )}
+      <img
+        alt={alt}
+        src={src}
+        onClick={zoomIn}
+        style={{ cursor: "pointer" }}
+        {...rest}
+      ></img>
+    </Fragment>
+  );
 }
 
 ZoomImage.propTypes = {

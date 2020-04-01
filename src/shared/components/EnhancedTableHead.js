@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -30,9 +30,12 @@ const styles = theme => ({
 function EnhancedTableHead(props) {
   const { order, orderBy, rows, onRequestSort, classes } = props;
 
-  const createSortHandler = property => event => {
-    onRequestSort(event, property);
-  };
+  const createSortHandler = useCallback(
+    property => event => {
+      onRequestSort(event, property);
+    },
+    [onRequestSort]
+  );
 
   return (
     <TableHead>
