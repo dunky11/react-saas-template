@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
 import { GridListTileBar, withStyles } from "@material-ui/core";
@@ -9,7 +9,7 @@ const styles = {
     width: "100%",
     paddingTop: "100%",
     overflow: "hidden",
-    position: "relative"
+    position: "relative",
   },
   image: {
     position: "absolute",
@@ -17,8 +17,8 @@ const styles = {
     bottom: 0,
     left: 0,
     right: 0,
-    margin: "auto"
-  }
+    margin: "auto",
+  },
 };
 
 function SelfAligningImage(props) {
@@ -29,31 +29,33 @@ function SelfAligningImage(props) {
     timeStamp,
     options,
     roundedBorder,
-    theme
+    theme,
   } = props;
   const img = useRef();
-  const [moreWidthThanHeight, setMoreWidthThanHeight] = useState(null);
+  const [hasMoreWidthThanHeight, setHasMoreWidthThanHeight] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  const onLoad = useCallback(() => {
+    if (img.current.naturalHeight < img.current.naturalWidth) {
+      setHasMoreWidthThanHeight(true);
+    } else {
+      setHasMoreWidthThanHeight(false);
+    }
+    setHasLoaded(true);
+  }, [img, setHasLoaded, setHasMoreWidthThanHeight]);
 
   return (
     <div className={classes.imageContainer}>
       <img
         style={{
-          height: moreWidthThanHeight ? "100%" : "auto",
-          width: moreWidthThanHeight ? "auto" : "100%",
+          height: hasMoreWidthThanHeight ? "100%" : "auto",
+          width: hasMoreWidthThanHeight ? "auto" : "100%",
           display: hasLoaded ? "block" : "none",
-          borderRadius: roundedBorder ? theme.shape.borderRadius : 0
+          borderRadius: roundedBorder ? theme.shape.borderRadius : 0,
         }}
         ref={img}
         className={classes.image}
-        onLoad={() => {
-          if (img.naturalHeight > img.naturalWidth) {
-            setMoreWidthThanHeight(true);
-          } else {
-            setMoreWidthThanHeight(false);
-          }
-          setHasLoaded(true);
-        }}
+        onLoad={onLoad}
         src={src}
         alt=""
       />
@@ -61,7 +63,7 @@ function SelfAligningImage(props) {
         <GridListTileBar
           title={title}
           subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
-            awareOfUnicodeTokens: true
+            awareOfUnicodeTokens: true,
           })}
           actionIcon={
             options.length > 0 && (
@@ -81,7 +83,7 @@ SelfAligningImage.propTypes = {
   title: PropTypes.string,
   timeStamp: PropTypes.number,
   roundedBorder: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.object)
+  options: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default withStyles(styles, { withTheme: true })(SelfAligningImage);

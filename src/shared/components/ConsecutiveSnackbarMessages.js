@@ -1,86 +1,93 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Snackbar, withStyles } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
     paddingTop: 0,
-    paddingBottom: 0
-  }
+    paddingBottom: 0,
+  },
 });
 
-function ConsecutiveSnackbars(props) {
-  const { classes, getPushMessageFromChild } = props;
-  const queueRef = React.useRef([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [messageInfo, setMessageInfo] = useState({});
+class ConsecutiveSnackbars extends PureComponent {
+  queue = [];
 
-  const processQueue = useCallback(() => {
-    if (queueRef.current.length > 0) {
-      setMessageInfo(queueRef.current.shift());
-      setIsOpen(true);
+  state = {
+    open: false,
+    messageInfo: {},
+  };
+
+  componentDidMount() {
+    const { getPushMessageFromChild } = this.props;
+    /**
+     * Pass the function to parent, so it can use it.
+     */
+    getPushMessageFromChild(this.pushMessage);
+  }
+
+  pushMessage = (message) => {
+    const { open } = this.state;
+    this.queue.push({
+      message,
+      key: new Date().getTime(),
+    });
+    if (open) {
+      // immediately begin dismissing current message
+      // to start showing new one
+      this.setState({ open: false });
+    } else {
+      this.processQueue();
     }
-  }, [queueRef, setMessageInfo, setIsOpen]);
+  };
 
-  const handleClose = useCallback(
-    (_, reason) => {
-      if (reason === "clickaway") {
-        return;
-      }
-      setIsOpen(false);
-    },
-    [setIsOpen]
-  );
-
-  const pushMessage = useCallback(
-    message => {
-      queueRef.current.push({
-        message,
-        key: new Date().getTime()
+  processQueue = () => {
+    if (this.queue.length > 0) {
+      this.setState({
+        messageInfo: this.queue.shift(),
+        open: true,
       });
-      if (isOpen) {
-        // immediately begin dismissing current message
-        // to start showing new one
-        setIsOpen(false);
-      } else {
-        processQueue();
-      }
-    },
-    [queueRef, setIsOpen, isOpen, processQueue]
-  );
+    }
+  };
 
-  useEffect(() => {
-    getPushMessageFromChild(pushMessage);
-  }, [getPushMessageFromChild, pushMessage]);
+  handleClose = (_, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({ open: false });
+  };
 
-  return (
-    <Snackbar
-      disableWindowBlurListener
-      key={messageInfo.key}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left"
-      }}
-      open={isOpen}
-      autoHideDuration={6000}
-      onClose={handleClose}
-      onExited={processQueue}
-      ContentProps={{
-        classes: {
-          root: classes.root
+  render() {
+    const { classes } = this.props;
+    const { messageInfo, open } = this.state;
+    return (
+      <Snackbar
+        disableWindowBlurListener
+        key={messageInfo.key}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={this.handleClose}
+        onExited={this.processQueue}
+        ContentProps={{
+          classes: {
+            root: classes.root,
+          },
+        }}
+        message={
+          <span>{messageInfo.message ? messageInfo.message.text : null}</span>
         }
-      }}
-      message={
-        <span>{messageInfo.message ? messageInfo.message.text : null}</span>
-      }
-    />
-  );
+      />
+    );
+  }
 }
 
 ConsecutiveSnackbars.propTypes = {
   getPushMessageFromChild: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(ConsecutiveSnackbars);

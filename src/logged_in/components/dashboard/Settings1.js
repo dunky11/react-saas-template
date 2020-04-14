@@ -15,28 +15,28 @@ import {
   FormControl,
   Select,
   Box,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import withWidth from "@material-ui/core/withWidth";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
-const styles = theme => ({
+const styles = (theme) => ({
   numberInput: {
-    width: 110
+    width: 110,
   },
   numberInputInput: {
-    padding: "9px 34px 9px 14.5px"
+    padding: "9px 34px 9px 14.5px",
   },
   dBlock: { display: "block" },
   listItemLeftPadding: {
-    paddingRight: theme.spacing(3)
+    paddingRight: theme.spacing(3),
   },
   expansionPanelDetails: {
     paddintTop: theme.spacing(0),
-    justifyContent: "flex-end"
-  }
+    justifyContent: "flex-end",
+  },
 });
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
@@ -52,7 +52,7 @@ function Settings1(props) {
   const [option6, setOption6] = useState(7500);
 
   const handleChange = useCallback(
-    event => {
+    (event) => {
       const { name, value } = event.target;
       if (name === "option6") {
         if (value > 7500 || value < 1000) {
@@ -108,14 +108,15 @@ function Settings1(props) {
     setOption3,
     setOption4,
     setOption5,
-    setOption6
+    setOption6,
   ]);
 
   const onSetDefault = useCallback(() => {
     setIsDefaultLoading(true);
     setTimeout(() => {
+      console.log("here");
       pushMessageToSnackbar({
-        text: "Your settings have been reset to default"
+        text: "Your settings have been reset to default",
       });
       resetState();
     }, 1500);
@@ -125,7 +126,7 @@ function Settings1(props) {
     setIsSaveLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your settings have been saved"
+        text: "Your settings have been saved",
       });
       setIsSaveLoading(false);
     }, 1500);
@@ -135,23 +136,23 @@ function Settings1(props) {
     {
       state: option1,
       label: "Option 1",
-      stateName: "option1"
+      stateName: "option1",
     },
     {
       state: option2,
       label: "Option 2",
-      stateName: "option2"
+      stateName: "option2",
     },
     {
       state: option3,
       label: "Option 3",
-      stateName: "option3"
+      stateName: "option3",
     },
     {
       state: option4,
       label: "Option 4",
-      stateName: "option4"
-    }
+      stateName: "option4",
+    },
   ];
 
   return (
@@ -188,7 +189,7 @@ function Settings1(props) {
                         />
                       }
                     >
-                      {inputOptions.map(innerElement => (
+                      {inputOptions.map((innerElement) => (
                         <MenuItem value={innerElement} key={innerElement}>
                           {innerElement}
                         </MenuItem>
@@ -225,8 +226,8 @@ function Settings1(props) {
                       "1 Day",
                       "2 Days",
                       "3 Days",
-                      "1 Week"
-                    ].map(element => (
+                      "1 Week",
+                    ].map((element) => (
                       <MenuItem value={element} key={element}>
                         {element}
                       </MenuItem>
@@ -284,7 +285,7 @@ function Settings1(props) {
 Settings1.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  pushMessageToSnackbar: PropTypes.func
+  pushMessageToSnackbar: PropTypes.func,
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Settings1));
