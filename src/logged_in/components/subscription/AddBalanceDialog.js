@@ -21,6 +21,8 @@ const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
 const AddBalanceDialog = withTheme(function(props) {
+  const { open, theme, onClose, onSuccess } = props;
+
   const [loading, setLoading] = useState(false);
   const [paymentOption, setPaymentOption] = useState("Credit Card");
   const [stripeError, setStripeError] = useState("");
@@ -112,7 +114,6 @@ const AddBalanceDialog = withTheme(function(props) {
     }
   };
 
-  const { open, theme, onClose, onSuccess } = props;
   return (
     <FormDialog
       open={open}

@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
@@ -54,134 +54,134 @@ const styles = theme => ({
   }
 });
 
-class EmojiTextarea extends PureComponent {
-  state = {
-    open: false,
-    value: "",
-    characters: 0
-  };
-
-  onSelectEmoji = emoji => {
-    let { value } = this.state;
-    const { maxCharacters, onChange } = this.props;
-    let characters;
-    value += emoji.native;
-    if (maxCharacters) {
-      characters = countWithEmojis(value);
-      if (characters > maxCharacters) {
-        return;
-      }
-    }
-    if (onChange) {
-      onChange(value, characters);
-    }
-    this.setState({ value, characters });
-  };
-
-  handleTextFieldChange = event => {
-    const { maxCharacters, onChange } = this.props;
-    const { target } = event;
-    const { value } = target;
-    let characters;
-    if (maxCharacters) {
-      characters = countWithEmojis(value);
-      if (characters > maxCharacters) {
-        return;
-      }
-    }
-    if (onChange) {
-      onChange(value, characters);
-    }
-    this.setState({ value, characters });
-  };
-
-  /**
-   * Emojis whose unified is greater than 5 sometimes
-   * are not displayed correcty in the browser.
-   * We won't display them.
-   */
-  emojisToShowFilter = emoji => {
-    if (emoji.unified.length > 5) {
-      return false;
-    }
-    return true;
-  };
-
-  toggleOpen = () => {
-    const { open } = this.state;
-    this.setState({ open: !open });
-  };
-
-  render() {
-    const { open, value, characters } = this.state;
-    const {
-      theme,
-      classes,
-      rightContent,
-      placeholder,
-      maxCharacters,
-      emojiSet,
-      inputClassName
-    } = this.props;
-    return (
-      <Fragment>
-        <Grid spacing={0} container>
-          <Grid
-            item
-            xs={rightContent ? 8 : 12}
-            sm={rightContent ? 9 : 12}
-            lg={rightContent ? 10 : 12}
-            className={classes.relative}
-          >
-            <TextField
-              fullWidth
-              multiline
-              variant="outlined"
-              rows={6}
-              onInput={this.handleTextFieldChange}
-              value={value}
-              placeholder={placeholder}
-              InputProps={{
-                classes: {
-                  notchedOutline: inputClassName ? inputClassName : null
-                }
-              }}
-            />
-            <div className={classes.floatButtonWrapper}>
-              <IconButton onClick={this.toggleOpen}>
-                {open ? (
-                  <CloseIcon color="primary" />
-                ) : (
-                  <EmojiEmotionsIcon color="primary" />
-                )}
-              </IconButton>
-            </div>
-          </Grid>
-          {rightContent && (
-            <Grid item xs={4} sm={3} lg={2}>
-              {rightContent}
-            </Grid>
-          )}
-        </Grid>
-        {maxCharacters && (
-          <FormHelperText error={characters >= maxCharacters}>
-            {`${characters}/${maxCharacters} characters`}
-          </FormHelperText>
-        )}
-        <Collapse in={open}>
-          <Box mt={1}>
-            <Picker
-              set={emojiSet}
-              color={theme.palette.primary.main}
-              style={{ width: "100%" }}
-              onSelect={this.onSelectEmoji}
-              emojisToShowFilter={this.emojisToShowFilter}
-            />
-          </Box>
-        </Collapse>
-      </Fragment>
-    );
+/**
+ * Emojis whose unified is greater than 5 sometimes
+ * are not displayed correcty in the browser.
+ * We won't display them.
+ */
+const emojisToShowFilter = emoji => {
+  if (emoji.unified.length > 5) {
+    return false;
   }
+  return true;
+};
+
+function EmojiTextarea(props) {
+  const {
+    theme,
+    classes,
+    rightContent,
+    placeholder,
+    maxCharacters,
+    emojiSet,
+    inputClassName,
+    onChange
+  } = props;
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+  const [characters, setCharacters] = useState(0);
+
+  const onSelectEmoji = useCallback(
+    emoji => {
+      let _characters;
+      let _value = value + emoji.native;
+      if (maxCharacters) {
+        _characters = countWithEmojis(_value);
+        if (_characters > maxCharacters) {
+          return;
+        }
+      }
+      if (onChange) {
+        onChange(_value, _characters);
+      }
+      setValue(_value);
+      setCharacters(_characters);
+    },
+    [value, setValue, setCharacters, maxCharacters, onChange]
+  );
+
+  const handleTextFieldChange = useCallback(
+    event => {
+      const { target } = event;
+      const { value } = target;
+      let characters;
+      if (maxCharacters) {
+        characters = countWithEmojis(value);
+        if (characters > maxCharacters) {
+          return;
+        }
+      }
+      if (onChange) {
+        onChange(value, characters);
+      }
+      setValue(value);
+      setCharacters(characters);
+    },
+    [maxCharacters, onChange, setValue, setCharacters]
+  );
+
+  const toggleOpen = useCallback(() => {
+    setOpen(!open);
+  }, [open, setOpen]);
+
+  return (
+    <Fragment>
+      <Grid spacing={0} container>
+        <Grid
+          item
+          xs={rightContent ? 8 : 12}
+          sm={rightContent ? 9 : 12}
+          lg={rightContent ? 10 : 12}
+          className={classes.relative}
+        >
+          <TextField
+            fullWidth
+            multiline
+            variant="outlined"
+            rows={6}
+            onInput={handleTextFieldChange}
+            value={value}
+            placeholder={placeholder}
+            InputProps={{
+              classes: {
+                notchedOutline: inputClassName ? inputClassName : null
+              }
+            }}
+          />
+          <div className={classes.floatButtonWrapper}>
+            <IconButton onClick={toggleOpen}>
+              {open ? (
+                <CloseIcon color="primary" />
+              ) : (
+                <EmojiEmotionsIcon color="primary" />
+              )}
+            </IconButton>
+          </div>
+        </Grid>
+        {rightContent && (
+          <Grid item xs={4} sm={3} lg={2}>
+            {rightContent}
+          </Grid>
+        )}
+      </Grid>
+      {maxCharacters && (
+        <FormHelperText error={characters >= maxCharacters}>
+          {`${characters}/${maxCharacters} characters`}
+        </FormHelperText>
+      )}
+      <Collapse in={open}>
+        <Box mt={1}>
+          <Picker
+            set={emojiSet}
+            color={theme.palette.primary.main}
+            style={{ width: "100%" }}
+            onSelect={onSelectEmoji}
+            emojisToShowFilter={emojisToShowFilter}
+          />
+        </Box>
+      </Collapse>
+    </Fragment>
+  );
 }
 
 EmojiTextarea.propTypes = {

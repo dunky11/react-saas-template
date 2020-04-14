@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { List, Divider, Paper, withStyles } from "@material-ui/core";
 import SubscriptionTable from "./SubscriptionTable";
@@ -10,24 +10,25 @@ const styles = {
   }
 };
 
-class Subscription extends PureComponent {
-  componentDidMount() {
-    const { selectSubscription } = this.props;
-    selectSubscription();
-  }
+function Subscription(props) {
+  const {
+    transactions,
+    classes,
+    openAddBalanceDialog,
+    selectSubscription
+  } = props;
 
-  render() {
-    const { transactions, classes, openAddBalanceDialog } = this.props;
-    return (
-      <Paper>
-        <List disablePadding>
-          <SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
-          <Divider className={classes.divider} />
-          <SubscriptionTable transactions={transactions} />
-        </List>
-      </Paper>
-    );
-  }
+  useEffect(selectSubscription, [selectSubscription]);
+
+  return (
+    <Paper>
+      <List disablePadding>
+        <SubscriptionInfo openAddBalanceDialog={openAddBalanceDialog} />
+        <Divider className={classes.divider} />
+        <SubscriptionTable transactions={transactions} />
+      </List>
+    </Paper>
+  );
 }
 
 Subscription.propTypes = {

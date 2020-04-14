@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import {
   ListItem,
@@ -9,39 +9,32 @@ import {
 import ErrorIcon from "@material-ui/icons/Error";
 import formatDistance from "date-fns/formatDistance";
 
-class MessageListItem extends PureComponent {
-  state = {
-    errorOccured: false
-  };
+function MessageListItem(props) {
+  const { message, divider } = props;
+  const [hasErrorOccurred, setHasErrorOccurred] = useState(false);
 
-  handleError = () => {
-    this.setState({
-      errorOccured: true
-    });
-  };
+  const handleError = useCallback(() => {
+    setHasErrorOccurred(true);
+  }, [setHasErrorOccurred]);
 
-  render() {
-    const { message, divider } = this.props;
-    const { errorOccured } = this.state;
-    return (
-      <ListItem divider={divider}>
-        <ListItemAvatar>
-          {errorOccured ? (
-            <ErrorIcon color="secondary" />
-          ) : (
-            <Avatar
-              src={errorOccured ? null : message.profilePicUrl}
-              onError={this.handleError}
-            />
-          )}
-        </ListItemAvatar>
-        <ListItemText
-          primary={message.text}
-          secondary={`${formatDistance(message.date * 1000, new Date())} ago`}
-        />
-      </ListItem>
-    );
-  }
+  return (
+    <ListItem divider={divider}>
+      <ListItemAvatar>
+        {hasErrorOccurred ? (
+          <ErrorIcon color="secondary" />
+        ) : (
+          <Avatar
+            src={hasErrorOccurred ? null : message.profilePicUrl}
+            onError={handleError}
+          />
+        )}
+      </ListItemAvatar>
+      <ListItemText
+        primary={message.text}
+        secondary={`${formatDistance(message.date * 1000, new Date())} ago`}
+      />
+    </ListItem>
+  );
 }
 
 MessageListItem.propTypes = {

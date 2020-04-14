@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Table,
@@ -63,98 +63,93 @@ const rows = [
   }
 ];
 
-class SubscriptionTable extends PureComponent {
-  state = {
-    page: 0
-  };
+const rowsPerPage = 25;
 
-  rowsPerPage = 25;
+function SubscriptionTable(props) {
+  const { transactions, theme, classes } = props;
+  const [page, setPage] = useState(0);
 
-  handleChangePage = (_, page) => {
-    this.setState({ page });
-  };
+  const handleChangePage = useCallback(
+    (_, page) => {
+      setPage(page);
+    },
+    [setPage]
+  );
 
-  render() {
-    const { page } = this.state;
-    const { transactions, theme, classes } = this.props;
-    if (transactions.length > 0) {
-      return (
-        <div className={classes.tableWrapper}>
-          <Table aria-labelledby="tableTitle">
-            <EnhancedTableHead rowCount={transactions.length} rows={rows} />
-            <TableBody>
-              {transactions
-                .slice(
-                  page * this.rowsPerPage,
-                  page * this.rowsPerPage + this.rowsPerPage
-                )
-                .map((transaction, index) => (
-                  <TableRow hover tabIndex={-1} key={index}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.firstData}
-                    >
-                      {transaction.description}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {transaction.balanceChange > 0 ? (
-                        <ColorfulChip
-                          label={`+${currencyPrettyPrint(
-                            transaction.balanceChange
-                          )}`}
-                          color={theme.palette.secondary.main}
-                        />
-                      ) : (
-                        <ColorfulChip
-                          label={currencyPrettyPrint(transaction.balanceChange)}
-                          color={theme.palette.error.dark}
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {unixToDateString(transaction.timestamp)}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {transaction.paidUntil
-                        ? unixToDateString(transaction.paidUntil)
-                        : ""}
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-          <TablePagination
-            component="div"
-            count={transactions.length}
-            rowsPerPage={this.rowsPerPage}
-            page={page}
-            backIconButtonProps={{
-              "aria-label": "Previous Page"
-            }}
-            nextIconButtonProps={{
-              "aria-label": "Next Page"
-            }}
-            onChangePage={this.handleChangePage}
-            classes={{
-              select: classes.dNone,
-              selectIcon: classes.dNone,
-              actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
-              caption: transactions.length > 0 ? classes.dBlock : classes.dNone
-            }}
-            labelRowsPerPage=""
-          />
-        </div>
-      );
-    }
+  if (transactions.length > 0) {
     return (
-      <div className={classes.contentWrapper}>
-        <HighlightedInformation>
-          No transactions received yet.
-        </HighlightedInformation>
+      <div className={classes.tableWrapper}>
+        <Table aria-labelledby="tableTitle">
+          <EnhancedTableHead rowCount={transactions.length} rows={rows} />
+          <TableBody>
+            {transactions
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((transaction, index) => (
+                <TableRow hover tabIndex={-1} key={index}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className={classes.firstData}
+                  >
+                    {transaction.description}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {transaction.balanceChange > 0 ? (
+                      <ColorfulChip
+                        label={`+${currencyPrettyPrint(
+                          transaction.balanceChange
+                        )}`}
+                        color={theme.palette.secondary.main}
+                      />
+                    ) : (
+                      <ColorfulChip
+                        label={currencyPrettyPrint(transaction.balanceChange)}
+                        color={theme.palette.error.dark}
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {unixToDateString(transaction.timestamp)}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {transaction.paidUntil
+                      ? unixToDateString(transaction.paidUntil)
+                      : ""}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          component="div"
+          count={transactions.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          backIconButtonProps={{
+            "aria-label": "Previous Page"
+          }}
+          nextIconButtonProps={{
+            "aria-label": "Next Page"
+          }}
+          onChangePage={handleChangePage}
+          classes={{
+            select: classes.dNone,
+            selectIcon: classes.dNone,
+            actions: transactions.length > 0 ? classes.dBlock : classes.dNone,
+            caption: transactions.length > 0 ? classes.dBlock : classes.dNone
+          }}
+          labelRowsPerPage=""
+        />
       </div>
     );
   }
+  return (
+    <div className={classes.contentWrapper}>
+      <HighlightedInformation>
+        No transactions received yet.
+      </HighlightedInformation>
+    </div>
+  );
 }
 
 SubscriptionTable.propTypes = {

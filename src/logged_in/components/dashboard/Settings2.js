@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   ExpansionPanel,
@@ -57,232 +57,261 @@ const styles = theme => ({
   }
 });
 
-class Settings2 extends PureComponent {
-  defaultState = {
-    defaultLoading: false,
-    saveLoading: false,
-    option1: false,
-    option2: false,
-    option3: false,
-    option4: false,
-    option5: false,
-    option6: "Both",
-    option7: "2 weeks"
-  };
+function Settings2(props) {
+  const { pushMessageToSnackbar, classes } = props;
+  const [isDefaultLoading, setIsDefaultLoading] = useState(false);
+  const [isSaveLoading, setIsSaveLoading] = useState(false);
+  const [option1, setOption1] = useState(false);
+  const [option2, setOption2] = useState(false);
+  const [option3, setOption3] = useState(false);
+  const [option4, setOption4] = useState(false);
+  const [option5, setOption5] = useState(false);
+  const [option6, setOption6] = useState("Both");
+  const [option7, setOption7] = useState("2 weeks");
 
-  state = this.defaultState;
+  const resetState = useCallback(() => {
+    setIsDefaultLoading(false);
+    setIsSaveLoading(false);
+    setOption1(false);
+    setOption2(false);
+    setOption3(false);
+    setOption4(false);
+    setOption5(false);
+    setOption6("Both");
+    setOption7("2 weeks");
+  }, [
+    setOption1,
+    setOption2,
+    setOption3,
+    setOption4,
+    setOption5,
+    setOption6,
+    setOption7
+  ]);
 
-  onSubmit = () => {
-    const { pushMessageToSnackbar } = this.props;
-    this.setState({ saveLoading: true });
+  const onSubmit = useCallback(() => {
+    setIsSaveLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your settings have been saved"
       });
-      this.setState(this.defaultState);
+      setIsSaveLoading(false);
     }, 1500);
-  };
+  }, [pushMessageToSnackbar, setIsSaveLoading]);
 
-  onSetDefault = () => {
-    const { pushMessageToSnackbar } = this.props;
-    this.setState({ defaultLoading: true });
+  const onSetDefault = useCallback(() => {
+    setIsDefaultLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
         text: "Your settings have been reset to default"
       });
-      this.setState(this.defaultState);
+      resetState();
     }, 1500);
-  };
+  }, [pushMessageToSnackbar, resetState, setIsDefaultLoading]);
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleCheckboxChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
-  render() {
-    const {
-      option1,
-      option2,
-      option3,
-      option4,
-      option5,
-      option6,
-      option7,
-      saveLoading,
-      defaultLoading
-    } = this.state;
-    const { classes } = this.props;
-    const inputs = [
-      {
-        title: "Option 1",
-        secondaryAction: (
-          <Checkbox
-            value="option1"
-            color="primary"
-            checked={option1}
-            onChange={this.handleCheckboxChange("option1")}
-          />
-        )
-      },
-      {
-        title: "Option 2",
-        secondaryAction: (
-          <Checkbox
-            value="option2"
-            color="primary"
-            checked={option2}
-            onChange={this.handleCheckboxChange("option2")}
-          />
-        )
-      },
-      {
-        title: "Option 3",
-        secondaryAction: (
-          <Checkbox
-            value="option3"
-            color="primary"
-            checked={option3}
-            onChange={this.handleCheckboxChange("option3")}
-          />
-        ),
-        helpText: "You can add some further explanation here."
-      },
-      {
-        title: "Option 4",
-        secondaryAction: (
-          <Checkbox
-            value="option4"
-            color="primary"
-            checked={option4}
-            onChange={this.handleCheckboxChange("option4")}
-          />
-        )
-      },
-      {
-        title: "Option 5",
-        secondaryAction: (
-          <Checkbox
-            value="option5"
-            color="primary"
-            checked={option5}
-            onChange={this.handleCheckboxChange("option5")}
-          />
-        )
-      },
-      {
-        title: "Option 6",
-        secondaryAction: (
-          <Select
-            value={option6}
-            input={
-              <OutlinedInput
-                onChange={this.handleInputChange}
-                labelWidth={0}
-                className={classes.numberInput}
-                classes={{ input: classes.numberInputInput }}
-                name="option6"
-              />
-            }
-          >
-            <MenuItem value="Both">Both</MenuItem>
-            <MenuItem value="Male+">Male+</MenuItem>
-            <MenuItem value="Female+">Female+</MenuItem>
-            <MenuItem value="Only male">Only male</MenuItem>
-            <MenuItem value="Only female">Only female</MenuItem>
-          </Select>
-        ),
-        helpText: "You can add some further explanation here."
-      },
-      {
-        title: "Option 7",
-        secondaryAction: (
-          <Select
-            value={option7}
-            input={
-              <OutlinedInput
-                onChange={this.handleInputChange}
-                labelWidth={0}
-                className={classes.numberInput}
-                classes={{ input: classes.numberInputInput }}
-                name="option7"
-              />
-            }
-          >
-            <MenuItem value="None">None</MenuItem>
-            <MenuItem value="6 hours">6 hours</MenuItem>
-            <MenuItem value="12 hours">12 hours</MenuItem>
-            <MenuItem value="1 day">1 day</MenuItem>
-            <MenuItem value="3 days">3 days</MenuItem>
-            <MenuItem value="1 week">1 week</MenuItem>
-            <MenuItem value="2 weeks">2 weeks</MenuItem>
-            <MenuItem value="1 month">1 month</MenuItem>
-            <MenuItem value="3 months">3 months</MenuItem>
-            <MenuItem value="6 months">6 months</MenuItem>
-          </Select>
-        ),
-        helpText: "If you want you can add some further explanation here."
+  const handleInputChange = useCallback(
+    event => {
+      const { name, value } = event.target;
+      switch (name) {
+        case "option6": {
+          setOption6(value);
+          break;
+        }
+        case "option7": {
+          setOption7(value);
+          break;
+        }
+        default:
+          throw new Error("No branch selected in switch statement");
       }
-    ];
+    },
+    [setOption6, setOption7]
+  );
 
-    return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Settings 2</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.dBlock}>
-          <List disablePadding>
-            <Bordered disableVerticalPadding disableBorderRadius>
-              {inputs.map((element, index) => (
-                <ListItem
-                  key={index}
-                  divider={index !== inputs.length - 1}
-                  className="listItemLeftPadding"
-                >
-                  <ListItemText>
-                    <Typography variant="body2">
-                      {element.title}
-                      {element.helpText && (
-                        <HelpIcon title={element.helpText} />
-                      )}
-                    </Typography>
-                  </ListItemText>
-                  <ListItemSecondaryAction>
-                    <FormControl variant="outlined">
-                      {element.secondaryAction}
-                    </FormControl>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
-            </Bordered>
-          </List>
-        </ExpansionPanelDetails>
-        <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-          <Box mr={1}>
-            <Button
-              onClick={this.onSetDefault}
-              disabled={saveLoading || defaultLoading}
-            >
-              Default {defaultLoading && <ButtonCircularProgress />}
-            </Button>
-          </Box>
+  const handleCheckboxChange = name => event => {
+    switch (name) {
+      case "option1":
+        setOption1(event.target.checked);
+        break;
+      case "option2":
+        setOption2(event.target.checked);
+        break;
+      case "option3":
+        setOption3(event.target.checked);
+        break;
+      case "option4":
+        setOption4(event.target.checked);
+        break;
+      case "option5":
+        setOption5(event.target.checked);
+        break;
+      default:
+        throw new Error("No branch selected in switch statement.");
+    }
+  };
+
+  const inputs = [
+    {
+      title: "Option 1",
+      secondaryAction: (
+        <Checkbox
+          value="option1"
+          color="primary"
+          checked={option1}
+          onChange={handleCheckboxChange("option1")}
+        />
+      )
+    },
+    {
+      title: "Option 2",
+      secondaryAction: (
+        <Checkbox
+          value="option2"
+          color="primary"
+          checked={option2}
+          onChange={handleCheckboxChange("option2")}
+        />
+      )
+    },
+    {
+      title: "Option 3",
+      secondaryAction: (
+        <Checkbox
+          value="option3"
+          color="primary"
+          checked={option3}
+          onChange={handleCheckboxChange("option3")}
+        />
+      ),
+      helpText: "You can add some further explanation here."
+    },
+    {
+      title: "Option 4",
+      secondaryAction: (
+        <Checkbox
+          value="option4"
+          color="primary"
+          checked={option4}
+          onChange={handleCheckboxChange("option4")}
+        />
+      )
+    },
+    {
+      title: "Option 5",
+      secondaryAction: (
+        <Checkbox
+          value="option5"
+          color="primary"
+          checked={option5}
+          onChange={handleCheckboxChange("option5")}
+        />
+      )
+    },
+    {
+      title: "Option 6",
+      secondaryAction: (
+        <Select
+          value={option6}
+          input={
+            <OutlinedInput
+              onChange={handleInputChange}
+              labelWidth={0}
+              className={classes.numberInput}
+              classes={{ input: classes.numberInputInput }}
+              name="option6"
+            />
+          }
+        >
+          <MenuItem value="Both">Both</MenuItem>
+          <MenuItem value="Male+">Male+</MenuItem>
+          <MenuItem value="Female+">Female+</MenuItem>
+          <MenuItem value="Only male">Only male</MenuItem>
+          <MenuItem value="Only female">Only female</MenuItem>
+        </Select>
+      ),
+      helpText: "You can add some further explanation here."
+    },
+    {
+      title: "Option 7",
+      secondaryAction: (
+        <Select
+          value={option7}
+          input={
+            <OutlinedInput
+              onChange={handleInputChange}
+              labelWidth={0}
+              className={classes.numberInput}
+              classes={{ input: classes.numberInputInput }}
+              name="option7"
+            />
+          }
+        >
+          <MenuItem value="None">None</MenuItem>
+          <MenuItem value="6 hours">6 hours</MenuItem>
+          <MenuItem value="12 hours">12 hours</MenuItem>
+          <MenuItem value="1 day">1 day</MenuItem>
+          <MenuItem value="3 days">3 days</MenuItem>
+          <MenuItem value="1 week">1 week</MenuItem>
+          <MenuItem value="2 weeks">2 weeks</MenuItem>
+          <MenuItem value="1 month">1 month</MenuItem>
+          <MenuItem value="3 months">3 months</MenuItem>
+          <MenuItem value="6 months">6 months</MenuItem>
+        </Select>
+      ),
+      helpText: "If you want you can add some further explanation here."
+    }
+  ];
+
+  return (
+    <ExpansionPanel>
+      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography>Settings 2</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails className={classes.dBlock}>
+        <List disablePadding>
+          <Bordered disableVerticalPadding disableBorderRadius>
+            {inputs.map((element, index) => (
+              <ListItem
+                key={index}
+                divider={index !== inputs.length - 1}
+                className="listItemLeftPadding"
+              >
+                <ListItemText>
+                  <Typography variant="body2">
+                    {element.title}
+                    {element.helpText && <HelpIcon title={element.helpText} />}
+                  </Typography>
+                </ListItemText>
+                <ListItemSecondaryAction>
+                  <FormControl variant="outlined">
+                    {element.secondaryAction}
+                  </FormControl>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </Bordered>
+        </List>
+      </ExpansionPanelDetails>
+      <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+        <Box mr={1}>
           <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.onSubmit}
-            disabled={saveLoading || defaultLoading}
+            onClick={onSetDefault}
+            disabled={isSaveLoading || isDefaultLoading}
           >
-            Save {saveLoading && <ButtonCircularProgress />}
+            Default {isDefaultLoading && <ButtonCircularProgress />}
           </Button>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    );
-  }
+        </Box>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={onSubmit}
+          disabled={isSaveLoading || isDefaultLoading}
+        >
+          Save {isSaveLoading && <ButtonCircularProgress />}
+        </Button>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+  );
 }
 
 Settings2.propTypes = {

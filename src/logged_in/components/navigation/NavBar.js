@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -127,247 +127,232 @@ const styles = theme => ({
   }
 });
 
-class NavBar extends PureComponent {
-  state = { mobileOpen: false, sideDrawerOpen: false };
-
+function NavBar(props) {
+  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
   // Will be use to make website more accessible by screen readers
-  links = [];
+  const links = useRef([]);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
 
-  openMobileDrawer = () => {
-    this.setState({ mobileOpen: true });
-  };
+  const openMobileDrawer = useCallback(() => {
+    setIsMobileOpen(true);
+  }, [setIsMobileOpen]);
 
-  closeMobileDrawer = () => {
-    this.setState({ mobileOpen: false });
-  };
+  const closeMobileDrawer = useCallback(() => {
+    setIsMobileOpen(false);
+  }, [setIsMobileOpen]);
 
-  closeDrawer = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
+  const openDrawer = useCallback(() => {
+    setIsSideDrawerOpen(true);
+  }, [setIsSideDrawerOpen]);
 
-  openDrawer = () => {
-    this.setState({ sideDrawerOpen: true });
-  };
+  const closeDrawer = useCallback(() => {
+    setIsSideDrawerOpen(false);
+  }, [setIsSideDrawerOpen]);
 
-  render() {
-    const { mobileOpen, sideDrawerOpen } = this.state;
-    const {
-      selectedTab,
-      messages,
-      classes,
-      width,
-      openAddBalanceDialog
-    } = this.props;
-    const menuItems = [
-      {
-        link: "/c/dashboard",
-        name: "Dashboard",
-        onClick: () => {
-          this.closeMobileDrawer();
-        },
-        icon: {
-          desktop: (
-            <DashboardIcon
-              className={
-                selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: <DashboardIcon className="text-white" />
-        }
-      },
-      {
-        link: "/c/posts",
-        name: "Posts",
-        onClick: () => {
-          this.closeMobileDrawer();
-        },
-        icon: {
-          desktop: (
-            <ImageIcon
-              className={
-                selectedTab === "Posts" ? classes.textPrimary : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: <ImageIcon className="text-white" />
-        }
-      },
-      {
-        link: "/c/subscription",
-        name: "Subscription",
-        onClick: () => {
-          this.closeMobileDrawer();
-        },
-        icon: {
-          desktop: (
-            <AccountBalanceIcon
-              className={
-                selectedTab === "Subscription"
-                  ? classes.textPrimary
-                  : "text-white"
-              }
-              fontSize="small"
-            />
-          ),
-          mobile: <AccountBalanceIcon className="text-white" />
-        }
-      },
-      {
-        link: "/",
-        name: "Logout",
-        icon: {
-          desktop: (
-            <PowerSettingsNewIcon className="text-white" fontSize="small" />
-          ),
-          mobile: <PowerSettingsNewIcon className="text-white" />
-        }
+  const menuItems = [
+    {
+      link: "/c/dashboard",
+      name: "Dashboard",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <DashboardIcon
+            className={
+              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <DashboardIcon className="text-white" />
       }
-    ];
-    return (
-      <Fragment>
-        <AppBar position="sticky" className={classes.appBar}>
-          <Toolbar className={classes.appBarToolbar}>
-            <Box display="flex" alignItems="center">
-              <Hidden smUp>
-                <Box mr={1}>
-                  <IconButton
-                    aria-label="Open Navigation"
-                    onClick={this.openMobileDrawer}
-                    color="primary"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                </Box>
-              </Hidden>
-              <Hidden xsDown>
-                <Typography
-                  variant="h4"
-                  className={classes.brandText}
-                  display="inline"
+    },
+    {
+      link: "/c/posts",
+      name: "Posts",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <ImageIcon
+            className={
+              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <ImageIcon className="text-white" />
+      }
+    },
+    {
+      link: "/c/subscription",
+      name: "Subscription",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <AccountBalanceIcon
+            className={
+              selectedTab === "Subscription"
+                ? classes.textPrimary
+                : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <AccountBalanceIcon className="text-white" />
+      }
+    },
+    {
+      link: "/",
+      name: "Logout",
+      icon: {
+        desktop: (
+          <PowerSettingsNewIcon className="text-white" fontSize="small" />
+        ),
+        mobile: <PowerSettingsNewIcon className="text-white" />
+      }
+    }
+  ];
+  return (
+    <Fragment>
+      <AppBar position="sticky" className={classes.appBar}>
+        <Toolbar className={classes.appBarToolbar}>
+          <Box display="flex" alignItems="center">
+            <Hidden smUp>
+              <Box mr={1}>
+                <IconButton
+                  aria-label="Open Navigation"
+                  onClick={openMobileDrawer}
                   color="primary"
                 >
-                  Wa
-                </Typography>
-                <Typography
-                  variant="h4"
-                  className={classes.brandText}
-                  display="inline"
-                  color="secondary"
-                >
-                  Ver
-                </Typography>
-              </Hidden>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="flex-end"
-              alignItems="center"
-              width="100%"
-            >
-              {isWidthUp("sm", width) && (
-                <Box mr={3}>
-                  <Balance
-                    balance={2573}
-                    openAddBalanceDialog={openAddBalanceDialog}
-                  />
-                </Box>
-              )}
-              <MessagePopperButton messages={messages} />
-              <ListItem
-                disableGutters
-                className={classNames(classes.iconListItem, classes.smBordered)}
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+            </Hidden>
+            <Hidden xsDown>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
+                color="primary"
               >
-                <Avatar
-                  alt="profile picture"
-                  src={profilePicture}
-                  className={classNames(classes.accountAvatar)}
-                />
-                {isWidthUp("sm", width) && (
-                  <ListItemText
-                    className={classes.username}
-                    primary={
-                      <Typography color="textPrimary">Username</Typography>
-                    }
-                  />
-                )}
-              </ListItem>
-            </Box>
-            <IconButton
-              onClick={this.openDrawer}
-              color="primary"
-              aria-label="Open Sidedrawer"
-            >
-              <SupervisorAccountIcon />
-            </IconButton>
-            <SideDrawer open={sideDrawerOpen} onClose={this.closeDrawer} />
-          </Toolbar>
-        </AppBar>
-        <Hidden xsDown>
-          <Drawer //  both drawers can be combined into one for performance
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper
-            }}
-            open={false}
+                Wa
+              </Typography>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
+                color="secondary"
+              >
+                Ver
+              </Typography>
+            </Hidden>
+          </Box>
+          <Box
+            display="flex"
+            justifyContent="flex-end"
+            alignItems="center"
+            width="100%"
           >
-            <List>
-              {menuItems.map((element, index) => (
-                <Link
-                  to={element.link}
-                  className={classes.menuLink}
-                  onClick={element.onClick}
-                  key={index}
-                  ref={node => {
-                    this.links[index] = node;
-                  }}
+            {isWidthUp("sm", width) && (
+              <Box mr={3}>
+                <Balance
+                  balance={2573}
+                  openAddBalanceDialog={openAddBalanceDialog}
+                />
+              </Box>
+            )}
+            <MessagePopperButton messages={messages} />
+            <ListItem
+              disableGutters
+              className={classNames(classes.iconListItem, classes.smBordered)}
+            >
+              <Avatar
+                alt="profile picture"
+                src={profilePicture}
+                className={classNames(classes.accountAvatar)}
+              />
+              {isWidthUp("sm", width) && (
+                <ListItemText
+                  className={classes.username}
+                  primary={
+                    <Typography color="textPrimary">Username</Typography>
+                  }
+                />
+              )}
+            </ListItem>
+          </Box>
+          <IconButton
+            onClick={openDrawer}
+            color="primary"
+            aria-label="Open Sidedrawer"
+          >
+            <SupervisorAccountIcon />
+          </IconButton>
+          <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
+        </Toolbar>
+      </AppBar>
+      <Hidden xsDown>
+        <Drawer //  both drawers can be combined into one for performance
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          open={false}
+        >
+          <List>
+            {menuItems.map((element, index) => (
+              <Link
+                to={element.link}
+                className={classes.menuLink}
+                onClick={element.onClick}
+                key={index}
+                ref={node => {
+                  links.current[index] = node;
+                }}
+              >
+                <Tooltip
+                  title={element.name}
+                  placement="right"
+                  key={element.name}
                 >
-                  <Tooltip
-                    title={element.name}
-                    placement="right"
-                    key={element.name}
+                  <ListItem
+                    selected={selectedTab === element.name}
+                    button
+                    divider={index !== menuItems.length - 1}
+                    className={classes.permanentDrawerListItem}
+                    onClick={() => {
+                      links.current[index].click();
+                    }}
+                    aria-label={
+                      element.name === "Logout"
+                        ? "Logout"
+                        : `Go to ${element.name}`
+                    }
                   >
-                    <ListItem
-                      selected={selectedTab === element.name}
-                      button
-                      divider={index !== menuItems.length - 1}
-                      className={classes.permanentDrawerListItem}
-                      onClick={() => {
-                        this.links[index].click();
-                      }}
-                      aria-label={
-                        element.name === "Logout"
-                          ? "Logout"
-                          : `Go to ${element.name}`
-                      }
-                    >
-                      <ListItemIcon className={classes.justifyCenter}>
-                        {element.icon.desktop}
-                      </ListItemIcon>
-                    </ListItem>
-                  </Tooltip>
-                </Link>
-              ))}
-            </List>
-          </Drawer>
-        </Hidden>
-        <NavigationDrawer
-          menuItems={menuItems.map(element => ({
-            link: element.link,
-            name: element.name,
-            icon: element.icon.mobile,
-            onClick: element.onClick
-          }))}
-          anchor="left"
-          open={mobileOpen}
-          selectedItem={selectedTab}
-          onClose={this.closeMobileDrawer}
-        />
-      </Fragment>
-    );
-  }
+                    <ListItemIcon className={classes.justifyCenter}>
+                      {element.icon.desktop}
+                    </ListItemIcon>
+                  </ListItem>
+                </Tooltip>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+      </Hidden>
+      <NavigationDrawer
+        menuItems={menuItems.map(element => ({
+          link: element.link,
+          name: element.name,
+          icon: element.icon.mobile,
+          onClick: element.onClick
+        }))}
+        anchor="left"
+        open={isMobileOpen}
+        selectedItem={selectedTab}
+        onClose={closeMobileDrawer}
+      />
+    </Fragment>
+  );
 }
 
 NavBar.propTypes = {

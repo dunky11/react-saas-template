@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Popover,
@@ -37,97 +37,72 @@ const styles = theme => ({
   }
 });
 
-class MessagePopperButton extends PureComponent {
-  anchorEl = null;
+function MessagePopperButton(props) {
+  const { classes, messages } = props;
+  const anchorEl = useRef();
+  const [isOpen, setIsOpen] = useState(false);
 
-  state = {
-    open: false
-  };
+  const handleClick = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
 
-  handleClick = () => {
-    const { open } = this.state;
-    this.setState({ open: !open });
-  };
+  const handleClickAway = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
-  handleClickAway = () => {
-    this.setState({
-      open: false
-    });
-  };
-
-  printMessages = () => {
-    const { messages } = this.props;
-    if (messages.length === 0) {
-      return (
-        <ListItem>
-          <ListItemText>
-            You haven&apos;t received any messages yet.
-          </ListItemText>
-        </ListItem>
-      );
-    }
-    return messages.map((element, index) => (
-      <MessageListItem
-        key={index}
-        message={element}
-        updateMessageSrc={this.updateMessageSrc}
-        divider={index !== messages.length - 1}
-      />
-    ));
-  };
-
-  render() {
-    const { open } = this.state;
-    const { classes } = this.props;
-    const id = open ? "scroll-playground" : null;
-    return (
-      <Fragment>
-        <IconButton
-          onClick={this.handleClick}
-          buttonRef={node => {
-            this.anchorEl = node;
-          }}
-          aria-label="Open Messages"
-          aria-describedby={id}
-          color="primary"
-        >
-          <MessageIcon />
-        </IconButton>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={this.anchorEl}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left"
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
-          classes={{ paper: classes.popoverPaper }}
-          onClose={this.handleClickAway}
-        >
-          {<span className={classes.arrow} ref={this.handleArrowRef} />}
-          <div>
-            <AppBar
-              position="static"
-              color="inherit"
-              className={classes.noShadow}
-            >
-              <Box pt={1} pl={2} pb={1} pr={1}>
-                <Typography variant="subtitle1">Messages</Typography>
-              </Box>
-              <Divider className={classes.divider} />
-            </AppBar>
-            <List dense className={classes.tabContainer}>
-              {this.printMessages()}
-            </List>
-          </div>
-        </Popover>
-      </Fragment>
-    );
-  }
+  const id = isOpen ? "scroll-playground" : null;
+  return (
+    <Fragment>
+      <IconButton
+        onClick={handleClick}
+        buttonRef={anchorEl}
+        aria-label="Open Messages"
+        aria-describedby={id}
+        color="primary"
+      >
+        <MessageIcon />
+      </IconButton>
+      <Popover
+        id={id}
+        open={isOpen}
+        anchorEl={anchorEl.current}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+        classes={{ paper: classes.popoverPaper }}
+        onClose={handleClickAway}
+      >
+        <AppBar position="static" color="inherit" className={classes.noShadow}>
+          <Box pt={1} pl={2} pb={1} pr={1}>
+            <Typography variant="subtitle1">Messages</Typography>
+          </Box>
+          <Divider className={classes.divider} />
+        </AppBar>
+        <List dense className={classes.tabContainer}>
+          {messages.length === 0 ? (
+            <ListItem>
+              <ListItemText>
+                You haven&apos;t received any messages yet.
+              </ListItemText>
+            </ListItem>
+          ) : (
+            messages.map((element, index) => (
+              <MessageListItem
+                key={index}
+                message={element}
+                divider={index !== messages.length - 1}
+              />
+            ))
+          )}
+        </List>
+      </Popover>
+    </Fragment>
+  );
 }
 
 MessagePopperButton.propTypes = {
