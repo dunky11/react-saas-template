@@ -84,14 +84,14 @@ const rows = [
 const rowsPerPage = 25;
 
 function CustomTable(props) {
-  const { pushMessageToSnackbar, classes, targets } = props;
+  const { pushMessageToSnackbar, classes, targets, setTargets } = props;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState(null);
   const [page, setPage] = useState(0);
   const [isDeleteTargetDialogOpen, setIsDeleteTargetDialogOpen] = useState(
     false
   );
-  const [deleteTargetDialogName, setDeleteTargetDialogName] = useState(null);
+  const [deleteTargetDialogRow, setDeleteTargetDialogRow] = useState(null);
   const [isDeleteTargetLoading, setIsDeleteTargetLoading] = useState(false);
 
   const handleRequestSort = useCallback(
@@ -112,6 +112,12 @@ function CustomTable(props) {
     setTimeout(() => {
       setIsDeleteTargetDialogOpen(false);
       setIsDeleteTargetLoading(false);
+      const _targets = [...targets];
+      const index = _targets.findIndex(
+        (element) => element.id === deleteTargetDialogRow.id
+      );
+      _targets.splice(index, 1);
+      setTargets(_targets);
       pushMessageToSnackbar({
         text: "Your friend has been removed",
       });
@@ -120,6 +126,9 @@ function CustomTable(props) {
     setIsDeleteTargetDialogOpen,
     setIsDeleteTargetLoading,
     pushMessageToSnackbar,
+    setTargets,
+    deleteTargetDialogRow,
+    targets,
   ]);
 
   const handleChangePage = useCallback(
@@ -134,16 +143,20 @@ function CustomTable(props) {
   }, [setIsDeleteTargetDialogOpen]);
 
   const handleDeleteTargetDialogOpen = useCallback(
-    (_, name) => {
+    (row) => {
       setIsDeleteTargetDialogOpen(true);
-      setDeleteTargetDialogName(name);
+      setDeleteTargetDialogRow(row);
     },
-    [setIsDeleteTargetDialogOpen, setDeleteTargetDialogName]
+    [setIsDeleteTargetDialogOpen, setDeleteTargetDialogRow]
   );
 
   const toggleTarget = useCallback(
-    (_, activate) => {
-      if (activate) {
+    (row) => {
+      const _targets = [...targets];
+      const index = _targets.findIndex((element) => element.id === row.id);
+      row.isActivated = !row.isActivated;
+      _targets[index] = row;
+      if (row.isActivated) {
         pushMessageToSnackbar({
           text: "The row is now activated",
         });
@@ -152,8 +165,9 @@ function CustomTable(props) {
           text: "The row is now deactivated",
         });
       }
+      setTargets(_targets);
     },
-    [pushMessageToSnackbar]
+    [pushMessageToSnackbar, targets, setTargets]
   );
 
   return (
@@ -165,11 +179,13 @@ function CustomTable(props) {
         open={isDeleteTargetDialogOpen}
         title="Confirmation"
         content={
-          <span>
-            {"Do you really want to remove the friend "}
-            <b>{deleteTargetDialogName}</b>
-            {" from your list?"}
-          </span>
+          deleteTargetDialogRow ? (
+            <span>
+              {"Do you really want to remove the friend "}
+              <b>{deleteTargetDialogRow.name}</b>
+              {" from your list?"}
+            </span>
+          ) : null
         }
         onClose={handleDeleteTargetDialogClose}
         onConfirm={deleteTarget}
@@ -222,7 +238,7 @@ function CustomTable(props) {
                             <IconButton
                               className={classes.iconButton}
                               onClick={() => {
-                                toggleTarget(row.id);
+                                toggleTarget(row);
                               }}
                               aria-label="Pause"
                             >
@@ -235,7 +251,7 @@ function CustomTable(props) {
                               className={classes.iconButton}
                               color="primary"
                               onClick={() => {
-                                toggleTarget(row.id);
+                                toggleTarget(row);
                               }}
                               aria-label="Resume"
                             >
@@ -245,7 +261,7 @@ function CustomTable(props) {
                           <IconButton
                             className={classes.iconButton}
                             onClick={() => {
-                              handleDeleteTargetDialogOpen(row.id, row.name);
+                              handleDeleteTargetDialogOpen(row);
                             }}
                             aria-label="Delete"
                           >
@@ -295,6 +311,7 @@ function CustomTable(props) {
 CustomTable.propTypes = {
   classes: PropTypes.object.isRequired,
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTargets: PropTypes.func.isRequired,
   pushMessageToSnackbar: PropTypes.func,
 };
 

@@ -9,17 +9,17 @@ import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
-const styles = theme => ({
+const styles = (theme) => ({
   main: {
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0
-    }
-  }
+      marginLeft: 0,
+    },
+  },
 });
 
 function shuffle(array) {
@@ -43,7 +43,11 @@ class Main extends PureComponent {
     targets: [],
     messages: [],
     isAccountActivated: false,
-    addBalanceDialogOpen: false
+    addBalanceDialogOpen: false,
+  };
+
+  setTargets = (targets) => {
+    this.setState({ targets: targets });
   };
 
   componentDidMount() {
@@ -66,7 +70,7 @@ class Main extends PureComponent {
         number4: Math.floor(Math.random() * 251),
         name: randomPerson.name,
         profilePicUrl: randomPerson.profilePicUrl,
-        isActivated: Math.round(Math.random()) ? true : false
+        isActivated: Math.round(Math.random()) ? true : false,
       };
       targets.push(target);
     }
@@ -84,7 +88,7 @@ class Main extends PureComponent {
   onPaymentSuccess = () => {
     if (this.pushMessageToSnackbar) {
       this.pushMessageToSnackbar({
-        text: "Your balance has been updated."
+        text: "Your balance has been updated.",
       });
     }
     this.setState({ addBalanceDialogOpen: false });
@@ -103,11 +107,11 @@ class Main extends PureComponent {
       curViews += Math.round((Math.random() * 2 - 1) * 10);
       statistics.profit.push({
         value: curProfit,
-        timestamp: curUnix
+        timestamp: curUnix,
       });
       statistics.views.push({
         value: curViews,
-        timestamp: curUnix
+        timestamp: curUnix,
       });
     }
     this.setState({ statistics });
@@ -121,33 +125,33 @@ class Main extends PureComponent {
       {
         description: "Starter subscription",
         isSubscription: true,
-        balanceChange: -1499
+        balanceChange: -1499,
       },
       {
         description: "Premium subscription",
         isSubscription: true,
-        balanceChange: -2999
+        balanceChange: -2999,
       },
       {
         description: "Business subscription",
         isSubscription: true,
-        balanceChange: -4999
+        balanceChange: -4999,
       },
       {
         description: "Tycoon subscription",
         isSubscription: true,
-        balanceChange: -9999
+        balanceChange: -9999,
       },
       {
         description: "Added funds",
         isSubscription: false,
-        balanceChange: 2000
+        balanceChange: 2000,
       },
       {
         description: "Added funds",
         isSubscription: false,
-        balanceChange: 5000
-      }
+        balanceChange: 5000,
+      },
     ];
     let curUnix = Math.round(
       new Date().getTime() / 1000 - iterations * oneMonthSeconds
@@ -162,7 +166,7 @@ class Main extends PureComponent {
         description: randomTransactionTemplate.description,
         balanceChange: randomTransactionTemplate.balanceChange,
         paidUntil: curUnix + oneMonthSeconds,
-        timestamp: curUnix
+        timestamp: curUnix,
       };
       curUnix += oneMonthSeconds;
       transactions.push(transaction);
@@ -185,7 +189,7 @@ class Main extends PureComponent {
         id: i,
         profilePicUrl: person.profilePicUrl,
         date: curUnix,
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed."
+        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed.",
       };
       curUnix += oneDaySeconds;
       messages.push(message);
@@ -208,7 +212,7 @@ class Main extends PureComponent {
         id: i,
         src: person.profilePicUrl,
         timestamp: curUnix,
-        name: person.name
+        name: person.name,
       };
       curUnix += oneDaySeconds;
       posts.reverse();
@@ -222,7 +226,7 @@ class Main extends PureComponent {
    * child's consecutiveSnackbarMessages component. Thats why we pass it
    * when the component did mount to this components state.
    */
-  getPushMessageFromChild = pushFunction => {
+  getPushMessageFromChild = (pushFunction) => {
     this.pushMessageToSnackbar = pushFunction;
   };
 
@@ -233,11 +237,11 @@ class Main extends PureComponent {
     const { isAccountActivated } = this.state;
     if (isAccountActivated) {
       this.pushMessageToSnackbar({
-        text: "Your account is now deactivated."
+        text: "Your account is now deactivated.",
       });
     } else {
       this.pushMessageToSnackbar({
-        text: "Your account is now activated."
+        text: "Your account is now activated.",
       });
     }
     this.setState({ isAccountActivated: !isAccountActivated });
@@ -247,11 +251,11 @@ class Main extends PureComponent {
     smoothScrollTop();
     document.title = "WaVer - Dashboard";
     this.setState({
-      selectedTab: "Dashboard"
+      selectedTab: "Dashboard",
     });
     if (!this.hasFetchedCardChart) {
       this.hasFetchedCardChart = true;
-      import("../../shared/components/CardChart").then(Component => {
+      import("../../shared/components/CardChart").then((Component) => {
         this.setState({ CardChart: Component.default });
       });
     }
@@ -261,29 +265,29 @@ class Main extends PureComponent {
     smoothScrollTop();
     document.title = "WaVer - Posts";
     this.setState({
-      selectedTab: "Posts"
+      selectedTab: "Posts",
     });
     if (!this.hasFetchedEmojiTextArea) {
       this.hasFetchedEmojiTextArea = true;
-      import("../../shared/components/EmojiTextArea").then(Component => {
+      import("../../shared/components/EmojiTextArea").then((Component) => {
         this.setState({ EmojiTextArea: Component.default });
       });
     }
     if (!this.hasFetchedImageCropper) {
       this.hasFetchedImageCropper = true;
-      import("../../shared/components/ImageCropper").then(Component => {
+      import("../../shared/components/ImageCropper").then((Component) => {
         this.setState({ ImageCropper: Component.default });
       });
     }
     if (!this.hasFetchedDropzone) {
       this.hasFetchedDropzone = true;
-      import("../../shared/components/Dropzone").then(Component => {
+      import("../../shared/components/Dropzone").then((Component) => {
         this.setState({ Dropzone: Component.default });
       });
     }
     if (!this.hasFetchedDateTimePicker) {
       this.hasFetchedDateTimePicker = true;
-      import("../../shared/components/DateTimePicker").then(Component => {
+      import("../../shared/components/DateTimePicker").then((Component) => {
         this.setState({ DateTimePicker: Component.default });
       });
     }
@@ -293,7 +297,7 @@ class Main extends PureComponent {
     smoothScrollTop();
     document.title = "WaVer - Subscription";
     this.setState({
-      selectedTab: "Subscription"
+      selectedTab: "Subscription",
     });
   };
 
@@ -312,7 +316,7 @@ class Main extends PureComponent {
       targets,
       isAccountActivated,
       messages,
-      addBalanceDialogOpen
+      addBalanceDialogOpen,
     } = this.state;
     return (
       <Fragment>
@@ -350,6 +354,7 @@ class Main extends PureComponent {
             selectPosts={this.selectPosts}
             selectSubscription={this.selectSubscription}
             openAddBalanceDialog={this.openAddBalanceDialog}
+            setTargets={this.setTargets}
           />
         </main>
       </Fragment>
@@ -358,7 +363,7 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(Main);

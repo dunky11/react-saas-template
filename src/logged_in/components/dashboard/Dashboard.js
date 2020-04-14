@@ -14,7 +14,8 @@ function Dashboard(props) {
     toggleAccountActivation,
     pushMessageToSnackbar,
     targets,
-    isAccountActivated
+    setTargets,
+    isAccountActivated,
   } = props;
 
   useEffect(selectDashboard, [selectDashboard]);
@@ -40,6 +41,7 @@ function Dashboard(props) {
       <UserDataArea
         pushMessageToSnackbar={pushMessageToSnackbar}
         targets={targets}
+        setTargets={setTargets}
       />
     </Fragment>
   );
@@ -51,8 +53,9 @@ Dashboard.propTypes = {
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTargets: PropTypes.func.isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
-  selectDashboard: PropTypes.func.isRequired
+  selectDashboard: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
