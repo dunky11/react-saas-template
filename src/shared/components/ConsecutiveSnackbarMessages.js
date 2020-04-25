@@ -20,6 +20,8 @@ class ConsecutiveSnackbars extends PureComponent {
 
   componentDidMount() {
     const { getPushMessageFromChild } = this.props;
+    console.log(getPushMessageFromChild);
+    console.log(typeof getPushMessageFromChild);
     /**
      * Pass the function to parent, so it can use it.
      */

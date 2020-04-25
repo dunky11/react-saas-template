@@ -9,7 +9,7 @@ import {
   Button,
   Paper,
   Box,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
@@ -20,15 +20,16 @@ const styles = {
   dBlock: { display: "block" },
   dNone: { display: "none" },
   toolbar: {
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 };
 
 class PostContent extends PureComponent {
   state = {
     page: 0,
     deletePostDialogOpen: false,
-    deletePostLoading: false
+    deletePostLoading: false,
+    deletePost: null,
   };
 
   rowsPerPage = 25;
@@ -36,27 +37,35 @@ class PostContent extends PureComponent {
   closeDeletePostDialog = () => {
     this.setState({
       deletePostDialogOpen: false,
-      deletePostLoading: false
+      deletePostLoading: false,
+      deletePost: null,
     });
   };
 
   deletePost = () => {
-    const { pushMessageToSnackbar } = this.props;
+    const { pushMessageToSnackbar, setPosts, posts } = this.props;
+    const { deletePost } = this.state;
     this.setState({ deletePostLoading: true });
     setTimeout(() => {
+      const _posts = [...posts];
+      const index = _posts.find((element) => element.id === deletePost.id);
+      _posts.splice(index, 1);
+      setPosts(_posts);
+      pushMessageToSnackbar({
+        text: "Your post has been deleted",
+      });
       this.setState({
         deletePostLoading: false,
-        deletePostDialogOpen: false
-      });
-      pushMessageToSnackbar({
-        text: "Your scheduled post has been deleted"
+        deletePostDialogOpen: false,
+        deletePost: null,
       });
     }, 1500);
   };
 
-  onDelete = () => {
+  onDelete = (post) => {
     this.setState({
-      deletePostDialogOpen: true
+      deletePostDialogOpen: true,
+      deletePost: post,
     });
   };
 
@@ -65,12 +74,6 @@ class PostContent extends PureComponent {
   };
 
   printImageGrid = () => {
-    const options = [];
-    options.push({
-      name: "Delete",
-      onClick: this.onDelete,
-      icon: <DeleteIcon />
-    });
     const { posts } = this.props;
     const { page } = this.state;
     if (posts.length > 0) {
@@ -82,13 +85,21 @@ class PostContent extends PureComponent {
                 page * this.rowsPerPage,
                 page * this.rowsPerPage + this.rowsPerPage
               )
-              .map(element => (
+              .map((element) => (
                 <Grid item xs={6} sm={4} md={3} key={element.id}>
                   <SelfAligningImage
                     src={element.src}
                     title={element.name}
                     timeStamp={element.timestamp}
-                    options={options}
+                    options={[
+                      {
+                        name: "Delete",
+                        onClick: () => {
+                          this.onDelete(element);
+                        },
+                        icon: <DeleteIcon />,
+                      },
+                    ]}
                   />
                 </Grid>
               ))}
@@ -130,17 +141,17 @@ class PostContent extends PureComponent {
           rowsPerPage={this.rowsPerPage}
           page={page}
           backIconButtonProps={{
-            "aria-label": "Previous Page"
+            "aria-label": "Previous Page",
           }}
           nextIconButtonProps={{
-            "aria-label": "Next Page"
+            "aria-label": "Next Page",
           }}
           onChangePage={this.handleChangePage}
           classes={{
             select: classes.dNone,
             selectIcon: classes.dNone,
             actions: posts.length > 0 ? classes.dBlock : classes.dNone,
-            caption: posts.length > 0 ? classes.dBlock : classes.dNone
+            caption: posts.length > 0 ? classes.dBlock : classes.dNone,
           }}
           labelRowsPerPage=""
         />
@@ -161,7 +172,8 @@ PostContent.propTypes = {
   openAddPostModal: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  pushMessageToSnackbar: PropTypes.func
+  setPosts: PropTypes.func.isRequired,
+  pushMessageToSnackbar: PropTypes.func,
 };
 
 export default withStyles(styles)(PostContent);

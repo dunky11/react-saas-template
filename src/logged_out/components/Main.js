@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { memo, useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
 import { withStyles } from "@material-ui/core";
@@ -14,82 +14,66 @@ import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 
 AOS.init({ once: true });
 
-const styles = theme => ({
+const styles = (theme) => ({
   wrapper: {
     backgroundColor: theme.palette.common.white,
-    overflowX: "hidden"
-  }
+    overflowX: "hidden",
+  },
 });
 
-class Main extends PureComponent {
-  state = {
-    selectedTab: null,
-    mobileDrawerOpen: false,
-    blogPosts: [],
-    dialogOpen: null,
-    cookieRulesDialogOpen: false
-  };
+function Main(props) {
+  const { classes } = props;
+  const [selectedTab, setSelectedTab] = useState(null);
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(null);
+  const [isCookieRulesDialogOpen, setIsCookieRulesDialogOpen] = useState(false);
 
-  blogPostsMaxUnix = Math.round(new Date().getTime() / 1000);
-
-  componentDidMount() {
-    this.fetchBlogPosts();
-  }
-
-  selectHome = () => {
+  const selectHome = useCallback(() => {
     smoothScrollTop();
     document.title =
       "WaVer - Free template for building an SaaS or admin application";
-    this.setState({ selectedTab: "Home" });
-  };
+    setSelectedTab("Home");
+  }, [setSelectedTab]);
 
-  selectBlog = () => {
+  const selectBlog = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Blog";
-    this.setState({ selectedTab: "Blog" });
-  };
+    setSelectedTab("Blog");
+  }, [setSelectedTab]);
 
-  openLoginDialog = () => {
-    this.setState({ dialogOpen: "login", mobileDrawerOpen: false });
-  };
+  const openLoginDialog = useCallback(() => {
+    setDialogOpen("login");
+    setIsMobileDrawerOpen(false);
+  }, [setDialogOpen, setIsMobileDrawerOpen]);
 
-  closeDialog = () => {
-    this.setState({ dialogOpen: null });
-  };
+  const closeDialog = useCallback(() => {
+    setDialogOpen(null);
+  }, [setDialogOpen]);
 
-  openRegisterDialog = () => {
-    this.setState({
-      dialogOpen: "register",
-      mobileDrawerOpen: false
-    });
-  };
+  const openRegisterDialog = useCallback(() => {
+    setDialogOpen("register");
+    setIsMobileDrawerOpen(false);
+  }, [setDialogOpen, setIsMobileDrawerOpen]);
 
-  openTermsDialog = () => {
-    this.setState({ dialogOpen: "termsOfService" });
-  };
+  const openTermsDialog = useCallback(() => {
+    setDialogOpen("termsOfService");
+  }, [setDialogOpen]);
 
-  handleMobileDrawerOpen = () => {
-    this.setState({ mobileDrawerOpen: true });
-  };
+  const handleMobileDrawerOpen = useCallback(() => {
+    setIsMobileDrawerOpen(true);
+  }, [setIsMobileDrawerOpen]);
 
-  handleMobileDrawerClose = () => {
-    this.setState({ mobileDrawerOpen: false });
-  };
+  const handleMobileDrawerClose = useCallback(() => {
+    setIsMobileDrawerOpen(false);
+  }, [setIsMobileDrawerOpen]);
 
-  switchSelectedTab = tab => {
-    this.setState({ selectedTab: tab });
-  };
+  const openChangePasswordDialog = useCallback(() => {
+    setDialogOpen("changePassword");
+  }, [setDialogOpen]);
 
-  openChangePasswordDialog = () => {
-    this.setState({ dialogOpen: "changePassword" });
-  };
-
-  fetchBlogPosts = () => {
-    /**
-     * You would fetch this from the server, however we gonna use the example values from state here
-     */
-    this.blogPostsMaxUnix = dummyBlogPosts[dummyBlogPosts.length - 1].date;
-    const blogPosts = dummyBlogPosts.map(blogPost => {
+  const fetchBlogPosts = useCallback(() => {
+    const blogPosts = dummyBlogPosts.map((blogPost) => {
       let title = blogPost.title;
       title = title.toLowerCase();
       /* Remove unwanted characters, only accept alphanumeric and space */
@@ -102,69 +86,59 @@ class Main extends PureComponent {
       blogPost.params = `?id=${blogPost.id}`;
       return blogPost;
     });
-    this.setState({
-      blogPosts
-    });
-  };
+    setBlogPosts(blogPosts);
+  }, [setBlogPosts]);
 
-  handleCookieRulesDialogOpen = () => {
-    this.setState({ cookieRulesDialogOpen: true });
-  };
+  const handleCookieRulesDialogOpen = useCallback(() => {
+    setIsCookieRulesDialogOpen(true);
+  }, [setIsCookieRulesDialogOpen]);
 
-  handleCookieRulesDialogClose = () => {
-    this.setState({ cookieRulesDialogOpen: false });
-  };
+  const handleCookieRulesDialogClose = useCallback(() => {
+    setIsCookieRulesDialogOpen(false);
+  }, [setIsCookieRulesDialogOpen]);
 
-  render() {
-    const { classes } = this.props;
-    const {
-      selectedTab,
-      mobileDrawerOpen,
-      blogPosts,
-      dialogOpen,
-      cookieRulesDialogOpen
-    } = this.state;
-    return (
-      <div className={classes.wrapper}>
-        {!cookieRulesDialogOpen && (
-          <CookieConsent
-            handleCookieRulesDialogOpen={this.handleCookieRulesDialogOpen}
-          />
-        )}
-        <DialogSelector
-          openLoginDialog={this.openLoginDialog}
-          dialogOpen={dialogOpen}
-          onClose={this.closeDialog}
-          openTermsDialog={this.openTermsDialog}
-          openRegisterDialog={this.openRegisterDialog}
-          openChangePasswordDialog={this.openChangePasswordDialog}
+  useEffect(fetchBlogPosts, []);
+
+  return (
+    <div className={classes.wrapper}>
+      {!isCookieRulesDialogOpen && (
+        <CookieConsent
+          handleCookieRulesDialogOpen={handleCookieRulesDialogOpen}
         />
-        <CookieRulesDialog
-          open={cookieRulesDialogOpen}
-          onClose={this.handleCookieRulesDialogClose}
-        />
-        <NavBar
-          selectedTab={selectedTab}
-          selectTab={this.selectTab}
-          openLoginDialog={this.openLoginDialog}
-          openRegisterDialog={this.openRegisterDialog}
-          mobileDrawerOpen={mobileDrawerOpen}
-          handleMobileDrawerOpen={this.handleMobileDrawerOpen}
-          handleMobileDrawerClose={this.handleMobileDrawerClose}
-        />
-        <Routing
-          blogPosts={blogPosts}
-          selectHome={this.selectHome}
-          selectBlog={this.selectBlog}
-        />
-        <Footer />
-      </div>
-    );
-  }
+      )}
+      <DialogSelector
+        openLoginDialog={openLoginDialog}
+        dialogOpen={dialogOpen}
+        onClose={closeDialog}
+        openTermsDialog={openTermsDialog}
+        openRegisterDialog={openRegisterDialog}
+        openChangePasswordDialog={openChangePasswordDialog}
+      />
+      <CookieRulesDialog
+        open={isCookieRulesDialogOpen}
+        onClose={handleCookieRulesDialogClose}
+      />
+      <NavBar
+        selectedTab={selectedTab}
+        selectTab={setSelectedTab}
+        openLoginDialog={openLoginDialog}
+        openRegisterDialog={openRegisterDialog}
+        mobileDrawerOpen={isMobileDrawerOpen}
+        handleMobileDrawerOpen={handleMobileDrawerOpen}
+        handleMobileDrawerClose={handleMobileDrawerClose}
+      />
+      <Routing
+        blogPosts={blogPosts}
+        selectHome={selectHome}
+        selectBlog={selectBlog}
+      />
+      <Footer />
+    </div>
+  );
 }
 
 Main.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Main);
+export default withStyles(styles, { withTheme: true })(memo(Main));

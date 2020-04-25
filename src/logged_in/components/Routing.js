@@ -52,14 +52,12 @@ function Routing(props) {
     pushMessageToSnackbar,
     posts,
     transactions,
-    handleNumberChange,
-    handleSwitchToggle,
-    handleSelectChange,
     toggleAccountActivation,
     CardChart,
     statistics,
     targets,
     setTargets,
+    setPosts,
     isAccountActivated,
     selectDashboard,
     selectPosts,
@@ -78,6 +76,7 @@ function Routing(props) {
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
           posts={posts}
+          setPosts={setPosts}
           selectPosts={selectPosts}
         />
         <PropsRoute
@@ -91,9 +90,6 @@ function Routing(props) {
         <PropsRoute
           path=""
           component={Dashboard}
-          handleNumberChange={handleNumberChange}
-          handleSwitchToggle={handleSwitchToggle}
-          handleSelectChange={handleSelectChange}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
           CardChart={CardChart}
@@ -116,11 +112,9 @@ Routing.propTypes = {
   DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
   setTargets: PropTypes.func.isRequired,
+  setPosts: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleNumberChange: PropTypes.func,
-  handleSwitchToggle: PropTypes.func,
-  handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,

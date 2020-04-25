@@ -5,7 +5,7 @@ import AddPost from "./AddPost";
 
 class Posts extends PureComponent {
   state = {
-    addPostPaperOpen: false
+    addPostPaperOpen: false,
   };
 
   componentDidMount() {
@@ -29,7 +29,8 @@ class Posts extends PureComponent {
       Dropzone,
       DateTimePicker,
       pushMessageToSnackbar,
-      posts
+      posts,
+      setPosts,
     } = this.props;
     return (
       <Fragment>
@@ -47,6 +48,7 @@ class Posts extends PureComponent {
           <PostContent
             openAddPostModal={this.openAddPostModal}
             posts={posts}
+            setPosts={setPosts}
             pushMessageToSnackbar={pushMessageToSnackbar}
           />
         )}
@@ -61,8 +63,9 @@ Posts.propTypes = {
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setPosts: PropTypes.func.isRequired,
   pushMessageToSnackbar: PropTypes.func,
-  selectPosts: PropTypes.func.isRequired
+  selectPosts: PropTypes.func.isRequired,
 };
 
 export default Posts;
