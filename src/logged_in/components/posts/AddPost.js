@@ -12,7 +12,7 @@ function AddPost(props) {
     EmojiTextArea,
     DateTimePicker,
     ImageCropper,
-    onClose
+    onClose,
   } = props;
 
   const [files, setFiles] = useState([]);
@@ -21,7 +21,7 @@ function AddPost(props) {
   const [cropperFile, setCropperFile] = useState(null);
 
   const acceptDrop = useCallback(
-    file => {
+    (file) => {
       setFiles([file]);
     },
     [setFiles]
@@ -32,12 +32,12 @@ function AddPost(props) {
       if (acceptedFiles.length + rejectedFiles.length > 1) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "You cannot upload more than one file at once"
+          text: "You cannot upload more than one file at once",
         });
       } else if (acceptedFiles.length === 0) {
         pushMessageToSnackbar({
           isErrorMessage: true,
-          text: "The file you wanted to upload isn't an image"
+          text: "The file you wanted to upload isn't an image",
         });
       } else if (acceptedFiles.length === 1) {
         const file = acceptedFiles[0];
@@ -54,11 +54,12 @@ function AddPost(props) {
   }, [setCropperFile]);
 
   const deleteItem = useCallback(() => {
-    setCropperFile({});
-  }, [setCropperFile]);
+    setCropperFile(null);
+    setFiles([]);
+  }, [setCropperFile, setFiles]);
 
   const onCrop = useCallback(
-    dataUrl => {
+    (dataUrl) => {
       const file = { ...cropperFile };
       file.preview = dataUrl;
       acceptDrop(file);
@@ -71,7 +72,7 @@ function AddPost(props) {
     setLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your post has been uploaded"
+        text: "Your post has been uploaded",
       });
       onClose();
     }, 1500);
@@ -126,7 +127,7 @@ AddPost.propTypes = {
   Dropzone: PropTypes.elementType,
   EmojiTextArea: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
-  ImageCropper: PropTypes.elementType
+  ImageCropper: PropTypes.elementType,
 };
 
 export default AddPost;
