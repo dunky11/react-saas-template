@@ -1,34 +1,32 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 
-class LazyLoadAddBalanceDialog extends PureComponent {
-  state = { AddBalanceDialog: null };
+function LazyLoadAddBalanceDialog(props) {
+  const { open, onClose, onSuccess } = props;
+  const [AddBalanceDialog, setAddBalanceDialog] = useState(null);
+  const [hasFetchedAddBalanceDialog, setHasFetchedAddBlanceDialog] = useState(false);
 
-  componentDidUpdate() {
-    const { open } = this.props;
-    if (open && !this.hasFetchedAddBalanceDialog) {
-      this.hasFetchedAddBalanceDialog = true;
+  useEffect(() => {
+    if (open && !hasFetchedAddBalanceDialog) {
+      setHasFetchedAddBlanceDialog(true);
       import("./AddBalanceDialog").then(Component => {
-        this.setState({ AddBalanceDialog: Component.default });
+        setAddBalanceDialog(() => Component.default);
       });
     }
-  }
+  }, [open, hasFetchedAddBalanceDialog, setHasFetchedAddBlanceDialog, setAddBalanceDialog]);
 
-  render() {
-    const { open, onClose, onSuccess } = this.props;
-    const { AddBalanceDialog } = this.state;
-    return (
-      <Fragment>
-        {AddBalanceDialog && (
-          <AddBalanceDialog
-            open={open}
-            onClose={onClose}
-            onSuccess={onSuccess}
-          ></AddBalanceDialog>
-        )}
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      {AddBalanceDialog && (
+        <AddBalanceDialog
+          open={open}
+          onClose={onClose}
+          onSuccess={onSuccess}
+        ></AddBalanceDialog>
+      )}
+    </Fragment>
+  );
+
 }
 
 LazyLoadAddBalanceDialog.propTypes = {
