@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { useState, useCallback, Fragment } from "react";
 import PropTypes from "prop-types";
 import RegisterDialog from "./RegisterDialog";
 import TermsOfServiceDialog from "./TermsOfServiceDialog";
@@ -6,43 +6,33 @@ import LoginDialog from "./LoginDialog";
 import ChangePasswordDialog from "./ChangePasswordDialog";
 import ModalBackdrop from "../../../shared/components/ModalBackdrop";
 
-class DialogSelector extends PureComponent {
-  state = {
-    loginStatus: null,
-    registerStatus: null
-  };
+function DialogSelector(props) {
+  const {
+    dialogOpen,
+    openTermsDialog,
+    openRegisterDialog,
+    openLoginDialog,
+    openChangePasswordDialog,
+    onClose,
+  } = props;
+  const [loginStatus, setLoginStatus] = useState(null);
+  const [registerStatus, setRegisterStatus] = useState(null);
 
-  setRegisterStatus = registerStatus => {
-    this.setState({ registerStatus });
-  };
-
-  setLoginStatus = loginStatus => {
-    this.setState({ loginStatus });
-  };
-
-  onClose = () => {
-    const { onClose } = this.props;
-    this.setState({ loginStatus: null, registerStatus: null });
+  const _onClose = useCallback(() => {
+    setLoginStatus(null);
+    setRegisterStatus(null);
     onClose();
-  };
+  }, [onClose, setLoginStatus, setRegisterStatus]);
 
-  printDialog = () => {
-    const {
-      dialogOpen,
-      openTermsDialog,
-      openRegisterDialog,
-      openLoginDialog,
-      openChangePasswordDialog
-    } = this.props;
-    const { loginStatus, registerStatus } = this.state;
+  const printDialog = useCallback(() => {
     switch (dialogOpen) {
       case "register":
         return (
           <RegisterDialog
-            onClose={this.onClose}
+            onClose={_onClose}
             openTermsDialog={openTermsDialog}
             status={registerStatus}
-            setStatus={this.setRegisterStatus}
+            setStatus={setRegisterStatus}
           />
         );
       case "termsOfService":
@@ -50,32 +40,40 @@ class DialogSelector extends PureComponent {
       case "login":
         return (
           <LoginDialog
-            onClose={this.onClose}
+            onClose={_onClose}
             status={loginStatus}
-            setStatus={this.setLoginStatus}
+            setStatus={setLoginStatus}
             openChangePasswordDialog={openChangePasswordDialog}
           />
         );
       case "changePassword":
         return (
           <ChangePasswordDialog
-            setLoginStatus={this.setLoginStatus}
+            setLoginStatus={setLoginStatus}
             onClose={openLoginDialog}
           />
         );
       default:
     }
-  };
+  }, [
+    dialogOpen,
+    openChangePasswordDialog,
+    openLoginDialog,
+    openRegisterDialog,
+    openTermsDialog,
+    _onClose,
+    loginStatus,
+    registerStatus,
+    setLoginStatus,
+    setRegisterStatus,
+  ]);
 
-  render() {
-    const { dialogOpen } = this.props;
-    return (
-      <Fragment>
-        {dialogOpen && <ModalBackdrop open />}
-        {this.printDialog()}
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      {dialogOpen && <ModalBackdrop open />}
+      {printDialog()}
+    </Fragment>
+  );
 }
 
 DialogSelector.propTypes = {
@@ -84,7 +82,7 @@ DialogSelector.propTypes = {
   onClose: PropTypes.func.isRequired,
   openTermsDialog: PropTypes.func.isRequired,
   openRegisterDialog: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired
+  openChangePasswordDialog: PropTypes.func.isRequired,
 };
 
 export default DialogSelector;

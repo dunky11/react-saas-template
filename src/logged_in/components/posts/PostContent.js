@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
@@ -24,28 +24,29 @@ const styles = {
   },
 };
 
-class PostContent extends PureComponent {
-  state = {
-    page: 0,
-    deletePostDialogOpen: false,
-    deletePostLoading: false,
-    deletePost: null,
-  };
+const rowsPerPage = 25;
 
-  rowsPerPage = 25;
+function PostContent(props) {
+  const {
+    pushMessageToSnackbar,
+    setPosts,
+    posts,
+    openAddPostModal,
+    classes,
+  } = props;
+  const [page, setPage] = useState(0);
+  const [isDeletePostDialogOpen, setIsDeletePostDialogOpen] = useState(false);
+  const [isDeletePostDialogLoading, setIsDeletePostDialogLoading] = useState(
+    false
+  );
 
-  closeDeletePostDialog = () => {
-    this.setState({
-      deletePostDialogOpen: false,
-      deletePostLoading: false,
-      deletePost: null,
-    });
-  };
+  const closeDeletePostDialog = useCallback(() => {
+    setIsDeletePostDialogOpen(false);
+    setIsDeletePostDialogLoading(false);
+  }, [setIsDeletePostDialogOpen, setIsDeletePostDialogLoading]);
 
-  deletePost = () => {
-    const { pushMessageToSnackbar, setPosts, posts } = this.props;
-    const { deletePost } = this.state;
-    this.setState({ deletePostLoading: true });
+  const deletePost = useCallback(() => {
+    setIsDeletePostDialogLoading(true);
     setTimeout(() => {
       const _posts = [...posts];
       const index = _posts.find((element) => element.id === deletePost.id);
@@ -54,37 +55,37 @@ class PostContent extends PureComponent {
       pushMessageToSnackbar({
         text: "Your post has been deleted",
       });
-      this.setState({
-        deletePostLoading: false,
-        deletePostDialogOpen: false,
-        deletePost: null,
-      });
+      closeDeletePostDialog();
     }, 1500);
-  };
+  }, [
+    posts,
+    setPosts,
+    setIsDeletePostDialogLoading,
+    pushMessageToSnackbar,
+    closeDeletePostDialog,
+  ]);
 
-  onDelete = (post) => {
-    this.setState({
-      deletePostDialogOpen: true,
-      deletePost: post,
-    });
-  };
+  const onDelete = useCallback(
+    (post) => {
+      setIsDeletePostDialogOpen(true);
+    },
+    [setIsDeletePostDialogOpen]
+  );
 
-  handleChangePage = (__, page) => {
-    this.setState({ page });
-  };
+  const handleChangePage = useCallback(
+    (__, page) => {
+      setPage(page);
+    },
+    [setPage]
+  );
 
-  printImageGrid = () => {
-    const { posts } = this.props;
-    const { page } = this.state;
+  const printImageGrid = useCallback(() => {
     if (posts.length > 0) {
       return (
         <Box p={1}>
           <Grid container spacing={1}>
             {posts
-              .slice(
-                page * this.rowsPerPage,
-                page * this.rowsPerPage + this.rowsPerPage
-              )
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((element) => (
                 <Grid item xs={6} sm={4} md={3} key={element.id}>
                   <SelfAligningImage
@@ -95,7 +96,7 @@ class PostContent extends PureComponent {
                       {
                         name: "Delete",
                         onClick: () => {
-                          this.onDelete(element);
+                          onDelete(element);
                         },
                         icon: <DeleteIcon />,
                       },
@@ -114,58 +115,53 @@ class PostContent extends PureComponent {
         </HighlightedInformation>
       </Box>
     );
-  };
+  }, [posts, onDelete, page]);
 
-  render() {
-    const { page, deletePostDialogOpen, deletePostLoading } = this.state;
-    const { openAddPostModal, posts, classes } = this.props;
-
-    return (
-      <Paper>
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6">Your Posts</Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={openAddPostModal}
-            disableElevation
-          >
-            Add Post
-          </Button>
-        </Toolbar>
-        <Divider />
-        {this.printImageGrid()}
-        <TablePagination
-          component="div"
-          count={posts.length}
-          rowsPerPage={this.rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            "aria-label": "Previous Page",
-          }}
-          nextIconButtonProps={{
-            "aria-label": "Next Page",
-          }}
-          onChangePage={this.handleChangePage}
-          classes={{
-            select: classes.dNone,
-            selectIcon: classes.dNone,
-            actions: posts.length > 0 ? classes.dBlock : classes.dNone,
-            caption: posts.length > 0 ? classes.dBlock : classes.dNone,
-          }}
-          labelRowsPerPage=""
-        />
-        <ConfirmationDialog
-          open={deletePostDialogOpen}
-          title="Confirmation"
-          content="Do you really want to delete the post?"
-          onClose={this.closeDeletePostDialog}
-          loading={deletePostLoading}
-          onConfirm={this.deletePost}
-        />
-      </Paper>
-    );
-  }
+  return (
+    <Paper>
+      <Toolbar className={classes.toolbar}>
+        <Typography variant="h6">Your Posts</Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={openAddPostModal}
+          disableElevation
+        >
+          Add Post
+        </Button>
+      </Toolbar>
+      <Divider />
+      {printImageGrid()}
+      <TablePagination
+        component="div"
+        count={posts.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        backIconButtonProps={{
+          "aria-label": "Previous Page",
+        }}
+        nextIconButtonProps={{
+          "aria-label": "Next Page",
+        }}
+        onChangePage={handleChangePage}
+        classes={{
+          select: classes.dNone,
+          selectIcon: classes.dNone,
+          actions: posts.length > 0 ? classes.dBlock : classes.dNone,
+          caption: posts.length > 0 ? classes.dBlock : classes.dNone,
+        }}
+        labelRowsPerPage=""
+      />
+      <ConfirmationDialog
+        open={isDeletePostDialogOpen}
+        title="Confirmation"
+        content="Do you really want to delete the post?"
+        onClose={closeDeletePostDialog}
+        loading={isDeletePostDialogLoading}
+        onConfirm={deletePost}
+      />
+    </Paper>
+  );
 }
 
 PostContent.propTypes = {

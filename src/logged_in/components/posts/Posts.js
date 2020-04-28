@@ -1,60 +1,49 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import PostContent from "./PostContent";
 import AddPost from "./AddPost";
 
-class Posts extends PureComponent {
-  state = {
-    addPostPaperOpen: false,
-  };
+function Posts(props) {
+  const {
+    selectPosts,
+    EmojiTextArea,
+    ImageCropper,
+    Dropzone,
+    DateTimePicker,
+    pushMessageToSnackbar,
+    posts,
+    setPosts,
+  } = props;
+  const [isAddPostPaperOpen, setIsAddPostPaperOpen] = useState(false);
 
-  componentDidMount() {
-    const { selectPosts } = this.props;
+  const openAddPostModal = useCallback(() => {
+    setIsAddPostPaperOpen(true);
+  }, [setIsAddPostPaperOpen]);
+
+  const closeAddPostModal = useCallback(() => {
+    setIsAddPostPaperOpen(false);
+  }, [setIsAddPostPaperOpen]);
+
+  useEffect(() => {
     selectPosts();
+  }, [selectPosts]);
+
+  if (isAddPostPaperOpen) {
+    return <AddPost
+      onClose={closeAddPostModal}
+      EmojiTextArea={EmojiTextArea}
+      ImageCropper={ImageCropper}
+      Dropzone={Dropzone}
+      DateTimePicker={DateTimePicker}
+      pushMessageToSnackbar={pushMessageToSnackbar}
+    />
   }
-
-  openAddPostModal = () => {
-    this.setState({ addPostPaperOpen: true });
-  };
-
-  closeAddPostModal = () => {
-    this.setState({ addPostPaperOpen: false });
-  };
-
-  render() {
-    const { addPostPaperOpen, addPostModalOpen } = this.state;
-    const {
-      EmojiTextArea,
-      ImageCropper,
-      Dropzone,
-      DateTimePicker,
-      pushMessageToSnackbar,
-      posts,
-      setPosts,
-    } = this.props;
-    return (
-      <Fragment>
-        {addPostPaperOpen ? (
-          <AddPost
-            onClose={this.closeAddPostModal}
-            open={addPostModalOpen}
-            EmojiTextArea={EmojiTextArea}
-            ImageCropper={ImageCropper}
-            Dropzone={Dropzone}
-            DateTimePicker={DateTimePicker}
-            pushMessageToSnackbar={pushMessageToSnackbar}
-          />
-        ) : (
-          <PostContent
-            openAddPostModal={this.openAddPostModal}
-            posts={posts}
-            setPosts={setPosts}
-            pushMessageToSnackbar={pushMessageToSnackbar}
-          />
-        )}
-      </Fragment>
-    );
-  }
+  return <PostContent
+    openAddPostModal={openAddPostModal}
+    posts={posts}
+    setPosts={setPosts}
+    pushMessageToSnackbar={pushMessageToSnackbar}
+  />
 }
 
 Posts.propTypes = {
