@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { memo, useCallback, useState, useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
@@ -9,17 +9,17 @@ import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
-const styles = theme => ({
+const styles = (theme) => ({
   main: {
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0
-    }
-  }
+      marginLeft: 0,
+    },
+  },
 });
 
 function shuffle(array) {
@@ -29,32 +29,31 @@ function shuffle(array) {
   }
 }
 
-class Main extends PureComponent {
-  state = {
-    selectedTab: null,
-    CardChart: null,
-    EmojiTextArea: null,
-    ImageCropper: null,
-    Dropzone: null,
-    DateTimePicker: null,
-    transactions: [],
-    statistics: { views: [], profit: [] },
-    posts: [],
-    targets: [],
-    messages: [],
-    isAccountActivated: false,
-    addBalanceDialogOpen: false
-  };
+function Main(props) {
+  const { classes } = props;
+  const [selectedTab, setSelectedTab] = useState(null);
+  const [CardChart, setCardChart] = useState(null);
+  const [hasFetchedCardChart, setHasFetchedCardChart] = useState(false);
+  const [EmojiTextArea, setEmojiTextArea] = useState(null);
+  const [hasFetchedEmojiTextArea, setHasFetchedEmojiTextArea] = useState(false);
+  const [ImageCropper, setImageCropper] = useState(null);
+  const [hasFetchedImageCropper, setHasFetchedImageCropper] = useState(false);
+  const [Dropzone, setDropzone] = useState(null);
+  const [hasFetchedDropzone, setHasFetchedDropzone] = useState(false);
+  const [DateTimePicker, setDateTimePicker] = useState(null);
+  const [hasFetchedDateTimePicker, setHasFetchedDateTimePicker] = useState(
+    false
+  );
+  const [transactions, setTransactions] = useState([]);
+  const [statistics, setStatistics] = useState({ views: [], profit: [] });
+  const [posts, setPosts] = useState([]);
+  const [targets, setTargets] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [isAccountActivated, setIsAccountActivated] = useState(false);
+  const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
+  const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
-  componentDidMount() {
-    this.fetchRandomTargets();
-    this.fetchRandomStatistics();
-    this.fetchRandomTransactions();
-    this.fetchRandomMessages();
-    this.fetchRandomPosts();
-  }
-
-  fetchRandomTargets = () => {
+  const fetchRandomTargets = useCallback(() => {
     const targets = [];
     for (let i = 0; i < 35; i += 1) {
       const randomPerson = persons[Math.floor(Math.random() * persons.length)];
@@ -66,31 +65,29 @@ class Main extends PureComponent {
         number4: Math.floor(Math.random() * 251),
         name: randomPerson.name,
         profilePicUrl: randomPerson.profilePicUrl,
-        isActivated: Math.round(Math.random()) ? true : false
+        isActivated: Math.round(Math.random()) ? true : false,
       };
       targets.push(target);
     }
-    this.setState({ targets });
-  };
+    setTargets(targets);
+  }, [setTargets]);
 
-  openAddBalanceDialog = () => {
-    this.setState({ addBalanceDialogOpen: true });
-  };
+  const openAddBalanceDialog = useCallback(() => {
+    setIsAddBalanceDialogOpen(true);
+  }, [setIsAddBalanceDialogOpen]);
 
-  closeAddBalanceDialog = () => {
-    this.setState({ addBalanceDialogOpen: false });
-  };
+  const closeAddBalanceDialog = useCallback(() => {
+    setIsAddBalanceDialogOpen(false);
+  }, [setIsAddBalanceDialogOpen]);
 
-  onPaymentSuccess = () => {
-    if (this.pushMessageToSnackbar) {
-      this.pushMessageToSnackbar({
-        text: "Your balance has been updated."
-      });
-    }
-    this.setState({ addBalanceDialogOpen: false });
-  };
+  const onPaymentSuccess = useCallback(() => {
+    pushMessageToSnackbar({
+      text: "Your balance has been updated.",
+    });
+    setIsAddBalanceDialogOpen(false);
+  }, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
 
-  fetchRandomStatistics = () => {
+  const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
     const iterations = 300;
     const oneYearSeconds = 60 * 60 * 24 * 365;
@@ -103,17 +100,17 @@ class Main extends PureComponent {
       curViews += Math.round((Math.random() * 2 - 1) * 10);
       statistics.profit.push({
         value: curProfit,
-        timestamp: curUnix
+        timestamp: curUnix,
       });
       statistics.views.push({
         value: curViews,
-        timestamp: curUnix
+        timestamp: curUnix,
       });
     }
-    this.setState({ statistics });
-  };
+    setStatistics(statistics);
+  }, [setStatistics]);
 
-  fetchRandomTransactions = () => {
+  const fetchRandomTransactions = useCallback(() => {
     const transactions = [];
     const iterations = 32;
     const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
@@ -121,33 +118,33 @@ class Main extends PureComponent {
       {
         description: "Starter subscription",
         isSubscription: true,
-        balanceChange: -1499
+        balanceChange: -1499,
       },
       {
         description: "Premium subscription",
         isSubscription: true,
-        balanceChange: -2999
+        balanceChange: -2999,
       },
       {
         description: "Business subscription",
         isSubscription: true,
-        balanceChange: -4999
+        balanceChange: -4999,
       },
       {
         description: "Tycoon subscription",
         isSubscription: true,
-        balanceChange: -9999
+        balanceChange: -9999,
       },
       {
         description: "Added funds",
         isSubscription: false,
-        balanceChange: 2000
+        balanceChange: 2000,
       },
       {
         description: "Added funds",
         isSubscription: false,
-        balanceChange: 5000
-      }
+        balanceChange: 5000,
+      },
     ];
     let curUnix = Math.round(
       new Date().getTime() / 1000 - iterations * oneMonthSeconds
@@ -155,23 +152,23 @@ class Main extends PureComponent {
     for (let i = 0; i < iterations; i += 1) {
       const randomTransactionTemplate =
         transactionTemplates[
-          Math.floor(Math.random() * transactionTemplates.length)
+        Math.floor(Math.random() * transactionTemplates.length)
         ];
       const transaction = {
         id: i,
         description: randomTransactionTemplate.description,
         balanceChange: randomTransactionTemplate.balanceChange,
         paidUntil: curUnix + oneMonthSeconds,
-        timestamp: curUnix
+        timestamp: curUnix,
       };
       curUnix += oneMonthSeconds;
       transactions.push(transaction);
     }
     transactions.reverse();
-    this.setState({ transactions });
-  };
+    setTransactions(transactions);
+  }, [setTransactions]);
 
-  fetchRandomMessages = () => {
+  const fetchRandomMessages = useCallback(() => {
     shuffle(persons);
     const messages = [];
     const iterations = persons.length;
@@ -185,16 +182,16 @@ class Main extends PureComponent {
         id: i,
         profilePicUrl: person.profilePicUrl,
         date: curUnix,
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed."
+        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed.",
       };
       curUnix += oneDaySeconds;
       messages.push(message);
     }
     messages.reverse();
-    this.setState({ messages });
-  };
+    setMessages(messages);
+  }, [setMessages]);
 
-  fetchRandomPosts = () => {
+  const fetchRandomPosts = useCallback(() => {
     shuffle(persons);
     const posts = [];
     const iterations = persons.length;
@@ -208,157 +205,158 @@ class Main extends PureComponent {
         id: i,
         src: person.profilePicUrl,
         timestamp: curUnix,
-        name: person.name
+        name: person.name,
       };
       curUnix += oneDaySeconds;
       posts.reverse();
       posts.push(post);
     }
-    this.setState({ posts });
-  };
+    setPosts(posts);
+  }, [setPosts]);
 
-  /**
-   * We have to call the pushSnackBarMessage function of this
-   * child's consecutiveSnackbarMessages component. Thats why we pass it
-   * when the component did mount to this components state.
-   */
-  getPushMessageFromChild = pushFunction => {
-    this.pushMessageToSnackbar = pushFunction;
-  };
-
-  /** After a click on the 'activate' button in the dashboard
-   * the activation status of the account
-   */
-  toggleAccountActivation = () => {
-    const { isAccountActivated } = this.state;
-    if (isAccountActivated) {
-      this.pushMessageToSnackbar({
-        text: "Your account is now deactivated."
-      });
-    } else {
-      this.pushMessageToSnackbar({
-        text: "Your account is now activated."
-      });
+  const toggleAccountActivation = useCallback(() => {
+    if (pushMessageToSnackbar) {
+      if (isAccountActivated) {
+        pushMessageToSnackbar({
+          text: "Your account is now deactivated.",
+        });
+      } else {
+        pushMessageToSnackbar({
+          text: "Your account is now activated.",
+        });
+      }
     }
-    this.setState({ isAccountActivated: !isAccountActivated });
-  };
+    setIsAccountActivated(!isAccountActivated);
+  }, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
 
-  selectDashboard = () => {
+  const selectDashboard = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Dashboard";
-    this.setState({
-      selectedTab: "Dashboard"
-    });
-    if (!this.hasFetchedCardChart) {
-      this.hasFetchedCardChart = true;
-      import("../../shared/components/CardChart").then(Component => {
-        this.setState({ CardChart: Component.default });
+    setSelectedTab("Dashboard");
+    if (!hasFetchedCardChart) {
+      setHasFetchedCardChart(true);
+      import("../../shared/components/CardChart").then((Component) => {
+        setCardChart(Component.default);
       });
     }
-  };
+  }, [
+    setSelectedTab,
+    setCardChart,
+    hasFetchedCardChart,
+    setHasFetchedCardChart,
+  ]);
 
-  selectPosts = () => {
+  const selectPosts = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Posts";
-    this.setState({
-      selectedTab: "Posts"
-    });
-    if (!this.hasFetchedEmojiTextArea) {
-      this.hasFetchedEmojiTextArea = true;
-      import("../../shared/components/EmojiTextArea").then(Component => {
-        this.setState({ EmojiTextArea: Component.default });
+    setSelectedTab("Posts");
+    if (!hasFetchedEmojiTextArea) {
+      setHasFetchedEmojiTextArea(true);
+      import("../../shared/components/EmojiTextArea").then((Component) => {
+        setEmojiTextArea(Component.default);
       });
     }
-    if (!this.hasFetchedImageCropper) {
-      this.hasFetchedImageCropper = true;
-      import("../../shared/components/ImageCropper").then(Component => {
-        this.setState({ ImageCropper: Component.default });
+    if (!hasFetchedImageCropper) {
+      setHasFetchedImageCropper(true);
+      import("../../shared/components/ImageCropper").then((Component) => {
+        setImageCropper(Component.default);
       });
     }
-    if (!this.hasFetchedDropzone) {
-      this.hasFetchedDropzone = true;
-      import("../../shared/components/Dropzone").then(Component => {
-        this.setState({ Dropzone: Component.default });
+    if (!hasFetchedDropzone) {
+      setHasFetchedDropzone(true);
+      import("../../shared/components/Dropzone").then((Component) => {
+        setDropzone(Component.default);
       });
     }
-    if (!this.hasFetchedDateTimePicker) {
-      this.hasFetchedDateTimePicker = true;
-      import("../../shared/components/DateTimePicker").then(Component => {
-        this.setState({ DateTimePicker: Component.default });
+    if (!hasFetchedDateTimePicker) {
+      setHasFetchedDateTimePicker(true);
+      import("../../shared/components/DateTimePicker").then((Component) => {
+        setDateTimePicker(Component.default);
       });
     }
-  };
+  }, [
+    setSelectedTab,
+    setEmojiTextArea,
+    setImageCropper,
+    setDropzone,
+    setDateTimePicker,
+    hasFetchedEmojiTextArea,
+    setHasFetchedEmojiTextArea,
+    hasFetchedImageCropper,
+    setHasFetchedImageCropper,
+    hasFetchedDropzone,
+    setHasFetchedDropzone,
+    hasFetchedDateTimePicker,
+    setHasFetchedDateTimePicker,
+  ]);
 
-  selectSubscription = () => {
+  const selectSubscription = useCallback(() => {
     smoothScrollTop();
     document.title = "WaVer - Subscription";
-    this.setState({
-      selectedTab: "Subscription"
-    });
-  };
+    setSelectedTab("Subscription");
+  }, [setSelectedTab]);
 
-  render() {
-    const { classes } = this.props;
-    const {
-      selectedTab,
-      ImageCropper,
-      EmojiTextArea,
-      CardChart,
-      Dropzone,
-      DateTimePicker,
-      transactions,
-      statistics,
-      posts,
-      targets,
-      isAccountActivated,
-      messages,
-      addBalanceDialogOpen
-    } = this.state;
-    return (
-      <Fragment>
-        <LazyLoadAddBalanceDialog
-          open={addBalanceDialogOpen}
-          onClose={this.closeAddBalanceDialog}
-          onSuccess={this.onPaymentSuccess}
+  const getPushMessageFromChild = useCallback(pushMessage => {
+    setPushMessageToSnackbar(() => pushMessage);
+  }, [setPushMessageToSnackbar]);
+
+  useEffect(() => {
+    fetchRandomTargets();
+    fetchRandomStatistics();
+    fetchRandomTransactions();
+    fetchRandomMessages();
+    fetchRandomPosts();
+  }, [
+    fetchRandomTargets,
+    fetchRandomStatistics,
+    fetchRandomTransactions,
+    fetchRandomMessages,
+    fetchRandomPosts,
+  ]);
+
+  return (
+    <Fragment>
+      <LazyLoadAddBalanceDialog
+        open={isAddBalanceDialogOpen}
+        onClose={closeAddBalanceDialog}
+        onSuccess={onPaymentSuccess}
+      />
+      <NavBar
+        selectedTab={selectedTab}
+        messages={messages}
+        openAddBalanceDialog={openAddBalanceDialog}
+      />
+      <ConsecutiveSnackbarMessages
+        getPushMessageFromChild={getPushMessageFromChild}
+      />
+      <main className={classNames(classes.main)}>
+        <Routing
+          isAccountActivated={isAccountActivated}
+          ImageCropper={ImageCropper}
+          EmojiTextArea={EmojiTextArea}
+          CardChart={CardChart}
+          Dropzone={Dropzone}
+          DateTimePicker={DateTimePicker}
+          toggleAccountActivation={toggleAccountActivation}
+          pushMessageToSnackbar={pushMessageToSnackbar}
+          transactions={transactions}
+          statistics={statistics}
+          posts={posts}
+          targets={targets}
+          selectDashboard={selectDashboard}
+          selectPosts={selectPosts}
+          selectSubscription={selectSubscription}
+          openAddBalanceDialog={openAddBalanceDialog}
+          setTargets={setTargets}
+          setPosts={setPosts}
         />
-        <NavBar
-          selectedTab={selectedTab}
-          messages={messages}
-          openAddBalanceDialog={this.openAddBalanceDialog}
-        />
-        <ConsecutiveSnackbarMessages
-          getPushMessageFromChild={this.getPushMessageFromChild}
-        />
-        <main className={classNames(classes.main)}>
-          <Routing
-            isAccountActivated={isAccountActivated}
-            ImageCropper={ImageCropper}
-            EmojiTextArea={EmojiTextArea}
-            CardChart={CardChart}
-            Dropzone={Dropzone}
-            DateTimePicker={DateTimePicker}
-            handleNumberChange={this.handleNumberChange}
-            handleSwitchToggle={this.handleSwitchToggle}
-            handleSelectChange={this.handleSelectChange}
-            toggleAccountActivation={this.toggleAccountActivation}
-            pushMessageToSnackbar={this.pushMessageToSnackbar}
-            transactions={transactions}
-            statistics={statistics}
-            posts={posts}
-            targets={targets}
-            selectDashboard={this.selectDashboard}
-            selectPosts={this.selectPosts}
-            selectSubscription={this.selectSubscription}
-            openAddBalanceDialog={this.openAddBalanceDialog}
-          />
-        </main>
-      </Fragment>
-    );
-  }
+      </main>
+    </Fragment>
+  );
 }
 
 Main.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Main);
+export default withStyles(styles, { withTheme: true })(memo(Main));

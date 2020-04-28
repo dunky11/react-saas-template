@@ -20,7 +20,7 @@ const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
 
-const AddBalanceDialog = withTheme(function(props) {
+const AddBalanceDialog = withTheme(function (props) {
   const { open, theme, onClose, onSuccess } = props;
 
   const [loading, setLoading] = useState(false);
@@ -202,6 +202,7 @@ function Wrapper(props) {
     </Elements>
   );
 }
+
 
 AddBalanceDialog.propTypes = {
   open: PropTypes.bool.isRequired,

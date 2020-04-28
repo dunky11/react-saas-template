@@ -258,7 +258,7 @@ function Settings2(props) {
           <MenuItem value="6 months">6 months</MenuItem>
         </Select>
       ),
-      helpText: "If you want you can add some further explanation here."
+      helpText: "You can add some further explanation here."
     }
   ];
 

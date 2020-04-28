@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { Fragment, useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import {
@@ -6,123 +6,115 @@ import {
   Button,
   Typography,
   Box,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import fetchIpData from "./fetchIpData";
 
-const styles = theme => ({
+const styles = (theme) => ({
   snackbarContent: {
     borderBotttomLeftRadius: 0,
     borderBottomRightRadius: 0,
     paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3)
-  }
+    paddingRight: theme.spacing(3),
+  },
 });
 
-/**
- * This component is the MUICookieConsent it pops a Snackbar or
- * a Dialog informing the user about cookie consent.
- */
-class CookieConsent extends PureComponent {
-  state = {
-    visible: false
-  };
+const europeanCountryCodes = [
+  "AT",
+  "BE",
+  "BG",
+  "CY",
+  "CZ",
+  "DE",
+  "DK",
+  "EE",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "GR",
+  "HR",
+  "HU",
+  "IE",
+  "IT",
+  "LT",
+  "LU",
+  "LV",
+  "MT",
+  "NL",
+  "PO",
+  "PT",
+  "RO",
+  "SE",
+  "SI",
+  "SK",
+];
 
-  europeanCountryCodes = [
-    "AT",
-    "BE",
-    "BG",
-    "CY",
-    "CZ",
-    "DE",
-    "DK",
-    "EE",
-    "ES",
-    "FI",
-    "FR",
-    "GB",
-    "GR",
-    "HR",
-    "HU",
-    "IE",
-    "IT",
-    "LT",
-    "LU",
-    "LV",
-    "MT",
-    "NL",
-    "PO",
-    "PT",
-    "RO",
-    "SE",
-    "SI",
-    "SK"
-  ];
+function CookieConsent(props) {
+  const { classes, handleCookieRulesDialogOpen } = props;
+  const [isVisible, setIsVisible] = useState(false);
 
-  componentDidMount() {
-    if (Cookies.get("remember-cookie-snackbar") === undefined) {
-      this.openOnEuCountry();
-    }
-  }
-
-  openOnEuCountry = () => {
+  const openOnEuCountry = useCallback(() => {
     fetchIpData
-      .then(data => {
+      .then((data) => {
         if (
           data &&
           data.country &&
-          !this.europeanCountryCodes.includes(data.country)
+          !europeanCountryCodes.includes(data.country)
         ) {
-          this.setState({ visible: false });
+          setIsVisible(false);
         } else {
-          this.setState({ visible: true });
+          setIsVisible(true);
         }
       })
       .catch(() => {
-        this.setState({ visible: true });
+        setIsVisible(true);
       });
-  };
+  }, [setIsVisible]);
 
   /**
    * Set a persistent cookie
    */
-  onAccept = () => {
+  const onAccept = useCallback(() => {
     Cookies.set("remember-cookie-snackbar", "", {
-      expires: 365
+      expires: 365,
     });
-    this.setState({ visible: false });
-  };
+    setIsVisible(false);
+  }, [setIsVisible]);
 
-  render() {
-    const { classes, handleCookieRulesDialogOpen } = this.props;
-    return (
-      <Snackbar
-        className={classes.snackbarContent}
-        open={this.state.visible}
-        message={
-          <Typography className="text-white">
-            We use cookies to ensure you get the best experience on our website.{" "}
-          </Typography>
-        }
-        action={
-          <Fragment>
-            <Box mr={1}>
-              <Button color="primary" onClick={handleCookieRulesDialogOpen}>
-                More details
-              </Button>
-            </Box>
-            <Button color="primary" onClick={this.onAccept}>
-              Got it!
+  useEffect(() => {
+    if (Cookies.get("remember-cookie-snackbar") === undefined) {
+      openOnEuCountry();
+    }
+  }, [openOnEuCountry]);
+
+  return (
+    <Snackbar
+      className={classes.snackbarContent}
+      open={isVisible}
+      message={
+        <Typography className="text-white">
+          We use cookies to ensure you get the best experience on our website.{" "}
+        </Typography>
+      }
+      action={
+        <Fragment>
+          <Box mr={1}>
+            <Button color="primary" onClick={handleCookieRulesDialogOpen}>
+              More details
             </Button>
-          </Fragment>
-        }
-      />
-    );
-  }
+          </Box>
+          <Button color="primary" onClick={onAccept}>
+            Got it!
+          </Button>
+        </Fragment>
+      }
+    />
+  );
 }
 
 CookieConsent.propTypes = {
-  handleCookieRulesDialogOpen: PropTypes.func.isRequired
+  handleCookieRulesDialogOpen: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CookieConsent);

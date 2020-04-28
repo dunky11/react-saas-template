@@ -7,7 +7,7 @@ import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import PropsRoute from "../../shared/components/PropsRoute";
 
-const styles = theme => ({
+const styles = (theme) => ({
   wrapper: {
     margin: theme.spacing(1),
     width: "auto",
@@ -16,30 +16,30 @@ const styles = theme => ({
       marginLeft: "auto",
       marginRight: "auto",
       marginTop: theme.spacing(4),
-      marginBottom: theme.spacing(4)
+      marginBottom: theme.spacing(4),
     },
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       width: "90%",
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
     },
     [theme.breakpoints.up("md")]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       width: "82.5%",
       marginLeft: "auto",
-      marginRight: "auto"
+      marginRight: "auto",
     },
     [theme.breakpoints.up("lg")]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       width: "70%",
       marginLeft: "auto",
-      marginRight: "auto"
-    }
-  }
+      marginRight: "auto",
+    },
+  },
 });
 
 function Routing(props) {
@@ -52,18 +52,17 @@ function Routing(props) {
     pushMessageToSnackbar,
     posts,
     transactions,
-    handleNumberChange,
-    handleSwitchToggle,
-    handleSelectChange,
     toggleAccountActivation,
     CardChart,
     statistics,
     targets,
+    setTargets,
+    setPosts,
     isAccountActivated,
     selectDashboard,
     selectPosts,
     selectSubscription,
-    openAddBalanceDialog
+    openAddBalanceDialog,
   } = props;
   return (
     <div className={classes.wrapper}>
@@ -77,6 +76,7 @@ function Routing(props) {
           DateTimePicker={DateTimePicker}
           pushMessageToSnackbar={pushMessageToSnackbar}
           posts={posts}
+          setPosts={setPosts}
           selectPosts={selectPosts}
         />
         <PropsRoute
@@ -90,14 +90,12 @@ function Routing(props) {
         <PropsRoute
           path=""
           component={Dashboard}
-          handleNumberChange={handleNumberChange}
-          handleSwitchToggle={handleSwitchToggle}
-          handleSelectChange={handleSelectChange}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
           CardChart={CardChart}
           statistics={statistics}
           targets={targets}
+          setTargets={setTargets}
           isAccountActivated={isAccountActivated}
           selectDashboard={selectDashboard}
         />
@@ -113,11 +111,10 @@ Routing.propTypes = {
   Dropzone: PropTypes.elementType,
   DateTimePicker: PropTypes.elementType,
   pushMessageToSnackbar: PropTypes.func,
+  setTargets: PropTypes.func.isRequired,
+  setPosts: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleNumberChange: PropTypes.func,
-  handleSwitchToggle: PropTypes.func,
-  handleSelectChange: PropTypes.func,
   toggleAccountActivation: PropTypes.func,
   CardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,
@@ -126,7 +123,7 @@ Routing.propTypes = {
   selectDashboard: PropTypes.func.isRequired,
   selectPosts: PropTypes.func.isRequired,
   selectSubscription: PropTypes.func.isRequired,
-  openAddBalanceDialog: PropTypes.func.isRequired
+  openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(memo(Routing));

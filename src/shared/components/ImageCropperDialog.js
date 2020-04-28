@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
   Dialog,
@@ -18,55 +18,49 @@ const styles = theme => ({
   }
 });
 
-class ImageCropperDialog extends PureComponent {
-  setCropFunction = cropFunction => {
-    this.cropFunction = cropFunction;
-  };
+function ImageCropperDialog(props) {
+  const {
+    ImageCropper,
+    classes,
+    onClose,
+    open,
+    src,
+    onCrop,
+    aspectRatio
+  } = props;
+  const [crop, setCrop] = useState(null);
 
-  /**
-   * Passing cropFunction directly to the buttons onClicks event wont work
-   */
-  crop = () => {
-    this.cropFunction();
-  };
+  const getCropFunctionFromChild = useCallback(cropFunction => {
+    setCrop(() => cropFunction);
+  }, [setCrop]);
 
-  render() {
-    const {
-      ImageCropper,
-      classes,
-      onClose,
-      open,
-      src,
-      onCrop,
-      aspectRatio
-    } = this.props;
-    return (
-      <Dialog
-        open={open}
-        onEscapeKeyDown={onClose}
-        classes={{ paper: classes.dialogPaper }}
-        style={{ overflowX: "visible" }}
-      >
-        <DialogContent className={classes.dialogContent}>
-          <ImageCropper
-            src={src}
-            setCropFunction={this.setCropFunction}
-            onCrop={onCrop}
-            aspectRatio={aspectRatio}
-            color="#3399FF"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Box mr={1}>
-            <Button onClick={onClose}>Close</Button>
-          </Box>
-          <Button variant="contained" color="secondary" onClick={this.crop}>
-            Crop
+  return (
+    <Dialog
+      open={open}
+      onEscapeKeyDown={onClose}
+      classes={{ paper: classes.dialogPaper }}
+      style={{ overflowX: "visible" }}
+    >
+      <DialogContent className={classes.dialogContent}>
+        <ImageCropper
+          src={src}
+          setCropFunction={getCropFunctionFromChild}
+          onCrop={onCrop}
+          aspectRatio={aspectRatio}
+          color="#3399FF"
+        />
+      </DialogContent>
+      <DialogActions>
+        <Box mr={1}>
+          <Button onClick={onClose}>Close</Button>
+        </Box>
+        <Button variant="contained" color="secondary" onClick={crop}>
+          Crop
           </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
+      </DialogActions>
+    </Dialog>
+  );
+
 }
 
 ImageCropperDialog.propTypes = {

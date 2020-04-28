@@ -114,7 +114,6 @@ function Settings1(props) {
   const onSetDefault = useCallback(() => {
     setIsDefaultLoading(true);
     setTimeout(() => {
-      console.log("here");
       pushMessageToSnackbar({
         text: "Your settings have been reset to default",
       });
