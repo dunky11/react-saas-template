@@ -83,10 +83,10 @@ function CardChart(props) {
         seconds = 60 * 60 * 24 * 7;
         break;
       case "1 Month":
-        seconds = 60 * 60 * 24 * 7 * 31;
+        seconds = 60 * 60 * 24 * 31;
         break;
       case "6 Months":
-        seconds = 60 * 60 * 24 * 7 * 31 * 6;
+        seconds = 60 * 60 * 24 * 31 * 6;
         break;
       default:
         throw new Error("No branch selected in switch-statement");
