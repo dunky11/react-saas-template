@@ -81,11 +81,11 @@ function Main(props) {
   }, [setIsAddBalanceDialogOpen]);
 
   const onPaymentSuccess = useCallback(() => {
-    pushMessageToSnackbar({
+    setPushMessageToSnackbar({
       text: "Your balance has been updated.",
     });
     setIsAddBalanceDialogOpen(false);
-  }, [pushMessageToSnackbar, setIsAddBalanceDialogOpen]);
+  }, [setPushMessageToSnackbar, setIsAddBalanceDialogOpen]);
 
   const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
