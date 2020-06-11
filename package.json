@@ -30,7 +30,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.2.1",
-    "@testing-library/user-event": "^11.4.0"
+    "@testing-library/user-event": "^11.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
