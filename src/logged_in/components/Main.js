@@ -152,7 +152,7 @@ function Main(props) {
     for (let i = 0; i < iterations; i += 1) {
       const randomTransactionTemplate =
         transactionTemplates[
-        Math.floor(Math.random() * transactionTemplates.length)
+          Math.floor(Math.random() * transactionTemplates.length)
         ];
       const transaction = {
         id: i,
@@ -208,9 +208,9 @@ function Main(props) {
         name: person.name,
       };
       curUnix += oneDaySeconds;
-      posts.reverse();
       posts.push(post);
     }
+    posts.reverse();
     setPosts(posts);
   }, [setPosts]);
 
@@ -296,9 +296,12 @@ function Main(props) {
     setSelectedTab("Subscription");
   }, [setSelectedTab]);
 
-  const getPushMessageFromChild = useCallback(pushMessage => {
-    setPushMessageToSnackbar(() => pushMessage);
-  }, [setPushMessageToSnackbar]);
+  const getPushMessageFromChild = useCallback(
+    (pushMessage) => {
+      setPushMessageToSnackbar(() => pushMessage);
+    },
+    [setPushMessageToSnackbar]
+  );
 
   useEffect(() => {
     fetchRandomTargets();
