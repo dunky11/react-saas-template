@@ -17,14 +17,14 @@ function VisibilityPasswordTextField(props) {
               onClick={() => {
                 onVisibilityChange(!isVisible);
               }}
-              onMouseDown={event => {
+              onMouseDown={(event) => {
                 event.preventDefault();
               }}
             >
-              {isVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </IconButton>
           </InputAdornment>
-        )
+        ),
       }}
     ></TextField>
   );
