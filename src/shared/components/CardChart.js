@@ -6,7 +6,7 @@ import {
   XAxis,
   Tooltip,
   ResponsiveContainer,
-  YAxis
+  YAxis,
 } from "recharts";
 import format from "date-fns/format";
 import {
@@ -17,14 +17,14 @@ import {
   Menu,
   MenuItem,
   withStyles,
-  Box
+  Box,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
-const styles = theme => ({
+const styles = (theme) => ({
   cardContentInner: {
-    marginTop: theme.spacing(-4)
-  }
+    marginTop: theme.spacing(-4),
+  },
 });
 
 function labelFormatter(label) {
@@ -33,7 +33,7 @@ function labelFormatter(label) {
 
 function calculateMin(data, yKey, factor) {
   let max = Number.POSITIVE_INFINITY;
-  data.forEach(element => {
+  data.forEach((element) => {
     if (max > element[yKey]) {
       max = element[yKey];
     }
@@ -50,14 +50,14 @@ function CardChart(props) {
   const [selectedOption, setSelectedOption] = useState("1 Month");
 
   const handleClick = useCallback(
-    event => {
+    (event) => {
       setAnchorEl(event.currentTarget);
     },
     [setAnchorEl]
   );
 
   const formatter = useCallback(
-    value => {
+    (value) => {
       return [value, title];
     },
     [title]
@@ -106,7 +106,7 @@ function CardChart(props) {
   }, [setAnchorEl]);
 
   const selectOption = useCallback(
-    selectedOption => {
+    (selectedOption) => {
       setSelectedOption(selectedOption);
       handleClose();
     },
@@ -141,11 +141,12 @@ function CardChart(props) {
               PaperProps={{
                 style: {
                   maxHeight: itemHeight,
-                  width: 200
-                }
+                  width: 200,
+                },
               }}
+              disableScrollLock
             >
-              {options.map(option => (
+              {options.map((option) => (
                 <MenuItem
                   key={option}
                   selected={option === selectedOption}
@@ -189,7 +190,7 @@ function CardChart(props) {
                   border: "none",
                   padding: theme.spacing(1),
                   borderRadius: theme.shape.borderRadius,
-                  boxShadow: theme.shadows[1]
+                  boxShadow: theme.shadows[1],
                 }}
                 labelStyle={theme.typography.body1}
                 itemStyle={{
@@ -197,7 +198,7 @@ function CardChart(props) {
                   letterSpacing: theme.typography.body1.letterSpacing,
                   fontFamily: theme.typography.body1.fontFamily,
                   lineHeight: theme.typography.body1.lineHeight,
-                  fontWeight: theme.typography.body1.fontWeight
+                  fontWeight: theme.typography.body1.fontWeight,
                 }}
               />
             </AreaChart>
@@ -214,7 +215,7 @@ CardChart.propTypes = {
   title: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  height: PropTypes.string.isRequired
+  height: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CardChart);
