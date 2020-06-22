@@ -65,12 +65,9 @@ function PostContent(props) {
     closeDeletePostDialog,
   ]);
 
-  const onDelete = useCallback(
-    (post) => {
-      setIsDeletePostDialogOpen(true);
-    },
-    [setIsDeletePostDialogOpen]
-  );
+  const onDelete = useCallback(() => {
+    setIsDeletePostDialogOpen(true);
+  }, [setIsDeletePostDialogOpen]);
 
   const handleChangePage = useCallback(
     (__, page) => {

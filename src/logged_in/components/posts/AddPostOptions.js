@@ -241,6 +241,7 @@ function AddPostOptions(props) {
                         classes={{ input: classes.numberInputInput }}
                       />
                     }
+                    MenuProps={{ disableScrollLock: true }}
                   >
                     {inputOptions.map((innerElement) => (
                       <MenuItem value={innerElement} key={innerElement}>

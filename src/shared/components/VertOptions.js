@@ -55,6 +55,7 @@ function VertOptions(props) {
           horizontal: "center",
         }}
         onClose={handleClose}
+        disableScrollLock
       >
         <MenuList dense>
           {items.map((item) => (

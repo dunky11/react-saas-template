@@ -187,6 +187,7 @@ function Settings1(props) {
                           classes={{ input: classes.numberInputInput }}
                         />
                       }
+                      MenuProps={{ disableScrollLock: true }}
                     >
                       {inputOptions.map((innerElement) => (
                         <MenuItem value={innerElement} key={innerElement}>
@@ -217,6 +218,7 @@ function Settings1(props) {
                         classes={{ input: classes.numberInputInput }}
                       />
                     }
+                    MenuProps={{ disableScrollLock: true }}
                   >
                     {[
                       "Always",
