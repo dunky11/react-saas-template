@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.2",
-    "@testing-library/react": "^10.4.7",
+    "@testing-library/react": "^10.4.8",
     "@testing-library/user-event": "^12.1.0"
   },
   "scripts": {
