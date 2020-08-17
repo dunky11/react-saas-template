@@ -281,7 +281,7 @@ function ImageCropper(props) {
   return (
     <div className={classes.cropperWrapper}>
       <Cropper
-        ref={cropper}
+        onInitialized={(cr) => (cropper.current = cr)}
         src={src}
         guides={false}
         zoomable={false}

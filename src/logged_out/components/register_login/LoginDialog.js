@@ -58,7 +58,7 @@ function LoginDialog(props) {
         setStatus("invalidEmail");
         setIsLoading(false);
       }, 1500);
-    } else if (loginPassword.current.value !== "test") {
+    } else if (loginPassword.current.value !== "HaRzwc") {
       setTimeout(() => {
         setStatus("invalidPassword");
         setIsLoading(false);
@@ -148,7 +148,7 @@ function LoginDialog(props) {
               <HighlightedInformation>
                 Email is: <b>test@web.com</b>
                 <br />
-                Password is: <b>test</b>
+                Password is: <b>HaRzwc</b>
               </HighlightedInformation>
             )}
           </Fragment>
