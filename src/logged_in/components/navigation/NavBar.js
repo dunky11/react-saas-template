@@ -18,7 +18,7 @@ import {
   Box,
   withStyles,
   isWidthUp,
-  withWidth
+  withWidth,
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ImageIcon from "@material-ui/icons/Image";
@@ -32,18 +32,18 @@ import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import profilePicture from "../../dummy_data/images/profilePicture.jpg";
 
-const styles = theme => ({
+const styles = (theme) => ({
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.common.white,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.down("xs")]: {
       width: "100%",
-      marginLeft: 0
-    }
+      marginLeft: 0,
+    },
   },
   appBarToolbar: {
     display: "flex",
@@ -52,16 +52,16 @@ const styles = theme => ({
     paddingRight: theme.spacing(1),
     [theme.breakpoints.up("sm")]: {
       paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2)
+      paddingRight: theme.spacing(2),
     },
     [theme.breakpoints.up("md")]: {
       paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3)
+      paddingRight: theme.spacing(3),
     },
     [theme.breakpoints.up("lg")]: {
       paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
-    }
+      paddingRight: theme.spacing(4),
+    },
   },
   accountAvatar: {
     backgroundColor: theme.palette.secondary.main,
@@ -71,8 +71,8 @@ const styles = theme => ({
     marginRight: theme.spacing(2),
     [theme.breakpoints.down("xs")]: {
       marginLeft: theme.spacing(1.5),
-      marginRight: theme.spacing(1.5)
-    }
+      marginRight: theme.spacing(1.5),
+    },
   },
   drawerPaper: {
     height: "100%vh",
@@ -82,18 +82,18 @@ const styles = theme => ({
     overflowX: "hidden",
     marginTop: theme.spacing(8),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
+      width: theme.spacing(9),
     },
-    backgroundColor: theme.palette.common.black
+    backgroundColor: theme.palette.common.black,
   },
   smBordered: {
     [theme.breakpoints.down("xs")]: {
-      borderRadius: "50% !important"
-    }
+      borderRadius: "50% !important",
+    },
   },
   menuLink: {
     textDecoration: "none",
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
   },
   iconListItem: {
     width: "auto",
@@ -101,30 +101,30 @@ const styles = theme => ({
     paddingTop: 11,
     paddingBottom: 11,
     marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   textPrimary: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   mobileItemSelected: {
-    backgroundColor: `${theme.palette.primary.main} !important`
+    backgroundColor: `${theme.palette.primary.main} !important`,
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
-    fontWeight: 400
+    fontWeight: 400,
   },
   username: {
     paddingLeft: 0,
-    paddingRight: theme.spacing(2)
+    paddingRight: theme.spacing(2),
   },
   justifyCenter: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   permanentDrawerListItem: {
     justifyContent: "center",
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
-  }
+    paddingBottom: theme.spacing(2),
+  },
 });
 
 function NavBar(props) {
@@ -164,8 +164,8 @@ function NavBar(props) {
             fontSize="small"
           />
         ),
-        mobile: <DashboardIcon className="text-white" />
-      }
+        mobile: <DashboardIcon className="text-white" />,
+      },
     },
     {
       link: "/c/posts",
@@ -180,8 +180,8 @@ function NavBar(props) {
             fontSize="small"
           />
         ),
-        mobile: <ImageIcon className="text-white" />
-      }
+        mobile: <ImageIcon className="text-white" />,
+      },
     },
     {
       link: "/c/subscription",
@@ -198,8 +198,8 @@ function NavBar(props) {
             fontSize="small"
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />
-      }
+        mobile: <AccountBalanceIcon className="text-white" />,
+      },
     },
     {
       link: "/",
@@ -208,9 +208,9 @@ function NavBar(props) {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
         ),
-        mobile: <PowerSettingsNewIcon className="text-white" />
-      }
-    }
+        mobile: <PowerSettingsNewIcon className="text-white" />,
+      },
+    },
   ];
   return (
     <Fragment>
@@ -295,7 +295,7 @@ function NavBar(props) {
         <Drawer //  both drawers can be combined into one for performance
           variant="permanent"
           classes={{
-            paper: classes.drawerPaper
+            paper: classes.drawerPaper,
           }}
           open={false}
         >
@@ -306,7 +306,7 @@ function NavBar(props) {
                 className={classes.menuLink}
                 onClick={element.onClick}
                 key={index}
-                ref={node => {
+                ref={(node) => {
                   links.current[index] = node;
                 }}
               >
@@ -340,11 +340,11 @@ function NavBar(props) {
         </Drawer>
       </Hidden>
       <NavigationDrawer
-        menuItems={menuItems.map(element => ({
+        menuItems={menuItems.map((element) => ({
           link: element.link,
           name: element.name,
           icon: element.icon.mobile,
-          onClick: element.onClick
+          onClick: element.onClick,
         }))}
         anchor="left"
         open={isMobileOpen}
@@ -360,7 +360,7 @@ NavBar.propTypes = {
   selectedTab: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
-  openAddBalanceDialog: PropTypes.func.isRequired
+  openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(NavBar));

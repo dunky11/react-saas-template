@@ -2,11 +2,12 @@ import React, { Fragment, useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Portal, Backdrop, withStyles } from "@material-ui/core";
 import ScrollbarSize from "@material-ui/core/Tabs/ScrollbarSize";
+import classNames from "classnames";
 
-const styles = theme => ({
+const styles = (theme) => ({
   backdrop: {
     zIndex: theme.zIndex.modal,
-    backgroundColor: "rgba(0, 0, 0, 0.8)"
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
   },
   portalImgWrapper: {
     position: "fixed",
@@ -15,7 +16,7 @@ const styles = theme => ({
     width: "100%",
     height: "100%",
     zIndex: theme.zIndex.modal,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   portalImgInnerWrapper: {
     display: "flex",
@@ -26,17 +27,20 @@ const styles = theme => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   portalImg: {
     objectFit: "contain",
     maxWidth: "100%",
-    maxHeight: "100%"
-  }
+    maxHeight: "100%",
+  },
+  zoomedOutImage: {
+    cursor: "pointer",
+  },
 });
 
 function ZoomImage(props) {
-  const { alt, src, zoomedImgProps, classes, ...rest } = props;
+  const { alt, src, zoomedImgProps, classes, className, ...rest } = props;
   const [zoomedIn, setZoomedIn] = useState(false);
   const [scrollbarSize, setScrollbarSize] = useState(null);
 
@@ -65,13 +69,13 @@ function ZoomImage(props) {
   return (
     <Fragment>
       <ScrollbarSize onChange={setScrollbarSize}></ScrollbarSize>
-      <Backdrop
-        open={zoomedIn}
-        className={classes.backdrop}
-        onClick={zoomOut}
-      ></Backdrop>
       {zoomedIn && (
         <Portal>
+          <Backdrop
+            open={zoomedIn}
+            className={classes.backdrop}
+            onClick={zoomOut}
+          ></Backdrop>
           <div onClick={zoomOut} className={classes.portalImgWrapper}>
             <div className={classes.portalImgInnerWrapper}>
               <img
@@ -88,7 +92,7 @@ function ZoomImage(props) {
         alt={alt}
         src={src}
         onClick={zoomIn}
-        style={{ cursor: "pointer" }}
+        className={classNames(className, classes.zoomedOutImage)}
         {...rest}
       ></img>
     </Fragment>
@@ -100,7 +104,8 @@ ZoomImage.propTypes = {
   alt: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired,
-  zoomedImgProps: PropTypes.object
+  zoomedImgProps: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(ZoomImage);
