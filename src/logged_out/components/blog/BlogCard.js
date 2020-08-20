@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import format from "date-fns/format";
@@ -50,7 +50,19 @@ const styles = theme => ({
 });
 
 function BlogCard(props) {
-  const { classes, url, src, date, title, snippet } = props;
+  const { classes, url, importImage, date, title, snippet } = props;
+  const [src, setSrc] = useState("");
+
+  const dynLoadImage = useCallback(() => {
+    if (importImage) {
+      importImage.then(mod => {
+        setSrc(mod.default);
+      });
+    };
+  }, [importImage, setSrc]);
+
+  useEffect(dynLoadImage, []);
+
   return (
     <Card className={classes.card}>
       {src && (
@@ -89,7 +101,7 @@ BlogCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   snippet: PropTypes.string.isRequired,
-  src: PropTypes.string
+  importImage: PropTypes.object
 };
 
 export default withStyles(styles, { withTheme: true })(BlogCard);

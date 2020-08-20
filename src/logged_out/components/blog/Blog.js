@@ -42,7 +42,7 @@ function getVerticalBlogPosts(width, blogPosts) {
       <Grid key={blogPost.id} item xs={12}>
         <Box mb={3}>
           <BlogCard
-            src={blogPost.imageSrc}
+            importImage={blogPost.importImage}
             title={blogPost.title}
             snippet={blogPost.snippet}
             date={blogPost.date}
@@ -85,7 +85,7 @@ Blog.propTypes = {
   selectBlog: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
-  blogposts: PropTypes.arrayOf(PropTypes.object)
+  blogPosts: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Blog));

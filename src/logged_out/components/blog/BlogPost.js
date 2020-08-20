@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import format from "date-fns/format";
@@ -32,12 +32,20 @@ const styles = theme => ({
 });
 
 function BlogPost(props) {
-  const { classes, date, title, src, content, otherArticles } = props;
+  const { classes, date, title, importImage, content, otherArticles } = props;
+  const [src, setSrc] = useState("");
+
+  const dynLoadImage = useCallback(() => {
+    importImage.then(mod => {
+      setSrc(mod.default);
+    });
+  }, [importImage, setSrc]);
 
   useEffect(() => {
     document.title = `WaVer - ${title}`;
     smoothScrollTop();
-  }, [title]);
+    dynLoadImage();
+  }, [title, dynLoadImage]);
 
   return (
     <Box
@@ -111,7 +119,7 @@ BlogPost.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  src: PropTypes.string.isRequired,
+  importImage: PropTypes.object.isRequired,
   content: PropTypes.node.isRequired,
   otherArticles: PropTypes.arrayOf(PropTypes.object).isRequired
 };

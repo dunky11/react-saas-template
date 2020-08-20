@@ -1,53 +1,42 @@
-import image1 from "./images/image1.jpg";
-import image2 from "./images/image2.jpg";
-import image3 from "./images/image3.jpg";
-import image4 from "./images/image4.jpg";
-import image5 from "./images/image5.jpg";
-import image6 from "./images/image6.jpg";
-import image7 from "./images/image7.jpg";
-import image8 from "./images/image8.jpg";
-import image9 from "./images/image9.jpg";
-import image10 from "./images/image10.jpg";
-
 export default [
   {
-    profilePicUrl: image1,
+    importImage: import("logged_in/dummy_data/images/image1.jpg"),
     name: "Markus"
   },
   {
-    profilePicUrl: image2,
+    importImage: import("logged_in/dummy_data/images/image2.jpg"),
     name: "David"
   },
   {
-    profilePicUrl: image3,
+    importImage: import("logged_in/dummy_data/images/image3.jpg"),
     name: "Arold"
   },
   {
-    profilePicUrl: image4,
+    importImage: import("logged_in/dummy_data/images/image4.jpg"),
     name: "Joanic"
   },
   {
-    profilePicUrl: image5,
+    importImage: import("logged_in/dummy_data/images/image5.jpg"),
     name: "Sophia"
   },
   {
-    profilePicUrl: image6,
+    importImage: import("logged_in/dummy_data/images/image6.jpg"),
     name: "Aaron"
   },
   {
-    profilePicUrl: image7,
+    importImage: import("logged_in/dummy_data/images/image7.jpg"),
     name: "Steven"
   },
   {
-    profilePicUrl: image8,
+    importImage: import("logged_in/dummy_data/images/image8.jpg"),
     name: "Felix"
   },
   {
-    profilePicUrl: image9,
+    importImage: import("logged_in/dummy_data/images/image9.jpg"),
     name: "Vivien"
   },
   {
-    profilePicUrl: image10,
+    importImage: import("logged_in/dummy_data/images/image10.jpg"),
     name: "Leonie"
   }
 ];

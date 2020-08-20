@@ -203,7 +203,7 @@ function Main(props) {
       const person = persons[i];
       const post = {
         id: i,
-        src: person.profilePicUrl,
+        importImage: person.importImage,
         timestamp: curUnix,
         name: person.name,
       };

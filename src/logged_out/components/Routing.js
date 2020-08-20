@@ -17,7 +17,7 @@ function Routing(props) {
           component={BlogPost}
           title={post.title}
           key={post.title}
-          src={post.imageSrc}
+          importImage={post.importImage}
           date={post.date}
           content={post.content}
           otherArticles={blogPosts.filter(blogPost => blogPost.id !== post.id)}
