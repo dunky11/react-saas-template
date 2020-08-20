@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Typography,
   Button,
   List,
@@ -16,45 +16,45 @@ import {
   MenuItem,
   Checkbox,
   Box,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import HelpIcon from "../../../shared/components/HelpIcon";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
-const styles = theme => ({
+const styles = (theme) => ({
   numberInput: {
     width: 120,
     [theme.breakpoints.down("sm")]: {
-      width: 80
+      width: 80,
     },
     "@media (max-width: 350px)": {
-      width: 65
-    }
+      width: 65,
+    },
   },
   numberInputInput: {
     padding: "9px 14.5px",
     "@media (max-width: 380px)": {
-      padding: "9px 8.5px"
+      padding: "9px 8.5px",
     },
     "@media (max-width: 350px)": {
-      padding: "9px 6.5px"
-    }
+      padding: "9px 6.5px",
+    },
   },
   listItem: {
     [theme.breakpoints.up("sm")]: {
-      paddingLeft: theme.spacing(4)
+      paddingLeft: theme.spacing(4),
     },
-    paddingLeft: 100
+    paddingLeft: 100,
   },
-  expansionPanelDetails: {
+  AccordionDetails: {
     paddingTop: theme.spacing(0),
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   dBlock: {
-    display: "block"
-  }
+    display: "block",
+  },
 });
 
 function Settings2(props) {
@@ -86,14 +86,14 @@ function Settings2(props) {
     setOption4,
     setOption5,
     setOption6,
-    setOption7
+    setOption7,
   ]);
 
   const onSubmit = useCallback(() => {
     setIsSaveLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your settings have been saved"
+        text: "Your settings have been saved",
       });
       setIsSaveLoading(false);
     }, 1500);
@@ -103,14 +103,14 @@ function Settings2(props) {
     setIsDefaultLoading(true);
     setTimeout(() => {
       pushMessageToSnackbar({
-        text: "Your settings have been reset to default"
+        text: "Your settings have been reset to default",
       });
       resetState();
     }, 1500);
   }, [pushMessageToSnackbar, resetState, setIsDefaultLoading]);
 
   const handleInputChange = useCallback(
-    event => {
+    (event) => {
       const { name, value } = event.target;
       switch (name) {
         case "option6": {
@@ -128,7 +128,7 @@ function Settings2(props) {
     [setOption6, setOption7]
   );
 
-  const handleCheckboxChange = name => event => {
+  const handleCheckboxChange = (name) => (event) => {
     switch (name) {
       case "option1":
         setOption1(event.target.checked);
@@ -160,7 +160,7 @@ function Settings2(props) {
           checked={option1}
           onChange={handleCheckboxChange("option1")}
         />
-      )
+      ),
     },
     {
       title: "Option 2",
@@ -171,7 +171,7 @@ function Settings2(props) {
           checked={option2}
           onChange={handleCheckboxChange("option2")}
         />
-      )
+      ),
     },
     {
       title: "Option 3",
@@ -183,7 +183,7 @@ function Settings2(props) {
           onChange={handleCheckboxChange("option3")}
         />
       ),
-      helpText: "You can add some further explanation here."
+      helpText: "You can add some further explanation here.",
     },
     {
       title: "Option 4",
@@ -194,7 +194,7 @@ function Settings2(props) {
           checked={option4}
           onChange={handleCheckboxChange("option4")}
         />
-      )
+      ),
     },
     {
       title: "Option 5",
@@ -205,7 +205,7 @@ function Settings2(props) {
           checked={option5}
           onChange={handleCheckboxChange("option5")}
         />
-      )
+      ),
     },
     {
       title: "Option 6",
@@ -229,7 +229,7 @@ function Settings2(props) {
           <MenuItem value="Only female">Only female</MenuItem>
         </Select>
       ),
-      helpText: "You can add some further explanation here."
+      helpText: "You can add some further explanation here.",
     },
     {
       title: "Option 7",
@@ -258,16 +258,16 @@ function Settings2(props) {
           <MenuItem value="6 months">6 months</MenuItem>
         </Select>
       ),
-      helpText: "You can add some further explanation here."
-    }
+      helpText: "You can add some further explanation here.",
+    },
   ];
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Settings 2</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails className={classes.dBlock}>
+      </AccordionSummary>
+      <AccordionDetails className={classes.dBlock}>
         <List disablePadding>
           <Bordered disableVerticalPadding disableBorderRadius>
             {inputs.map((element, index) => (
@@ -291,8 +291,8 @@ function Settings2(props) {
             ))}
           </Bordered>
         </List>
-      </ExpansionPanelDetails>
-      <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+      </AccordionDetails>
+      <AccordionDetails className={classes.AccordionDetails}>
         <Box mr={1}>
           <Button
             onClick={onSetDefault}
@@ -309,14 +309,14 @@ function Settings2(props) {
         >
           Save {isSaveLoading && <ButtonCircularProgress />}
         </Button>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 
 Settings2.propTypes = {
   classes: PropTypes.object,
-  pushMessageToSnackbar: PropTypes.func
+  pushMessageToSnackbar: PropTypes.func,
 };
 
 export default withStyles(styles, { withTheme: true })(Settings2);

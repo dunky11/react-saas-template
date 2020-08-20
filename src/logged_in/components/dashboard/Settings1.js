@@ -5,12 +5,12 @@ import {
   ListItem,
   ListItemSecondaryAction,
   Button,
-  ExpansionPanel,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionSummary,
   Typography,
   ListItemText,
   OutlinedInput,
-  ExpansionPanelDetails,
+  AccordionDetails,
   MenuItem,
   FormControl,
   Select,
@@ -33,7 +33,7 @@ const styles = (theme) => ({
   listItemLeftPadding: {
     paddingRight: theme.spacing(3),
   },
-  expansionPanelDetails: {
+  AccordionDetails: {
     paddintTop: theme.spacing(0),
     justifyContent: "flex-end",
   },
@@ -155,11 +155,11 @@ function Settings1(props) {
   ];
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Settings 1</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails className={classes.dBlock}>
+      </AccordionSummary>
+      <AccordionDetails className={classes.dBlock}>
         <List disablePadding>
           <Bordered disableVerticalPadding disableBorderRadius>
             {inputs.map((element, index) => (
@@ -260,8 +260,8 @@ function Settings1(props) {
             </ListItem>
           </Bordered>
         </List>
-      </ExpansionPanelDetails>
-      <ExpansionPanelDetails className={classes.expansionPanelDetails}>
+      </AccordionDetails>
+      <AccordionDetails className={classes.AccordionDetails}>
         <Box mr={1}>
           <Button
             onClick={onSetDefault}
@@ -278,8 +278,8 @@ function Settings1(props) {
         >
           Save {isSaveLoading && <ButtonCircularProgress />}
         </Button>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

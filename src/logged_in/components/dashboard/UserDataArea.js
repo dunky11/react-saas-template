@@ -9,8 +9,8 @@ import {
   IconButton,
   Avatar,
   Box,
-  ExpansionPanel,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionSummary,
   Typography,
   withStyles,
 } from "@material-ui/core";
@@ -171,10 +171,10 @@ function CustomTable(props) {
   );
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Some user data</Typography>
-      </ExpansionPanelSummary>
+      </AccordionSummary>
       <ConfirmationDialog
         open={isDeleteTargetDialogOpen}
         title="Confirmation"
@@ -304,7 +304,7 @@ function CustomTable(props) {
           />
         </div>
       </Box>
-    </ExpansionPanel>
+    </Accordion>
   );
 }
 
