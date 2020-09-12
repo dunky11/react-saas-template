@@ -12,7 +12,6 @@ import {
   withWidth,
   isWidthUp,
 } from "@material-ui/core";
-import headerImage from "../../dummy_data/images/headerImage.jpg";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
 
@@ -154,7 +153,7 @@ function HeadSection(props) {
                   <Hidden smDown>
                     <Grid item md={6}>
                       <ZoomImage
-                        src={headerImage}
+                        src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}
                         className={classes.image}
                         alt="header example"
                       />

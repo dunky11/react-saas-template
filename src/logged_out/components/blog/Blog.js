@@ -4,23 +4,23 @@ import classNames from "classnames";
 import { Grid, Box, isWidthUp, withWidth, withStyles } from "@material-ui/core";
 import BlogCard from "./BlogCard";
 
-const styles = theme => ({
+const styles = (theme) => ({
   blogContentWrapper: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(4),
-      marginRight: theme.spacing(4)
+      marginRight: theme.spacing(4),
     },
     maxWidth: 1280,
-    width: "100%"
+    width: "100%",
   },
   wrapper: {
-    minHeight: "60vh"
+    minHeight: "60vh",
   },
   noDecoration: {
-    textDecoration: "none !important"
-  }
+    textDecoration: "none !important",
+  },
 });
 
 function getVerticalBlogPosts(width, blogPosts) {
@@ -42,7 +42,7 @@ function getVerticalBlogPosts(width, blogPosts) {
       <Grid key={blogPost.id} item xs={12}>
         <Box mb={3}>
           <BlogCard
-            importImage={blogPost.importImage}
+            src={blogPost.src}
             title={blogPost.title}
             snippet={blogPost.snippet}
             date={blogPost.date}
@@ -85,7 +85,7 @@ Blog.propTypes = {
   selectBlog: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,
-  blogPosts: PropTypes.arrayOf(PropTypes.object)
+  blogPosts: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Blog));

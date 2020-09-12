@@ -11,9 +11,10 @@ import {
   Box,
   withStyles,
 } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
-import LoadPostImage from "./LoadPostImage";
 
 const styles = {
   dBlock: { display: "block" },
@@ -84,11 +85,19 @@ function PostContent(props) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((post) => (
                 <Grid item xs={6} sm={4} md={3} key={post.id}>
-                  <LoadPostImage
-                    post={post}
-                    onDelete={() => {
-                      onDelete(post);
-                    }}
+                  <SelfAligningImage
+                    src={post.src}
+                    title={post.name}
+                    timeStamp={post.timestamp}
+                    options={[
+                      {
+                        name: "Delete",
+                        onClick: () => {
+                          onDelete(post);
+                        },
+                        icon: <DeleteIcon />,
+                      },
+                    ]}
                   />
                 </Grid>
               ))}

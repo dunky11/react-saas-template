@@ -10,17 +10,18 @@ function Routing(props) {
   const { blogPosts, selectBlog, selectHome } = props;
   return (
     <Switch>
-      {blogPosts.map(post => (
+      {blogPosts.map((post) => (
         <PropsRoute
-          /* We cannot use the url here as it contains the get params */
           path={post.url}
           component={BlogPost}
           title={post.title}
           key={post.title}
-          importImage={post.importImage}
+          src={post.src}
           date={post.date}
           content={post.content}
-          otherArticles={blogPosts.filter(blogPost => blogPost.id !== post.id)}
+          otherArticles={blogPosts.filter(
+            (blogPost) => blogPost.id !== post.id
+          )}
         />
       ))}
       <PropsRoute
@@ -39,7 +40,7 @@ function Routing(props) {
 Routing.propTypes = {
   blogposts: PropTypes.arrayOf(PropTypes.object),
   selectHome: PropTypes.func.isRequired,
-  selectBlog: PropTypes.func.isRequired
+  selectBlog: PropTypes.func.isRequired,
 };
 
 export default memo(Routing);
