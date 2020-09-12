@@ -4,7 +4,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import ErrorIcon from "@material-ui/icons/Error";
 import formatDistance from "date-fns/formatDistance";
@@ -24,7 +24,7 @@ function MessageListItem(props) {
           <ErrorIcon color="secondary" />
         ) : (
           <Avatar
-            src={hasErrorOccurred ? null : message.profilePicUrl}
+            src={hasErrorOccurred ? null : message.src}
             onError={handleError}
           />
         )}
@@ -38,8 +38,8 @@ function MessageListItem(props) {
 }
 
 MessageListItem.propTypes = {
-  message: PropTypes.object,
-  divider: PropTypes.bool
+  message: PropTypes.object.isRequired,
+  divider: PropTypes.bool,
 };
 
 export default MessageListItem;

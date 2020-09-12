@@ -1,67 +1,56 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import format from "date-fns/format";
 import classNames from "classnames";
 import { Typography, Card, Box, withStyles } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
   img: {
     width: "100%",
     height: "auto",
-    marginBottom: 8
+    marginBottom: 8,
   },
   card: {
-    boxShadow: theme.shadows[2]
+    boxShadow: theme.shadows[2],
   },
   noDecoration: {
-    textDecoration: "none !important"
+    textDecoration: "none !important",
   },
   title: {
     transition: theme.transitions.create(["background-color"], {
       duration: theme.transitions.duration.complex,
-      easing: theme.transitions.easing.easeInOut
+      easing: theme.transitions.easing.easeInOut,
     }),
     cursor: "pointer",
     color: theme.palette.secondary.main,
     "&:hover": {
-      color: theme.palette.secondary.dark
+      color: theme.palette.secondary.dark,
     },
     "&:active": {
-      color: theme.palette.primary.dark
-    }
+      color: theme.palette.primary.dark,
+    },
   },
   link: {
     transition: theme.transitions.create(["background-color"], {
       duration: theme.transitions.duration.complex,
-      easing: theme.transitions.easing.easeInOut
+      easing: theme.transitions.easing.easeInOut,
     }),
     cursor: "pointer",
     color: theme.palette.primary.main,
     "&:hover": {
-      color: theme.palette.primary.dark
-    }
+      color: theme.palette.primary.dark,
+    },
   },
   showFocus: {
     "&:focus span": {
-      color: theme.palette.secondary.dark
-    }
-  }
+      color: theme.palette.secondary.dark,
+    },
+  },
 });
 
 function BlogCard(props) {
-  const { classes, url, importImage, date, title, snippet } = props;
-  const [src, setSrc] = useState("");
-
-  const dynLoadImage = useCallback(() => {
-    if (importImage) {
-      importImage.then(mod => {
-        setSrc(mod.default);
-      });
-    };
-  }, [importImage, setSrc]);
-
-  useEffect(dynLoadImage, []);
+  const { classes, url, src, date, title, snippet } = props;
 
   return (
     <Card className={classes.card}>
@@ -73,7 +62,7 @@ function BlogCard(props) {
       <Box p={2}>
         <Typography variant="body2" color="textSecondary">
           {format(new Date(date * 1000), "PPP", {
-            awareOfUnicodeTokens: true
+            awareOfUnicodeTokens: true,
           })}
         </Typography>
         <Link
@@ -101,7 +90,7 @@ BlogCard.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   snippet: PropTypes.string.isRequired,
-  importImage: PropTypes.object
+  src: PropTypes.string,
 };
 
 export default withStyles(styles, { withTheme: true })(BlogCard);
