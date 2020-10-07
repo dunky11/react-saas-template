@@ -31,8 +31,7 @@ function Routing(props) {
         selectBlog={selectBlog}
         blogPosts={blogPosts}
       />
-      )
-      <PropsRoute path="/" component={Home} selectHome={selectHome} />)
+      <PropsRoute path="/" component={Home} selectHome={selectHome} />
     </Switch>
   );
 }
