@@ -84,7 +84,7 @@ const content = (
   </Fragment>
 );
 
-export default [
+const posts = [
   {
     title: "Post 1",
     id: 1,
@@ -140,3 +140,5 @@ export default [
     content: content,
   },
 ];
+
+export default posts;

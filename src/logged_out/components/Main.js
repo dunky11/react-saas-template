@@ -97,7 +97,7 @@ function Main(props) {
     setIsCookieRulesDialogOpen(false);
   }, [setIsCookieRulesDialogOpen]);
 
-  useEffect(fetchBlogPosts, []);
+  useEffect(fetchBlogPosts, [fetchBlogPosts]);
 
   return (
     <div className={classes.wrapper}>

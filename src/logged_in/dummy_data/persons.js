@@ -1,4 +1,4 @@
-export default [
+const data = [
   {
     src: `${process.env.PUBLIC_URL}/images/logged_in/image1.jpg`,
     name: "Markus",
@@ -40,3 +40,5 @@ export default [
     name: "Leonie",
   },
 ];
+
+export default data;

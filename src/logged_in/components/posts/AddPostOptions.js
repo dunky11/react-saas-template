@@ -147,7 +147,7 @@ function AddPostOptions(props) {
     );
   }, [onDrop, files, classes, deleteItem]);
 
-  const inputs = useCallback(
+  const inputs = 
     [
       {
         state: option1,
@@ -169,9 +169,7 @@ function AddPostOptions(props) {
         label: "Option 4",
         stateName: "option4",
       },
-    ],
-    [option1, option2, option3, option4]
-  );
+    ];
 
   return (
     <Fragment>
