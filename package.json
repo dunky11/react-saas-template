@@ -21,7 +21,7 @@
     "react": "^16.14.0",
     "react-cropper": "^2.1.4",
     "react-dom": "^16.14.0",
-    "react-dropzone": "^11.2.3",
+    "react-dropzone": "^11.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
