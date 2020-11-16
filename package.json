@@ -28,7 +28,7 @@
     "recharts": "^1.8.5"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2"
   },
