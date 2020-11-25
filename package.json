@@ -24,7 +24,7 @@
     "react-dropzone": "^11.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0",
+    "react-scripts": "^4.0.1",
     "recharts": "^1.8.5"
   },
   "devDependencies": {
