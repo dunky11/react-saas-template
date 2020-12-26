@@ -78,14 +78,6 @@ It will create a folder named build with your compiled project inside. After tha
 * [React-Cropper](https://github.com/roadmanfong/react-cropper) - Cropper for the image uploads
 * [React-Stripe-js](https://github.com/stripe/react-stripe-js) - Stripes payment elements
 
-## Things im currently working on
-
-- [ ] Improving the encapsulation of components
-- [ ] smoothScrollTop() sometimes stops scrolling top when components with big height are still rendering
-- [ ] When a Dialog is opened there is a margin on the right side of the viewport (could be that this is not fixable without shaking the viewport on dialog open)
-- [ ] shadeColor() throws errors on certain color codes
-- [ ] Adding iDEAL, FBX and PaymentRequestButton to avaible payment methods
-
 ## Contribute
 Show your support by ⭐ the project. Pull requests are always welcome.
 
