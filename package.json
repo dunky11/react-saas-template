@@ -10,7 +10,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/system": "^4.11.2",
-    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/react-stripe-js": "^1.2.0",
     "@stripe/stripe-js": "^1.11.0",
     "aos": "^2.3.4",
     "classnames": "^2.2.6",
