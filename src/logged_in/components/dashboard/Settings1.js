@@ -37,9 +37,6 @@ const styles = (theme) => ({
     paddintTop: theme.spacing(0),
     justifyContent: "flex-end",
   },
-  accordion: {
-    background: "none",
-  }
 });
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
@@ -158,7 +155,7 @@ function Settings1(props) {
   ];
 
   return (
-    <Accordion className={classes.accordion}>
+    <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Settings 1</Typography>
       </AccordionSummary>
