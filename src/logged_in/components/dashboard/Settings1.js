@@ -33,10 +33,13 @@ const styles = (theme) => ({
   listItemLeftPadding: {
     paddingRight: theme.spacing(3),
   },
-  AccordionDetails: {
+  accordionDetails: {
     paddintTop: theme.spacing(0),
     justifyContent: "flex-end",
   },
+  accordion: {
+    background: "none",
+  }
 });
 const inputOptions = ["None", "Slow", "Normal", "Fast"];
 
@@ -155,7 +158,7 @@ function Settings1(props) {
   ];
 
   return (
-    <Accordion>
+    <Accordion className={classes.accordion}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>Settings 1</Typography>
       </AccordionSummary>
@@ -261,7 +264,7 @@ function Settings1(props) {
           </Bordered>
         </List>
       </AccordionDetails>
-      <AccordionDetails className={classes.AccordionDetails}>
+      <AccordionDetails className={classes.accordionDetails}>
         <Box mr={1}>
           <Button
             onClick={onSetDefault}
