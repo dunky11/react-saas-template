@@ -33,7 +33,7 @@
     "workbox-expiration": "^6.0.2",
     "workbox-google-analytics": "^5.1.4",
     "workbox-navigation-preload": "^5.1.4",
-    "workbox-precaching": "^5.1.4",
+    "workbox-precaching": "^6.0.2",
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^6.0.2",
