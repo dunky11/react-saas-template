@@ -31,7 +31,7 @@
     "workbox-cacheable-response": "^6.0.2",
     "workbox-core": "^6.0.2",
     "workbox-expiration": "^6.0.2",
-    "workbox-google-analytics": "^5.1.4",
+    "workbox-google-analytics": "^6.0.2",
     "workbox-navigation-preload": "^5.1.4",
     "workbox-precaching": "^6.0.2",
     "workbox-range-requests": "^6.0.2",
