@@ -27,7 +27,7 @@
     "react-scripts": "^4.0.1",
     "recharts": "^2.0.4",
     "workbox-background-sync": "^6.1.0",
-    "workbox-broadcast-update": "^6.0.2",
+    "workbox-broadcast-update": "^6.1.0",
     "workbox-cacheable-response": "^6.1.0",
     "workbox-core": "^6.1.0",
     "workbox-expiration": "^6.1.0",
