@@ -24,7 +24,7 @@
     "react-dropzone": "^11.3.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.2",
     "recharts": "^2.0.4",
     "workbox-background-sync": "^6.1.0",
     "workbox-broadcast-update": "^6.1.0",
