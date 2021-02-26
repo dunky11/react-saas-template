@@ -11,7 +11,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/system": "^4.11.3",
     "@stripe/react-stripe-js": "^1.2.2",
-    "@stripe/stripe-js": "^1.12.1",
+    "@stripe/stripe-js": "^1.13.0",
     "aos": "^2.3.4",
     "classnames": "^2.2.6",
     "date-fns": "^2.17.0",
