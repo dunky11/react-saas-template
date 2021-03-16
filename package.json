@@ -36,7 +36,7 @@
     "workbox-precaching": "^6.1.1",
     "workbox-range-requests": "^6.1.1",
     "workbox-routing": "^6.1.1",
-    "workbox-strategies": "^6.1.1",
+    "workbox-strategies": "^6.1.2",
     "workbox-streams": "^6.1.1"
   },
   "devDependencies": {
