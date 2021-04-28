@@ -1,0 +1,37 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - dunky11
+  ignore:
+  - dependency-name: "@date-io/date-fns"
+    versions:
+    - ">= 2.3.a, < 2.4"
+  - dependency-name: "@date-io/date-fns"
+    versions:
+    - ">= 2.4.a, < 2.5"
+  - dependency-name: "@date-io/date-fns"
+    versions:
+    - ">= 2.a, < 3"
+  - dependency-name: workbox-strategies
+    versions:
+    - 6.1.5
+  - dependency-name: "@testing-library/react"
+    versions:
+    - 11.2.6
+  - dependency-name: "@testing-library/user-event"
+    versions:
+    - 12.6.3
+    - 12.7.2
+    - 13.0.10
+    - 13.0.13
+    - 13.0.6
+    - 13.0.7
+  - dependency-name: workbox-google-analytics
+    versions:
+    - 6.1.1
