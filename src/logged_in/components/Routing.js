@@ -6,6 +6,7 @@ import Dashboard from "./dashboard/Dashboard";
 import Posts from "./posts/Posts";
 import Subscription from "./subscription/Subscription";
 import PropsRoute from "../../shared/components/PropsRoute";
+import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
 const styles = (theme) => ({
   wrapper: {
@@ -64,6 +65,7 @@ function Routing(props) {
     selectSubscription,
     openAddBalanceDialog,
   } = props;
+  useLocationBlocker();
   return (
     <div className={classes.wrapper}>
       <Switch>
