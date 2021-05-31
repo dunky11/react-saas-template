@@ -14,7 +14,7 @@
     "@stripe/stripe-js": "^1.15.0",
     "aos": "^2.3.4",
     "classnames": "^2.3.1",
-    "date-fns": "^2.21.3",
+    "date-fns": "^2.22.1",
     "emoji-mart": "^3.0.1",
     "js-cookie": "^2.2.0",
     "prop-types": "^15.7.2",
