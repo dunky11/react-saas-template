@@ -56,7 +56,7 @@ You can go into [src/theme.js](/src/theme.js) and change the primary and seconda
 
 ## Deployment
 
-If you are happy with the state of your website you can run:
+If you are satisfied with the state of your website you can run:
 
 ```
 npm run build 
