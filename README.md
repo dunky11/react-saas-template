@@ -50,7 +50,7 @@ Your browser should now open and show the app. Otherwise open http://localhost:3
 
 If you are new to React, you should watch a [basic React tutorial](https://www.youtube.com/results?search_query=react+tutorial) first.
 
-If you already know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
+If you know React, then most of the information you need is in the [Material-UI documentation](https://material-ui.com/getting-started/usage/).
 
 You can go into [src/theme.js](/src/theme.js) and change the primary and secondary color codes at the top of the script to the values you like and some magic will happen.
 
