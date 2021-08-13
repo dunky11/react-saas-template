@@ -28,7 +28,7 @@
     "recharts": "^2.0.10",
     "workbox-background-sync": "^6.1.5",
     "workbox-broadcast-update": "^6.2.2",
-    "workbox-cacheable-response": "^6.1.5",
+    "workbox-cacheable-response": "^6.2.4",
     "workbox-core": "^6.1.5",
     "workbox-expiration": "^6.1.5",
     "workbox-google-analytics": "^6.1.5",
