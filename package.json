@@ -16,7 +16,7 @@
     "classnames": "^2.3.1",
     "date-fns": "^2.23.0",
     "emoji-mart": "^3.0.1",
-    "js-cookie": "^2.2.0",
+    "js-cookie": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-cropper": "^2.1.8",
