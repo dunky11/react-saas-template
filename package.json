@@ -6,7 +6,7 @@
   "description": "Template for building an SaaS/admin application using React + Material-UI",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
-    "@material-ui/core": "^4.12.2",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.3.10",
     "@material-ui/system": "^4.12.1",
