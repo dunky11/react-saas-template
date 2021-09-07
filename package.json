@@ -25,7 +25,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "recharts": "^2.0.10",
+    "recharts": "^2.1.2",
     "workbox-background-sync": "^6.2.4",
     "workbox-broadcast-update": "^6.2.2",
     "workbox-cacheable-response": "^6.2.4",
