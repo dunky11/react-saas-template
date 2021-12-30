@@ -204,7 +204,7 @@ function Wrapper(props) {
 }
 
 
-AddBalanceDialog.propTypes = {
+Wrapper.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired
