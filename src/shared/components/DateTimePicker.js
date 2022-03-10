@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DateTimePicker from "@mui/lab/DateTimePicker";
+import { TextField } from "@mui/material";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import {
@@ -47,7 +48,7 @@ function DTPicker(props) {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={Theme2}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DateTimePicker
+          <MobileDatePicker
             inputVariant="outlined"
             leftArrowIcon={<KeyboardArrowLeft />}
             rightArrowIcon={<KeyboardArrowRight />}
@@ -57,8 +58,8 @@ function DTPicker(props) {
             disabled={disabled}
             value={value}
             onChange={onChange}
+            renderInput={(params) => <TextField {...params} />}
             {...props}
-            inputProps={{ style: { width: "100%", cursor: "pointer" } }}
           />
         </LocalizationProvider>
       </ThemeProvider>
