@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import { Tooltip, Typography, withStyles } from "@material-ui/core";
-import HelpIconOutline from "@material-ui/icons/HelpOutline";
+import { Tooltip, Typography } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import HelpIconOutline from "@mui/icons-material/HelpOutline";
 
 const styles = theme => ({
   tooltipTypo: {

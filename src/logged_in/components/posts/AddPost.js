@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import { Button, Box } from "@material-ui/core";
+import { Button, Box } from "@mui/material";
 import ActionPaper from "../../../shared/components/ActionPaper";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import AddPostOptions from "./AddPostOptions";

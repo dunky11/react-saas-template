@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Box, withStyles } from "@material-ui/core";
-import CheckIcon from "@material-ui/icons/Check";
+import { Typography, Box } from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
+import CheckIcon from "@mui/icons-material/Check";
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
@@ -11,7 +12,7 @@ const styles = theme => ({
     paddingRight: theme.spacing(4),
     marginTop: theme.spacing(2),
     border: `3px solid ${theme.palette.primary.dark}`,
-    borderRadius: theme.shape.borderRadius * 2
+    borderRadius: theme.shape.borderRadius * 2,
   },
   cardHightlighted: {
     paddingTop: theme.spacing(8),
@@ -21,13 +22,13 @@ const styles = theme => ({
     border: `3px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 2,
     backgroundColor: theme.palette.primary.main,
-    [theme.breakpoints.down("xs")]: {
-      marginTop: theme.spacing(2)
-    }
+    [theme.breakpoints.down("sm")]: {
+      marginTop: theme.spacing(2),
+    },
   },
   title: {
-    color: theme.palette.primary.main
-  }
+    color: theme.palette.primary.main,
+  },
 });
 
 function PriceCard(props) {
@@ -56,7 +57,7 @@ function PriceCard(props) {
             style={{
               color: highlighted
                 ? theme.palette.common.white
-                : theme.palette.primary.dark
+                : theme.palette.primary.dark,
             }}
           />
           <Box ml={1}>
@@ -78,7 +79,7 @@ PriceCard.propTypes = {
   theme: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   pricing: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
-  highlighted: PropTypes.bool
+  highlighted: PropTypes.bool,
 };
 
 export default withStyles(styles, { withTheme: true })(PriceCard);

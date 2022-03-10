@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
 import format from "date-fns/format";
-import { GridListTileBar, withStyles } from "@material-ui/core";
+import { ImageListItemBar } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import VertOptions from "./VertOptions";
 
 const styles = {
@@ -60,7 +61,7 @@ function SelfAligningImage(props) {
         alt=""
       />
       {title && (
-        <GridListTileBar
+        <ImageListItemBar
           title={title}
           subtitle={format(new Date(timeStamp * 1000), "PP - k:mm", {
             awareOfUnicodeTokens: true,

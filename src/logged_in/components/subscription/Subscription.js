@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { List, Divider, Paper, withStyles } from "@material-ui/core";
+import { List, Divider, Paper } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import SubscriptionTable from "./SubscriptionTable";
 import SubscriptionInfo from "./SubscriptionInfo";
 

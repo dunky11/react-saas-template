@@ -2,14 +2,8 @@ import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withRouter } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  Typography,
-  FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
+import { TextField, Button, Checkbox, Typography, FormControlLabel } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";

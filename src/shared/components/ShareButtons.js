@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, SvgIcon } from "@material-ui/core";
+import { Grid, SvgIcon } from "@mui/material";
 import ColoredButton from "./ColoredButton";
 
 /**

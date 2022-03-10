@@ -1,52 +1,50 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames";
-import {
-  Grid,
-  Typography,
-  isWidthUp,
-  withWidth,
-  withStyles
-} from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import PriceCard from "./PriceCard";
 import calculateSpacing from "./calculateSpacing";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import useWidth from "../../../shared/functions/useWidth";
 
-const styles = theme => ({
+const styles = (theme) => ({
   containerFix: {
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       paddingLeft: theme.spacing(6),
-      paddingRight: theme.spacing(6)
+      paddingRight: theme.spacing(6),
+    },
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(4),
     },
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
-    },
-    [theme.breakpoints.down("xs")]: {
       paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2)
+      paddingRight: theme.spacing(2),
     },
     overflow: "hidden",
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   cardWrapper: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginLeft: "auto",
       marginRight: "auto",
-      maxWidth: 340
-    }
+      maxWidth: 340,
+    },
   },
   cardWrapperHighlighted: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginLeft: "auto",
       marginRight: "auto",
-      maxWidth: 360
-    }
-  }
+      maxWidth: 360,
+    },
+  },
 });
 
 function PricingSection(props) {
-  const { width, classes } = props;
+  const { classes, theme } = props;
+  const width = useWidth();
+  const isWidthUpMd = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
       <Typography variant="h3" align="center" className="lg-mg-bottom">
@@ -55,7 +53,7 @@ function PricingSection(props) {
       <div className={classNames("container-fluid", classes.containerFix)}>
         <Grid
           container
-          spacing={calculateSpacing(width)}
+          spacing={calculateSpacing(width, theme)}
           className={classes.gridContainer}
         >
           <Grid
@@ -105,7 +103,7 @@ function PricingSection(props) {
             sm={6}
             lg={3}
             data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "400" : "0"}
+            data-aos-delay={isWidthUpMd ? "400" : "0"}
           >
             <PriceCard
               title="Business"
@@ -125,7 +123,7 @@ function PricingSection(props) {
             sm={6}
             lg={3}
             data-aos="zoom-in-up"
-            data-aos-delay={isWidthUp("md", width) ? "600" : "200"}
+            data-aos-delay={isWidthUpMd ? "600" : "200"}
           >
             <PriceCard
               title="Tycoon"
@@ -144,10 +142,6 @@ function PricingSection(props) {
   );
 }
 
-PricingSection.propTypes = {
-  width: PropTypes.string.isRequired
-};
+PricingSection.propTypes = {};
 
-export default withStyles(styles, { withTheme: true })(
-  withWidth()(PricingSection)
-);
+export default withStyles(styles, { withTheme: true })(PricingSection);

@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core";
+import withStyles from '@mui/styles/withStyles';
 
 const styles = theme => ({
   "@global": {
@@ -13,14 +13,14 @@ const styles = theme => ({
       color: theme.palette.common.white
     },
     ".listItemLeftPadding": {
-      paddingTop: `${theme.spacing(1.75)}px !important`,
-      paddingBottom: `${theme.spacing(1.75)}px !important`,
-      paddingLeft: `${theme.spacing(4)}px !important`,
-      [theme.breakpoints.down("sm")]: {
-        paddingLeft: `${theme.spacing(4)}px !important`
+      paddingTop: `${theme.spacing(1.75)} !important`,
+      paddingBottom: `${theme.spacing(1.75)} !important`,
+      paddingLeft: `${theme.spacing(4)} !important`,
+      [theme.breakpoints.down('md')]: {
+        paddingLeft: `${theme.spacing(4)} !important`
       },
       "@media (max-width:  420px)": {
-        paddingLeft: `${theme.spacing(1)}px !important`
+        paddingLeft: `${theme.spacing(1)} !important`
       }
     },
     ".container": {
@@ -54,39 +54,39 @@ const styles = theme => ({
       maxWidth: 1370
     },
     ".lg-mg-top": {
-      marginTop: `${theme.spacing(20)}px !important`,
-      [theme.breakpoints.down("md")]: {
-        marginTop: `${theme.spacing(18)}px !important`
+      marginTop: `${theme.spacing(20)} !important`,
+      [theme.breakpoints.down('lg')]: {
+        marginTop: `${theme.spacing(18)} !important`
       },
-      [theme.breakpoints.down("sm")]: {
-        marginTop: `${theme.spacing(16)}px !important`
+      [theme.breakpoints.down('md')]: {
+        marginTop: `${theme.spacing(16)} !important`
       },
-      [theme.breakpoints.down("xs")]: {
-        marginTop: `${theme.spacing(14)}px !important`
+      [theme.breakpoints.down('sm')]: {
+        marginTop: `${theme.spacing(14)} !important`
       }
     },
     ".lg-mg-bottom": {
-      marginBottom: `${theme.spacing(20)}px !important`,
-      [theme.breakpoints.down("md")]: {
-        marginBottom: `${theme.spacing(18)}px !important`
+      marginBottom: `${theme.spacing(20)} !important`,
+      [theme.breakpoints.down('lg')]: {
+        marginBottom: `${theme.spacing(18)} !important`
       },
-      [theme.breakpoints.down("sm")]: {
-        marginBottom: `${theme.spacing(16)}px !important`
+      [theme.breakpoints.down('md')]: {
+        marginBottom: `${theme.spacing(16)} !important`
       },
-      [theme.breakpoints.down("xs")]: {
-        marginBottom: `${theme.spacing(14)}px !important`
+      [theme.breakpoints.down('sm')]: {
+        marginBottom: `${theme.spacing(14)} !important`
       }
     },
     ".lg-p-top": {
-      paddingTop: `${theme.spacing(20)}px !important`,
-      [theme.breakpoints.down("md")]: {
-        paddingTop: `${theme.spacing(18)}px !important`
+      paddingTop: `${theme.spacing(20)} !important`,
+      [theme.breakpoints.down('lg')]: {
+        paddingTop: `${theme.spacing(18)} !important`
       },
-      [theme.breakpoints.down("sm")]: {
-        paddingTop: `${theme.spacing(16)}px !important`
+      [theme.breakpoints.down('md')]: {
+        paddingTop: `${theme.spacing(16)} !important`
       },
-      [theme.breakpoints.down("xs")]: {
-        paddingTop: `${theme.spacing(14)}px !important`
+      [theme.breakpoints.down('sm')]: {
+        paddingTop: `${theme.spacing(14)} !important`
       }
     }
   }

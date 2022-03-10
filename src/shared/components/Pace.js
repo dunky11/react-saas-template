@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
+import withStyles from '@mui/styles/withStyles';
 
 const styles = {
   "@global": {
@@ -301,83 +301,81 @@ function activatePace() {
       function a() {
         this.progress = 0;
       }
-      return (
-        (a.prototype.getElement = function() {
-          var a;
-          if (null == this.el) {
-            if (((a = document.querySelector(D.target)), !a)) throw new i();
-            (this.el = document.createElement("div")),
-              (this.el.className = "pace pace-active"),
-              (document.body.className = document.body.className.replace(
-                /pace-done/g,
-                ""
-              )),
-              (document.body.className += " pace-running"),
-              (this.el.innerHTML =
-                '<div class="pace-progress">\n  <div class="pace-progress-inner"></div>\n</div>\n<div class="pace-activity"></div>'),
-              null != a.firstChild
-                ? a.insertBefore(this.el, a.firstChild)
-                : a.appendChild(this.el);
-          }
-          return this.el;
-        }),
-        (a.prototype.finish = function() {
-          var a;
-          return (
-            (a = this.getElement()),
-            (a.className = a.className.replace("pace-active", "")),
-            (a.className += " pace-inactive"),
+      return (a.prototype.getElement = function() {
+        var a;
+        if (null == this.el) {
+          if (((a = document.querySelector(D.target)), !a)) throw new i();
+          (this.el = document.createElement("div")),
+            (this.el.className = "pace pace-active"),
             (document.body.className = document.body.className.replace(
-              "pace-running",
+              /pace-done/g,
               ""
             )),
-            (document.body.className += " pace-done")
-          );
-        }),
-        (a.prototype.update = function(a) {
-          return (this.progress = a), this.render();
-        }),
-        (a.prototype.destroy = function() {
-          try {
-            this.getElement().parentNode.removeChild(this.getElement());
-          } catch (a) {
-            i = a;
-          }
-          return (this.el = void 0);
-        }),
-        (a.prototype.render = function() {
-          var a, b, c, d, e, f, g;
-          if (null == document.querySelector(D.target)) return !1;
-          for (
-            a = this.getElement(),
-              d = "translate3d(" + this.progress + "%, 0, 0)",
-              g = ["webkitTransform", "msTransform", "transform"],
-              e = 0,
-              f = g.length;
-            f > e;
-            e++
-          )
-            (b = g[e]), (a.children[0].style[b] = d);
-          return (
-            (!this.lastRenderedProgress ||
-              this.lastRenderedProgress | (0 !== this.progress) | 0) &&
-              (a.children[0].setAttribute(
-                "data-progress-text",
-                "" + (0 | this.progress) + "%"
-              ),
-              this.progress >= 100
-                ? (c = "99")
-                : ((c = this.progress < 10 ? "0" : ""),
-                  (c += 0 | this.progress)),
-              a.children[0].setAttribute("data-progress", "" + c)),
-            (this.lastRenderedProgress = this.progress)
-          );
-        }),
-        (a.prototype.done = function() {
-          return this.progress >= 100;
-        }),
-        a
-      );
+            (document.body.className += " pace-running"),
+            (this.el.innerHTML =
+              '<div class="pace-progress">\n  <div class="pace-progress-inner"></div>\n</div>\n<div class="pace-activity"></div>'),
+            null != a.firstChild
+              ? a.insertBefore(this.el, a.firstChild)
+              : a.appendChild(this.el);
+        }
+        return this.el;
+      }),
+      (a.prototype.finish = function() {
+        var a;
+        return (
+          (a = this.getElement()),
+          (a.className = a.className.replace("pace-active", "")),
+          (a.className += " pace-inactive"),
+          (document.body.className = document.body.className.replace(
+            "pace-running",
+            ""
+          )),
+          (document.body.className += " pace-done")
+        );
+      }),
+      (a.prototype.update = function(a) {
+        return (this.progress = a), this.render();
+      }),
+      (a.prototype.destroy = function() {
+        try {
+          this.getElement().parentNode.removeChild(this.getElement());
+        } catch (a) {
+          i = a;
+        }
+        return (this.el = void 0);
+      }),
+      (a.prototype.render = function() {
+        var a, b, c, d, e, f, g;
+        if (null == document.querySelector(D.target)) return !1;
+        for (
+          a = this.getElement(),
+            d = "translate3d(" + this.progress + "%, 0, 0)",
+            g = ["webkitTransform", "msTransform", "transform"],
+            e = 0,
+            f = g.length;
+          f > e;
+          e++
+        )
+          (b = g[e]), (a.children[0].style[b] = d);
+        return (
+          (!this.lastRenderedProgress ||
+            this.lastRenderedProgress | (0 !== this.progress) | 0) &&
+            (a.children[0].setAttribute(
+              "data-progress-text",
+              "" + (0 | this.progress) + "%"
+            ),
+            this.progress >= 100
+              ? (c = "99")
+              : ((c = this.progress < 10 ? "0" : ""),
+                (c += 0 | this.progress)),
+            a.children[0].setAttribute("data-progress", "" + c)),
+          (this.lastRenderedProgress = this.progress)
+        );
+      }),
+      (a.prototype.done = function() {
+        return this.progress >= 100;
+      }),
+      a;
     })()),
     (h = (function() {
       function a() {

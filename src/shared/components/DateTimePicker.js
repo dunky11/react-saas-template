@@ -1,67 +1,75 @@
 import React from "react";
 import PropTypes from "prop-types";
+import DateTimePicker from "@mui/lab/DateTimePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import {
-  MuiPickersUtilsProvider,
-  DateTimePicker as DTPicker
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-import { withTheme, MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import AccessTime from "@material-ui/icons/AccessTime";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import DateRange from "@material-ui/icons/DateRange";
+  ThemeProvider,
+  StyledEngineProvider,
+  createTheme,
+  adaptV4Theme,
+} from "@mui/material";
+import withTheme from "@mui/styles/withTheme";
+import AccessTime from "@mui/icons-material/AccessTime";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import DateRange from "@mui/icons-material/DateRange";
 
-const Theme2 = theme =>
-  createMuiTheme({
-    ...theme,
-    overrides: {
-      MuiOutlinedInput: {
-        root: {
-          width: 190,
-          "@media (max-width:  400px)": {
-            width: 160
+const Theme2 = (theme) =>
+  createTheme(
+    adaptV4Theme({
+      ...theme,
+      overrides: {
+        MuiOutlinedInput: {
+          root: {
+            width: 190,
+            "@media (max-width:  400px)": {
+              width: 160,
+            },
+            "@media (max-width:  360px)": {
+              width: 140,
+            },
+            "@media (max-width:  340px)": {
+              width: 120,
+            },
           },
-          "@media (max-width:  360px)": {
-            width: 140
+          input: {
+            padding: "9px 14.5px",
           },
-          "@media (max-width:  340px)": {
-            width: 120
-          }
         },
-        input: {
-          padding: "9px 14.5px"
-        }
-      }
-    }
-  });
+      },
+    })
+  );
 
-function DateTimePicker(props) {
+function DTPicker(props) {
   const { disabled, value, onChange } = props;
   return (
-    <MuiThemeProvider theme={Theme2}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DTPicker
-          inputVariant="outlined"
-          leftArrowIcon={<KeyboardArrowLeft />}
-          rightArrowIcon={<KeyboardArrowRight />}
-          timeIcon={<AccessTime />}
-          dateRangeIcon={<DateRange />}
-          variant="outlined"
-          disabled={disabled}
-          value={value}
-          onChange={onChange}
-          {...props}
-          inputProps={{ style: { width: "100%", cursor: "pointer" } }}
-        />
-      </MuiPickersUtilsProvider>
-    </MuiThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={Theme2}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateTimePicker
+            inputVariant="outlined"
+            leftArrowIcon={<KeyboardArrowLeft />}
+            rightArrowIcon={<KeyboardArrowRight />}
+            timeIcon={<AccessTime />}
+            dateRangeIcon={<DateRange />}
+            variant="outlined"
+            disabled={disabled}
+            value={value}
+            onChange={onChange}
+            {...props}
+            inputProps={{ style: { width: "100%", cursor: "pointer" } }}
+          />
+        </LocalizationProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 
-DateTimePicker.propTypes = {
+DTPicker.propTypes = {
   disabled: PropTypes.bool,
   value: PropTypes.instanceOf(Date),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
-export default withTheme(DateTimePicker);
+export default withTheme(DTPicker);

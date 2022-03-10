@@ -1,6 +1,8 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Snackbar, withStyles } from "@material-ui/core";
+import { Snackbar } from "@mui/material";
+
+import withStyles from '@mui/styles/withStyles';
 
 const styles = (theme) => ({
   root: {
@@ -59,7 +61,6 @@ function ConsecutiveSnackbars(props) {
       open={isOpen}
       autoHideDuration={6000}
       onClose={handleClose}
-      onExited={processQueue}
       ContentProps={{
         classes: {
           root: classes.root,
@@ -68,7 +69,9 @@ function ConsecutiveSnackbars(props) {
       message={
         <span>{messageInfo.message ? messageInfo.message.text : null}</span>
       }
-    />
+      TransitionProps={{
+        onExited: processQueue
+      }} />
   );
 
 }

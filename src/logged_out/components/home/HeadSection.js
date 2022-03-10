@@ -1,19 +1,15 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {
-  Grid,
-  Typography,
-  Card,
-  Button,
-  Hidden,
-  Box,
-  withStyles,
-  withWidth,
-  isWidthUp,
-} from "@material-ui/core";
+import { Grid, Typography, Card, Button, Hidden, Box } from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
 import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => (WrappedComponent) => (props) =>
+  <WrappedComponent {...props} width="xs" />;
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -60,7 +56,7 @@ const styles = (theme) => ({
       paddingLeft: theme.spacing(6),
       paddingRight: theme.spacing(6),
     },
-    [theme.breakpoints.down("lg")]: {
+    [theme.breakpoints.down("xl")]: {
       width: "auto",
     },
   },
@@ -78,13 +74,13 @@ const styles = (theme) => ({
   container: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(12),
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       marginBottom: theme.spacing(9),
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       marginBottom: theme.spacing(6),
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       marginBottom: theme.spacing(3),
     },
   },
@@ -99,7 +95,9 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme, width } = props;
+  const { classes, theme } = props;
+  const isWidthUpLg = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
@@ -120,9 +118,7 @@ function HeadSection(props) {
                       height="100%"
                     >
                       <Box mb={4}>
-                        <Typography
-                          variant={isWidthUp("lg", width) ? "h3" : "h4"}
-                        >
+                        <Typography variant={isWidthUpLg ? "h3" : "h4"}>
                           Free Template for building a SaaS app using
                           Material-UI
                         </Typography>
@@ -130,7 +126,7 @@ function HeadSection(props) {
                       <div>
                         <Box mb={2}>
                           <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
+                            variant={isWidthUpLg ? "h6" : "body1"}
                             color="textSecondary"
                           >
                             Lorem ipsum dolor sit amet, consetetur sadipscing
@@ -150,7 +146,7 @@ function HeadSection(props) {
                       </div>
                     </Box>
                   </Grid>
-                  <Hidden smDown>
+                  <Hidden mdDown>
                     <Grid item md={6}>
                       <ZoomImage
                         src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}

@@ -16,20 +16,19 @@ import {
   Hidden,
   Tooltip,
   Box,
-  withStyles,
-  isWidthUp,
-  withWidth,
-} from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ImageIcon from "@material-ui/icons/Image";
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
-import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import MenuIcon from "@material-ui/icons/Menu";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+} from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ImageIcon from "@mui/icons-material/Image";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import MenuIcon from "@mui/icons-material/Menu";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const styles = (theme) => ({
   appBar: {
@@ -39,7 +38,7 @@ const styles = (theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
       marginLeft: 0,
     },
@@ -68,7 +67,7 @@ const styles = (theme) => ({
     width: 24,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginLeft: theme.spacing(1.5),
       marginRight: theme.spacing(1.5),
     },
@@ -86,7 +85,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.common.black,
   },
   smBordered: {
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       borderRadius: "50% !important",
     },
   },
@@ -127,11 +126,12 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, messages, classes, width, openAddBalanceDialog } = props;
+  const { selectedTab, messages, classes, openAddBalanceDialog, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
+  const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -222,12 +222,13 @@ function NavBar(props) {
                   aria-label="Open Navigation"
                   onClick={openMobileDrawer}
                   color="primary"
+                  size="large"
                 >
                   <MenuIcon />
                 </IconButton>
               </Box>
             </Hidden>
-            <Hidden xsDown>
+            <Hidden smDown>
               <Typography
                 variant="h4"
                 className={classes.brandText}
@@ -252,7 +253,7 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {isWidthUp("sm", width) && (
+            {isWidthUpSm && (
               <Box mr={3}>
                 <Balance
                   balance={2573}
@@ -270,7 +271,7 @@ function NavBar(props) {
                 src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
-              {isWidthUp("sm", width) && (
+              {isWidthUpSm && (
                 <ListItemText
                   className={classes.username}
                   primary={
@@ -284,13 +285,14 @@ function NavBar(props) {
             onClick={openDrawer}
             color="primary"
             aria-label="Open Sidedrawer"
+            size="large"
           >
             <SupervisorAccountIcon />
           </IconButton>
           <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
         </Toolbar>
       </AppBar>
-      <Hidden xsDown>
+      <Hidden smDown>
         <Drawer //  both drawers can be combined into one for performance
           variant="permanent"
           classes={{
@@ -357,9 +359,8 @@ function NavBar(props) {
 NavBar.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedTab: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(NavBar));
+export default withStyles(styles, { withTheme: true })(NavBar);

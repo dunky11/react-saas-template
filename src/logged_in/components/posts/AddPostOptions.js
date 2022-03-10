@@ -12,9 +12,9 @@ import {
   OutlinedInput,
   MenuItem,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import CloseIcon from "@mui/icons-material/Close";
 import Bordered from "../../../shared/components/Bordered";
 import ImageCropperDialog from "../../../shared/components/ImageCropperDialog";
 
@@ -131,7 +131,7 @@ function AddPostOptions(props) {
             style={{ height: 148 }}
           />
           <div className={classes.floatButtonWrapper}>
-            <IconButton onClick={deleteItem}>
+            <IconButton onClick={deleteItem} size="large">
               <CloseIcon />
             </IconButton>
           </div>

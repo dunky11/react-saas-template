@@ -1,13 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Paper,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Box,
-  withStyles
-} from "@material-ui/core";
+import { Paper, DialogTitle, DialogContent, DialogActions, Box } from "@mui/material";
+
+import withStyles from '@mui/styles/withStyles';
 
 const styles = theme => ({
   helpPadding: {

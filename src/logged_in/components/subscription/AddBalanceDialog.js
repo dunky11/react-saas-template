@@ -8,7 +8,8 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import { Grid, Button, Box, withTheme } from "@material-ui/core";
+import { Grid, Button, Box } from "@mui/material";
+import withTheme from '@mui/styles/withTheme';
 import StripeCardForm from "./stripe/StripeCardForm";
 import StripeIbanForm from "./stripe/StripeIBANForm";
 import FormDialog from "../../../shared/components/FormDialog";

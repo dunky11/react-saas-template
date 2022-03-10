@@ -1,17 +1,8 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import {
-  Grid,
-  TablePagination,
-  Divider,
-  Toolbar,
-  Typography,
-  Button,
-  Paper,
-  Box,
-  withStyles,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Grid, TablePagination, Divider, Toolbar, Typography, Button, Paper, Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import DeleteIcon from "@mui/icons-material/Delete";
 import SelfAligningImage from "../../../shared/components/SelfAligningImage";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ConfirmationDialog from "../../../shared/components/ConfirmationDialog";
@@ -140,7 +131,7 @@ function PostContent(props) {
         nextIconButtonProps={{
           "aria-label": "Next Page",
         }}
-        onChangePage={handleChangePage}
+        onPageChange={handleChangePage}
         classes={{
           select: classes.dNone,
           selectIcon: classes.dNone,

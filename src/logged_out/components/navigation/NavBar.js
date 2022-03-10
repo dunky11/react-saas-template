@@ -1,20 +1,13 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Hidden,
-  IconButton,
-  withStyles
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
-import HowToRegIcon from "@material-ui/icons/HowToReg";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import BookIcon from "@material-ui/icons/Book";
+import { AppBar, Toolbar, Typography, Button, Hidden, IconButton } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import BookIcon from "@mui/icons-material/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = theme => ({
@@ -99,11 +92,11 @@ function NavBar(props) {
                 className={classes.menuButton}
                 onClick={handleMobileDrawerOpen}
                 aria-label="Open Navigation"
-              >
+                size="large">
                 <MenuIcon color="primary" />
               </IconButton>
             </Hidden>
-            <Hidden smDown>
+            <Hidden mdDown>
               {menuItems.map(element => {
                 if (element.link) {
                   return (

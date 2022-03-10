@@ -9,9 +9,9 @@ import {
   ListItemIcon,
   Switch,
   Box,
-  withStyles
-} from "@material-ui/core";
-import LoopIcon from "@material-ui/icons/Loop";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import LoopIcon from "@mui/icons-material/Loop";
 
 const styles = theme => ({
   paper: {

@@ -16,9 +16,9 @@ import {
   MenuItem,
   Checkbox,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HelpIcon from "../../../shared/components/HelpIcon";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
@@ -26,7 +26,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 const styles = (theme) => ({
   numberInput: {
     width: 120,
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down('md')]: {
       width: 80,
     },
     "@media (max-width: 350px)": {

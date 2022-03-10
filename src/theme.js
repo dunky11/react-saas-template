@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
+import { createTheme, responsiveFontSizes, adaptV4Theme } from "@mui/material";
 
 // colors
 const primary = "#b3294e";
@@ -24,7 +24,7 @@ const xs = 0;
 // spacing
 const spacing = 8;
 
-const theme = createMuiTheme({
+const theme = createTheme(adaptV4Theme({
   palette: {
     primary: { main: primary },
     secondary: { main: secondary },
@@ -122,6 +122,6 @@ const theme = createMuiTheme({
   typography: {
     useNextVariants: true
   }
-});
+}));
 
 export default responsiveFontSizes(theme);

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextField, Grid, InputAdornment } from "@material-ui/core";
+import { TextField, Grid, InputAdornment } from "@mui/material";
 import StripeTextField from "./StripeTextField";
 import { IbanElement } from "@stripe/react-stripe-js";
 
@@ -17,7 +17,7 @@ function StripeIBANForm(props) {
     setEmail
   } = props;
   return (
-    <Grid container spacing={2} justify="space-between">
+    <Grid container spacing={2} justifyContent="space-between">
       <Grid item xs={8}>
         <TextField
           variant="outlined"

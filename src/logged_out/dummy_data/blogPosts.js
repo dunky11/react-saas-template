@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const content = (
   <Fragment>

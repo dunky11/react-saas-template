@@ -7,18 +7,13 @@ import {
   DialogContentText,
   DialogActions,
   Button
-} from "@material-ui/core";
+} from "@mui/material";
 import ButtonCircularProgress from "./ButtonCircularProgress";
 
 function ConfirmationDialog(props) {
   const { open, onClose, loading, title, content, onConfirm } = props;
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      disableBackdropClick={loading}
-      disableEscapeKeyDown={loading}
-    >
+    <Dialog open={open} onClose={onClose} disableEscapeKeyDown={loading}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{content}</DialogContentText>

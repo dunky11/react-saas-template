@@ -9,17 +9,9 @@ import {
   YAxis,
 } from "recharts";
 import format from "date-fns/format";
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Menu,
-  MenuItem,
-  withStyles,
-  Box,
-} from "@material-ui/core";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { Card, CardContent, Typography, IconButton, Menu, MenuItem, Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = (theme) => ({
   cardContentInner: {
@@ -130,7 +122,7 @@ function CardChart(props) {
               aria-owns={isOpen ? "long-menu" : undefined}
               aria-haspopup="true"
               onClick={handleClick}
-            >
+              size="large">
               <MoreVertIcon />
             </IconButton>
             <Menu

@@ -1,7 +1,7 @@
 import React from "react";
-import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function VisibilityPasswordTextField(props) {
   const { isVisible, onVisibilityChange, ...rest } = props;
@@ -20,7 +20,7 @@ function VisibilityPasswordTextField(props) {
               onMouseDown={(event) => {
                 event.preventDefault();
               }}
-            >
+              size="large">
               {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </IconButton>
           </InputAdornment>

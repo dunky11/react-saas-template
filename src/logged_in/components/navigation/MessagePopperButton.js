@@ -10,9 +10,9 @@ import {
   ListItemText,
   Typography,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import MessageIcon from "@material-ui/icons/Message";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import MessageIcon from "@mui/icons-material/Message";
 import MessageListItem from "./MessageListItem";
 
 const styles = (theme) => ({
@@ -25,7 +25,7 @@ const styles = (theme) => ({
     maxWidth: 350,
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down('md')]: {
       maxWidth: 270,
     },
   },
@@ -59,7 +59,7 @@ function MessagePopperButton(props) {
         aria-label="Open Messages"
         aria-describedby={id}
         color="primary"
-      >
+        size="large">
         <MessageIcon />
       </IconButton>
       <Popover

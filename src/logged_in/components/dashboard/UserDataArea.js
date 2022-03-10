@@ -12,12 +12,12 @@ import {
   Accordion,
   AccordionSummary,
   Typography,
-  withStyles,
-} from "@material-ui/core";
-import PlayCirlceOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import DeleteIcon from "@material-ui/icons/Delete";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import PlayCirlceOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import DeleteIcon from "@mui/icons-material/Delete";
 import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
 import stableSort from "../../../shared/functions/stableSort";
 import getSorting from "../../../shared/functions/getSorting";
@@ -241,7 +241,7 @@ function CustomTable(props) {
                                 toggleTarget(row);
                               }}
                               aria-label="Pause"
-                            >
+                              size="large">
                               <PauseCircleOutlineIcon
                                 className={classes.blackIcon}
                               />
@@ -254,7 +254,7 @@ function CustomTable(props) {
                                 toggleTarget(row);
                               }}
                               aria-label="Resume"
-                            >
+                              size="large">
                               <PlayCirlceOutlineIcon />
                             </IconButton>
                           )}
@@ -264,7 +264,7 @@ function CustomTable(props) {
                               handleDeleteTargetDialogOpen(row);
                             }}
                             aria-label="Delete"
-                          >
+                            size="large">
                             <DeleteIcon className={classes.blackIcon} />
                           </IconButton>
                         </Box>
@@ -293,7 +293,7 @@ function CustomTable(props) {
             nextIconButtonProps={{
               "aria-label": "Next Page",
             }}
-            onChangePage={handleChangePage}
+            onPageChange={handleChangePage}
             classes={{
               select: classes.dNone,
               selectIcon: classes.dNone,

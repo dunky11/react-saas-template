@@ -1,13 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TablePagination,
-  TableRow,
-  withStyles
-} from "@material-ui/core";
+import { Table, TableBody, TableCell, TablePagination, TableRow } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import EnhancedTableHead from "../../../shared/components/EnhancedTableHead";
 import ColorfulChip from "../../../shared/components/ColorfulChip";
 import unixToDateString from "../../../shared/functions/unixToDateString";
@@ -24,7 +18,7 @@ const styles = theme => ({
   },
   contentWrapper: {
     padding: theme.spacing(3),
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2)
     },
     width: "100%"
@@ -131,7 +125,7 @@ function SubscriptionTable(props) {
           nextIconButtonProps={{
             "aria-label": "Next Page"
           }}
-          onChangePage={handleChangePage}
+          onPageChange={handleChangePage}
           classes={{
             select: classes.dNone,
             selectIcon: classes.dNone,

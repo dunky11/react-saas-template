@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextField, Grid, InputAdornment } from "@material-ui/core";
+import { TextField, Grid, InputAdornment } from "@mui/material";
 import { CardElement } from "@stripe/react-stripe-js";
 import StripeTextField from "./StripeTextField";
 
@@ -15,7 +15,7 @@ function StripeCardForm(props) {
     setName
   } = props;
   return (
-    <Grid container spacing={2} justify="space-between">
+    <Grid container spacing={2} justifyContent="space-between">
       <Grid item xs={8}>
         <TextField
           variant="outlined"

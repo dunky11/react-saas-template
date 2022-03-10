@@ -6,18 +6,20 @@ import {
   Box,
   IconButton,
   Hidden,
-  withStyles,
-  withWidth,
-  isWidthUp,
-  TextField
-} from "@material-ui/core";
-import PhoneIcon from "@material-ui/icons/Phone";
-import MailIcon from "@material-ui/icons/Mail";
+  TextField,
+} from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
+import PhoneIcon from "@mui/icons-material/Phone";
+import MailIcon from "@mui/icons-material/Mail";
 import WaveBorder from "../../../shared/components/WaveBorder";
-import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const styles = theme => ({
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => (WrappedComponent) => (props) =>
+  <WrappedComponent {...props} width="xs" />;
+
+const styles = (theme) => ({
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
     paddingTop: theme.spacing(8),
@@ -28,62 +30,62 @@ const styles = theme => ({
       paddingTop: theme.spacing(10),
       paddingLeft: theme.spacing(16),
       paddingRight: theme.spacing(16),
-      paddingBottom: theme.spacing(10)
+      paddingBottom: theme.spacing(10),
     },
     [theme.breakpoints.up("md")]: {
       paddingTop: theme.spacing(10),
       paddingLeft: theme.spacing(10),
       paddingRight: theme.spacing(10),
-      paddingBottom: theme.spacing(10)
-    }
+      paddingBottom: theme.spacing(10),
+    },
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
     fontWeight: 400,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   footerLinks: {
     marginTop: theme.spacing(2.5),
     marginBot: theme.spacing(1.5),
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   infoIcon: {
     color: `${theme.palette.common.white} !important`,
-    backgroundColor: "#33383b !important"
+    backgroundColor: "#33383b !important",
   },
   socialIcon: {
     fill: theme.palette.common.white,
     backgroundColor: "#33383b",
     borderRadius: theme.shape.borderRadius,
     "&:hover": {
-      backgroundColor: theme.palette.primary.light
-    }
+      backgroundColor: theme.palette.primary.light,
+    },
   },
   link: {
     cursor: "Pointer",
     color: theme.palette.common.white,
-    transition: transitions.create(["color"], {
+    transition: theme.transitions.create(["color"], {
       duration: theme.transitions.duration.shortest,
-      easing: theme.transitions.easing.easeIn
+      easing: theme.transitions.easing.easeIn,
     }),
     "&:hover": {
-      color: theme.palette.primary.light
-    }
+      color: theme.palette.primary.light,
+    },
   },
   whiteBg: {
-    backgroundColor: theme.palette.common.white
-  }
+    backgroundColor: theme.palette.common.white,
+  },
 });
 
 const infos = [
   {
     icon: <PhoneIcon />,
-    description: "+1 555 123456"
+    description: "+1 555 123456",
   },
   {
     icon: <MailIcon />,
-    description: "support@company.com"
-  }
+    description: "support@company.com",
+  },
 ];
 
 const socialIcons = [
@@ -101,7 +103,7 @@ const socialIcons = [
       </svg>
     ),
     label: "Github",
-    href: "https://github.com/dunky11/react-saas-template"
+    href: "https://github.com/dunky11/react-saas-template",
   },
   {
     icon: (
@@ -117,7 +119,7 @@ const socialIcons = [
       </svg>
     ),
     label: "Facebook",
-    href: "https://facebook.com"
+    href: "https://facebook.com",
   },
   {
     icon: (
@@ -133,7 +135,7 @@ const socialIcons = [
       </svg>
     ),
     label: "LinkedIn",
-    href: "https://www.linkedin.com/"
+    href: "https://www.linkedin.com/",
   },
   {
     icon: (
@@ -149,12 +151,14 @@ const socialIcons = [
       </svg>
     ),
     label: "Twitter",
-    href: "https://www.twitter.com/"
-  }
+    href: "https://www.twitter.com/",
+  },
 ];
 
 function Footer(props) {
-  const { classes, theme, width } = props;
+  const { classes, theme } = props;
+  const isWidthUpMd = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <footer className="lg-p-top">
       <WaveBorder
@@ -163,7 +167,7 @@ function Footer(props) {
         animationNegativeDelay={4}
       />
       <div className={classes.footerInner}>
-        <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
+        <Grid container spacing={isWidthUpMd ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>
             <form>
               <Box display="flex" flexDirection="column">
@@ -172,9 +176,9 @@ function Footer(props) {
                     variant="outlined"
                     multiline
                     placeholder="Get in touch with us"
-                    inputProps={{ "aria-label": "Get in Touch" }}
                     InputProps={{
-                      className: classes.whiteBg
+                      className: classes.whiteBg,
+                      "aria-label": "Get in Touch",
                     }}
                     rows={4}
                     fullWidth
@@ -191,7 +195,7 @@ function Footer(props) {
               </Box>
             </form>
           </Grid>
-          <Hidden mdDown>
+          <Hidden lgDown>
             <Grid item xs={12} md={6} lg={4}>
               <Box display="flex" justifyContent="center">
                 <div>
@@ -202,6 +206,7 @@ function Footer(props) {
                           className={classes.infoIcon}
                           tabIndex={-1}
                           disabled
+                          size="large"
                         >
                           {info.icon}
                         </IconButton>
@@ -236,6 +241,7 @@ function Footer(props) {
                     aria-label={socialIcon.label}
                     className={classes.socialIcon}
                     href={socialIcon.href}
+                    size="large"
                   >
                     {socialIcon.icon}
                   </IconButton>
@@ -252,7 +258,7 @@ function Footer(props) {
 Footer.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
 };
 
 export default withWidth()(withStyles(styles, { withTheme: true })(Footer));

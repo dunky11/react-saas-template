@@ -1,14 +1,7 @@
 import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
-import {
-  FormHelperText,
-  TextField,
-  Button,
-  Checkbox,
-  Typography,
-  FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
+import { FormHelperText, TextField, Button, Checkbox, Typography, FormControlLabel } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListItemText, Button, Toolbar, withStyles } from "@material-ui/core";
+import { ListItemText, Button, Toolbar } from "@mui/material";
+
+import withStyles from '@mui/styles/withStyles';
 
 const styles = {
   toolbar: {

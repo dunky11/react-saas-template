@@ -1,15 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Drawer,
-  IconButton,
-  Toolbar,
-  Divider,
-  Typography,
-  Box,
-  withStyles
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import { Drawer, IconButton, Toolbar, Divider, Typography, Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import CloseIcon from "@mui/icons-material/Close";
 
 const drawerWidth = 240;
 
@@ -37,7 +30,7 @@ function SideDrawer(props) {
             onClick={onClose}
             color="primary"
             aria-label="Close Sidedrawer"
-          >
+            size="large">
             <CloseIcon />
           </IconButton>
         </Box>

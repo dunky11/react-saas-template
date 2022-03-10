@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { OutlinedInput, withStyles } from "@material-ui/core";
+import { OutlinedInput } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 
 const styles = {

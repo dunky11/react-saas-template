@@ -15,12 +15,14 @@ import {
   FormControl,
   Select,
   Box,
-  withStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import withWidth from "@material-ui/core/withWidth";
+} from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
+
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const styles = (theme) => ({
   numberInput: {

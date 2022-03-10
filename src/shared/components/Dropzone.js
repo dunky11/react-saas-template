@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDropzone } from "react-dropzone";
 import classNames from "classnames";
-import { Box, withStyles } from "@material-ui/core";
+import { Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import ColoredButton from "./ColoredButton";
 
 const styles = {

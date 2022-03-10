@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Grid, Box, isWidthUp, withWidth, withStyles } from "@material-ui/core";
+import { Grid, Box } from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
 import BlogCard from "./BlogCard";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const styles = (theme) => ({
   blogContentWrapper: {
@@ -23,14 +25,14 @@ const styles = (theme) => ({
   },
 });
 
-function getVerticalBlogPosts(width, blogPosts) {
+function getVerticalBlogPosts(isWidthUpSm, isWidthUpMd, blogPosts) {
   const gridRows = [[], [], []];
   let rows;
   let xs;
-  if (isWidthUp("md", width)) {
+  if (isWidthUpMd) {
     rows = 3;
     xs = 4;
-  } else if (isWidthUp("sm", width)) {
+  } else if (isWidthUpSm) {
     rows = 2;
     xs = 6;
   } else {
@@ -60,7 +62,10 @@ function getVerticalBlogPosts(width, blogPosts) {
 }
 
 function Blog(props) {
-  const { classes, width, blogPosts, selectBlog } = props;
+  const { classes, blogPosts, selectBlog, theme } = props;
+
+  const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const isWidthUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
     selectBlog();
@@ -74,7 +79,7 @@ function Blog(props) {
     >
       <div className={classes.blogContentWrapper}>
         <Grid container spacing={3}>
-          {getVerticalBlogPosts(width, blogPosts)}
+          {getVerticalBlogPosts(isWidthUpSm, isWidthUpMd, blogPosts)}
         </Grid>
       </div>
     </Box>
@@ -84,8 +89,7 @@ function Blog(props) {
 Blog.propTypes = {
   selectBlog: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
   blogPosts: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Blog));
+export default withStyles(styles, { withTheme: true })(Blog);

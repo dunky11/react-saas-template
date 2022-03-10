@@ -1,14 +1,7 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import {
-  TextField,
-  Dialog,
-  DialogContent,
-  DialogActions,
-  Button,
-  Typography,
-  withStyles,
-} from "@material-ui/core";
+import { TextField, Dialog, DialogContent, DialogActions, Button, Typography } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 
 const styles = (theme) => ({
@@ -40,10 +33,8 @@ function ChangePassword(props) {
       open
       hideBackdrop
       onClose={onClose}
-      disableBackdropClick={isLoading}
       disableEscapeKeyDown={isLoading}
-      maxWidth="xs"
-    >
+      maxWidth="xs">
       <form
         onSubmit={(e) => {
           e.preventDefault();

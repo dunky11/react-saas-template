@@ -1,13 +1,8 @@
 import React, { Fragment, useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
-import {
-  Snackbar,
-  Button,
-  Typography,
-  Box,
-  withStyles,
-} from "@material-ui/core";
+import { Snackbar, Button, Typography, Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import fetchIpData from "./fetchIpData";
 
 const styles = (theme) => ({

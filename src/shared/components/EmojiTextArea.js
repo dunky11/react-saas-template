@@ -2,17 +2,10 @@ import React, { Fragment, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
-import {
-  TextField,
-  IconButton,
-  Collapse,
-  FormHelperText,
-  Box,
-  Grid,
-  withStyles
-} from "@material-ui/core";
-import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
-import CloseIcon from "@material-ui/icons/Close";
+import { TextField, IconButton, Collapse, FormHelperText, Box, Grid } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import CloseIcon from "@mui/icons-material/Close";
 import countWithEmojis from "../functions/countWithEmojis";
 
 const styles = theme => ({
@@ -24,10 +17,10 @@ const styles = theme => ({
       ...theme.border
     },
     ".emoji-mart-search": {
-      marginTop: `${theme.spacing(1)}px !important`,
-      paddingRight: `${theme.spacing(1)}px !important`,
-      paddingLeft: `${theme.spacing(1)}px !important`,
-      paddingBottom: `${theme.spacing(1)}px !important`
+      marginTop: `${theme.spacing(1)} !important`,
+      paddingRight: `${theme.spacing(1)} !important`,
+      paddingLeft: `${theme.spacing(1)} !important`,
+      paddingBottom: `${theme.spacing(1)} !important`
     },
     ".emoji-mart-search-icon": {
       top: "5px !important",
@@ -149,7 +142,7 @@ function EmojiTextarea(props) {
             }}
           />
           <div className={classes.floatButtonWrapper}>
-            <IconButton onClick={toggleOpen}>
+            <IconButton onClick={toggleOpen} size="large">
               {open ? (
                 <CloseIcon color="primary" />
               ) : (

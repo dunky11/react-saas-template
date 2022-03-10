@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Chip } from "@material-ui/core";
+import { Chip } from "@mui/material";
 import shadeColor from "../functions/shadeColor";
 
 function ColorfulChip(props) {

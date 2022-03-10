@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Dialog, DialogContent, Box, withStyles } from "@material-ui/core";
+import { Dialog, DialogContent, Box } from "@mui/material";
+import withStyles from '@mui/styles/withStyles';
 import DialogTitleWithCloseIcon from "./DialogTitleWithCloseIcon";
 
 const styles = theme => ({
@@ -43,14 +44,12 @@ function FormDialog(props) {
     <Dialog
       open={open}
       onClose={onClose}
-      disableBackdropClick={loading}
       disableEscapeKeyDown={loading}
       classes={{
         paper: classes.dialogPaper,
         paperScrollPaper: classes.dialogPaperScrollPaper
       }}
-      hideBackdrop={hideBackdrop ? hideBackdrop : false}
-    >
+      hideBackdrop={hideBackdrop ? hideBackdrop : false}>
       <DialogTitleWithCloseIcon
         title={headline}
         onClose={onClose}

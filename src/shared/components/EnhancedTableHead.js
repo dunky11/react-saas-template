@@ -1,15 +1,9 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import {
-  Typography,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-  Tooltip,
-  withStyles
-} from "@material-ui/core";
+import { Typography, TableCell, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
+
+import withStyles from '@mui/styles/withStyles';
 
 const styles = theme => ({
   tableSortLabel: {
@@ -44,7 +38,7 @@ function EnhancedTableHead(props) {
           <TableCell
             key={index}
             align={row.numeric ? "right" : "inherit"}
-            padding="default"
+            padding="normal"
             sortDirection={orderBy === row.name ? order : false}
             className={index === 0 ? classes.paddingFix : null}
           >

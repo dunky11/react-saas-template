@@ -1,21 +1,16 @@
-/**
- * This calculates the spacing for the
- * grid container component based on the viewsize
- */
-
-import { isWidthUp } from "@material-ui/core/withWidth";
-
-function calculateSpacing(width) {
-  if (isWidthUp("lg", width)) {
-    return 5;
+function calculateSpacing(width, theme) {
+  console.log(theme["breakpoints"]);
+  const currentWidth = theme["breakpoints"]["values"][width];
+  if (currentWidth >= theme["breakpoints"]["values"]["lg"]) {
+    return 10;
   }
-  if (isWidthUp("md", width)) {
-    return 4;
+  if (currentWidth >= theme["breakpoints"]["values"]["md"]) {
+    return 8;
   }
-  if (isWidthUp("sm", width)) {
-    return 3;
+  if (currentWidth >= theme["breakpoints"]["values"]["sm"]) {
+    return 6;
   }
-  return 2;
+  return 4;
 }
 
 export default calculateSpacing;

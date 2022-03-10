@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
-const styles = theme => ({
+import withStyles from "@mui/styles/withStyles";
+
+const styles = (theme) => ({
   iconWrapper: {
     borderRadius: theme.shape.borderRadius,
     textAlign: "center",
@@ -10,8 +12,8 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(1) * 1.5
-  }
+    padding: theme.spacing(1) * 1.5,
+  },
 });
 
 function shadeColor(hex, percent) {
@@ -46,7 +48,8 @@ function FeatureCard(props) {
         style={{
           color: color,
           backgroundColor: shadeColor(color, 0.5),
-          fill: color
+          fill: color,
+          padding: 12,
         }}
       >
         {Icon}
@@ -66,7 +69,7 @@ FeatureCard.propTypes = {
   Icon: PropTypes.element.isRequired,
   color: PropTypes.string.isRequired,
   headline: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(FeatureCard);
