@@ -15,10 +15,6 @@ import WaveBorder from "../../../shared/components/WaveBorder";
 import ColoredButton from "../../../shared/components/ColoredButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => (WrappedComponent) => (props) =>
-  <WrappedComponent {...props} width="xs" />;
-
 const styles = (theme) => ({
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
@@ -258,7 +254,6 @@ function Footer(props) {
 Footer.propTypes = {
   theme: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Footer));
+export default withStyles(styles, { withTheme: true })(Footer);

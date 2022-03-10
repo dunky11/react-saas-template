@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Grid, Typography } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import BuildIcon from "@mui/icons-material/Build";
@@ -11,13 +10,10 @@ import CloudIcon from "@mui/icons-material/Cloud";
 import MeassageIcon from "@mui/icons-material/Message";
 import CancelIcon from "@mui/icons-material/Cancel";
 import calculateSpacing from "./calculateSpacing";
-import FeatureCard from "./FeatureCard";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { withTheme } from "@mui/styles";
-
-// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => (WrappedComponent) => (props) =>
-  <WrappedComponent {...props} width="xs" />;
+import FeatureCard from "./FeatureCard";
+import useWidth from "../../../shared/functions/useWidth";
 
 const iconSize = 30;
 
@@ -97,8 +93,10 @@ const features = [
 ];
 
 function FeatureSection(props) {
-  const { width, theme } = props;
+  const { theme } = props;
+  const width = useWidth();
   const isWidthUpMd = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <div style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-fluid lg-p-top">
@@ -131,8 +129,6 @@ function FeatureSection(props) {
   );
 }
 
-FeatureSection.propTypes = {
-  width: PropTypes.string.isRequired,
-};
+FeatureSection.propTypes = {};
 
-export default withTheme(withWidth()(FeatureSection));
+export default withTheme(FeatureSection);

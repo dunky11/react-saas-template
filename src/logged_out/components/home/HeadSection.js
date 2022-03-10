@@ -7,10 +7,6 @@ import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => (WrappedComponent) => (props) =>
-  <WrappedComponent {...props} width="xs" />;
-
 const styles = (theme) => ({
   extraLargeButtonLabel: {
     fontSize: theme.typography.body1.fontSize,
@@ -173,10 +169,7 @@ function HeadSection(props) {
 
 HeadSection.propTypes = {
   classes: PropTypes.object,
-  width: PropTypes.string,
   theme: PropTypes.object,
 };
 
-export default withWidth()(
-  withStyles(styles, { withTheme: true })(HeadSection)
-);
+export default withStyles(styles, { withTheme: true })(HeadSection);

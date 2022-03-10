@@ -16,13 +16,10 @@ import {
   Select,
   Box,
 } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import withStyles from "@mui/styles/withStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Bordered from "../../../shared/components/Bordered";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-
-// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const styles = (theme) => ({
   numberInput: {
@@ -37,6 +34,7 @@ const styles = (theme) => ({
   },
   accordionDetails: {
     paddintTop: theme.spacing(0),
+    display: "flex",
     justifyContent: "flex-end",
   },
 });
@@ -291,4 +289,4 @@ Settings1.propTypes = {
   pushMessageToSnackbar: PropTypes.func,
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(Settings1));
+export default withStyles(styles, { withTheme: true })(Settings1);

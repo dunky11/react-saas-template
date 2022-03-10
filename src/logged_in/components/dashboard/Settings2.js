@@ -17,7 +17,7 @@ import {
   Checkbox,
   Box,
 } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import withStyles from "@mui/styles/withStyles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import HelpIcon from "../../../shared/components/HelpIcon";
 import Bordered from "../../../shared/components/Bordered";
@@ -26,7 +26,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 const styles = (theme) => ({
   numberInput: {
     width: 120,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       width: 80,
     },
     "@media (max-width: 350px)": {
@@ -50,6 +50,7 @@ const styles = (theme) => ({
   },
   AccordionDetails: {
     paddingTop: theme.spacing(0),
+    display: "flex",
     justifyContent: "flex-end",
   },
   dBlock: {
