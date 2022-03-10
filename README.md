@@ -64,7 +64,7 @@ npm run build
 
 It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
 
-## Build With
+## Built With
 
 * [Create-React-App](https://github.com/facebook/create-react-app) - Used to bootstrap the development
 * [Material-UI](https://github.com/mui-org/material-ui) - Material Design components
