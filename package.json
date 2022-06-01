@@ -9,7 +9,7 @@
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.4",
-    "@mui/lab": "^5.0.0-alpha.71",
+    "@mui/lab": "^5.0.0-alpha.84",
     "@mui/material": "^5.4.4",
     "@mui/styles": "^5.4.4",
     "@stripe/react-stripe-js": "^1.4.1",
