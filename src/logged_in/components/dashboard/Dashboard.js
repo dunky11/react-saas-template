@@ -9,7 +9,7 @@ import StatisticsArea from "./StatisticsArea";
 function Dashboard(props) {
   const {
     selectDashboard,
-    CardChart,
+    cardChart,
     statistics,
     toggleAccountActivation,
     pushMessageToSnackbar,
@@ -48,7 +48,7 @@ function Dashboard(props) {
 }
 
 Dashboard.propTypes = {
-  CardChart: PropTypes.elementType,
+  cardChart: PropTypes.elementType,
   statistics: PropTypes.object.isRequired,
   toggleAccountActivation: PropTypes.func,
   pushMessageToSnackbar: PropTypes.func,
